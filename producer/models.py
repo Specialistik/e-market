@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+from datetime import datetime
 from django.db import models
 
 from django.contrib.auth.models import User
@@ -22,10 +23,10 @@ class ProductCard(models.Model):
     category = models.ForeignKey(Category, verbose_name=u"Категория")
     product_depot = models.ForeignKey(ProducerDepot, verbose_name=u'Склад')
     name = models.CharField(max_length=256, verbose_name=u"Название")
-    #measure = models.ForeignKey(Measure, verbose_name=u'Единица измерения', default=1)
     barcode = models.IntegerField(verbose_name=u'Штрих-код')
     expiration_date = models.CharField(max_length=256, verbose_name=u'Срок годности')
-    price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=u'Цена')
+    producer_price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=u'Цена производителя')
+    customer_price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=u'Цена для заказчика')
     minimum_amount = models.IntegerField(default=1, verbose_name=u'Минимальное количество')
     pack_amount = models.IntegerField(null=True, blank=True, verbose_name=u'Количество в упаковке')
     weight = models.DecimalField(null=True, blank=True, max_digits=12, decimal_places=2, verbose_name=u'Вес')
@@ -37,3 +38,12 @@ class ProductCard(models.Model):
         verbose_name_plural = u'Карты товаров'
 
 
+class ProductPrice(models.Model):
+    product = models.ForeignKey(ProductCard, verbose_name=u'Продукт')
+    price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=u'Цена')
+    created = models.DateTimeField(default=datetime.now(), verbose_name=u'Время изменения цены')
+
+    class Meta:
+        db_table = 'product_prices'
+        verbose_name = u'Цена продукта'
+        verbose_name_plural = u'Цены продуктов'
