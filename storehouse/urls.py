@@ -33,7 +33,6 @@ import customer.views as customer_views
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'category', catalog_views.CategoryViewSet)
-#router.register(r'address', core_views.AddressViewSet)
 router.register(r'profile', core_views.ProfileViewSet)
 
 
