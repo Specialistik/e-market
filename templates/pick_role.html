@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <!-- Basic page needs
+        ============================================ -->
+        <title>The склад</title>
+        <meta charset="utf-8">
+        <meta name="author" content="">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+
+        <!-- Mobile specific metas
+        ============================================ -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+
+        <!-- Libs CSS
+        ============================================ -->
+        <link rel="stylesheet" href="">
+
+
+        <!-- Favicon
+        ============================================ -->
+
+        <!-- "Old-browser ICO"
+        <link rel="shortcut icon" type="images/x-icon" href="favicon.ico">
+        -->
+        <!-- "For All Browser PNG"
+        <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+        <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+        <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96">
+        -->
+
+
+        <!-- "Apple-touch-icon PNG"
+
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/apple-touch-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+        -->
+
+
+        <!-- Theme CSS
+        ============================================ -->
+        <link rel="stylesheet" href="static/css/style.css">
+
+        <!-- Media Queries CSS
+        ============================================ -->
+        <link rel="stylesheet" href="static/css/responsive.css">
+
+
+        <!-- Include Libs & Plugins
+        ============================================ -->
+        <script src="static/js/modernizr-custom.js"></script>
+
+        <!-- Old IE
+        ============================================ -->
+
+        <!--[if lt IE 8]>
+            <div style=' clear: both; text-align:center; position: relative;'>
+              <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+                <img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." />
+              </a>
+            </div>
+            <![endif]-->
+            <!--[if lt IE 9]>
+            <script type="text/javascript" src="js/html5.js"></script>
+            <link rel="stylesheet" type="text/css" media="screen" href="css/ie.css">
+        <![endif]-->
+
+    </head>
+
+    <body>
+
+        <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
+
+        <div id="content" class="content_bg"  style="background-image: url('static/images/bg-image/bg-type1.png');">
+
+            <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+
+            <div class="entered_wrapp">
+
+                <div class="entered_top">
+
+                    <div class="big_logo">
+                        <img src="static/images/big-logo.png" alt="">
+                    </div>
+
+                    <h1 class="subtitle_entered">
+                        Укажите чем занимается Ваша компания:
+                        продажей или покупкой продуктов питания
+                    </h1>
+
+                </div>
+
+                <div class="entered_bottom_wrapp">
+
+                    <div class="entered_bottom_inner">
+
+                        <div class="entered_bottom_box_parrent clearfix">
+                            <div class="entered_bottom_box">
+
+                                <h3>Для тех, кто торгует продуктами питания</h3>
+
+                                <a href="javascript:;" class="btn big light_orange icon_right" id="producer">
+                                    Я - ПОСТАВЩИК
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </a>
+
+                            </div>
+
+                            <div class="entered_bottom_box">
+
+                                <h3>Для тех, кто закупает продукты питания</h3>
+
+                                <a href="javascript:;" class="btn big light_orange icon_right" id="customer">
+                                    Я - ЗАКАЗЧИК
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <a href="javascript:;" class="btn hight_orange" id="pick_role">Далее</a>
+                        <form action="/register" method="POST" id="pick_role_form">
+                            {% csrf_token %}
+                            <input type="hidden" name="role" id="role">
+                        </form>
+                        {% comment %}<button type="submit" class="btn hight_orange" id="pick_role">Далее</button>{% endcomment %}
+
+                    </div> <!-- entered_bottom_inner -->
+
+                </div>
+
+            </div>
+
+            <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
+
+
+            <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+
+            <section>
+
+
+            </section>
+
+            <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
+
+            <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+
+            <section>
+
+
+            </section>
+
+            <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
+
+
+        </div>
+
+        <!-- - - - - - - - - - - - - - End of Content - - - - - - - - - - - - - - - - -->
+
+
+
+
+        <!-- Include Libs & Plugins
+        ============================================ -->
+        <script type="text/javascript" src="static/js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="static/js/jquery-migrate-3.0.0.min.js"></script>
+
+        <!-- Theme files
+        ============================================ -->
+        <script src="static/js/script.core.js"></script>
+        <script src="static/js/script.plugins.js"></script>
+        <script src="static/js/pick_role.js"></script>
+    </body>
+</html>

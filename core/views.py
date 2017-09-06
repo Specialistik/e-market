@@ -2,8 +2,11 @@
 
 
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import Group, User
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout as logout_user
+
 
 from rest_framework import generics, viewsets, status, mixins
 from rest_framework.decorators import api_view, detail_route, permission_classes
@@ -25,7 +28,6 @@ def signup(request):
         return Response({'detail': 'required user groups not created'}, status=status.HTTP_400_BAD_REQUEST)
 
     serialized_user = SignupSerializer(data=request.data)
-    #serialized_user = SignupSerializer(data=request.data.dict())
     if serialized_user.is_valid():
         registered_user = User.objects.create_user(
             email=request.data['email'],
@@ -37,6 +39,9 @@ def signup(request):
             inn=request.data['inn'],
             phone=request.data['phone']
         )
+        user = authenticate(username=request.data['username'], password=request.data['password'])
+        if user is not None:
+            login(request, user)
 
         if serialized_user.validated_data['role'] == 'producer':
             producer_group.user_set.add(registered_user)
@@ -83,16 +88,33 @@ class ProfileViewSet(mixins.RetrieveModelMixin,
     queryset = UserProfile.objects.all()
     permission_classes = [permissions.IsAuthenticated]
 
-    #def get_queryset(self):
-    #    return self.request.
 
-    #def get_queryset(self):
-        #testinga = UserProfile.objects.filter(user=self.request.user)
-        #me = self.request.user
-        #queryset = self.queryset.filter(user=me.id)
-        #me = self.request.user
-        #queryset = UserProfile.objects.get(user=me.profile)
-        #sreturn UserProfile.objects.filter(user=self.request.user)
+def index(request):
+    if request.user.is_anonymous:
+        if request.method == 'GET':
+            return render(request, 'pick_role.html')
+    #    if request.method == 'POST':
+    #        role = request.POST['role']
+    return render(request, 'thanks.html')
+
+
+def sign_in(request):
+    return render(request, 'sign_in.html')
+
+
+def register(request):
+    if not request.user.is_anonymous:
+        return render(request, 'thanks.html')
+
+    if 'role' not in request.POST:
+        return redirect('/')
+    role = request.POST['role']
+    return render(request, 'register.html', {'role': role})
+
+
+def logout(request):
+    logout_user(request)
+    return redirect('/')
 
 
 """

@@ -32,6 +32,7 @@ import customer.views as customer_views
 #schema_view = get_swagger_view(title='The sklad API')
 
 
+#router = routers.DefaultRouter(trailing_slash=False)
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'category', catalog_views.CategoryViewSet)
 router.register(r'profile', core_views.ProfileViewSet)
@@ -47,5 +48,9 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^api/', include(profile_router.urls)),
     url(r'^admin/', admin.site.urls),
-#    url(r'^$', schema_view)
+
+    url(r'^$', core_views.index),
+    url(r'^sign_in', core_views.sign_in),
+    url(r'^logout', core_views.logout),
+    url(r'^register', core_views.register),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + staticfiles_urlpatterns()

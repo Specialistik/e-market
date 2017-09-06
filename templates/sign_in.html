@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div id="content" class="content_bg verification_content"  style="background-image: url('static/images/bg-image/bg-type1.png');">
+
+            <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+
+                <div class="wrapp_verification">
+
+                    <div class="top_verification">
+
+                        <h3 class="title_verification">Вход в систему</h3>
+
+                    </div>
+
+                    <div class="content_verification">
+
+                        <form action="" class="wrapp_form_signin">
+
+                            <div class="wrapp_verification_col">
+
+                                <div class="verification_box_col">
+
+                                    <label for="" class="label1">E-mail</label>
+                                    <input type="text" required>
+
+                                </div>
+
+                                <div class="verification_box_col">
+
+                                    <label for="" class="label1">Пароль</label>
+
+                                    <input type="password" required>
+
+                                    <p class="tooltip_txt1">
+                                        Пароль должен содержать не менее 8-ми символов
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                            <button class="btn hight_orange full_width">Войти</button>
+
+                        </form>
+
+                        <div class="box_btn clearfix">
+                            <a href="recovery-password-mail.html" class="light_orange">Забыли пароль?</a>
+                            <a href="signup.html" class="light_orange">Зарегистрироваться</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
+
+        </div>
+{% endblock %}
