@@ -18,7 +18,7 @@ class SignupSerializer(serializers.Serializer):
         required=True,
         validators=[UniqueValidator(queryset=User.objects.all(), message=u'Пользователь с таким именем уже существует')]
     )
-    password = serializers.CharField(min_length=8, write_only=True)
+    password = serializers.CharField(write_only=True)
 
     inn = serializers.CharField(
         required=True,
