@@ -93,8 +93,6 @@ def index(request):
     if request.user.is_anonymous:
         if request.method == 'GET':
             return render(request, 'pick_role.html')
-    #    if request.method == 'POST':
-    #        role = request.POST['role']
     return render(request, 'thanks.html')
 
 
