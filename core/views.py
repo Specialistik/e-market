@@ -6,6 +6,8 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.models import Group, User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout as logout_user
+from django.core.mail import send_mail
+from django.conf import settings
 
 
 from rest_framework import generics, viewsets, status, mixins
@@ -43,11 +45,20 @@ def signup(request):
         if user is not None:
             login(request, user)
 
+        email_message = u"Зарегистрирован новый пользователь\n"
+        email_message += u"Название компании: " + request.data['username'] + "\n"
+        email_message += u"email: " + request.data['email'] + "\n"
+        email_message += u"ИНН: " + request.data['inn'] + "\n"
+        email_message += u"Телефон: " + request.data['phone'] + "\n"
+
         if serialized_user.validated_data['role'] == 'producer':
             producer_group.user_set.add(registered_user)
+            email_message += u"Роль: поставщик\n"
         elif serialized_user.validated_data['role'] == 'customer':
             customer_group.user_set.add(registered_user)
+            email_message += u"Роль: торговая точка\n"
 
+        send_mail(u'Регистрация нового пользователя на сайте the-sklad.ru', email_message, settings.EMAIL_HOST_USER, ['ceo@the-sklad.ru',])
         return Response(serialized_user.data, status=status.HTTP_201_CREATED)
     else:
         return Response(serialized_user.errors, status=status.HTTP_400_BAD_REQUEST)
