@@ -8,15 +8,27 @@ $(document).ready(function(){
 
     $('#customer').click(function(){
         if (role === 'customer') {
-            role = null
-        } else role = 'customer';
+            role = null;
+            $('.fa').removeClass('fa-check');
+        } else {
+            $('.fa').removeClass('fa-check');
+            role = 'customer';
+            var fa = $(this).find('.fa');
+            fa.addClass('fa-check');
+        }
         $('#role').val(role);
     });
 
     $('#producer').click(function(){
         if (role === 'producer') {
-            role = null
-        } else role = 'producer';
+            role = null;
+            $('.fa').removeClass('fa-check');
+        } else {
+            $('.fa').removeClass('fa-check');
+            role = 'producer';
+            var fa = $(this).find('.fa');
+            fa.addClass('fa-check');
+        }
         $('#role').val(role);
     });
 });

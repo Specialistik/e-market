@@ -21,13 +21,7 @@ $(document).ready(function(){
     //$('#signup').click(function(e){
     $('#signup_form').submit(function(e){
         e.preventDefault();
-        //$('#signup_form').validate();
         var json_data = $('#signup_form').serializeFormJSON();
-        //var request_data = $('#signup_form').serialize();
-        //var request_data_object = $('#signup_form').serializeObject();
-        console.log(json_data);
-        //console.log(request_data_object);
-
         $.post('/api/signup/', json_data, function(response_data){
             location.href = '/'
         }).fail(function(response) {
