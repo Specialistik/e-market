@@ -10,13 +10,12 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 
-from rest_framework import generics, viewsets, status, mixins
-from rest_framework.decorators import api_view, detail_route, permission_classes
-from rest_framework import permissions
+from rest_framework import viewsets, status, mixins, permissions
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 
 from .models import UserProfile, Address
-from .serializers import SignupSerializer, ProfileSerializer, AddressSerializer, JuridicalAddressSerializer, PhysicalAddressSerializer
+from .serializers import SignupSerializer, ProfileSerializer, JuridicalAddressSerializer, PhysicalAddressSerializer
 
 
 @api_view(['POST'])
@@ -33,20 +32,22 @@ def signup(request):
     if serialized_user.is_valid():
         registered_user = User.objects.create_user(
             email=request.data['email'],
-            username=request.data['username'],
+            username=request.data['email'],
             password=request.data['password']
         )
         UserProfile.objects.create(
             user=registered_user,
             inn=request.data['inn'],
-            phone=request.data['phone']
+            phone=request.data['phone'],
+            role=request.data['role'],
+            company_name=request.data['company_name']
         )
-        user = authenticate(username=request.data['username'], password=request.data['password'])
+        user = authenticate(username=request.data['email'], password=request.data['password'])
         if user is not None:
             login(request, user)
 
         email_message = u"Зарегистрирован новый пользователь\n"
-        email_message += u"Название компании: " + request.data['username'] + "\n"
+        email_message += u"Название компании: " + request.data['company_name'] + "\n"
         email_message += u"email: " + request.data['email'] + "\n"
         email_message += u"ИНН: " + request.data['inn'] + "\n"
         email_message += u"Телефон: " + request.data['phone'] + "\n"
@@ -58,7 +59,8 @@ def signup(request):
             customer_group.user_set.add(registered_user)
             email_message += u"Роль: торговая точка\n"
 
-        send_mail(u'Регистрация нового пользователя на сайте the-sklad.ru', email_message, settings.EMAIL_HOST_USER, ['ceo@the-sklad.ru',])
+        if request.get_host() != '127.0.0.1:8000':
+            send_mail(u'Регистрация нового пользователя на сайте the-sklad.ru', email_message, settings.EMAIL_HOST_USER, ['ceo@the-sklad.ru',])
         return Response(serialized_user.data, status=status.HTTP_201_CREATED)
     else:
         return Response(serialized_user.errors, status=status.HTTP_400_BAD_REQUEST)

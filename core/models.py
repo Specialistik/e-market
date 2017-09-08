@@ -22,7 +22,9 @@ class Address(models.Model):
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, related_name='profile', verbose_name=u'Пользователь')
+    role = models.CharField(max_length=20, blank=True, null=True, verbose_name=u'Роль пользователя')
+    company_name = models.CharField(max_length=150, null=True, blank=True, verbose_name=u'Название компании')
+    user = models.OneToOneField(User, related_name='profile', verbose_name=u'Пользователь', on_delete=models.CASCADE)
     phone = models.CharField(max_length=15, verbose_name=u'Телефон')  # validators should be a list
     inn = models.CharField(max_length=12, null=True, blank=True, verbose_name=u'ИНН')
     ogrn = models.CharField(max_length=13, null=True, blank=True, verbose_name=u'ОГРН')

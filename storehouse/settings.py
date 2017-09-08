@@ -24,7 +24,7 @@ SECRET_KEY = '@9#xuxho&p&vh@o&!$u#mwvq&bd0kzwzs3jwt_*8+&vg9b-%yq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', '95.183.10.45', 'the-sklad.ru']
+ALLOWED_HOSTS = ['127.0.0.1', '95.183.10.45', 'the-sklad.ru', 'www.the-sklad.ru']
 #ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
@@ -165,5 +165,12 @@ EMAIL_HOST_USER = 'support@the-sklad.ru'
 EMAIL_HOST_PASSWORD = 'SupTheSklad'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
 #APPEND_SLASH = False
 #FIXTURE_DIRS = os.path.join(BASE_DIR, "fixtures")
+
+
+try:
+    from local_settings import *
+except ImportError:
+    pass

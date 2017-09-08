@@ -14,10 +14,7 @@ class SignupSerializer(serializers.Serializer):
         required=True,
         validators=[UniqueValidator(queryset=User.objects.all(), message=u'Пользователь с таким email уже существует')]
     )
-    username = serializers.CharField(
-        required=True,
-        validators=[UniqueValidator(queryset=User.objects.all(), message=u'Пользователь с таким именем уже существует')]
-    )
+    company_name = serializers.CharField(required=True)
     password = serializers.CharField(write_only=True)
 
     inn = serializers.CharField(
@@ -75,7 +72,6 @@ class ProfileSerializer(serializers.ModelSerializer):
     phone = serializers.CharField(read_only=True)
     ogrn = serializers.CharField(required=True)
     kpp = serializers.CharField(required=True)
-    #physical_address = serializers.PrimaryKeyRelatedField(queryset=Address.objects.all())
     physical_address = PhysicalAddressSerializer()
     juridical_address = JuridicalAddressSerializer()
 
