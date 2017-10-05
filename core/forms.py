@@ -1,15 +1,9 @@
 # -*- coding: utf-8 -*-
 from django import forms
-from .models import User, Profile
+from .models import User, IdentityDocument
 
 
-class UserRegisterForm(forms.ModelForm):
+class IdentityDocumentForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ["password", "username", "email"]
-
-
-class ProfileRegisterForm(forms.ModelForm):
-    class Meta:
-        model = Profile
-        fields = ["inn", "phone"]
+        model = IdentityDocument
+        fields = ['series', 'number', 'issued_by', 'issued_date', 'document']

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from datetime import datetime
+from django.utils import timezone
 from django.db import models
-
 from django.contrib.auth.models import User
+
 from core.models import UserProfile, Address
 from catalogs.models import Category, Measure
 
@@ -41,7 +41,7 @@ class ProductCard(models.Model):
 class ProductPrice(models.Model):
     product = models.ForeignKey(ProductCard, verbose_name=u'Продукт')
     price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=u'Цена')
-    created = models.DateTimeField(default=datetime.now(), verbose_name=u'Время изменения цены')
+    created = models.DateTimeField(default=timezone.now, verbose_name=u'Время изменения цены')
 
     class Meta:
         db_table = 'product_prices'

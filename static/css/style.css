@@ -234,45 +234,15 @@
     padding: 200px 34px 33px;
   }
 
+  .wrapp_content.changed{
+    padding-left: 367px;
+  }
+
   /* --------------------------------------------
         3.1. Offsets
   -------------------------------------------- */
 
-    .section_offset{
-      padding: ;
-      -webkit-background-size: cover;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: 0 0;
-    }
-
-    .section_offset2:not(:first-child){
-      padding-top: ;
-    }
-
-  /* --------------------------------------------
-        3.2. Blackout
-  -------------------------------------------- */
-
-    .blackout{
-      padding: 0;
-      color: #fff;
-      -webkit-background-size: cover;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
-      background-attachment: fixed;
-    }
-
-    .blackout2 {
-      padding: 0;
-      color: #fff;
-      -webkit-background-size: cover;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
-      background-attachment: fixed;
-    }
+    .section_offset{}
 
   /* --------------------------------------------
         3.2. Dividers
@@ -401,20 +371,6 @@
       margin: 0 auto;
     }
 
-    [class*="blackout"] h1,
-    [class*="blackout"] h2,
-    [class*="blackout"] h3,
-    [class*="blackout"] h4,
-    [class*="blackout"] h5,
-    [class*="blackout"] h6{
-      color: #fff;
-    }
-
-    .blackout2 .subtitle,
-    .blackout .subtitle{
-      color: #fff;
-    }
-
     p:not(:last-child){margin-bottom: 20px;}
 
     mark{background-color: #20cfef;padding: 0 2px;color: #fff;}
@@ -424,9 +380,9 @@
       font-size: 12px;
       color: #ffa800;
       text-decoration: none;
-      -webkit-transition: all 0.5s;
-      -o-transition: all 0.5s;
-      transition: all 0.5s;
+      -webkit-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
     }
 
     a:hover{
@@ -455,9 +411,9 @@
         background: none;
         padding: 0;
         border: none;
-        -webkit-transition: all 0.5s;
-        -o-transition: all 0.5s;
-        transition: all 0.5s;
+        -webkit-transition: all 0.3s;
+        -o-transition: all 0.3s;
+        transition: all 0.3s;
       }
 
       button:focus{
@@ -500,6 +456,14 @@
 
       .btn.full_width{
         width: 100%;
+      }
+
+      .btn.middle_width{
+        min-width: 300px;
+      }
+
+      .btn.large_width{
+        min-width: 346px;
       }
 
       .btn.light_orange{
@@ -615,6 +579,46 @@
         font: normal normal normal 14px/22px FontAwesome;
       }
 
+      /* .btn_add_plus */
+      .wrapp_btn_add_plus{
+        text-align: center;
+      }      
+
+      .wrapp_btn_add_plus:not(:last-child){
+        margin-bottom: 32px;
+      }
+
+      .btn_add_plus{
+        min-width: initial;
+        color: #ffa800;
+        font-size: 16px;
+        font-weight: 400;
+        display: inline-block; 
+      }
+
+      .btn_add_plus:after{
+        content: "\f067";
+        font: normal normal normal 14px/43px FontAwesome;
+        width: 43px;
+        height: 43px;
+        border: 1px solid #ffa800;
+        display: inline-block;
+        border-radius: 50%;
+        margin-left: 20px;
+        -webkit-transition: border-color 0.3s;
+        -o-transition: border-color 0.3s;
+        transition: border-color 0.3s;
+      }
+
+      .btn_add_plus:hover{
+        color: #000;
+      }
+
+      .btn_add_plus:hover:after{
+        border-color: #000;
+      }
+      /* .btn_add_plus */
+
 
   /* --------------------------------------------
       4.3. Forms
@@ -677,6 +681,50 @@
       width: 6px;
     }
 
+    /* input[type="file"] */
+    .select_file{
+      position: relative;
+    }
+
+    .file_notselected{
+      position: absolute;
+      top: 50%;
+      left: 0;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      color: #ffa800;
+      font-size: 14px;
+      font-weight: 400;
+      display: inline-block;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .file_notselected:before{
+      content: "\f0c6";
+      font: normal normal normal 14px/22px FontAwesome;
+      color: #fff;
+      width: 22px;
+      height: 22px;
+      background-color: #ffa800;
+      display: inline-block;
+      margin-right: 9px;
+      text-align: center;
+    }
+
+    .file_notselected.checked:before{
+      content: "\f036";
+    }
+
+    input[type="file"]{
+      opacity: 0;
+      visibility: hidden;
+      width: 100%;
+    }
+    /* input[type="file"] */
+
     .wrapp_privacy_policy{
       position: relative;
     }
@@ -685,12 +733,14 @@
       position: absolute;
       top: 0;
       left: 0;
+      cursor: pointer;
     }
 
     .privacy_policy_txt{
       display: inline-block;
       line-height: 1.3;
       padding-left: 28px;
+      cursor: pointer;
     }
 
     /* attention_txt */
@@ -796,10 +846,13 @@
 
     /* radio */
 
+    .radio_box:not(:first-child){
+      margin-top: 9px;
+    }
+
     .radio_box {
       position: relative;
       padding-left: 22px;
-      margin-top: 11px;
       display: inline-block;
       line-height: 1 !important;
       position: relative;
@@ -845,11 +898,75 @@
       opacity: 0;
       -webkit-border-radius: 50%;
       border-radius: 50%;
+      display: inline-block;
+    }
+
+    .checkbox_box:not(:first-child){ 
+      margin-top: 9px;
+    }
+    
+    .checkbox_box {
+      position: relative;
+      padding-left: 22px;
+      display: inline-block;
+      line-height: 1 !important;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .checkbox_box input[type='checkbox'] {
+      display: none;
+      width: auto;
+      float: none;
+      height: auto;
+      margin: 0;
+      -webkit-appearance: checkbox;
+    }
+
+    .checkbox_box input[type='checkbox']:checked + .checkbox-custom:after {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .checkbox_box .checkbox-custom {
+      position: absolute;
+      top: 0px;
+      left: 0;
+      display: block;
+      width: 11px;
+      height: 11px;
+      border: 1px solid #dadada;
+      background-color: #fff;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+    }
+
+    .checkbox_box .checkbox-custom:after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 5px;
+      height: 5px;
+      background-color: #ffa800;
+      visibility: hidden;
+      opacity: 0;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .ok_check_icon.checkbox_box input[type=checkbox]:checked + .checkbox-custom:after {
+        background: url('../images/icons/mini_ok_icon.png') 0 0 no-repeat;
     }
 
     .wrapp_form_box{
       padding: 25px 40px;
       background-color: #fafafa;
+    }
+
+    .wrapp_form_box.bg_transparent{
+      background-color: transparent;
     }
 
     .wrapp_form_box:not(:last-child){
@@ -891,6 +1008,29 @@
 
     .form_col.quarter{
       width: 25%;
+    }
+
+    /* datepicker calendar icon */
+
+    .wrapp_datepicker_calendar{
+      position: relative;
+    }
+
+    .wrapp_datepicker_calendar > .datepicker-here:not([type="checkbox"]):not([type="radio"]){
+      padding-right: 50px;
+    }
+
+    .wrapp_datepicker_calendar:before{
+      content: "\f073";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 41px;
+      font: normal normal normal 14px/40px FontAwesome;
+      background-color: #ffa800;
+      text-align: center;
+      color: #fff;
     }
 
 
@@ -1130,37 +1270,12 @@
     transform: translateX(0);
   }
 
-
-  .navigation_btn:before{
-    content: "";
-    -webkit-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
-  }
-
-  .navigation_btn.active:before{
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 3px;
-    margin-left: -3px;
-    margin-top: -28px;
-    height: 57px;
-    background-color: #d3d3d3;
-    display: inline-block;
-  }
-
-  .navigation_btn.active:hover:before{
-    background-color: #000;
-  }
-
-
   .navigation_btn{
     background-color: #d3d3d3;
     position: fixed;
     z-index: 10;
-    top: 198px;
-    left: 41px;
+    top: 146px;
+    left: 39px;
     width: 28px;
     height: 28px;
     text-align: center;
@@ -1303,6 +1418,17 @@
     letter-spacing: -0.2px;
   }
 
+  .label_right{
+    color: #40403f;
+    font-size: 14px;
+    line-height: 39px;
+    font-weight: 300;
+    float: right; 
+    margin-left: 6px;
+    min-width: 22px;
+    display: inline-block;
+  }
+
   .tooltip_txt1{
     color: #d9d9d9;
     font-size: 12px;
@@ -1423,6 +1549,13 @@
   .title_edit{
     padding-left: 42px;
     color: #3c3c3b;
+    font-weight: 400;
+  }
+
+  .title_edit.angle_right{
+    cursor: pointer;
+    display: inline-block;
+    clear: both;
   }
 
   .title_edit.angle_right:after{
@@ -1506,11 +1639,14 @@
   .js_edit{
     padding: 5px;
     position: absolute;
-    top: 22px;
-    right: 23px;
     cursor: pointer;
     display: block;
     line-height: 1;
+  }
+
+  .setting_box .js_edit{
+    top: 22px;
+    right: 23px;
   }
 
   .js_edit > .fa{
@@ -1567,196 +1703,15 @@
     visibility: visible;
   }
 
-  .setting_list .upload_file_box {
+  .setting_list .select_file {
     width: 50%;
     float: right;
-    position: relative;
-  }
-
-
-/*  */
-
-  .upload_file_box .btn-file {
-    visibility: hidden;
-    opacity: 0;
-  }
-
-  .upload_file_box .close.fileinput-remove {
-    position: absolute;
-    top: -12px;
-    left: 0;
-    cursor: pointer;
-    font-size: 14px;
-    color: #ffa800;
-    display: inline-block;
-    padding: 0;
-    visibility: hidden;
-    opacity: 0;
-  }
-
-  .setting_box.active .upload_file_box .close.fileinput-remove,
-  .setting_box.active .upload_file_box .btn-file {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .upload_file_box .file-preview {
-    border: none;
-    margin: 0;
-    padding: 0;
-    -webkit-border-radius: 0;
-    border-radius: 0;
-  }
-
-  .upload_file_box .file-preview {
-    border: none;
-    border-bottom: 2px solid transparent;
-    -webkit-border-radius: 0;
-    border-radius: 0;
-    height: auto;
-    min-height: 40px;
-    display: block;
-    text-align: left;
-    padding: 0;
-    margin: 0;
-  }
-
-  .setting_box.active .upload_file_box .file-preview {
-    border-bottom-color: #efefef;
-  }
-
-  .upload_file_box .btn-file {
-    width: 80px;
-    cursor: pointer;
-    overflow: inherit;
-  }
-
-  .upload_file_box .btn-file .hidden-xs {
-    color: #ffa800;
-    font-size: 14px;
-    line-height: 16px;
-    text-decoration: underline;
-    position: relative;
-    font-weight: 400;
-  }
-
-  .fileinput-upload-button{
-    display: none;
-  }
-
-  .upload_file_box .btn-file .hidden-xs:before {
-    content: "+";
-    position: absolute;
-    top: 10px;
-    left: -14px;
-    color: #ffa800;
-    width: 8px;
-    height: 8px;
-    line-height: 8px;
-    font-weight: 900;
-  }
-
-  .upload_file_box .btn-file:hover .hidden-xs {
-    text-decoration: none;
-  }
-
-  .upload_file_box #input_file {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-  }
-
-  .upload_file_box .krajee-default .file-footer-caption {
-    width: auto;
-    text-align: left;
-    display: inline-block;
-    color: #ffa800;
-    padding-left: 25px;
-    height: auto;
-    font-size: 14px;
-    line-height: 22px;
-    white-space: normal;
-    -ms-word-break: break-all;
-    word-break: break-all;
-    font-weight: 400;
-    text-decoration: underline;
-    padding-top: 0;
-    position: relative;
-    height: 22px;
-    background: url("../images/icons/inputfile_icon.png") 0 0 no-repeat;
-    margin: 0;
-  }
-
-  .upload_file_box .file-actions {
-    display: inline-block;
-    position: absolute;
-    top: -12px;
-    right: -11px;
-  }
-
-  .upload_file_box .krajee-default.file-preview-frame {
-    text-align: left;
-    border: none;
-    padding: 0;
-    margin: 0 10px 0 0;
-    float: none;
-    display: inline-block;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-
-  .upload_file_box .file-drop-zone .file-preview-thumbnails {
-    margin-right: 90px;
-    overflow: hidden;
-    padding-top: 12px;
-  }
-
-  .upload_file_box .krajee-default.file-preview-frame:not(.file-preview-error):hover {
-    -webkit-box-shadow: none;
-    box-shadow: none;
-  }
-
-  .upload_file_box .krajee-default.file-preview-frame .kv-file-content,
-  .upload_file_box .krajee-default .file-thumb-progress,
-  .upload_file_box .file-upload-indicator,
-  .upload_file_box .kv-upload-progress,
-  .upload_file_box .kv-file-zoom,
-  .upload_file_box .form-control,
-  .upload_file_box .kv-file-upload,
-  /* .upload_file_box .close.fileinput-remove, */
-  .upload_file_box .fileinput-remove.fileinput-remove-button,
-  .upload_file_box .file-drop-zone-title,
-  .upload_file_box .krajee-default .file-footer-caption samp {
-    display: none;
-  }
-
-  .upload_file_box .input-group-btn {
-    position: absolute;
-    top: 0px;
-    right: 0;
-  }
-
-  .upload_file_box .krajee-default.file-preview-frame .file-thumbnail-footer {
-    height: auto;
-  }
-
-  .upload_file_box .krajee-default .file-actions {
-    margin-top: 0;
-  }
-
-  .upload_file_box .file-footer-buttons {
-    float: none;
-  }
-
-  .file-zoom-dialog.modal {
-    display: none;
   }
 
   .edit_list input {
     border-bottom-color: #1978c5;
     color: #1978C5;
   }
-
 
   .setting_box .box_settings_radio label:not(.radio_box){
     display: none;
@@ -1765,7 +1720,6 @@
   .setting_box.active .box_settings_radio label{
     display: inline-block;
   }
-
 
   .setting_box_col50{
     float: left;
@@ -1801,9 +1755,226 @@
     display: inline-block;
   }
   /* ===== */
+  /* ====================================================================== */
 
-  .setting_box.active  .box_settings_radio{}
+  .setting_box .box_settings_checkbox label:not(.checkbox_box){
+    display: none;
+  }
 
-  .radio_box input[type='radio']:checked + .radio-custom{}
+  .setting_box.active .box_settings_checkbox label{
+    display: inline-block;
+  }
 
-  .radio_box input[type='radio']:checked + .radio-custom + span{}
+  /* ===== */
+  .setting_box .box_settings_checkbox .checkbox_box input[type='checkbox']:not(:checked) + .checkbox-custom{
+    display: none;
+  }
+
+  .setting_box .box_settings_checkbox .checkbox_box input[type='checkbox']:not(:checked) + .checkbox-custom + span{
+    display: none;
+  }
+  /* ===== */
+
+  /* ===== */
+  .setting_box.active .box_settings_checkbox .checkbox_box input[type='checkbox'] + .checkbox-custom{
+    display: inline-block;
+  }
+
+  .setting_box.active .box_settings_checkbox .checkbox_box input[type='checkbox'] + .checkbox-custom + span{
+    display: inline-block;
+  }
+  /* ===== */
+
+  /* ===== */
+  .setting_box .box_settings_checkbox .checkbox_box input[type='checkbox']:checked + .checkbox-custom{
+    display: inline-block;
+  }
+
+  .setting_box .box_settings_checkbox .checkbox_box input[type='checkbox']:checked + .checkbox-custom + span{
+    display: inline-block;
+  }
+  /* ===== */
+
+
+  /* select settings*/
+  .jq-selectbox{
+    z-index: 1;
+  }
+
+  .wrapp_settings_select select:not(:disabled) + .jq-selectbox__select{
+    color: #ff6900;
+  }
+
+  .wrapp_settings_select select:disabled + .jq-selectbox__select{
+    color: #4f4f4e;
+  }
+
+  .wrapp_settings_select .jq-selectbox {
+    width: 100%;
+    border-bottom: 2px solid #efefef;
+    font-size: 14px;
+    line-height: 1.3;
+    height: 20px;
+    cursor: pointer;
+  }
+
+  /* dropdown */
+  .wrapp_settings_select .jq-selectbox__dropdown {
+    background-color: #fff;
+    padding: 10px 5px;
+    width: 100%;
+    border: 2px solid #efefef;
+  }
+
+  .wrapp_settings_select .jq-selectbox__dropdown ul > li{
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1.3;
+    padding: 2px 5px;
+    margin-bottom: 0;
+  }
+
+  .wrapp_settings_select .jq-selectbox__dropdown ul > li:hover{
+    background-color: #efefef;
+    color: #ff6900;
+  }
+
+  .wrapp_settings_select .jq-selectbox__dropdown ul > li.selected{
+    background-color: #efefef;
+    color: #ff6900;
+  }
+
+  /* setting list select*/
+  .setting_list .wrapp_settings_select{
+    width: 50%;
+    float: left;
+  }
+
+  .setting_box:not(.active) .wrapp_settings_select .jq-selectbox{
+    border-bottom-color: transparent;
+    cursor: default;
+  }
+
+  /* castom select */
+  .wrapp_castom_select .jq-selectbox {
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #dadada;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+  }
+    
+  .wrapp_castom_select .jq-selectbox__select {
+    padding: 12px 15px 11px;
+  }
+  
+  /* focused */
+  .wrapp_castom_select .jq-selectbox.focused .jq-selectbox__trigger-arrow:before{
+    color: #d3d3d3;
+  }
+
+  /* placeholder */
+  .wrapp_castom_select .jq-selectbox__select-text.placeholder{
+    color: #d3d3d3;
+    width: 100% !important;
+  }
+  
+  /* triger */
+  .wrapp_castom_select .jq-selectbox__trigger{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    display: inline-block;
+    width: 40px;
+  }
+
+  .wrapp_castom_select .jq-selectbox__trigger-arrow{
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    -webkit-transform: translate(50%, -50%);
+    -ms-transform: translate(50%, -50%);
+    -o-transform: translate(50%, -50%);
+    transform: translate(50%, -50%);
+    display: inline-block;
+  }
+
+  .wrapp_castom_select .jq-selectbox__trigger-arrow:before{
+    content: "\f107";
+    font: normal normal normal 14px/1 FontAwesome;
+    display: inline-block;
+    color: #dadada;
+  }
+  .wrapp_castom_select .jq-selectbox:hover .jq-selectbox__trigger-arrow:before{
+    color: #40403f;
+  }
+
+  /* dropdown */
+  .wrapp_castom_select .jq-selectbox__dropdown{
+    right: -1px !important;
+    top: -1px !important;
+    background-color: #fff;
+    min-width: 260px;
+  }
+
+  .wrapp_castom_select .jq-selectbox__dropdown ul > li{
+    cursor: pointer;
+    color: #d3d3d3;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 11px 17px;
+    border: 1px solid #dadada;
+    background-color: #fff;
+  }
+
+  .wrapp_castom_select .jq-selectbox__dropdown ul > li:not(:last-child){
+    border-bottom-color: transparent;
+  }
+
+  .wrapp_castom_select .jq-selectbox__dropdown ul > li:hover{
+    border: 1px solid #ffa800;
+  }
+  .wrapp_castom_select .jq-selectbox__dropdown ul > li:hover + li{
+    border-top-color: transparent;
+  }
+
+  .wrapp_castom_select .jq-selectbox__dropdown ul > li.selected{
+  
+  }
+
+  /* ------------------------------------------------
+
+      8. Company Information Enter
+
+  ------------------------------------------------ */
+
+    .wrapp_company_form .box_form_row:not(:last-child){
+      margin-bottom: 26px;
+    }
+
+    .wrapp_company_form:not(:last-child){
+      margin-bottom: 40px;
+    }
+
+    .wrapp_subtitle_edit{
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flex;
+      display: -o-flex;
+      display: flex;
+      -webkit-justify-content: space-between;
+      -moz-justify-content: space-between;
+      -ms-justify-content: space-between;
+      -o-justify-content: space-between;
+      justify-content: space-between;
+    }
+
+    .wrapp_subtitle_edit .wrapp_radio_box .radio_box:not(:last-child){
+      margin-right: 34px;
+    }
+
+    .wrapp_subtitle_edit .wrapp_radio_box .radio_box{
+      margin-top: 7px;
+    }

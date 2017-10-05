@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
     <head>
 
         <!-- Basic page needs
         ============================================ -->
-        <title>Entered</title>
+        <title>{% block title %}The склад{% endblock %}</title>
         <meta charset="utf-8">
         <meta name="author" content="">
         <meta name="keywords" content="">
@@ -18,7 +18,13 @@
 
         <!-- Libs CSS
         ============================================ -->
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="/static/plugins/fileinput/fileinput.min.css">
+
+        <!-- formstyler -->
+        <link rel="stylesheet" href="/static/plugins/jQueryFormStyler-master/jquery.formstyler.css">
+
+        <!-- datepicker -->
+        <link rel="stylesheet" href="/static/plugins/air-datepicker-master/css/datepicker.min.css">
 
 
         <!-- Favicon
@@ -49,16 +55,17 @@
 
         <!-- Theme CSS
         ============================================ -->
-        <link rel="stylesheet" href="static/css/style.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link rel="stylesheet" href="/static/css/additional.css">
 
         <!-- Media Queries CSS
         ============================================ -->
-        <link rel="stylesheet" href="static/css/responsive.css">
+        <link rel="stylesheet" href="/static/css/responsive.css">
 
 
         <!-- Include Libs & Plugins
         ============================================ -->
-        <script src="static/js/modernizr-custom.js"></script>
+        <script src="/static/js/modernizr-custom.js"></script>
 
         <!-- Old IE
         ============================================ -->
@@ -77,29 +84,59 @@
 </head>
 
 <body>
+    <!-- - - - - - - - - - - - - - Header - - - - - - - - - - - - - - - - -->
+    <header id="header" class="header_wrapp">
+        <div class="header_inner claerfix">
+            <!-- - - - - - - - - - - - - - Logo - - - - - - - - - - - - - - - - -->
+            <div class="logo">
+                <a href="/">
+                    <img src="/static/images/small-logo.png" alt="">
+                </a>
+            </div>
 
-        <!-- - - - - - - - - - - - - - Header - - - - - - - - - - - - - - - - -->
+            <!-- - - - - - - - - - - - - - End of Logo - - - - - - - - - - - - - - - - -->
 
-        <header id="header" class="header_wrapp">
+            <!-- - - - - - - - - - - - - - ? - - - - - - - - - - - - - - - - -->
 
-            <div class="header_inner claerfix">
+            {% if user.is_authenticated %}
+                <div class="header_right_box">
+                    {% if user.profile %}
+                        {% if user.profile.role == 'customer' %}
+                            <div class="basket_wrapp">
+                                <a href="javascript:;" class="basket_box">
+                                    <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                                    <span class="basket_item">0</span>
+                                </a>
 
-                <!-- - - - - - - - - - - - - - Logo - - - - - - - - - - - - - - - - -->
+                                <div class="basket_box_count">
+                                    <span class="basket_count">0,00</span> руб
+                                </div>
 
-                <div class="logo">
+                            </div> <!-- basket_wrapp -->
+                        {% endif %}
+                    {% endif %}
 
-                    <a href="/">
-                        <img src="static/images/small-logo.png" alt="">
+                    <a href="javascript:;" class="wrapp_company_logo clearfix">
+
+                        <span class="company_logo">
+                            <img src="/static/images/small-logo.png" alt="">
+                        </span>
+
+                        <span class="company_name">
+                            {{ user.profile.company_name }}
+                            {% comment %}ООО «СафКомГрупп»{% endcomment %}
+                        </span>
+
+                    </a>
+
+                    <a href="/logout" class="out_btn">
+                        Выйти
+                        {% comment %}<i class="fa fa-angle-down" aria-hidden="true"></i>{% endcomment %}
                     </a>
 
                 </div>
-
-                <!-- - - - - - - - - - - - - - End of Logo - - - - - - - - - - - - - - - - -->
-
-                <!-- - - - - - - - - - - - - - ? - - - - - - - - - - - - - - - - -->
-
+            {% else %}
                 <div>
-
                     {% comment %}
                     <ul class="header_enter">
 
@@ -115,26 +152,66 @@
                     {% endcomment %}
 
                 </div>
+            {% endif %}
+            <!-- - - - - - - - - - - - - - End of ? - - - - - - - - - - - - - - - - -->
+        </div>
+    </header>
 
-                <!-- - - - - - - - - - - - - - End of ? - - - - - - - - - - - - - - - - -->
+    {% block navigation %}
+        <button class="navigation_btn">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
 
+        <nav id="nav" class="navigation">
 
-            </div>
+            <ul class="navigation_menu">
 
-        </header>
+                <li>
+                    <a href="javascript:;">Каталог товаров</a>
+                </li>
 
-        <hr class="deviders1">
+                <li>
+                    <a href="javascript:;">Мои заказы</a>
+                </li>
+
+                <li>
+                    <a href="javascript:;">Договоры</a>
+                </li>
+
+                <li>
+                    <a href="javascript:;">Отчеты</a>
+                </li>
+
+                <li class="current">
+                    <a href="javascript:;">Настройки</a>
+                </li>
+
+            </ul>
+
+        </nav>
+        <!-- - - - - - - - - - - - - - End of Navigation - - - - - - - - - - - - - - - - -->
+    {% endblock %}
 
     {% block content %}
 
     {% endblock %}
-
 
     <!-- Include Libs & Plugins
     ============================================ -->
     <script type="text/javascript" src="/static/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/static/js/jquery-migrate-3.0.0.min.js"></script>
 
+    <!-- matchHeight -->
+    <script type="text/javascript" src="/static/plugins/jquery.matchHeight-min.js"></script>
+
+    <!-- formstyler -->
+    <script type="text/javascript" src="/static/plugins/jQueryFormStyler-master/jquery.formstyler.min.js"></script>
+
+    <!-- datepicker -->
+    <script type="text/javascript" src="/static/plugins/air-datepicker-master/js/datepicker.min.js"></script>
+
+    <!-- mask -->
+    <script type="text/javascript" src="/static/plugins/jQuery-Mask-Plugin-master/jquery.mask.min.js"></script>
     <!-- Theme files
     ============================================ -->
     <script src="/static/js/script.core.js"></script>

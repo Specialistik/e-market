@@ -4,46 +4,15 @@
 
 	$(document).ready(function(){
 
-		/* ------------------------------------------------
-			FILEINPUT START
-		------------------------------------------------ */
-
-			if($("#input_file").length){
-
-				$("#input_file").fileinput({
-			        uploadUrl: '#', // you must set a valid URL here else you will get an error
-			        language: 'ru',
-			        showZoom: false,
-			        showDrag: false,
-			        showRemove: true,
-                	showUpload: false,
-                	showBrowse: true,
-    				showPreview: true,
-    				showClose: true,
-    				browseLabel: 'Добавить',
-			        modal: false,
-			        allowedFileExtensions: ['jpg', 'png', 'gif'],
-			        overwriteInitial: false,
-			        maxFileSize: 5000,
-			        maxFilesNum: 10,
-			        //allowedFileTypes: ['image', 'video', 'flash'],
-			        slugCallback: function (filename) {
-			            return filename.replace('(', '_').replace(']', '_');
-			        }
-			    });
-
-			}
-
-		/* ------------------------------------------------
-			FILEINPUT END
-		------------------------------------------------ */
 
 		/* ------------------------------------------------
 				Name function
 		------------------------------------------------ */
 
 		if($("select").length){
+			
 			$('select').styler();
+
 		}
 
         /* ------------------------------------------------
@@ -74,23 +43,6 @@
 
 	$(window).load(function(){
 
-		/* ------------------------------------------------
-		    	Parallax
-		------------------------------------------------ */
-
-			if($("").length){
-
-				$("").each(function(){
-
-					$(this).parallax("50%", 0.2);
-
-				});
-
-			}
-
-		/* ------------------------------------------------
-			    End Parallax
-		------------------------------------------------ */
 
 		/* ------------------------------------------------
 				Name function

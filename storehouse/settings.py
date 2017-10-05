@@ -119,9 +119,10 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'Europe/Moscow'
+DATE_INPUT_FORMATS = ('%d.%m.%Y',)
+DATE_FORMAT = "d.m.Y"
 
-
-USE_I18N = True
+USE_I18N = False
 
 USE_L10N = True
 
@@ -168,7 +169,6 @@ EMAIL_USE_TLS = True
 
 #APPEND_SLASH = False
 #FIXTURE_DIRS = os.path.join(BASE_DIR, "fixtures")
-
 
 try:
     from local_settings import *

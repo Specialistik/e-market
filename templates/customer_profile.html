@@ -1,0 +1,586 @@
+{% extends 'base.html' %}
+
+{% block js_css %}
+    <script src="/static/js/profile.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div id="content" class="wrapp_content">
+
+        <!-- - - - - - - - - - - - - - profile_settings_container - - - - - - - - - - - - - - - - -->
+
+        <section class="profile_settings_container clearfix">
+
+
+            <div class="box_title_button">
+
+                <h3 class="title_line"><span>Данные о компании</span></h3>
+
+            </div>
+
+            <div class="row">
+
+                <!-- profile_settings_box -->
+                <div class="col-sm-6">
+
+                    <div class="profile_settings_item">
+
+                        <h3 class="title_edit">Адрес</h3>
+
+                        <div class="profile_settings_box" data-mh="profile_settings_box">
+                            <form action="/profile/juridical_address/" method="POST" enctype='multipart/form-data'>
+                                {% csrf_token %}
+                                <!--  -->
+                                <div class="setting_box" data-mh="setting_box">
+
+                                    <span class="js_edit">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </span>
+
+                                    <h3 class="subtitle_edit">Юридический адрес:</h3>
+
+                                    <ul class="setting_list">
+                                        <li class="clearfix">
+                                            <label class="label_settings" for="index">Индекс</label>
+                                            <input type="text" name="index" class="setting_input" readonly value="420139">
+                                        </li>
+                                        <li class="clearfix">
+                                            <label>Регион</label>
+                                            <input name="region" class="setting_input" readonly value="Республика Татарстан">
+                                        </li>
+                                        <li class="clearfix">
+                                            <label>Город / Населенный пункт</label>
+                                            <input name="city" class="setting_input" readonly value="Казань">
+                                        </li>
+                                        <li class="clearfix">
+                                            <label>Улица</label>
+                                            <input name="street" class="setting_input" readonly value="Петербургская">
+                                        </li>
+                                        <li class="clearfix">
+                                            <label>Дом</label>
+                                            <input name="house" class="setting_input" readonly value="1">
+                                        </li>
+                                        <li class="clearfix">
+                                            <label>Корпус</label>
+                                            <input name="block" class="setting_input" readonly value="1">
+                                        </li>
+                                        <li class="clearfix">
+                                            <label>Строение</label>
+                                            <input name="structure" class="setting_input" readonly value="1">
+                                        </li>
+                                        <li class="clearfix">
+                                            <label>Кв. / Офис</label>
+                                            <input name="flat" class="setting_input" readonly value="9">
+                                        </li>
+                                        <li class="clearfix">
+
+                                            {% comment %}
+                                            <label class="checkbox_box" for="input_checkbox">
+                                                <input name="physical_is_juridical" id="input_checkbox" class="input_checkbox" type="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <span>Совпадает с юридическим</span>
+                                            </label>
+                                            {% endcomment %}
+
+                                            <div class="ok_box">
+                                                <button class="ok_btn" type="submit">
+                                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--/end of  -->
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--/end of profile_settings_box -->
+
+                <!-- profile_settings_box -->
+                <div class="col-sm-6">
+
+                    <div class="profile_settings_item">
+
+                        <h3 class="title_edit">Адрес</h3>
+
+                        <div class="profile_settings_box" data-mh="profile_settings_box">
+                            <form action="/profile/physical_address/" method="POST">
+                                {% csrf_token %}
+                                <!--  -->
+                                <div class="setting_box" data-mh="setting_box">
+
+                                    <span class="js_edit">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    </span>
+
+                                    <h3 class="subtitle_edit">Фактический адрес:</h3>
+
+                                    <ul class="setting_list">
+                                        <li class="clearfix">
+                                            <label class="label_settings">Индекс</label>
+                                            <input name="index" class="setting_input" disabled value="420139">
+                                        </li>
+                                        <li class="clearfix">
+                                            <label>Регион</label>
+                                            <input name="region" class="setting_input" disabled value="Республика Татарстан">
+                                        </li>
+                                        <li class="clearfix">
+                                            <label>Город / Населенный пункт</label>
+                                            <input name="city" class="setting_input" disabled value="Казань">
+                                        </li>
+                                        <li class="clearfix">
+                                            <label>Улица</label>
+                                            <input name="street" class="setting_input" disabled value="Петербургская">
+                                        </li>
+                                        <li class="clearfix">
+                                            <label>Дом</label>
+                                            <input name="house" class="setting_input" disabled value="1">
+                                        </li>
+                                        <li class="clearfix">
+                                            <label>Корпус</label>
+                                            <input name="block" class="setting_input" disabled value="1">
+                                        </li>
+                                        <li class="clearfix">
+                                            <label>Строение</label>
+                                            <input name="structure" class="setting_input" disabled value="1">
+                                        </li>
+                                        <li class="clearfix">
+                                            <label>Кв. / Офис</label>
+                                            <input name="flat" class="setting_input" disabled value="9">
+                                        </li>
+                                        <li class="clearfix">
+
+                                            <label class="checkbox_box" for="input_checkbox2">
+                                                <input name="physical_is_juridical" id="input_checkbox2" class="input_checkbox" type="checkbox">
+                                                <span class="checkbox-custom"></span>
+                                                <span>Совпадает с юридическим</span>
+                                            </label>
+
+                                            <div class="ok_box">
+                                                <button class="ok_btn">
+                                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!--/end of  -->
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+                <!--/end of profile_settings_box -->
+
+                <!-- profile_settings_box -->
+                <div class="col-sm-6">
+
+                    <div class="profile_settings_item">
+
+                        <h3 class="title_edit">Общие данные о компании</h3>
+
+                        <div class="profile_settings_box" data-mh="profile_settings_box">
+
+                            <!--  -->
+                            <div class="setting_box" data-mh="setting_box">
+                                <span class="js_edit">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </span>
+                                <ul class="setting_list">
+                                    <li class="clearfix">
+                                        <label>Краткая <br> организационно-правовая форма</label>
+                                        <input class="setting_input" disabled value="ООО">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Полная <br> организационно-правовая форма</label>
+                                        <input class="setting_input" disabled value="Общество с ограниченной ответственностью">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Наименование <br> учредительного документа</label>
+                                        <input class="setting_input" disabled value="Устав">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>ИНН</label>
+                                        <input class="setting_input" disabled value="1489556882">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>ОГРН</label>
+                                        <input class="setting_input" disabled value="6543319555929">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>КПП</label>
+                                        <input class="setting_input" disabled value="194883291">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label></label>
+                                        <div class="ok_box">
+                                            <button class="ok_btn">
+                                                <i class="fa fa-check" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--/end of  -->
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--/end of profile_settings_box -->
+
+                <!-- profile_settings_box -->
+                <div class="col-sm-6">
+
+                    <div class="profile_settings_item">
+
+                        <h3 class="title_edit">Данные подписанта</h3>
+
+                        <div class="profile_settings_box" data-mh="profile_settings_box">
+
+                            <!--  -->
+                            <div class="setting_box" data-mh="settings-box">
+
+                                <span class="js_edit">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </span>
+
+                                <h3 class="subtitle_edit">Данные лица, от имени которого будут заключаться сделки</h3>
+
+                                <ul class="setting_list">
+                                    <li class="clearfix">
+                                        <label>Фамилия</label>
+                                        <input class="setting_input" disabled value="ООО">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Имя</label>
+                                        <input class="setting_input" disabled value="Шакирова">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Отчество</label>
+                                        <input class="setting_input" disabled value="Алина">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Дата рождения</label>
+                                        <input class="setting_input" disabled value="Александровна">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>ИНН</label>
+                                        <input class="setting_input" disabled value="03.05.1993">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Должность</label>
+                                        <input class="setting_input" disabled value="Главный бухгалтер">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Кодовое слово</label>
+                                        <input class="setting_input" disabled value="Тушканчик">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label></label>
+                                        <div class="ok_box">
+                                            <button class="ok_btn">
+                                                <i class="fa fa-check" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+
+                            </div><!--/end of  -->
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--/end of profile_settings_box -->
+
+                <!-- profile_settings_box -->
+                <div class="col-sm-6">
+
+                    <div class="profile_settings_item">
+
+                        <h3 class="title_edit">Документ подтверждающий личность</h3>
+
+                        <div class="profile_settings_box" data-mh="profile_settings_box">
+
+                            <!--  -->
+                            <div class=" setting_box" data-mh="settings-box">
+
+                                <span class="js_edit">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </span>
+
+                                <ul class="setting_list">
+                                    <li class="clearfix">
+                                        <label>Серия</label>
+                                        <input class="setting_input" disabled value="9213">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Номер</label>
+                                        <input class="setting_input" disabled value="543812">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Кем выдан</label>
+                                        <input class="setting_input" disabled value="отделом УФМС России по">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label></label>
+                                        <input class="setting_input" disabled value="Республике Татарстан в">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label></label>
+                                        <input class="setting_input" disabled value="Приволжском р-не г.Казани">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Дата выдачи</label>
+                                        <input class="setting_input" disabled value="18.06.2011">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Документ,<br> подтверждающий право подписи</label>
+
+                                         <div class="upload_file_box">
+                                            <input id="input_file" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">
+                                        </div>
+
+                                    </li>
+
+                                    <li class="clearfix">
+                                        <label></label>
+                                        <div class="ok_box">
+                                            <button class="ok_btn">
+                                                <i class="fa fa-check" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div><!--/end of  -->
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--/end of profile_settings_box -->
+
+                <!-- profile_settings_box -->
+                <div class="col-sm-6">
+                    <div class="profile_settings_item">
+                        <h3 class="title_edit">Используемые счета</h3>
+
+                        <div class="profile_settings_box" data-mh="profile_settings_box">
+                            <!--  -->
+                            <div class="setting_box" data-mh="settings-box">
+                                <span class="js_edit">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </span>
+
+                                <ul class="setting_list">
+                                    <li class="clearfix">
+                                        <label>Наименование счета</label>
+                                        <input class="setting_input" disabled value="Основной счет">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Номер расчетного счета</label>
+                                        <input class="setting_input" disabled value="40097 77899 09566 07451">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>БИК</label>
+                                        <input class="setting_input" disabled value="134265266">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Наименование банка</label>
+                                        <input class="setting_input" disabled value="ПАО “АК БАРС” БАНК">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Корреспондентский счет</label>
+                                        <input class="setting_input" disabled value="03312 16348 73409 96456">
+                                    </li>
+
+                                </ul>
+
+                                <hr class="deviders2">
+
+                                <ul class="setting_list">
+                                    <li class="clearfix">
+                                        <label>Наименование счета</label>
+                                        <input class="setting_input" disabled value="Резервный счет">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Номер расчетного счета</label>
+                                        <input class="setting_input" disabled value="40097 77899 09566 07452">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>БИК</label>
+                                        <input class="setting_input" disabled value="134265266">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Наименование банка</label>
+                                        <input class="setting_input" disabled value="ПАО “АК БАРС” БАНК">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Корреспондентский счет</label>
+                                        <input class="setting_input" disabled value="03312 16348 73409 96456">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label></label>
+                                        <div class="ok_box">
+                                            <button class="ok_btn">
+                                                <i class="fa fa-check" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div><!--/end of  -->
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--/end of profile_settings_box -->
+
+                <!-- profile_settings_box -->
+                <div class="col-sm-6">
+
+                    <div class="profile_settings_item">
+
+                        <h3 class="title_edit">О торговых точках</h3>
+
+                        <div class="profile_settings_box" data-mh="profile_settings_box">
+
+                            <!--  -->
+                            <div class="setting_box" data-mh="settings-box">
+
+                                <span class="js_edit">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </span>
+
+                                <h3 class="subtitle_edit">Юридический адрес:</h3>
+
+                                <ul class="setting_list">
+                                    <li class="clearfix">
+                                        <label class="label_settings">Город / Улица / Дом</label>
+                                        <input class="setting_input" disabled value="Казань, Волкова, 59">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Индекс</label>
+                                        <input class="setting_input" disabled value="420 139">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Регион</label>
+                                        <input class="setting_input" disabled value="Республика Татарстан">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Город</label>
+                                        <input class="setting_input" disabled value="Казань">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Населеный пункт</label>
+                                        <input class="setting_input" disabled value="Казань">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Улица</label>
+                                        <input class="setting_input" disabled value="Волкова">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Дом</label>
+                                        <input class="setting_input" disabled value="59">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Корпус</label>
+                                        <input class="setting_input" disabled value="1">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Строение</label>
+                                        <input class="setting_input" disabled value="1">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Кв. / Офис</label>
+                                        <input class="setting_input" disabled value="1">
+                                    </li>
+                                    <!-- <li class="clearfix">
+                                    </li> -->
+
+                                    <li class="clearfix">
+                                        <label for=""></label>
+                                        <label for="" class="pull-right">
+                                            <a href="javascript:;" class="btn_before_sqare clearfix">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                                Добавить еще торговую точку
+                                            </a>
+                                        </label>
+                                    </li>
+
+                                    <li class="clearfix">
+
+                                        <div class="box_settings_radio clearfix">
+
+                                            <div class="setting_box_col50">
+                                                <label for=""">
+                                                    Вы самостоятельно планируете
+                                                    осуществить доставку товаров?
+                                                </label>
+                                            </div>
+
+                                            <div class="setting_box_col50">
+                                                <label class="radio_box" for="input_radio2">
+                                                    <input type="radio" id="input_radio2" class="input_radio2" name="input_radio">
+                                                    <span class="radio-custom"></span>
+                                                    <span>Да, у нас собственная логистика</span>
+                                                </label>
+
+                                                <label class="radio_box" for="input_radio3">
+                                                    <input type="radio" id="input_radio3" class="input_radio2" name="input_radio">
+                                                    <span class="radio-custom"></span>
+                                                    <span>Нет, хотим воспользоваться услугами ваших логистов</span>
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+                                    </li>
+
+                                    <li class="clearfix">
+
+                                        <label for=""></label>
+
+                                        <div class="ok_box">
+
+                                            <button class="ok_btn">
+                                                <i class="fa fa-check" aria-hidden="true"></i>
+                                            </button>
+
+                                        </div>
+
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <!--/end of  -->
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--/end of profile_settings_box -->
+
+            </div> <!-- row -->
+
+        </section>
+
+        <!-- - - - - - - - - - - - - - End of profile_settings_container - - - - - - - - - - - - - - - - -->
+
+
+        <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+
+
+        <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
+
+    </div>
+{% endblock %}

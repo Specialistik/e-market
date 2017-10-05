@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from datetime import datetime
 
 from django.db import models
+from django.utils import timezone
 
 from django.contrib.auth.models import User
 from core.models import Address
@@ -24,7 +24,7 @@ class TradePoint(models.Model):
 class Order(models.Model):
     customer = models.ForeignKey(User, verbose_name=u'Заказчик')
     trade_point = models.ForeignKey(TradePoint, verbose_name=u'Торговая точка ')
-    created = models.DateTimeField(default=datetime.now(), verbose_name=u'Время создания')
+    created = models.DateTimeField(default=timezone.now, verbose_name=u'Время создания')
 
     class Meta:
         db_table = 'orders'

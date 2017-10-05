@@ -8,9 +8,10 @@
 
 			var self = this;
 
-			self.editList();
+			self.EditList();
 			self.NavMenu.init();
 			self.ToggleForm();
+			self.SelectFile();
 
 			/* self.NameFunction*/
 
@@ -21,6 +22,8 @@
 
 			var self = this;
 
+			self.HeaderHeight.init();
+
 			/* self.NameFunction*/
 
 		},
@@ -29,7 +32,8 @@
 		/**
 		**	Edit list
 		**/
-		editList: function(){
+
+		EditList: function(){
 
 			var self = this;
 
@@ -39,8 +43,6 @@
 			self.settingBox = $('.setting_box');
 			self.editOkBtn = $('.ok_btn');
 
-			self.editInput.attr('disabled' , 'disabled');
-
 			self.editLink.on('click', function(){
 				$(this)
 				.addClass('active')
@@ -48,8 +50,13 @@
 				.addClass('active')
 				.find('.setting_input')
 				.removeAttr('disabled');
+
+				$(this).closest('.setting_box').find('.wrapp_settings_select select').attr('disabled', false)
+			    .trigger('refresh');
+
 			});
 
+			/*
 			self.editOkBtn.on('click', function(){
 				$(this)
 				.removeClass('active')
@@ -58,15 +65,18 @@
 				.find('.setting_input')
 				.attr('disabled' , 'disabled');
 
+				$(this).closest('.setting_box').find('.wrapp_settings_select select').attr('disabled', true)
+			    .trigger('refresh');
+
 			});
+			*/
 
 		},
 
 
-
  		/*
 		*
-		*	NameFunction
+		*	NavMenu
 		*
 		*/
 
@@ -102,10 +112,10 @@
 
  				if ($(".navigation").hasClass("opened")) {
 
- 					$(".wrapp_content").stop().css("padding-left", "367px");
+ 					$(".wrapp_content").addClass("changed");
 
  				}else {
- 					$(".wrapp_content").stop().css("padding-left", "70px");
+ 					$(".wrapp_content").removeClass("changed");
  				}
 
  			},
@@ -128,11 +138,55 @@
 
  		/*
 		*
-		*	NameFunction
+		*	SelectFile
 		*
 		*/
 
- 		NameFunction: function() {
+ 		SelectFile: function() {
+
+ 			$('.select_file').children('span').on('click',function(){$(this).parent().find("input[type='file']").trigger('click')});
+ 			$('.select_file').children('input').on('change',function(){$(this).siblings("span").addClass("checked").text($(this).val())});
+
+ 		},
+
+
+ 		/*
+ 		*
+ 		*
+ 		*	Header Height
+ 		*
+ 		*/
+
+ 		HeaderHeight: {
+
+ 			init: function(){
+
+ 				var self = this;
+
+ 				self.header = $('#header');
+ 				self.page = $('.wrapp_content');
+
+ 				self.calculation();
+
+ 				$(window).on('resize', function(){
+
+ 					self.calculation();
+
+ 				});
+
+ 			},
+
+ 			calculation : function(){
+
+ 				var self = this;
+
+ 			    var headerHeight = self.header.outerHeight();
+
+ 			    self.page.css({
+ 			    	'padding-top': headerHeight
+ 			    });
+
+ 			}
 
  		},
 

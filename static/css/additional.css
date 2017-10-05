@@ -1,0 +1,19 @@
+.setting_input:not(:readonly):not([type="checkbox"]):not([type="radio"]){
+    color: #ff6900;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #efefef;
+    height: 20px;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .setting_input:readonly:not([type="checkbox"]):not([type="radio"]){
+    color: #4f4f4e;
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
+    border: none;
+    font-size: 14px;
+    line-height: 1.3;
+    height: 20px;
+  }

@@ -28,6 +28,7 @@ import core.views as core_views
 import catalogs.views as catalog_views
 import producer.views as producer_views
 import customer.views as customer_views
+import core.api as core_api
 
 #schema_view = get_swagger_view(title='The sklad API')
 
@@ -35,12 +36,12 @@ import customer.views as customer_views
 #router = routers.DefaultRouter(trailing_slash=False)
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'category', catalog_views.CategoryViewSet)
-router.register(r'profile', core_views.ProfileViewSet)
+router.register(r'profile', core_api.ProfileViewSet)
 
 
 profile_router = NestedDefaultRouter(router, r'profile', lookup='profile')
-profile_router.register(r'physical_address', core_views.PhysicalAddressViewSet)
-profile_router.register(r'juridical_address', core_views.JuridicalAddressViewSet)
+profile_router.register(r'physical_address', core_api.PhysicalAddressViewSet)
+profile_router.register(r'juridical_address', core_api.JuridicalAddressViewSet)
 
 urlpatterns = [
     url(r'^api/signup/$', core_views.signup),
@@ -53,4 +54,14 @@ urlpatterns = [
     url(r'^sign_in', core_views.sign_in),
     url(r'^logout', core_views.logout),
     url(r'^register', core_views.register),
+
+    url(r'^profile/$', core_views.profile),
+    url(r'^profile/juridical_address/$', core_views.profile_juridical_address),
+    url(r'^profile/physical_address/$', core_views.profile_physical_address),
+    url(r'^profile/company_info/$', core_views.profile_company_info),
+    url(r'^profile/signer_info/$', core_views.profile_signer_info),
+    url(r'^profile/identity_document/$', core_views.profile_identity_document),
+    url(r'^profile/account/add/$', core_views.profile_account_add),
+    url(r'^profile/account/([0-9]+)/$', core_views.profile_account_edit),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + staticfiles_urlpatterns()

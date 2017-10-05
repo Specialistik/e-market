@@ -1,106 +1,76 @@
 {% extends "base.html" %}
+{% block title %}Регистрация{% endblock %}
 
 {% block js_css %}
-    <script type="text/javascript" src="static/plugins/jQuery-Mask-Plugin-master/jquery.mask.min.js"></script>
+    <script type="text/javascript" src="/static/plugins/jQuery-Mask-Plugin-master/jquery.mask.min.js"></script>
     <script src="/static/js/register.js"></script>
 {% endblock %}
 
+{% block navigation %}{% endblock %}
+
 {% block content %}
+    <hr class="deviders1">
     <div id="content" class="content_bg verification_content"  style="background-image: url('static/images/bg-image/bg-type1.png');">
 
-            <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+    <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+        <div class="wrapp_verification">
+            <div class="top_verification">
+                <h3 class="title_verification">Регистрация</h3>
+            </div>
 
-                <div class="wrapp_verification">
+            <div class="content_verification">
+                <form action="/api/signup/" method="POST" class="wrapp_form_signup" id="signup_form">
+                    <input type="hidden" name="role" value="{{ role }}">
+                    <div class="wrapp_verification_col">
+                        <div class="verification_box_col">
+                            <label for="" class="label1">Наименование компании</label>
+                            <input name="company_name" type="text" required>
+                        </div>
 
-                    <div class="top_verification">
+                        <div class="verification_box_col">
+                            <label for="" class="label1">ИНН</label>
+                            <input name="inn" type="text" required placeholder="------------" data-mask="999999999999">
+                        </div>
 
-                        <h3 class="title_verification">Регистрация</h3>
+                        <div class="verification_box_col">
+                            <label for="" class="label1">Пароль</label>
+                            <input name="password" type="password">
+                        </div>
 
-                    </div>
+                        <div class="verification_box_col">
+                            <label for="" class="label1">E-mail</label>
+                            <input name="email" type="email" required>
+                        </div>
 
-                    <div class="content_verification">
-
-                        <form action="/api/signup/" method="POST" class="wrapp_form_signup" id="signup_form">
-                            <input type="hidden" name="role" value="{{ role }}">
-                            <div class="wrapp_verification_col">
-
-                                <div class="verification_box_col">
-
-                                    <label for="" class="label1">Наименование компании</label>
-                                    <input name="company_name" type="text" required>
-
+                        <div class="verification_box_col">
+                            <label for="" class="label1">Телефон</label>
+                            <div class="verification_row clearfix">
+                                <div class="verification_col code_country">
+                                    <input type="tel" required value="+7" disabled>
                                 </div>
 
-                                <div class="verification_box_col">
-
-                                    <label for="" class="label1">ИНН</label>
-
-                                    <input name="inn" type="text" required placeholder="------------" data-mask="999999999999">
-
+                                <div class="verification_col phone_box">
+                                    <input name="phone" type="tel" placeholder="( - - - )  - - -  - -  - -" data-mask="(999) 999 99 99" required>
                                 </div>
-
-                                <div class="verification_box_col">
-
-                                    <label for="" class="label1">Пароль</label>
-
-
-                                    <input name="password" type="password">
-
-                                </div>
-
-                                <div class="verification_box_col">
-
-                                    <label for="" class="label1">E-mail</label>
-                                    <input name="email" type="email" required>
-
-                                </div>
-
-                                <div class="verification_box_col">
-
-                                    <label for="" class="label1">Телефон</label>
-
-                                    <div class="verification_row clearfix">
-
-                                        <div class="verification_col code_country">
-                                            <input type="tel" required value="+7" disabled>
-                                        </div>
-
-                                        <div class="verification_col phone_box">
-                                            <input name="phone" type="tel" placeholder="( - - - )  - - -  - -  - -" data-mask="(999) 999 99 99" required>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="verification_box_col">
-
-                                    <div class="wrapp_privacy_policy">
-
-                                        <input type="checkbox" id="privacy_policy">
-                                        <label for="privacy_policy">
-                                        </label>
-
-                                        <label for="privacy_policy" class="privacy_policy_txt">
-                                            Нажимая на кнопку «Отправить», я даю согласие на обработку персональных данных
-                                            и соглашаюсь с <a href="/static/docs/confidential.pdf" target="_blank" class="hight_orange">политикой конфиденциальности</a>
-                                        </label>
-
-                                    </div>
-
-                                </div>
-
                             </div>
+                        </div>
 
-                            <button class="btn hight_orange full_width" id="signup">Отправить</button>
+                        <div class="verification_box_col">
+                            <div class="wrapp_privacy_policy">
+                                <input type="checkbox" id="privacy_policy">
+                                <label for="privacy_policy"></label>
 
-                        </form>
-
+                                <label for="privacy_policy" class="privacy_policy_txt">
+                                    Нажимая на кнопку «Отправить», я даю согласие на обработку персональных данных
+                                    и соглашаюсь с <a href="/static/docs/confidential.pdf" target="_blank" class="hight_orange">политикой конфиденциальности</a>
+                                </label>
+                            </div>
+                        </div>
                     </div>
-
-                </div>
-
-            <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
-
+                    <button class="btn hight_orange full_width" id="signup">Зарегистрироваться</button>
+                </form>
+            </div>
         </div>
+    <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
+    </div>
 {% endblock %}
