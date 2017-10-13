@@ -43,6 +43,7 @@ class Address(models.Model):
     block = models.CharField(max_length=20, null=True, blank=True, verbose_name=u'Корпус')
     structure = models.CharField(max_length=20, null=True, blank=True, verbose_name=u'Строение')
     flat = models.CharField(max_length=20, verbose_name=u'Квартира/Офис')
+    full_address = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Полный адрес')
 
     class Meta:
         db_table = 'address'

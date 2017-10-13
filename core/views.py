@@ -21,7 +21,8 @@ from rest_framework.response import Response
 
 from .models import UserProfile, Address, OrganizationType, LegalAct, SignerInfo, IdentityDocument, Account
 from customer.models import TradePoint
-from producer.models import ProducerDepot
+from producer.models import ProducerDepot, ProductCard
+from catalogs.models import Category
 from .serializers import SignupSerializer
 from .forms import IdentityDocumentForm
 
@@ -116,20 +117,83 @@ def profile(request):
 
             if request.user.profile.role == 'producer':
                 data['depots'] = ProducerDepot.objects.filter(producer_id=request.user.profile.id)
-            """
-            if request.user.profile.identity_document:
-                data['identity_form'] = IdentityDocumentForm(request.user.profile.identity_document)
-            else:
-                data['identity_form'] = IdentityDocumentForm()
-            """
             return render(request, 'profile_update.html', data)
-    """
-    if request.user.profile.role == 'customer':
-        return render(request, 'customer_profile.html')
-    if request.user.profile.role == 'producer':
-        return render(request, 'producer_profile.html')
-    """
+        return render(request, '500.html', {'error_message': u'Только поставщики и заказчики имеют свой профиль'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
+
+
+@login_required(login_url='/sign_in/')
+def create_profile(request):
+    if request.user.profile:
+        if request.user.profile.role in ('customer', 'producer'):
+            data = {
+                'profile': request.user.profile,
+                'organization_types': OrganizationType.objects.all(),
+                'legal_acts': LegalAct.objects.all(),
+                'accounts': Account.objects.filter(profile_id=request.user.profile.id),
+            }
+
+            if request.user.profile.role == 'customer':
+                data['trade_points'] = TradePoint.objects.filter(customer_id=request.user.profile.id)
+
+            if request.user.profile.role == 'producer':
+                data['depots'] = ProducerDepot.objects.filter(producer_id=request.user.profile.id)
+            return render(request, 'profile_create.html', data)
+        return render(request, '500.html', {'error_message': u'Только поставщики и заказчики имеют свой профиль'})
+    return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
+
+
+def profile_fiz_and_jur_address(request):
+    u_p = request.user.profile
+    if u_p:
+        if u_p.juridical_address is None:
+            u_p.juridical_address = Address.objects.create(
+                index=request.POST['jur_index'],
+                region=request.POST['jur_region'],
+                city=request.POST['jur_city'],
+                street=request.POST['jur_street'],
+                house=request.POST['jur_house'],
+                block=request.POST['jur_block'],
+                structure=request.POST['jur_structure'],
+                flat=request.POST['jur_flat']
+            )
+            u_p.save()
+        else:
+            u_p.juridical_address.index = request.POST['jur_index']
+            u_p.juridical_address.region = request.POST['jur_region']
+            u_p.juridical_address.city = request.POST['jur_city']
+            u_p.juridical_address.street = request.POST['jur_street']
+            u_p.juridical_address.house = request.POST['jur_house']
+            u_p.juridical_address.block = request.POST['jur_block']
+            u_p.juridical_address.structure = request.POST['jur_structure']
+            u_p.juridical_address.flat = request.POST['jur_flat']
+            u_p.juridical_address.save()
+
+        if request.POST['input_radio'] == 'false':
+            if u_p.physical_address is None:
+                u_p.physical_address = Address.objects.create(
+                    index=request.POST['fiz_index'],
+                    region=request.POST['fiz_region'],
+                    city=request.POST['fiz_city'],
+                    street=request.POST['fiz_street'],
+                    house=request.POST['fiz_house'],
+                    block=request.POST['fiz_block'],
+                    structure=request.POST['fiz_structure'],
+                    flat=request.POST['fiz_flat']
+                )
+                u_p.save()
+            else:
+                u_p.physical_address.index = request.POST['fiz_index']
+                u_p.physical_address.region = request.POST['fiz_region']
+                u_p.physical_address.city = request.POST['fiz_city']
+                u_p.physical_address.street = request.POST['fiz_street']
+                u_p.physical_address.house = request.POST['fiz_house']
+                u_p.physical_address.block = request.POST['fiz_block']
+                u_p.physical_address.structure = request.POST['fiz_structure']
+                u_p.physical_address.flat = request.POST['fiz_flat']
+                u_p.physical_address.save()
+
+    return redirect(request.build_absolute_uri())
 
 
 @login_required(login_url='/sign_in/')
@@ -294,4 +358,3 @@ def profile_account_edit(request, pk):
             return redirect(profile)
         return render(request, '500.html', {'error_message': u'Редактируемый счёт не найден'})
     return render(request, '500.html', {'error_message': u'Не найден профиль пользователя'})
-

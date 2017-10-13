@@ -46,6 +46,11 @@ class Measure(AbstractList):
 class Category(AbstractTree):
     image = ImageField(upload_to='category', null=True, blank=True, verbose_name=u'Изображение')
 
+    def get_image_url(self):
+        if self.image:
+            return self.image.url
+        return ''
+
     class Meta:
         db_table = 'categories'
         verbose_name = u'Категория'

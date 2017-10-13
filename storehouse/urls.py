@@ -56,6 +56,8 @@ urlpatterns = [
     url(r'^register', core_views.register),
 
     url(r'^profile/$', core_views.profile),
+    url(r'^profile_create/$', core_views.create_profile),
+    url(r'^profile/fiz_and_jur_address/$', core_views.profile),
     url(r'^profile/juridical_address/$', core_views.profile_juridical_address),
     url(r'^profile/physical_address/$', core_views.profile_physical_address),
     url(r'^profile/company_info/$', core_views.profile_company_info),
@@ -63,5 +65,12 @@ urlpatterns = [
     url(r'^profile/identity_document/$', core_views.profile_identity_document),
     url(r'^profile/account/add/$', core_views.profile_account_add),
     url(r'^profile/account/([0-9]+)/$', core_views.profile_account_edit),
+
+    url(r'^categories/$', producer_views.categories),
+    url(r'^category/([0-9]+)/$', producer_views.subcategories),
+    url(r'^subcategory_list/([0-9]+)/$', producer_views.subcategory_list),
+
+    url(r'^products/([0-9]+)/$', producer_views.products),
+    url(r'^product/add/$', producer_views.product_add),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + staticfiles_urlpatterns()

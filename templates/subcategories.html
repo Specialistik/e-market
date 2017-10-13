@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+
+{% block js_css %}
+    <script src="/static/js/category.js"></script>
+{% endblock %}
+
+{% block content %}
+        <div id="content" class="wrapp_content">
+
+        <div class="box_title_button">
+
+            <h3 class="title_line"><span>{{ category.name }}</span></h3>
+
+            <!-- <a href="javascript:;" class="btn light_orange icon_right large_width">
+               <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                Назад к категориям
+            </a> -->
+
+        </div>
+
+        <p class="attention_txt left">
+            <i class="fa fa-exclamation" aria-hidden="true"></i>
+            Выберите подкатегорию
+        </p>
+
+        <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+
+        <div class="wrapp_products">
+
+            <div class="row_products clearfix">
+                {% for subcategory in subcategories %}
+                    <figure class="col_products category_products" data-mh="col-products">
+                            <div class="products_img" data-mh="products-img">
+
+                            <a href="/products/{{ subcategory.id }}">
+                                <img src="{{ subcategory.get_image_url }}" alt="{{ subcategory.name }}">
+                            </a>
+
+                        </div>
+
+                        <figcaption>
+                            <h3 class="light_grey products_title">{{ subcategory.name }}</h3>
+                        </figcaption>
+                    </figure>
+                {% endfor %}
+            </div> <!-- row_products -->
+
+             <div class="wrapp_btn right">
+                 <a href="javascript:;" class="btn hight_orange icon_right middle_width" id="pick_category">
+                   <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                   Далее к выбору товаров
+                </a>
+            </div>
+        </div>
+
+        <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
+
+    </div>
+
+    <!-- - - - - - - - - - - - - - End of Content - - - - - - - - - - - - - - - - -->
+
+    <!-- - - - - - - - - - - - - - Modal Popup - - - - - - - - - - - - - - - - -->
+
+    <div style="display: none;">
+
+    </div>
+
+    <!-- - - - - - - - - - - - - - End of Modal Popup - - - - - - - - - - - - - - - - -->
+
+
+{% endblock %}

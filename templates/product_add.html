@@ -1,0 +1,263 @@
+{% extends 'base.html' %}
+
+{% block js_css %}
+    <script src="/static/js/product_add.js"></script>
+{% endblock %}
+
+{% block content %}
+    <div id="content" class="wrapp_content">
+
+        <div class="box_title_button">
+
+            <h3 class="title_line"><span>Каталог продукции</span></h3>
+
+        </div>
+
+        <p class="attention_txt left">
+            <i class="fa fa-exclamation" aria-hidden="true"></i>
+            Каталог продукции пуст. Пожалуйста заполните его вашими продуктами
+        </p>
+
+        <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
+
+        <form action="/product/add/" class="wrapp_company_form validate" novalidate method="POST">
+            {% csrf_token %}
+
+            <div class="wrapp_form_box clearfix">
+
+               <div class="box_form_row clearfix">
+
+                    <!-- col 6 -->
+                    <div class="box_form_half">
+
+                        <div class="form_box_offset">
+
+                            <div class="wrapp_castom_select error_form_container">
+                                <select data-placeholder="Выберите категорию" required name="parent_category" id="category_box">
+                                    <option value=""></option>
+                                    {% for category in categories %}
+                                        <option value="{{ category.id }}">{{ category.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="form_box_offset">
+
+                            <div class="wrapp_castom_select error_form_container">
+                                <select data-placeholder="Выберите подкатегорию" required name="subcategory" id="subcategory_box">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div class="form_box_offset">
+
+                            <div class="error_form_container">
+                                <input name="name" placeholder="Наименование" data-name="n_mail">
+                            </div>
+
+                        </div>
+
+                        <div class="form_box_offset">
+
+                            <div class="form_row clearfix">
+
+                                <div class="form_col half">
+
+                                    <div class="wrapp_label_right">
+
+                                        <div class="box_input error_form_container">
+                                            <input name="expiration_date" placeholder="Срок годности" maxlength="5" required>
+                                        </div>
+
+                                        <label class="label_right">
+                                            дней
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form_col half error_form_container">
+                                    <input name="barcode" placeholder="Штрих код" maxlength="20" required>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- col 6 -->
+
+                    <!-- col 6 -->
+                    <div class="box_form_half">
+
+                        <div class="form_box_offset">
+
+                            <div class="form_row clearfix">
+
+                                <div class="form_col half">
+
+                                    <div class="wrapp_label_right">
+
+                                        <div class="box_input error_form_container">
+                                            <input name="pack_amount" placeholder="Количество в упаковке" data-mask="00000000" required>
+                                        </div>
+
+                                        <label class="label_right">
+                                            шт
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form_col half">
+
+                                    <div class="wrapp_label_right">
+
+                                        <div class="box_input error_form_container">
+                                            <input name="weight" placeholder="Вес" data-mask="0000000000" required>
+                                        </div>
+
+                                        <label class="label_right">
+                                            кг
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form_box_offset">
+
+                            <div class="form_row clearfix">
+
+                                <div class="form_col half">
+
+                                    <div class="wrapp_label_right">
+
+                                        <div class="box_input error_form_container">
+                                            <input name="dimensions" placeholder="Размеры" data-mask="00000000" required>
+                                        </div>
+
+                                        <label class="label_right">
+                                            см
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form_col half">
+
+                                    <div class="wrapp_label_right">
+
+                                        <div class="box_input error_form_container">
+                                            <input name="minimum_amount" placeholder="Минимальный заказ" data-mask="0000000000" required>
+                                        </div>
+
+                                        <label class="label_right">
+                                            шт
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form_box_offset">
+
+                            <div class="form_row clearfix">
+
+                                <div class="form_col half">
+
+                                    <div class="wrapp_label_right">
+
+                                        <div class="box_input error_form_container">
+                                            <input name="producer_price" placeholder="Цена" data-mask="000000000000000000000000" required>
+                                        </div>
+
+                                        <label class="label_right">
+                                            руб
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form_col half">
+                                    <div class="wrapp_castom_select error_form_container">
+                                        <select data-placeholder="Выбрать склад" required name="product_depot">
+                                            {% for depot in depots %}
+                                                <option value="{{ depot.id }}">{{ depot.name }}</option>
+                                            {% endfor %}
+                                            {% comment %}
+                                            <option value=""></option>
+                                            <option value="1">Склад 1</option>
+                                            <option value="2">Склад 2</option>
+                                            <option value="3">Склад 3</option>
+                                            <option value="4">Склад 4</option>
+                                            {% endcomment %}
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form_box_offset">
+
+                            <div class="select_file">
+
+                                <input type="file" value="Выберите файл" name="product_pic">
+
+                                <span class="file_notselected">Добавить фото</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- col 6 -->
+
+
+               </div> <!-- box_form_row -->
+
+               <div class="wrapp_btn_add_plus">
+                   <a href="javascript:;" class="btn_add_plus">
+                       Добавить еще продукт
+                   </a>
+               </div>
+
+               <div class="align_right">
+                   <button class="btn hight_orange" type="submit">Сохранить</button>
+               </div>
+
+            </div> <!-- wrapp_form -->
+
+        </form>
+
+        <!-- - - - - - - - - - - - - - End of Form - - - - - - - - - - - - - - - - -->
+
+
+        <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+
+
+        <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
+
+    </div>
+
+    <!-- - - - - - - - - - - - - - End of Content - - - - - - - - - - - - - - - - -->
+
+{% endblock %}

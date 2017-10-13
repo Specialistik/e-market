@@ -1,10 +1,7 @@
 {% extends 'base.html' %}
 
 {% block js_css %}
-    <script src="/static/js/profile.js"></script>
-
-    <!-- datepicker -->
-    <link rel="stylesheet" href="/static/plugins/air-datepicker-master/css/datepicker.min.css">
+    <script src="/static/js/profile_update.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -356,14 +353,15 @@
                                     <ul class="setting_list">
                                         <li class="clearfix">
                                             <label>Серия</label>
-                                            <input class="setting_input" required disabled name="series" value="{% if profile.identity_document %}{{ profile.identity_document.series }}{% endif %}">
+                                            <input class="setting_input" required disabled name="series" value="{% if profile.identity_document %}{{ profile.identity_document.series }}{% endif %}" data-mask="0000">
                                         </li>
                                         <li class="clearfix">
                                             <label>Номер</label>
-                                            <input class="setting_input" required disabled name="number" value="{% if profile.identity_document %}{{ profile.identity_document.number}}{% endif %}">
+                                            <input class="setting_input" required disabled name="number" value="{% if profile.identity_document %}{{ profile.identity_document.number}}{% endif %}" data-mask="000000">
                                         </li>
                                         <li class="clearfix">
                                             <label>Кем выдан</label>
+                                            <input class="setting_input" required disabled name="issued_by" value="{% if profile.identity_document %}{{ profile.identity_document.issued_by }}{% endif %}">
                                             <input class="setting_input" required disabled name="issued_by" value="{% if profile.identity_document %}{{ profile.identity_document.issued_by }}{% endif %}">
                                         </li>
                                         <li class="clearfix">
@@ -441,7 +439,7 @@
                                                 <li class="clearfix">
                                                     <label></label>
                                                     <div class="ok_box">
-                                                        <button class="ok_btn">
+                                                        <button class="ok_btn" type="submit">
                                                             <i class="fa fa-check" aria-hidden="true"></i>
                                                         </button>
                                                     </div>
@@ -490,6 +488,7 @@
                                                 </li>
                                             </ul>
                                         </form>
+                                    </div>
                                 {% endif %}
 
                                 {% comment %}
@@ -533,132 +532,133 @@
                 </div>
                 <!--/end of profile_settings_box -->
 
+                {% comment %}
+                <!-- profile_settings_box -->
+                <div class="col-sm-6">
 
-                    <!-- profile_settings_box -->
-                    <div class="col-sm-6">
+                    <div class="profile_settings_item">
 
-                        <div class="profile_settings_item">
+                        <h3 class="title_edit">{% if profile.role == 'customer' %}О торговых точках{% else %}О складах{% endif %}</h3>
 
-                            <h3 class="title_edit">{% if profile.role == 'customer' %}О торговых точках{% else %} О складах {% endif %}</h3>
+                        <div class="profile_settings_box" data-mh="profile_settings_box">
 
-                            <div class="profile_settings_box" data-mh="profile_settings_box">
+                            <!--  -->
+                            <div class="setting_box" data-mh="settings-box">
 
-                                <!--  -->
-                                <div class="setting_box" data-mh="settings-box">
+                                <span class="js_edit">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </span>
 
-                                    <span class="js_edit">
-                                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                                    </span>
+                                <h3 class="subtitle_edit">Юридический адрес:</h3>
 
-                                    <h3 class="subtitle_edit">Юридический адрес:</h3>
+                                <ul class="setting_list">
+                                    <li class="clearfix">
+                                        <label class="label_settings">Город / Улица / Дом</label>
+                                        <input class="setting_input" disabled value="Казань, Волкова, 59">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Индекс</label>
+                                        <input class="setting_input" disabled value="420 139">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Регион</label>
+                                        <input class="setting_input" disabled value="Республика Татарстан">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Город</label>
+                                        <input class="setting_input" disabled value="Казань">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Населеный пункт</label>
+                                        <input class="setting_input" disabled value="Казань">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Улица</label>
+                                        <input class="setting_input" disabled value="Волкова">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Дом</label>
+                                        <input class="setting_input" disabled value="59">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Корпус</label>
+                                        <input class="setting_input" disabled value="1">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Строение</label>
+                                        <input class="setting_input" disabled value="1">
+                                    </li>
+                                    <li class="clearfix">
+                                        <label>Кв. / Офис</label>
+                                        <input class="setting_input" disabled value="1">
+                                    </li>
+                                    <!-- <li class="clearfix">
+                                    </li> -->
 
-                                    <ul class="setting_list">
-                                        <li class="clearfix">
-                                            <label class="label_settings">Город / Улица / Дом</label>
-                                            <input class="setting_input" disabled value="Казань, Волкова, 59">
-                                        </li>
-                                        <li class="clearfix">
-                                            <label>Индекс</label>
-                                            <input class="setting_input" disabled value="420 139">
-                                        </li>
-                                        <li class="clearfix">
-                                            <label>Регион</label>
-                                            <input class="setting_input" disabled value="Республика Татарстан">
-                                        </li>
-                                        <li class="clearfix">
-                                            <label>Город</label>
-                                            <input class="setting_input" disabled value="Казань">
-                                        </li>
-                                        <li class="clearfix">
-                                            <label>Населеный пункт</label>
-                                            <input class="setting_input" disabled value="Казань">
-                                        </li>
-                                        <li class="clearfix">
-                                            <label>Улица</label>
-                                            <input class="setting_input" disabled value="Волкова">
-                                        </li>
-                                        <li class="clearfix">
-                                            <label>Дом</label>
-                                            <input class="setting_input" disabled value="59">
-                                        </li>
-                                        <li class="clearfix">
-                                            <label>Корпус</label>
-                                            <input class="setting_input" disabled value="1">
-                                        </li>
-                                        <li class="clearfix">
-                                            <label>Строение</label>
-                                            <input class="setting_input" disabled value="1">
-                                        </li>
-                                        <li class="clearfix">
-                                            <label>Кв. / Офис</label>
-                                            <input class="setting_input" disabled value="1">
-                                        </li>
-                                        <!-- <li class="clearfix">
-                                        </li> -->
+                                    <li class="clearfix">
+                                        <label for=""></label>
+                                        <label for="" class="pull-right">
+                                            <a href="javascript:;" class="btn_before_sqare clearfix">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                                Добавить еще торговую точку
+                                            </a>
+                                        </label>
+                                    </li>
 
-                                        <li class="clearfix">
-                                            <label for=""></label>
-                                            <label for="" class="pull-right">
-                                                <a href="javascript:;" class="btn_before_sqare clearfix">
-                                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                                    Добавить еще торговую точку
-                                                </a>
-                                            </label>
-                                        </li>
+                                    <li class="clearfix">
 
-                                        <li class="clearfix">
+                                        <div class="box_settings_radio clearfix">
 
-                                            <div class="box_settings_radio clearfix">
-
-                                                <div class="setting_box_col50">
-                                                    <label for=""">
-                                                        Вы самостоятельно планируете
-                                                        осуществить доставку товаров?
-                                                    </label>
-                                                </div>
-
-                                                <div class="setting_box_col50">
-                                                    <label class="radio_box" for="input_radio2">
-                                                        <input type="radio" id="input_radio2" class="input_radio2" name="input_radio">
-                                                        <span class="radio-custom"></span>
-                                                        <span>Да, у нас собственная логистика</span>
-                                                    </label>
-
-                                                    <label class="radio_box" for="input_radio3">
-                                                        <input type="radio" id="input_radio3" class="input_radio2" name="input_radio">
-                                                        <span class="radio-custom"></span>
-                                                        <span>Нет, хотим воспользоваться услугами ваших логистов</span>
-                                                    </label>
-                                                </div>
-
+                                            <div class="setting_box_col50">
+                                                <label for="">
+                                                    Вы самостоятельно планируете
+                                                    осуществить доставку товаров?
+                                                </label>
                                             </div>
 
-                                        </li>
+                                            <div class="setting_box_col50">
+                                                <label class="radio_box" for="input_radio2">
+                                                    <input type="radio" id="input_radio2" class="input_radio2" name="input_radio">
+                                                    <span class="radio-custom"></span>
+                                                    <span>Да, у нас собственная логистика</span>
+                                                </label>
 
-                                        <li class="clearfix">
-
-                                            <label for=""></label>
-
-                                            <div class="ok_box">
-
-                                                <button class="ok_btn">
-                                                    <i class="fa fa-check" aria-hidden="true"></i>
-                                                </button>
-
+                                                <label class="radio_box" for="input_radio3">
+                                                    <input type="radio" id="input_radio3" class="input_radio2" name="input_radio">
+                                                    <span class="radio-custom"></span>
+                                                    <span>Нет, хотим воспользоваться услугами ваших логистов</span>
+                                                </label>
                                             </div>
 
-                                        </li>
+                                        </div>
 
-                                    </ul>
-                                </div>
-                                <!--/end of  -->
+                                    </li>
 
+                                    <li class="clearfix">
+
+                                        <label for=""></label>
+
+                                        <div class="ok_box">
+
+                                            <button class="ok_btn">
+                                                <i class="fa fa-check" aria-hidden="true"></i>
+                                                <i class="fa fa-check" aria-hidden="true"></i>
+                                            </button>
+
+                                        </div>
+
+                                    </li>
+
+                                </ul>
                             </div>
+                            <!--/end of  -->
 
                         </div>
 
                     </div>
 
+                </div>
+                {% endcomment %}
                 <!--/end of profile_settings_box -->
 
             </div> <!-- row -->

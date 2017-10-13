@@ -23,7 +23,7 @@ class ProductCard(models.Model):
     category = models.ForeignKey(Category, verbose_name=u"Категория")
     product_depot = models.ForeignKey(ProducerDepot, verbose_name=u'Склад')
     name = models.CharField(max_length=256, verbose_name=u"Название")
-    barcode = models.IntegerField(verbose_name=u'Штрих-код')
+    barcode = models.CharField(max_length=64, verbose_name=u'Штрих-код')
     expiration_date = models.CharField(max_length=256, verbose_name=u'Срок годности')
     producer_price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=u'Цена производителя')
     customer_price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=u'Цена для заказчика')
