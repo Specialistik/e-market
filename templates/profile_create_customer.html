@@ -1,12 +1,12 @@
 {% extends 'profile_create.html' %}
 
 {% block role_specific %}
-    {% if depots %}
-        {% for depot in depots %} {% if forloop.first %}
-            <form action="/depot/{{ depot.id }}/" class="wrapp_company_form" method="POST">
+    {% if trade_points %}
+        {% for trade_point in trade_points %} {% if forloop.first %}
+            <form action="/trade_point/{{ trade_point.id }}/" class="wrapp_company_form" method="POST">
                 {% csrf_token %}
 
-                <h3 class="title_edit angle_right">Данные о складах</h3>
+                <h3 class="title_edit angle_right">Данные о торговых точках</h3>
 
                 <div class="wrapp_form_box clearfix">
 
@@ -16,7 +16,7 @@
                         <div class="box_form_half">
 
                             <div class="form_box_offset">
-                                <input name="full_address" placeholder="Город, улица, дом" value="{{ depot.address.full_address }}">
+                                <input name="full_address" placeholder="Город, улица, дом" value="{{ trade_point.full_address }}">
                             </div>
 
                             <div class="form_box_offset">
@@ -24,11 +24,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="index" placeholder="Индекс" required data-mask="000000" value="{{ depot.address.index }}">
+                                        <input name="index" placeholder="Индекс" data-mask="000000" required value="{{ trade_point.index }}">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="region" placeholder="Регион" required value="{{ depot.address.region }}">
+                                        <input name="region" placeholder="Регион" required value="{{ trade_point.region }}">
                                     </div>
 
                                 </div>
@@ -46,11 +46,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="city" placeholder="Город / Населенный пункт" required value="{{ depot.address.city }}">
+                                        <input name="city" placeholder="Город / Населенный пункт" required value="{{ trade_point.city }}">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="street" placeholder="Улица" required value="{{ depot.address.street }}">
+                                        <input name="street" placeholder="Улица" required value="{{ trade_point.street }}">
                                     </div>
 
                                 </div>
@@ -62,19 +62,19 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col quarter">
-                                        <input name="house" placeholder="Дом" required value="{{ depot.address.house }}">
+                                        <input name="house" placeholder="Дом" required value="{{ trade_point.house }}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="block" placeholder="Корпус" value="{{ depot.address.block }}">
+                                        <input name="block" placeholder="Корпус" value="{{ trade_point.block }}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="structure" placeholder="Строение" value="{{ depot.address.structure }}">
+                                        <input name="structure" placeholder="Строение" value="{{ trade_point.structure }}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="flat" placeholder="Кв. / Офис" required value="{{ depot.address.flat }}">
+                                        <input name="flat" placeholder="Кв. / Офис" required value="{{ trade_point.flat }}">
                                     </div>
 
                                 </div>
@@ -102,7 +102,7 @@
             </form>
         {% endif %}{% endfor %}
     {% else %}
-        <form action="/depot/add/" class="wrapp_company_form" method="POST">
+        <form action="/trade_point/add/" class="wrapp_company_form" method="POST">
             {% csrf_token %}
 
             <h3 class="title_edit angle_right">Данные о торговых точках</h3>

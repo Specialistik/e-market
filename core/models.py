@@ -95,6 +95,11 @@ class UserProfile(models.Model):
     signer_info = models.OneToOneField(SignerInfo, null=True, blank=True, related_name='signer_info', verbose_name=u'Данные подписанта')
     identity_document = models.OneToOneField(IdentityDocument, null=True, blank=True, verbose_name=u'Документ')
 
+    # У нас две разные страницы для создания и редактирования профиля.
+    # False = используем страницу создания профиля
+    # True = Используем страницу редактирования
+    created = models.BooleanField(default=False, verbose_name=u'Создание профиля завершено или пропущено')
+
     class Meta:
         db_table = 'user_profile'
         verbose_name = u'Профиль пользователя'

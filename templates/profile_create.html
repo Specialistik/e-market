@@ -11,7 +11,7 @@
 
             <h3 class="title_line"><span>Данные о компании</span></h3>
 
-            <a href="javascript:;" class="btn light_orange icon_right large_width">
+            <a href="/profile/skip_creation/" class="btn light_orange icon_right large_width">
                <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                 Пропустить заполнение данных
             </a>
@@ -29,6 +29,7 @@
 
             <!-- form 1 -->
             <form action="/profile/fiz_and_jur_address/" class="wrapp_company_form" method="POST">
+                {% csrf_token %}
 
                 <h3 class="title_edit angle_right">Адрес</h3>
 
@@ -42,7 +43,7 @@
                             <h3 class="subtitle_edit">Юридический адрес:</h3>
 
                             <div class="form_box_offset">
-                                <input name="jur_full_address" placeholder="Город, улица, дом">
+                                <input name="jur_full_address" placeholder="Город, улица, дом" value="{% if profile.juridical_address %}{{ profile.juridical_address.full_address }}{% endif %}">
                             </div>
 
                             <div class="form_box_offset">
@@ -50,11 +51,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="jur_index" required placeholder="Индекс" data-mask="000000">
+                                        <input name="jur_index" required placeholder="Индекс" data-mask="000000" value="{% if profile.juridical_address %}{{ profile.juridical_address.index }}{% endif %}">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="jur_region" required placeholder="Регион">
+                                        <input name="jur_region" required placeholder="Регион" value="{% if profile.juridical_address %}{{ profile.juridical_address.region }}{% endif %}">
                                     </div>
 
                                 </div>
@@ -66,11 +67,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="jur_city" required placeholder="Город / Населенный пункт">
+                                        <input name="jur_city" required placeholder="Город / Населенный пункт" value="{% if profile.juridical_address %}{{ profile.juridical_address.city }}{% endif %}">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="jur_street" required placeholder="Улица">
+                                        <input name="jur_street" required placeholder="Улица" value="{% if profile.juridical_address %}{{ profile.juridical_address.street }}{% endif %}">
                                     </div>
 
                                 </div>
@@ -82,19 +83,19 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col quarter">
-                                        <input name="jur_house" required placeholder="Дом">
+                                        <input name="jur_house" required placeholder="Дом" value="{% if profile.juridical_address %}{{ profile.juridical_address.house }}{% endif %}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="jur_block" placeholder="Корпус">
+                                        <input name="jur_block" placeholder="Корпус" value="{% if profile.juridical_address %}{{ profile.juridical_address.block }}{% endif %}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="jur_structure" placeholder="Строение">
+                                        <input name="jur_structure" placeholder="Строение" value="{% if profile.juridical_address %}{{ profile.juridical_address.structure }}{% endif %}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="jur_flat" required placeholder="Кв. / Офис">
+                                        <input name="jur_flat" required placeholder="Кв. / Офис" value="{% if profile.juridical_address %}{{ profile.juridical_address.flat }}{% endif %}">
                                     </div>
 
                                 </div>
@@ -115,7 +116,7 @@
 
                                 <div class="wrapp_radio_box">
                                     <label class="radio_box" for="input_radio2">
-                                        <input type="radio" id="input_radio2" class="input_radio2" name="input_radio" value="true">
+                                        <input type="radio" id="input_radio2" class="input_radio2" name="input_radio" value="true" checked>
                                         <span class="radio-custom"></span>
                                         <span>Совпадает с юридическим</span>
                                     </label>
@@ -130,7 +131,7 @@
                             </div>
 
                             <div class="form_box_offset">
-                                <input name="fiz_full_address" placeholder="Город, улица, дом">
+                                <input name="fiz_full_address" placeholder="Город, улица, дом" value="{% if profile.physical_address %}{{ profile.physical_address.full_address }}{% endif %}">
                             </div>
 
                             <div class="form_box_offset">
@@ -138,11 +139,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="fiz_index" required placeholder="Индекс" data-mask="000000">
+                                        <input name="fiz_index" required placeholder="Индекс" data-mask="000000" value="{% if profile.physical_address %}{{ profile.physical_address.index }}{% endif %}">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="fiz_region" placeholder="Регион">
+                                        <input name="fiz_region" placeholder="Регион" value="{% if profile.physical_address %}{{ profile.physical_address.region }}{% endif %}">
                                     </div>
 
                                 </div>
@@ -154,11 +155,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="fiz_city" required placeholder="Город / Населенный пункт">
+                                        <input name="fiz_city" required placeholder="Город / Населенный пункт" value="{% if profile.physical_address %}{{ profile.physical_address.city }}{% endif %}">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="fiz_street" required placeholder="Улица">
+                                        <input name="fiz_street" required placeholder="Улица" value="{% if profile.physical_address %}{{ profile.physical_address.street }}{% endif %}">
                                     </div>
 
                                 </div>
@@ -170,19 +171,19 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col quarter">
-                                        <input name="fiz_house" required placeholder="Дом">
+                                        <input name="fiz_house" required placeholder="Дом" value="{% if profile.physical_address %}{{ profile.physical_address.house }}{% endif %}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="fiz_block" placeholder="Корпус">
+                                        <input name="fiz_block" placeholder="Корпус" value="{% if profile.physical_address %}{{ profile.physical_address.block }}{% endif %}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="fiz_structure" placeholder="Строение">
+                                        <input name="fiz_structure" placeholder="Строение" value="{% if profile.physical_address %}{{ profile.physical_address.structure }}{% endif %}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="fiz_flat" required placeholder="Кв. / Офис">
+                                        <input name="fiz_flat" required placeholder="Кв. / Офис" value="{% if profile.physical_address %}{{ profile.physical_address.flat }}{% endif %}">
                                     </div>
 
                                 </div>
@@ -414,174 +415,148 @@
 
             </form>
 
-            <!-- form 4 -->
-            <form action="/profile/account/{{ account.id }}/" method="POST" class="wrapp_company_form">
-                {% csrf_token %}
+            {% if accounts %}
+                {% for account in accounts %}{% if forloop.first %}
+                    <!-- form 4 -->
+                    <form action="/profile/account/{{ account.id }}/" method="POST" class="wrapp_company_form">
+                        {% csrf_token %}
 
-                <h3 class="title_edit angle_right">Настройка счета</h3>
+                        <h3 class="title_edit angle_right">Настройка счета</h3>
 
-                <div class="wrapp_form_box clearfix">
+                        <div class="wrapp_form_box clearfix">
 
-                    <div class="box_form_row clearfix">
+                            <div class="box_form_row clearfix">
 
-                        <!-- col 6 -->
-                        <div class="box_form_half">
+                                <!-- col 6 -->
+                                <div class="box_form_half">
 
-                            <div class="form_box_offset">
-                                <input name="name" placeholder="Наименование счета" required value="{{ account.name }}">
-                            </div>
-
-                            <div class="form_box_offset">
-
-                                <div class="form_row clearfix">
-
-                                    <div class="form_col half">
-                                        <input name="account_number" placeholder="Номер расчетного счета" required value="{{ account.account_number }}" data-mask="0000000000000000">
+                                    <div class="form_box_offset">
+                                        <input name="name" placeholder="Наименование счета" required value="{{ account.name }}">
                                     </div>
 
-                                    <div class="form_col half">
-                                        <input name="bik" placeholder="БИК" required value="{{ account.bik }}" data-mask="00000000">
+                                    <div class="form_box_offset">
+
+                                        <div class="form_row clearfix">
+
+                                            <div class="form_col half">
+                                                <input name="account_number" placeholder="Номер расчетного счета" required value="{{ account.account_number }}" data-mask="0000000000000000">
+                                            </div>
+
+                                            <div class="form_col half">
+                                                <input name="bik" placeholder="БИК" required value="{{ account.bik }}" data-mask="00000000">
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <!-- col 6 -->
+
+                                <!-- col 6 -->
+                                <div class="box_form_half">
+
+                                    <div class="form_box_offset">
+                                        <input name="bank_name" placeholder="Наименование банка" required value="{{ account.bank_name }}">
+                                    </div>
+
+                                    <div class="form_box_offset">
+                                        <input name="correspondent_account" placeholder="Корреспондентский счет" required value="{{ account.correspondent_account }}" data-mask="0000000000000000">
+                                    </div>
+
+                                </div>
+                                <!-- col 6 -->
+
+                            </div> <!-- box_form_row -->
+
+                            {% comment %}
+                            <div class="wrapp_btn_add_plus profile_account_add">
+                                <a href="javascript:;" class="btn_add_plus">Добавить счет</a>
+                            </div>
+                            {% endcomment %}
+
+                            <div class="align_right">
+                               <button type="submit" class="btn hight_orange">Сохранить</button>
+                            </div>
+
+                        </div> <!-- wrapp_form -->
+                    </form>
+                {% endif %}{% endfor %}
+            {% else %}
+                <form action="/profile/account/add/" method="POST" class="wrapp_company_form">
+                    {% csrf_token %}
+
+                    <h3 class="title_edit angle_right">Настройка счета</h3>
+
+                    <div class="wrapp_form_box clearfix">
+
+                        <div class="box_form_row clearfix">
+
+                            <!-- col 6 -->
+                            <div class="box_form_half">
+
+                                <div class="form_box_offset">
+                                    <input name="name" placeholder="Наименование счета" required value="">
+                                </div>
+
+                                <div class="form_box_offset">
+
+                                    <div class="form_row clearfix">
+
+                                        <div class="form_col half">
+                                            <input name="account_number" placeholder="Номер расчетного счета" required value="" data-mask="0000000000000000">
+                                        </div>
+
+                                        <div class="form_col half">
+                                            <input name="bik" placeholder="БИК" required value="" data-mask="00000000">
+                                        </div>
+
                                     </div>
 
                                 </div>
 
                             </div>
+                            <!-- col 6 -->
 
-                        </div>
-                        <!-- col 6 -->
+                            <!-- col 6 -->
+                            <div class="box_form_half">
 
-                        <!-- col 6 -->
-                        <div class="box_form_half">
+                                <div class="form_box_offset">
+                                    <input name="bank_name" placeholder="Наименование банка" required value="">
+                                </div>
 
-                            <div class="form_box_offset">
-                                <input name="bank_name" placeholder="Наименование банка" required value="{{ account.bank_name }}">
+                                <div class="form_box_offset">
+                                    <input name="correspondent_account" placeholder="Корреспондентский счет" required value="" data-mask="0000000000000000">
+                                </div>
+
                             </div>
+                            <!-- col 6 -->
 
-                            <div class="form_box_offset">
-                                <input name="correspondent_account" placeholder="Корреспондентский счет" required value="{{ account.correspondent_account }}" data-mask="0000000000000000">
-                            </div>
+                        </div> <!-- box_form_row -->
 
+                        {% comment %}
+                        <div class="wrapp_btn_add_plus profile_account_add">
+                            <a href="javascript:;" class="btn_add_plus">Добавить счет</a>
                         </div>
-                        <!-- col 6 -->
+                        {% endcomment %}
 
-                    </div> <!-- box_form_row -->
+                        <div class="align_right">
+                           <button type="submit" class="btn hight_orange">Сохранить</button>
+                        </div>
 
-                    <div class="wrapp_btn_add_plus profile_account_add">
-                        <a href="javascript:;" class="btn_add_plus">Добавить счет</a>
-                    </div>
+                    </div> <!-- wrapp_form -->
+                </form>
+            {% endif %}
 
-                    <div class="align_right">
-                       <button type="submit" class="btn hight_orange">Сохранить</button>
-                    </div>
 
-                </div> <!-- wrapp_form -->
-            </form>
 
             {% block role_specific %}
 
             {% endblock %}
-            {% comment %}
-            <!-- form 5 -->
-            <form action="" class="wrapp_company_form">
 
-                <h3 class="title_edit angle_right">Данные о торговых точках</h3>
-
-                <div class="wrapp_form_box clearfix">
-
-                   <div class="box_form_row clearfix">
-
-                        <!-- col 6 -->
-                        <div class="box_form_half">
-
-                            <div class="form_box_offset">
-                                <input type="text" placeholder="Город, улица, дом">
-                            </div>
-
-                            <div class="form_box_offset">
-
-                                <div class="form_row clearfix">
-
-                                    <div class="form_col half">
-                                        <input type="text" placeholder="Индекс" data-mask="000000">
-                                    </div>
-
-                                    <div class="form_col half">
-                                        <input type="text" placeholder="Регион">
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- col 6 -->
-
-                        <!-- col 6 -->
-                        <div class="box_form_half">
-
-                            <div class="form_box_offset">
-
-                                <div class="form_row clearfix">
-
-                                    <div class="form_col half">
-                                        <input type="text" placeholder="Город / Населенный пункт">
-                                    </div>
-
-                                    <div class="form_col half">
-                                        <input type="text" placeholder="Улица">
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <div class="form_box_offset">
-
-                                <div class="form_row clearfix">
-
-                                    <div class="form_col quarter">
-                                        <input type="text" placeholder="Дом">
-                                    </div>
-
-                                    <div class="form_col quarter">
-                                        <input type="text" placeholder="Корпус" data-mask="00000000">
-                                    </div>
-
-                                    <div class="form_col quarter">
-                                        <input type="text" placeholder="Строение" data-mask="00000000">
-                                    </div>
-
-                                    <div class="form_col quarter">
-                                        <input type="text" placeholder="Кв. / Офис" data-mask="00000000">
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- col 6 -->
-
-                   </div> <!-- box_form_row -->
-
-                    <div class="wrapp_btn_add_plus">
-                        <a href="javascript:;" class="btn_add_plus">
-                            Добавить еще торговую точку
-                        </a>
-                    </div>
-
-                   <div class="align_right">
-                       <button class="btn hight_orange">Сохранить</button>
-                   </div>
-
-                </div> <!-- wrapp_form -->
-
-
-            </form>
-            {% endcomment %}
 
             <div class="align_right">
-                <a href="javascript:;" class="btn light_orange icon_right large_width" id="create_profile">
+                <a href="/profile/skip_creation/" class="btn light_orange icon_right large_width" id="create_profile">
                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
                     Продолжить
                 </a>

@@ -113,11 +113,17 @@ def profile(request):
             }
 
             if request.user.profile.role == 'customer':
-                data['trade_points'] = TradePoint.objects.filter(customer_id=request.user.profile.id)
+                data['trade_points'] = TradePoint.objects.filter(customer_id=request.user.id)
+                if request.user.profile.created:
+                    return render(request, 'profile_update_customer.html', data)
+                return render(request, 'profile_create_customer.html', data)
 
             if request.user.profile.role == 'producer':
-                data['depots'] = ProducerDepot.objects.filter(producer_id=request.user.profile.id)
-            return render(request, 'profile_update.html', data)
+                data['depots'] = ProducerDepot.objects.filter(producer_id=request.user.id)
+                if request.user.profile.created:
+                    return render(request, 'profile_update_producer.html', data)
+                return render(request, 'profile_create_producer.html', data)
+            #return render(request, 'profile_update.html', data)
         return render(request, '500.html', {'error_message': u'Только поставщики и заказчики имеют свой профиль'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
 
@@ -135,10 +141,17 @@ def create_profile(request):
 
             if request.user.profile.role == 'customer':
                 data['trade_points'] = TradePoint.objects.filter(customer_id=request.user.profile.id)
+                if request.user.profile.created:
+                    return render(request, 'profile_update_customer.html', data)
+                return render(request, 'profile_create_customer.html', data)
 
             if request.user.profile.role == 'producer':
                 data['depots'] = ProducerDepot.objects.filter(producer_id=request.user.profile.id)
-            return render(request, 'profile_create.html', data)
+                if request.user.profile.created:
+                    return render(request, 'profile_update_producer.html', data)
+                return render(request, 'profile_create_producer.html', data)
+
+            #return render(request, 'profile_create.html', data)
         return render(request, '500.html', {'error_message': u'Только поставщики и заказчики имеют свой профиль'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
 
@@ -148,17 +161,19 @@ def profile_fiz_and_jur_address(request):
     if u_p:
         if u_p.juridical_address is None:
             u_p.juridical_address = Address.objects.create(
+                full_address=request.POST['jur_full_address'],
                 index=request.POST['jur_index'],
                 region=request.POST['jur_region'],
                 city=request.POST['jur_city'],
                 street=request.POST['jur_street'],
                 house=request.POST['jur_house'],
-                block=request.POST['jur_block'],
-                structure=request.POST['jur_structure'],
+                block=request.POST.get('jur_block', ''),
+                structure=request.POST.get('jur_structure', ''),
                 flat=request.POST['jur_flat']
             )
             u_p.save()
         else:
+            u_p.juridical_address.full_address = request.POST['jur_full_address']
             u_p.juridical_address.index = request.POST['jur_index']
             u_p.juridical_address.region = request.POST['jur_region']
             u_p.juridical_address.city = request.POST['jur_city']
@@ -169,31 +184,34 @@ def profile_fiz_and_jur_address(request):
             u_p.juridical_address.flat = request.POST['jur_flat']
             u_p.juridical_address.save()
 
-        if request.POST['input_radio'] == 'false':
-            if u_p.physical_address is None:
-                u_p.physical_address = Address.objects.create(
-                    index=request.POST['fiz_index'],
-                    region=request.POST['fiz_region'],
-                    city=request.POST['fiz_city'],
-                    street=request.POST['fiz_street'],
-                    house=request.POST['fiz_house'],
-                    block=request.POST['fiz_block'],
-                    structure=request.POST['fiz_structure'],
-                    flat=request.POST['fiz_flat']
-                )
-                u_p.save()
-            else:
-                u_p.physical_address.index = request.POST['fiz_index']
-                u_p.physical_address.region = request.POST['fiz_region']
-                u_p.physical_address.city = request.POST['fiz_city']
-                u_p.physical_address.street = request.POST['fiz_street']
-                u_p.physical_address.house = request.POST['fiz_house']
-                u_p.physical_address.block = request.POST['fiz_block']
-                u_p.physical_address.structure = request.POST['fiz_structure']
-                u_p.physical_address.flat = request.POST['fiz_flat']
-                u_p.physical_address.save()
+        # todo: На фронте пока печалька в плане флага "совпадает с юридическим", поэтому ожидаем что данные будут вводить
+        #if request.POST['input_radio'] == 'false':
+        if u_p.physical_address is None:
+            u_p.physical_address = Address.objects.create(
+                full_address=request.POST['fiz_full_address'],
+                index=request.POST['fiz_index'],
+                region=request.POST['fiz_region'],
+                city=request.POST['fiz_city'],
+                street=request.POST['fiz_street'],
+                house=request.POST['fiz_house'],
+                block=request.POST['fiz_block'],
+                structure=request.POST['fiz_structure'],
+                flat=request.POST['fiz_flat']
+            )
+            u_p.save()
+        else:
+            u_p.physical_address.full_address = request.POST['fiz_full_address']
+            u_p.physical_address.index = request.POST['fiz_index']
+            u_p.physical_address.region = request.POST['fiz_region']
+            u_p.physical_address.city = request.POST['fiz_city']
+            u_p.physical_address.street = request.POST['fiz_street']
+            u_p.physical_address.house = request.POST['fiz_house']
+            u_p.physical_address.block = request.POST['fiz_block']
+            u_p.physical_address.structure = request.POST['fiz_structure']
+            u_p.physical_address.flat = request.POST['fiz_flat']
+            u_p.physical_address.save()
 
-    return redirect(request.build_absolute_uri())
+    return redirect(profile)
 
 
 @login_required(login_url='/sign_in/')
@@ -357,4 +375,14 @@ def profile_account_edit(request, pk):
             my_account.save()
             return redirect(profile)
         return render(request, '500.html', {'error_message': u'Редактируемый счёт не найден'})
+    return render(request, '500.html', {'error_message': u'Не найден профиль пользователя'})
+
+
+@login_required(login_url='/sign_in')
+def profile_skip_creation(request):
+    if request.user.profile:
+        my_profile = UserProfile.objects.get(pk=request.user.profile.id)
+        my_profile.created = True
+        my_profile.save()
+        return redirect(profile)
     return render(request, '500.html', {'error_message': u'Не найден профиль пользователя'})

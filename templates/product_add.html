@@ -198,6 +198,7 @@
                                 <div class="form_col half">
                                     <div class="wrapp_castom_select error_form_container">
                                         <select data-placeholder="Выбрать склад" required name="product_depot">
+                                            <option value=""></option>
                                             {% for depot in depots %}
                                                 <option value="{{ depot.id }}">{{ depot.name }}</option>
                                             {% endfor %}

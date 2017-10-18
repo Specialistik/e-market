@@ -56,8 +56,9 @@ urlpatterns = [
     url(r'^register', core_views.register),
 
     url(r'^profile/$', core_views.profile),
-    url(r'^profile_create/$', core_views.create_profile),
-    url(r'^profile/fiz_and_jur_address/$', core_views.profile),
+    url(r'^profile/skip_creation/$', core_views.profile_skip_creation),
+    #url(r'^profile_create/$', core_views.create_profile),
+    url(r'^profile/fiz_and_jur_address/$', core_views.profile_fiz_and_jur_address),
     url(r'^profile/juridical_address/$', core_views.profile_juridical_address),
     url(r'^profile/physical_address/$', core_views.profile_physical_address),
     url(r'^profile/company_info/$', core_views.profile_company_info),
@@ -70,7 +71,13 @@ urlpatterns = [
     url(r'^category/([0-9]+)/$', producer_views.subcategories),
     url(r'^subcategory_list/([0-9]+)/$', producer_views.subcategory_list),
 
+    url(r'^depot/add/$', producer_views.depot_add),
+    url(r'^depot/([0-9]+)/$', producer_views.depot_edit),
+
     url(r'^products/([0-9]+)/$', producer_views.products),
     url(r'^product/add/$', producer_views.product_add),
+
+    url(r'^trade_point/add/$', customer_views.trade_point_add),
+    url(r'^trade_point/([0-9]+)/$', customer_views.trade_point_edit),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + staticfiles_urlpatterns()
