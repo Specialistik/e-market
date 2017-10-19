@@ -1,18 +1,5 @@
-"""storehouse URL Configuration
+# -*- coding: utf-8 -*-
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
@@ -67,6 +54,7 @@ urlpatterns = [
     url(r'^profile/account/add/$', core_views.profile_account_add),
     url(r'^profile/account/([0-9]+)/$', core_views.profile_account_edit),
 
+    # Producer views
     url(r'^categories/$', producer_views.categories),
     url(r'^category/([0-9]+)/$', producer_views.subcategories),
     url(r'^subcategory_list/([0-9]+)/$', producer_views.subcategory_list),
@@ -75,8 +63,11 @@ urlpatterns = [
     url(r'^depot/([0-9]+)/$', producer_views.depot_edit),
 
     url(r'^products/([0-9]+)/$', producer_views.products),
-    url(r'^product/add/$', producer_views.product_add),
 
+    url(r'^my_products/$', producer_views.my_products),
+    url(r'^my_products/add/$', producer_views.product_add),
+
+    # Customer views
     url(r'^trade_point/add/$', customer_views.trade_point_add),
     url(r'^trade_point/([0-9]+)/$', customer_views.trade_point_edit),
 

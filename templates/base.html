@@ -116,8 +116,11 @@
                         {% endif %}
                     {% endif %}
 
+                    {% if user.profile.role == 'producer' %}
+                    <a href="/my_products/" class="wrapp_company_logo clearfix">
+                    {% else %}
                     <a href="javascript:;" class="wrapp_company_logo clearfix">
-
+                    {% endif %}
                         <span class="company_logo">
                             <img src="/static/images/small-logo.png" alt="">
                         </span>

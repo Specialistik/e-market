@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="content" class="wrapp_content">
+
+        <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
+
+        <form action="" class="wrapp_filter">
+
+            <label class="label1 big">Сортировка:</label>
+
+            <div class="wrapp_castom_select sorting">
+
+                <select data-placeholder="По умолчанию">
+                    <option value=""></option>
+                    <option value="1">По умолчанию</option>
+                    <option value="2">По категории</option>
+                    <option value="4">По подкатегории</option>
+                </select>
+
+            </div>
+
+            <!-- <div class="wrapp_search">
+                <input type="search">
+                <button class="search_btn">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </div> -->
+
+        </form>
+
+
+    <!-- - - - - - - - - - - - - - End of Form - - - - - - - - - - - - - - - - -->
+
+
+    <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+
+        <div class="wrapp_products wrapp_count_products">
+            {% for product in products %}
+                <div class="box_form_products_item block_closest clearfix">
+
+                    <div class="box_form_products_item_img count_products" data-mh="height-products">
+                        <a href="javascript:;">
+                            <img src="{{ producer.get_image_url }}" alt="">
+                        </a>
+                    </div>
+
+                    <div class="wrapp_products_item_forms setting_box" data-mh="height-products">
+
+                        <span class="js_edit">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </span>
+
+                        <a href="javascript:;" class="closest_btn">
+                            <i class="fa fa-times" aria-hidden="true"></i>
+                        </a>
+
+                        <div class="form_products_col_quarter gradient">
+
+                            <ul class="setting_list">
+
+                                <li>
+
+                                    <label for="">Категория</label>
+
+                                    <div class="wrapp_settings_select right_angle">
+                                        <select data-placeholder="выбрать" disabled>
+                                            {% for category in categories %}
+                                                <option value="{{ category.id }}">{{ category.name }}</option>
+                                            {% endfor %}
+                                            {% comment %}
+                                            <option value="">Овощи, фрукты, ягоды</option>
+                                            <option value="">Тип 2</option>
+                                            <option value="">Тип 3</option>
+                                            {% endcomment %}
+                                        </select>
+                                    </div>
+
+                                </li>
+
+                                <li>
+                                    <label for="">Подкатегория</label>
+
+                                    <div class="wrapp_settings_select right_angle">
+                                        <select data-placeholder="выбрать" disabled>
+
+                                            {% comment %}
+                                            <option value="">Овощи</option>
+                                            <option value="">Фрукты</option>
+                                            <option value="">Ягоды</option>
+                                            {% endcomment %}
+                                        </select>
+                                    </div>
+
+                                </li>
+
+                                <li>
+                                    <label for="">Наименование</label>
+                                    <input type="text" class="setting_input" value="{{ product.name }}" disabled>
+                                </li>
+
+                                <li>
+                                    <label for="">Срок годности</label>
+                                    <input type="text" class="setting_input" value="{{ product.expiration_date }}" disabled>
+                                </li>
+
+                                <li>
+                                    <label for="">Производитель</label>
+                                    <input type="text" class="setting_input" value="" disabled>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="form_products_col_quarter">
+
+                            <ul class="setting_list">
+
+                                <li>
+                                    <label for="">Количество</label>
+                                    <input type="text" class="setting_input" value="" disabled>
+                                </li>
+
+                                <li>
+                                    <label for="">Цена</label>
+                                    <input type="text" class="setting_input" value="{{ product.producer_price }}" disabled>
+                                </li>
+
+                                <li>
+                                    <label for="">Сумма</label>
+                                    <input type="text" class="setting_input" value="834,12" disabled>
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                        <div class="form_products_col_half">
+
+                            <ul class="setting_list">
+
+                                <li>
+                                    <label for="">Размеры:</label>
+                                    <input type="text" class="setting_input" name="dimensions" value="{{ product.dimensions }}" disabled>
+                                </li>
+
+                                <li>
+                                    <label for="">Адрес склада:</label>
+                                    <input type="text" class="setting_input" value="{{ product.product_depot.address.full_address }}" disabled>
+                                </li>
+
+                                <li>
+
+                                    <div class="ok_box">
+                                        <button class="ok_btn">
+                                            <i class="fa fa-check" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+
+                                </li>
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            <!-- product 1 -->
+            {% endfor %}
+
+            <div class="wrapp_btn_add_plus">
+               <a href="/my_products/add/" class="btn_add_plus">
+                   Добавить еще продукт
+               </a>
+           </div>
+            <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
+
+    </div>
+{% endblock %}

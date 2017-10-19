@@ -20,7 +20,7 @@
 
         <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
 
-        <form action="/product/add/" class="wrapp_company_form validate" novalidate method="POST">
+        <form action="/my_products/add/" class="wrapp_company_form validate" {% comment %}novalidate{% endcomment %} method="POST">
             {% csrf_token %}
 
             <div class="wrapp_form_box clearfix">
@@ -200,7 +200,7 @@
                                         <select data-placeholder="Выбрать склад" required name="product_depot">
                                             <option value=""></option>
                                             {% for depot in depots %}
-                                                <option value="{{ depot.id }}">{{ depot.name }}</option>
+                                                <option value="{{ depot.id }}">{{ depot.address.full_address }}</option>
                                             {% endfor %}
                                             {% comment %}
                                             <option value=""></option>
@@ -235,14 +235,16 @@
 
                </div> <!-- box_form_row -->
 
+                {% comment %}
                <div class="wrapp_btn_add_plus">
                    <a href="javascript:;" class="btn_add_plus">
                        Добавить еще продукт
                    </a>
                </div>
+               {% endcomment %}
 
                <div class="align_right">
-                   <button class="btn hight_orange" type="submit">Сохранить</button>
+                   <button class="btn hight_orange" type="submit">Добавить</button>
                </div>
 
             </div> <!-- wrapp_form -->

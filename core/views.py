@@ -71,7 +71,7 @@ def index(request):
     if request.user.is_anonymous:
         if request.method == 'GET':
             return render(request, 'pick_role.html')
-    return render(request, 'thanks.html')
+    return redirect(profile)
 
 
 def sign_in(request):

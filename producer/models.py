@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+
+from math import ceil
+
 from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
@@ -31,6 +34,16 @@ class ProductCard(models.Model):
     pack_amount = models.IntegerField(null=True, blank=True, verbose_name=u'Количество в упаковке')
     weight = models.DecimalField(null=True, blank=True, max_digits=12, decimal_places=2, verbose_name=u'Вес')
     dimensions = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Размеры')
+    image = models.ImageField(upload_to='products', null=True, blank=True, verbose_name=u'Изображение')
+
+    def get_image_url(self):
+        if self.image:
+            return self.image.url
+        return ''
+
+    @staticmethod
+    def calculate_customer_price(producer_price):
+        return ceil(producer_price + (producer_price * 12 / 100))
 
     class Meta:
         db_table = 'product_cards'
