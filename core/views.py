@@ -167,8 +167,8 @@ def profile_fiz_and_jur_address(request):
                 city=request.POST['jur_city'],
                 street=request.POST['jur_street'],
                 house=request.POST['jur_house'],
-                block=request.POST.get('jur_block', ''),
-                structure=request.POST.get('jur_structure', ''),
+                block=request.POST['jur_block'],
+                structure=request.POST['jur_structure'],
                 flat=request.POST['jur_flat']
             )
             u_p.save()
@@ -300,7 +300,7 @@ def profile_signer_info(request):
                 surname=request.POST['surname'],
                 name=request.POST['name'],
                 patronymic=request.POST['patronymic'],
-                birth_date=datetime.datetime.strptime(request.POST['birth_date'], "%d.%m.%Y").date(),
+                birth_date=datetime.datetime.strptime(request.POST['issued_date'], "%d.%m.%Y").date(),
                 inn=request.POST['inn'],
                 position=request.POST['position'],
                 code_field=request.POST['code_field']
@@ -324,6 +324,53 @@ def profile_signer_info(request):
 def profile_identity_document(request):
     u_p = request.user.profile
     if u_p:
+        if u_p.identity_document is None:
+            u_p.identity_document = IdentityDocument.objects.create(
+                series=request.POST['series'],
+                number=request.POST['number'],
+                issued_by=request.POST['issued_by'],
+                issued_date=datetime.datetime.strptime(request.POST['issued_date'], "%d.%m.%Y").date()
+            )
+            u_p.save()
+        else:
+            u_p.identity_document.series = request.POST['series']
+            u_p.identity_document.number = request.POST['number']
+            u_p.identity_document.issued_by = request.POST['issued_by']
+            u_p.identity_document.issued_date = datetime.datetime.strptime(request.POST['issued_date'], "%d.%m.%Y").date()
+            u_p.identity_document.save()
+        if 'document' in request.FILES:
+            # todo: При изменении файла его было бы неплохо удалять
+            u_p.identity_document.document.save(str(uuid.uuid4()) + request.FILES['document'].name, request.FILES['document'])
+            u_p.identity_document.save()
+
+        return redirect(profile)
+    return render(request, '500.html', {'error_message': u'Не найден профиль пользователя'})
+
+@login_required(login_url='/sign_in/')
+def profile_signer_info_and_identity(request):
+    u_p = request.user.profile
+    if u_p:
+        if u_p.signer_info is None:
+            u_p.signer_info = SignerInfo.objects.create(
+                surname=request.POST['surname'],
+                name=request.POST['name'],
+                patronymic=request.POST['patronymic'],
+                birth_date=datetime.datetime.strptime(request.POST['birth_date'], "%d.%m.%Y").date(),
+                inn=request.POST['inn'],
+                position=request.POST.get('position', ''),
+                code_field=request.POST.get('code_field', '')
+            )
+            u_p.save()
+        else:
+            u_p.signer_info.surname = request.POST['surname']
+            u_p.signer_info.name = request.POST['name']
+            u_p.signer_info.patronymic = request.POST['patronymic']
+            u_p.signer_info.birth_date = datetime.datetime.strptime(request.POST['birth_date'], "%d.%m.%Y").date()
+            u_p.signer_info.inn = request.POST['inn']
+            u_p.signer_info.position = request.POST.get('position', '')
+            u_p.signer_info.code_field = request.POST.get('code_field', '')
+            u_p.signer_info.save()
+
         if u_p.identity_document is None:
             u_p.identity_document = IdentityDocument.objects.create(
                 series=request.POST['series'],

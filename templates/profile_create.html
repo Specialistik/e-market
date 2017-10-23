@@ -290,7 +290,7 @@
             </form>
 
             <!-- form 3 -->
-            <form action="/profile/signer_info/" class="wrapp_company_form" method="POST">
+            <form action="/profile/signer_info_and_identity/" class="wrapp_company_form" method="POST">
                 {% csrf_token %}
 
                 <h3 class="title_edit angle_right">Данные подписанта</h3>
@@ -305,15 +305,15 @@
                             <h3 class="subtitle_edit">Данные лица, от имени которого будут заключаться сделки</h3>
 
                             <div class="form_box_offset">
-                                <input placeholder="Фамилия" name="surname" value="{% if profile.signer_info %}{{ profile.signer_info.surname }}{% endif %}">
+                                <input required placeholder="Фамилия" name="surname" value="{% if profile.signer_info %}{{ profile.signer_info.surname }}{% endif %}">
                             </div>
 
                             <div class="form_box_offset">
-                                <input placeholder="Имя" name="name" value="{% if profile.signer_info %}{{ profile.signer_info.name }}{% endif %}">
+                                <input required placeholder="Имя" name="name" value="{% if profile.signer_info %}{{ profile.signer_info.name }}{% endif %}">
                             </div>
 
                             <div class="form_box_offset">
-                                <input  placeholder="Отчество" name="patronymic" value="{% if profile.signer_info %}{{ profile.signer_info.patronymic }}{% endif %}">
+                                <input required placeholder="Отчество" name="patronymic" value="{% if profile.signer_info %}{{ profile.signer_info.patronymic }}{% endif %}">
                             </div>
 
                             <div class="form_box_offset">
@@ -322,12 +322,12 @@
 
                                     <div class="form_col half">
                                         <div class="wrapp_datepicker_calendar">
-                                            <input name="birthdate" class="datepicker-here" placeholder="Дата рождения" value="{% if profile.signer_info %}{{ profile.signer_info.birth_date|date:"d.m.Y" }}{% endif %}">
+                                            <input required name="birth_date" class="datepicker-here" placeholder="Дата рождения" value="{% if profile.signer_info %}{{ profile.signer_info.birth_date|date:"d.m.Y" }}{% endif %}">
                                         </div>
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="inn" placeholder="ИНН" data-mask="0000000000000000" value="{{ profile.inn }}">
+                                        <input required name="inn" placeholder="ИНН" data-mask="0000000000000000" value="{{ profile.inn }}">
                                     </div>
 
                                 </div>
@@ -355,11 +355,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input placeholder="Серия" name="series" value="{% if profile.identity_document %}{{ profile.identity_document.series }}{% endif %}" data-mask="0000">
+                                        <input required placeholder="Серия" name="series" value="{% if profile.identity_document %}{{ profile.identity_document.series }}{% endif %}" data-mask="0000">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input placeholder="Номер" name="number" value="{% if profile.identity_document %}{{ profile.identity_document.number}}{% endif %}" data-mask="000000">
+                                        <input required placeholder="Номер" name="number" value="{% if profile.identity_document %}{{ profile.identity_document.number}}{% endif %}" data-mask="000000">
                                     </div>
 
                                 </div>
@@ -367,12 +367,12 @@
                             </div>
 
                             <div class="form_box_offset">
-                                <input placeholder="Кем выдан" name="issued_by" value="{% if profile.identity_document %}{{ profile.identity_document.issued_by }}{% endif %}">
+                                <input required placeholder="Кем выдан" name="issued_by" value="{% if profile.identity_document %}{{ profile.identity_document.issued_by }}{% endif %}">
                             </div>
 
                             <div class="form_box_offset">
                                 <div class="wrapp_datepicker_calendar">
-                                    <input name="issued_date" class="datepicker-here" placeholder="Дата выдачи" value="{% if profile.identity_document %}{{ profile.identity_document.issued_date|date:"d.m.Y" }}{% endif %}">
+                                    <input required name="issued_date" class="datepicker-here" placeholder="Дата выдачи" value="{% if profile.identity_document %}{{ profile.identity_document.issued_date|date:"d.m.Y" }}{% endif %}">
                                 </div>
                             </div>
 

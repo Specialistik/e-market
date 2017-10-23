@@ -51,6 +51,7 @@ urlpatterns = [
     url(r'^profile/company_info/$', core_views.profile_company_info),
     url(r'^profile/signer_info/$', core_views.profile_signer_info),
     url(r'^profile/identity_document/$', core_views.profile_identity_document),
+    url(r'^profile/signer_info_and_identity/$', core_views.profile_signer_info_and_identity),
     url(r'^profile/account/add/$', core_views.profile_account_add),
     url(r'^profile/account/([0-9]+)/$', core_views.profile_account_edit),
 

@@ -97,7 +97,7 @@ class UserProfile(models.Model):
 
     # У нас две разные страницы для создания и редактирования профиля.
     # False = используем страницу создания профиля
-    # True = Используем страницу редактирования
+    # True = И
     created = models.BooleanField(default=False, verbose_name=u'Создание профиля завершено или пропущено')
 
     class Meta:

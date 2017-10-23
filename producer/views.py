@@ -78,7 +78,8 @@ def product_add(request):
 
                 if 'product_pic' in request.FILES:
                     # todo: При изменении файла его было бы неплохо удалять
-                    new_product.image.save(str(uuid.uuid4()) + request.FILES['product_pic'].name)
+                    new_product.image.save(str(uuid.uuid4()) + request.FILES['product_pic'].name, request.FILES['product_pic'])
+                    new_product.save()
                 return redirect(my_products)
             #if request.method == 'GET':
             return render(request, 'product_add.html', {
