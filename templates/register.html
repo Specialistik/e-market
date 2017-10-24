@@ -20,6 +20,7 @@
 
             <div class="content_verification">
                 <form action="/api/signup/" method="POST" class="wrapp_form_signup" id="signup_form">
+                    {% csrf_token %}
                     <input type="hidden" name="role" value="{{ role }}">
                     <div class="wrapp_verification_col">
                         <div class="verification_box_col">
