@@ -32,7 +32,7 @@ class ProductCard(models.Model):
     customer_price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=u'Цена для заказчика')
     minimum_amount = models.IntegerField(default=1, verbose_name=u'Минимальное количество')
     pack_amount = models.IntegerField(null=True, blank=True, verbose_name=u'Количество в упаковке')
-    weight = models.DecimalField(null=True, blank=True, max_digits=12, decimal_places=2, verbose_name=u'Вес')
+    weight = models.DecimalField(null=True, blank=True, max_digits=12, decimal_places=3, verbose_name=u'Вес')
     dimensions = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Размеры')
     image = models.ImageField(upload_to='products', null=True, blank=True, verbose_name=u'Изображение')
 

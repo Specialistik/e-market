@@ -338,10 +338,11 @@
                                 <input name="position" placeholder="Должность" value="{% if profile.signer_info %}{{ profile.signer_info.position }}{% endif %}">
                             </div>
 
+                            {% comment %}
                             <div class="form_box_offset">
                                 <input name="code_field" placeholder="Кодовое слово" value="{% if profile.signer_info %}{{ profile.signer_info.code_field }}{% endif %}">
                             </div>
-
+                            {% endcomment %}
                         </div>
                         <!-- col 6 -->
 

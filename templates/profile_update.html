@@ -309,10 +309,12 @@
                                             <label>Должность</label>
                                             <input name="position" required class="setting_input" disabled value="{% if profile.signer_info %}{{ profile.signer_info.position }}{% endif %}">
                                         </li>
+                                        {% comment %}
                                         <li class="clearfix">
                                             <label>Кодовое слово</label>
                                             <input name="code_field" class="setting_input" disabled value="{% if profile.signer_info %}{{ profile.signer_info.code_field }}{% endif %}">
                                         </li>
+                                        {% endcomment %}
                                         <li class="clearfix">
                                             <label></label>
                                             <div class="ok_box">
