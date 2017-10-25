@@ -67,10 +67,19 @@ def signup(request):
         return Response(serialized_user.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+"""
 def index(request):
     if request.user.is_anonymous:
         if request.method == 'GET':
             return render(request, 'pick_role.html')
+    return redirect(profile)
+"""
+
+
+def index(request):
+    if request.user.is_anonymous:
+        if request.method == 'GET':
+            return render(request, 'sign_in.html')
     return redirect(profile)
 
 
@@ -88,10 +97,10 @@ def sign_in(request):
 
 def register(request):
     if not request.user.is_anonymous:
-        return render(request, 'thanks.html')
+        return redirect(index)
 
     if 'role' not in request.POST:
-        return redirect('/')
+        return render(request, 'pick_role.html')
     role = request.POST['role']
     return render(request, 'register.html', {'role': role})
 
