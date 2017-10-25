@@ -10,4 +10,6 @@ $(document).ready(function(){
             $('#subcategory_box').styler()
         });
     });
+    $("#weight").inputmask('Regex', {regex: "^[0-9]{1,6}(\\.\\d{1,3})?$"});
+
 });
