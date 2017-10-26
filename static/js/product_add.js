@@ -10,6 +10,13 @@ $(document).ready(function(){
             $('#subcategory_box').styler()
         });
     });
-    $("#weight").inputmask('Regex', {regex: "^[0-9]{1,6}(\\.\\d{1,3})?$"});
 
+    $('#expiration_type').change(function(){
+        console.log($(this).val(), $(this).val() == 1);
+        if ($(this).val() == 1) {
+            $('#expiration_value').removeAttr("required").attr('disabled' , 'disabled').val('');
+        } else {
+            $('#expiration_value').attr("required", true).removeAttr("disabled");
+        }
+    });
 });

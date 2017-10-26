@@ -8,7 +8,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from core.models import UserProfile, Address
-from catalogs.models import Category, Measure
+from catalogs.models import Category, Measure, ExpirationValue
 
 
 class ProducerDepot(models.Model):
@@ -28,13 +28,17 @@ class ProductCard(models.Model):
     name = models.CharField(max_length=256, verbose_name=u"Название")
     barcode = models.CharField(max_length=64, verbose_name=u'Штрих-код')
     expiration_date = models.CharField(max_length=256, verbose_name=u'Срок годности')
+    expiration_type = models.ForeignKey(ExpirationValue, default=2, verbose_name=u'Тип срока годности')
     producer_price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=u'Цена производителя')
     customer_price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=u'Цена для заказчика')
     minimum_amount = models.IntegerField(default=1, verbose_name=u'Минимальное количество')
     pack_amount = models.IntegerField(null=True, blank=True, verbose_name=u'Количество в упаковке')
     weight = models.DecimalField(null=True, blank=True, max_digits=12, decimal_places=3, verbose_name=u'Вес')
-    dimensions = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Размеры')
+    #dimensions = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Размеры')
     image = models.ImageField(upload_to='products', null=True, blank=True, verbose_name=u'Изображение')
+    length = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'Длина')
+    width = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'Ширина')
+    height = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'Высота')
 
     def get_image_url(self):
         if self.image:

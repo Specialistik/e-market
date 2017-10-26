@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 from core.views import profile
 from core.models import Address
-from catalogs.models import Category
+from catalogs.models import Category, ExpirationValue
 from producer.models import ProductCard, ProducerDepot
 
 
@@ -68,12 +68,15 @@ def product_add(request):
                     product_depot_id=request.POST['product_depot'],
                     name=request.POST['name'],
                     expiration_date=request.POST['expiration_date'],
+                    expiration_type_id=request.POST['expiration_type'],
                     producer_price=request.POST['producer_price'],
                     customer_price=ProductCard.calculate_customer_price(float(request.POST['producer_price'])),
                     pack_amount=request.POST['pack_amount'],
                     weight=request.POST['weight'],
                     barcode=request.POST['barcode'],
-                    dimensions=request.POST['dimensions']
+                    height=request.POST['height'],
+                    width=request.POST['width'],
+                    length=request.POST['length'],
                 )
 
                 if 'product_pic' in request.FILES:
@@ -84,7 +87,8 @@ def product_add(request):
             #if request.method == 'GET':
             return render(request, 'product_add.html', {
                 'categories': Category.objects.filter(pid__isnull=True),
-                'depots': ProducerDepot.objects.filter(producer_id=request.user.id)
+                'depots': ProducerDepot.objects.filter(producer_id=request.user.id),
+                'expiration_values': ExpirationValue.objects.all(),
             })
         return render(request, '500.html', {'error_message': u'Только производитель может добавлять товар'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})

@@ -20,7 +20,7 @@
 
         <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
 
-        <form action="/my_products/add/" class="wrapp_company_form validate" {% comment %}novalidate{% endcomment %} method="POST">
+        <form action="/my_products/add/" class="wrapp_company_form validate" id="add_product_form" method="POST">
             {% csrf_token %}
 
             <div class="wrapp_form_box clearfix">
@@ -61,6 +61,37 @@
 
                         </div>
 
+
+                        <div class="form_box_offset">
+                            <div class="form_row clearfix">
+                                <div class="form_col half error_form_container">
+                                    <input name="expiration_date" id="expiration_value" type="text" placeholder="Срок годности" maxlength="20" disabled data-mask="00000">
+                                </div>
+
+                                <div class="form_col half">
+
+                                    <div class="wrapp_castom_select error_form_container">
+                                        <select name="expiration_type" data-placeholder="Тип срока годности" required id="expiration_type">
+                                            {% for expiration_value in expiration_values %}
+                                                <option value="{{ expiration_value.id }}" {% if forloop.first %}selected{% endif %}>{{ expiration_value.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form_box_offset">
+                            <div class="form_row clearfix">
+
+                                <div class="form_col half error_form_container">
+                                    <input name="barcode" type="text" placeholder="Штрих код" maxlength="20" required>
+                                </div>
+
+                            </div>
+                        </div>
+                        {% comment %}
                         <div class="form_box_offset">
 
                             <div class="form_row clearfix">
@@ -88,6 +119,7 @@
                             </div>
 
                         </div>
+                        {% endcomment %}
 
                     </div>
                     <!-- col 6 -->
@@ -135,6 +167,7 @@
 
                         </div>
 
+                        {% comment %}
                         <div class="form_box_offset">
 
                             <div class="form_row clearfix">
@@ -161,6 +194,87 @@
 
                                         <div class="box_input error_form_container">
                                             <input name="minimum_amount" placeholder="Минимальный заказ" data-mask="0000000000" required>
+                                        </div>
+
+                                        <label class="label_right">
+                                            шт
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        {% endcomment %}
+
+                    <div class="form_box_offset">
+
+                            <div class="form_row clearfix">
+
+                                <div class="form_col half">
+
+                                    <div class="wrapp_label_right">
+
+                                        <div class="box_input error_form_container">
+                                            <input type="text" placeholder="Длина" name="length" data-mask="00000000" required>
+                                        </div>
+
+                                        <label class="label_right">
+                                            см
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form_col half">
+
+                                    <div class="wrapp_label_right">
+
+                                        <div class="box_input error_form_container">
+                                            <input type="text" placeholder="Ширина" name="width" data-mask="0000000000" required>
+                                        </div>
+
+                                        <label class="label_right">
+                                            см
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="form_box_offset">
+
+                            <div class="form_row clearfix">
+
+                                <div class="form_col half">
+
+                                    <div class="wrapp_label_right">
+
+                                        <div class="box_input error_form_container">
+                                            <input type="text" placeholder="Высота" name="height" data-mask="00000000" required>
+                                        </div>
+
+                                        <label class="label_right">
+                                            см
+                                        </label>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="form_col half">
+
+                                    <div class="wrapp_label_right">
+
+                                        <div class="box_input error_form_container">
+                                            <input type="text" name="minimum_amount" placeholder="Минимальный заказ" data-mask="0000000000" required>
                                         </div>
 
                                         <label class="label_right">

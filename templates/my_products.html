@@ -118,8 +118,8 @@
                             <ul class="setting_list">
 
                                 <li>
-                                    <label for="">Количество</label>
-                                    <input type="text" class="setting_input" value="" disabled>
+                                    <label for="">Минимальное количество</label>
+                                    <input type="text" class="setting_input" value="{{ product.minimum_amount }}" disabled>
                                 </li>
 
                                 <li>
@@ -127,11 +127,12 @@
                                     <input type="text" class="setting_input" value="{{ product.producer_price }}" disabled>
                                 </li>
 
+                                {% comment %}
                                 <li>
                                     <label for="">Сумма</label>
                                     <input type="text" class="setting_input" value="834,12" disabled>
                                 </li>
-
+                                {% endcomment %}
                             </ul>
 
                         </div>
@@ -141,8 +142,18 @@
                             <ul class="setting_list">
 
                                 <li>
-                                    <label for="">Размеры:</label>
-                                    <input type="text" class="setting_input" name="dimensions" value="{{ product.dimensions }}" disabled>
+                                    <label for="">Длина:</label>
+                                    <input type="text" class="setting_input" name="length" value="{{ product.length }}" disabled>
+                                </li>
+
+                                <li>
+                                    <label for="">Ширина:</label>
+                                    <input type="text" class="setting_input" name="width" value="{{ product.width }}" disabled>
+                                </li>
+
+                                <li>
+                                    <label for="">Высота:</label>
+                                    <input type="text" class="setting_input" name="height" value="{{ product.height }}" disabled>
                                 </li>
 
                                 <li>
