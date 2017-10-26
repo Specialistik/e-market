@@ -56,3 +56,9 @@ class Category(AbstractTree):
         verbose_name = u'Категория'
         verbose_name_plural = u'Категории'
 
+
+class ExpirationValue(AbstractList):
+    class Meta:
+        db_table = 'expiration_values'
+        verbose_name = u'Вид срока годности'
+        verbose_name_plural = u'Виды сроков годности'
