@@ -8,8 +8,123 @@
         <h3 class="title_edit">О торговых точках</h3>
 
         <div class="profile_settings_box" data-mh="profile_settings_box">
-            {% for trade_point in tradepoints %}
-                <form action="/trade_point/edit/{{ trade_point.id }}" method="POST">
+            {% if tradepoints %}
+                {% for trade_point in trade_points %}
+                    <form action="/trade_point/{{ trade_point.id }}/" method="POST">
+                        <!--  -->
+                        <div class="setting_box" data-mh="settings-box">
+
+                            <span class="js_edit">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </span>
+
+                            <h3 class="subtitle_edit">Юридический адрес:</h3>
+
+                            <ul class="setting_list">
+                                <li class="clearfix">
+                                    <label class="label_settings">Город / Улица / Дом</label>
+                                    <input name="full_address" class="setting_input" disabled value="{{ trade_point.address.full_address }}">
+                                </li>
+                                <li class="clearfix">
+                                    <label>Индекс</label>
+                                    <input name="index" required class="setting_input" disabled value="{{ trade_point.address.index }}">
+                                </li>
+                                <li class="clearfix">
+                                    <label>Регион</label>
+                                    <input name="region" required class="setting_input" disabled value="{{ trade_point.address.region }}">
+                                </li>
+                                <li class="clearfix">
+                                    <label>Город</label>
+                                    <input name="city" required class="setting_input" disabled value="{{ trade_point.address.city }}">
+                                </li>
+                                <li class="clearfix">
+                                    <label>Населеный пункт</label>
+                                    <input class="setting_input" disabled value="Казань">
+                                </li>
+                                <li class="clearfix">
+                                    <label>Улица</label>
+                                    <input class="setting_input" disabled value="Волкова">
+                                </li>
+                                <li class="clearfix">
+                                    <label>Дом</label>
+                                    <input class="setting_input" disabled value="59">
+                                </li>
+                                <li class="clearfix">
+                                    <label>Корпус</label>
+                                    <input class="setting_input" disabled value="1">
+                                </li>
+                                <li class="clearfix">
+                                    <label>Строение</label>
+                                    <input class="setting_input" disabled value="1">
+                                </li>
+                                <li class="clearfix">
+                                    <label>Кв. / Офис</label>
+                                    <input class="setting_input" disabled value="1">
+                                </li>
+                                <!-- <li class="clearfix">
+                                </li> -->
+
+                                <li class="clearfix">
+                                    <label for=""></label>
+                                    <label for="" class="pull-right">
+                                        <a href="javascript:;" class="btn_before_sqare clearfix">
+                                            <i class="fa fa-plus" aria-hidden="true"></i>
+                                            Добавить еще торговую точку
+                                        </a>
+                                    </label>
+                                </li>
+
+                                <li class="clearfix">
+
+                                    <div class="box_settings_radio clearfix">
+
+                                        <div class="setting_box_col50">
+                                            <label for="">
+                                                Вы самостоятельно планируете
+                                                осуществить доставку товаров?
+                                            </label>
+                                        </div>
+
+                                        <div class="setting_box_col50">
+                                            <label class="radio_box" for="input_radio2">
+                                                <input type="radio" id="input_radio2" class="input_radio2" name="input_radio">
+                                                <span class="radio-custom"></span>
+                                                <span>Да, у нас собственная логистика</span>
+                                            </label>
+
+                                            <label class="radio_box" for="input_radio3">
+                                                <input type="radio" id="input_radio3" class="input_radio2" name="input_radio">
+                                                <span class="radio-custom"></span>
+                                                <span>Нет, хотим воспользоваться услугами ваших логистов</span>
+                                            </label>
+                                        </div>
+
+                                    </div>
+
+                                </li>
+
+                                <li class="clearfix">
+
+                                    <label for=""></label>
+
+                                    <div class="ok_box">
+
+                                        <button class="ok_btn">
+                                            <i class="fa fa-check" aria-hidden="true"></i>
+                                            <i class="fa fa-check" aria-hidden="true"></i>
+                                        </button>
+
+                                    </div>
+
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!--/end of  -->
+                    </form>
+                {% endfor %}
+            {% else %}
+                <form action="/trade_point/add/" method="POST">
                     <!--  -->
                     <div class="setting_box" data-mh="settings-box">
 
@@ -22,47 +137,50 @@
                         <ul class="setting_list">
                             <li class="clearfix">
                                 <label class="label_settings">Город / Улица / Дом</label>
-                                <input name="full_address" class="setting_input" disabled value="{{ trade_point.address.full_address }}">
+                                <input name="full_address" class="setting_input" disabled value="">
                             </li>
                             <li class="clearfix">
                                 <label>Индекс</label>
-                                <input name="index" required class="setting_input" disabled value="{{ trade_point.address.index }}">
+                                <input name="index" required class="setting_input" disabled value="">
                             </li>
                             <li class="clearfix">
                                 <label>Регион</label>
-                                <input name="region" required class="setting_input" disabled value="{{ trade_point.address.region }}">
+                                <input name="region" required class="setting_input" disabled value="">
                             </li>
                             <li class="clearfix">
                                 <label>Город</label>
-                                <input name="city" required class="setting_input" disabled value="{{ trade_point.address.city }}">
+                                <input name="city" required class="setting_input" disabled value="">
                             </li>
+                            {% comment %}
                             <li class="clearfix">
                                 <label>Населеный пункт</label>
                                 <input class="setting_input" disabled value="Казань">
                             </li>
+                            {% endcomment %}
                             <li class="clearfix">
                                 <label>Улица</label>
-                                <input class="setting_input" disabled value="Волкова">
+                                <input name="street" class="setting_input" disabled value="">
                             </li>
                             <li class="clearfix">
                                 <label>Дом</label>
-                                <input class="setting_input" disabled value="59">
+                                <input name="house" class="setting_input" disabled value="">
                             </li>
                             <li class="clearfix">
                                 <label>Корпус</label>
-                                <input class="setting_input" disabled value="1">
+                                <input name="block" class="setting_input" disabled value="">
                             </li>
                             <li class="clearfix">
                                 <label>Строение</label>
-                                <input class="setting_input" disabled value="1">
+                                <input name="structure" class="setting_input" disabled value="">
                             </li>
                             <li class="clearfix">
                                 <label>Кв. / Офис</label>
-                                <input class="setting_input" disabled value="1">
+                                <input name="flat" class="setting_input" disabled value="">
                             </li>
                             <!-- <li class="clearfix">
                             </li> -->
 
+                            {% comment %}
                             <li class="clearfix">
                                 <label for=""></label>
                                 <label for="" class="pull-right">
@@ -101,6 +219,7 @@
                                 </div>
 
                             </li>
+                            {% endcomment %}
 
                             <li class="clearfix">
 
@@ -109,7 +228,6 @@
                                 <div class="ok_box">
 
                                     <button class="ok_btn">
-                                        <i class="fa fa-check" aria-hidden="true"></i>
                                         <i class="fa fa-check" aria-hidden="true"></i>
                                     </button>
 
@@ -121,7 +239,7 @@
                     </div>
                     <!--/end of  -->
                 </form>
-            {% endfor %}
+            {% endif %}
         </div>
     </div>
 </div>
