@@ -10,10 +10,10 @@
 
             <h3 class="title_line"><span>{{ category.name }}</span></h3>
 
-            <!-- <a href="javascript:;" class="btn light_orange icon_right large_width">
-               <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                Назад к категориям
-            </a> -->
+            <a href="/category/{{ category.pid.id }}/" class="btn light_orange icon_right large_width">
+               <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                Назад к подкатегориям
+            </a>
 
         </div>
         {% comment %}
@@ -70,12 +70,13 @@
                         <figcaption>
 
                             <h3 class="light_grey products_title">
-                                Йогурт Danone Активиа творожная
-                                <span class="products_subtitle">малина, 130г</span>
+                                {{ product.name }}
+                                {% comment %}Йогурт Danone Активиа творожная{% endcomment %}
+                                <span class="products_subtitle">{{ product.weight }} кг</span>
                             </h3>
 
                             <div class="wrapp_btn center">
-                                <span class="products_price">49р</span>
+                                <span class="products_price">{{ product.customer_price }}р</span>
                                 <a href="javascript:;" class="btn btn_basket light_orange">В корзину</a>
                             </div>
 
@@ -326,14 +327,14 @@
 
                 <div class="modal_container2">
 
-                    <form action="">
+                    <form action="/order/add">
 
-                        <h3 class="popup_title light_grey align_left">Йогурт Danone Активиа творожная натуральная, 130г</h3>
+                        <h3 class="popup_title light_grey align_left" id="popup_product_name"></h3>
 
                         <div class="wrapp_product_preview">
 
                             <div class="product_preview_img">
-                                <img src="static/images/product-img/product-img1.jpg" alt="">
+                                <img id="popup_product_url" src="" alt="">
                             </div>
 
                             <div class="product_preview_desc">
@@ -348,9 +349,9 @@
                                     Минимальный заказ:
                                 </label>
 
-                                <span class="sublabel">от 100 шт</span>
+                                <span class="sublabel" id="popup_miminum_amount">от 100 шт</span>
 
-                                <p class="popup_price"><span>49</span>р</p>
+                                <p class="popup_price"><span id="popup_price"49</span>р</p>
 
                                 <label class="label1 big">
                                     Выберите количество:
@@ -366,16 +367,18 @@
 
                                 <div class="wrapp_castom_select bottom_dropdown">
                                     <select data-placeholder="Нажмите, чтобы выбрать">
+                                        {% comment %}
                                         <option value=""></option>
                                         <option value="">адрес доставки 1</option>
                                         <option value="">адрес доставки 2</option>
                                         <option value="">адрес доставки 3</option>
                                         <option value="">адрес доставки 4</option>
                                         <option value="">адрес доставки 5</option>
+                                        {% endcomment %}
                                     </select>
                                 </div>
 
-                                <button class="btn btn_basket light_orange">В корзину</button>
+                                <button class="btn btn_basket light_orange" id="add_to_cart">В корзину</button>
 
                             </div>
 

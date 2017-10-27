@@ -65,8 +65,10 @@ urlpatterns = [
 
     url(r'^products/([0-9]+)/$', producer_views.products),
 
-    url(r'^my_products/$', producer_views.my_products),
+    url(r'^my_products/edit/([0-9]+)/$', producer_views.product_edit),
     url(r'^my_products/add/$', producer_views.product_add),
+    url(r'^my_products/$', producer_views.my_products),
+
 
     # Customer views
     url(r'^trade_point/add/$', customer_views.trade_point_add),

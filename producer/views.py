@@ -94,6 +94,30 @@ def product_add(request):
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
 
 
+def product_edit(request, pk):
+    """
+        todo: only owners should be allowed to edit products
+    """
+    if request.user.profile:
+        if request.user.profile.role == 'producer':
+            try:
+                product = ProductCard.objects.get(pk=pk)
+                product.height = request.POST['height']
+                product.width = request.POST['width']
+                product.length = request.POST['length']
+                #product.producer_price = request.POST['producer_price']
+                #product.customer_price = ProductCard.calculate_customer_price(float(request.POST['producer_price']))
+                product.minimum_amount = request.POST['minimum_amount']
+                product.expiration_date = request.POST['expiration_date']
+                product.category_id = request.POST['category']
+                product.save()
+            except ProductCard.DoesNotExist:
+                return render(request, '500.html', {'error_message': u'Редактируемый товар не найден'})
+            return redirect(my_products)
+        return render(request, '500.html', {'error_message': u'Только производитель может добавлять товар'})
+    return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
+
+
 def depot_add(request):
     if request.user.profile:
         if request.user.profile.role == 'producer':

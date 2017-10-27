@@ -127,7 +127,6 @@
 
                         <span class="company_name">
                             {{ user.profile.company_name }}
-                            {% comment %}ООО «СафКомГрупп»{% endcomment %}
                         </span>
 
                     </a>
@@ -170,7 +169,12 @@
             <ul class="navigation_menu">
 
                 <li>
-                    <a href="/categories/">Каталог товаров</a>
+                    {% if user.profile.role == 'customer' %}
+                        <a href="/categories">Каталог товаров</a>
+                    {% endif %}
+                    {% if user.profile.role == 'producer' %}
+                        <a href="/my_products">Каталог товаров</a>
+                    {% endif %}
                 </li>
 
                 <li>
