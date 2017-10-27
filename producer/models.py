@@ -40,6 +40,12 @@ class ProductCard(models.Model):
     width = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'Ширина')
     height = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'Высота')
 
+    def parent_category(self):
+        return Category.objects.get(pk=self.category.pid_id)
+
+    def related_subcategories(self):
+        return Category.objects.filter(pid=self.category.pid_id)
+
     def get_image_url(self):
         if self.image:
             return self.image.url

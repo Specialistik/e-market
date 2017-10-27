@@ -60,19 +60,12 @@
                             <ul class="setting_list">
 
                                 <li>
-
                                     <label for="">Категория</label>
-
                                     <div class="wrapp_settings_select right_angle">
                                         <select data-placeholder="выбрать" disabled>
                                             {% for category in categories %}
-                                                <option value="{{ category.id }}">{{ category.name }}</option>
+                                                <option value="{{ category.id }}" {% if category.id == product.parent_category.id %}selected{% endif %}>{{ category.name }}</option>
                                             {% endfor %}
-                                            {% comment %}
-                                            <option value="">Овощи, фрукты, ягоды</option>
-                                            <option value="">Тип 2</option>
-                                            <option value="">Тип 3</option>
-                                            {% endcomment %}
                                         </select>
                                     </div>
 
@@ -83,12 +76,9 @@
 
                                     <div class="wrapp_settings_select right_angle">
                                         <select data-placeholder="выбрать" disabled>
-
-                                            {% comment %}
-                                            <option value="">Овощи</option>
-                                            <option value="">Фрукты</option>
-                                            <option value="">Ягоды</option>
-                                            {% endcomment %}
+                                            {% for subcat in product.related_subcategories %}
+                                                <option value="{{ subcat.id }}" {% if subcat.id == product.category.id %}selected{% endif %}>{{ subcat.name }}</option>
+                                            {% endfor %}
                                         </select>
                                     </div>
 
