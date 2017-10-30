@@ -50,7 +50,7 @@ def my_products(request):
     if request.user.profile:
         if request.user.profile.role == 'producer':
             return render(request, 'my_products.html', {
-                'products': ProductCard.objects.filter(product_depot__producer_id=request.user.id),
+                'products': ProductCard.objects.filter(product_depot__producer_id=request.user.id).order_by('pk'),
                 'categories': Category.objects.filter(pid__isnull=True),
                 'depots': ProducerDepot.objects.filter(producer_id=request.user.id)
             })
@@ -83,7 +83,7 @@ def product_add(request):
                     new_product.image.save(str(uuid.uuid4()) + request.FILES['product_pic'].name, request.FILES['product_pic'])
                     new_product.save()
                 return redirect(my_products)
-            #if request.method == 'GET':
+
             return render(request, 'product_add.html', {
                 'categories': Category.objects.filter(pid__isnull=True),
                 'depots': ProducerDepot.objects.filter(producer_id=request.user.id),
@@ -106,8 +106,8 @@ def product_edit(request, pk):
             product.height = request.POST['height']
             product.width = request.POST['width']
             product.length = request.POST['length']
-            #product.producer_price = request.POST['producer_price']
-            #product.customer_price = ProductCard.calculate_customer_price(float(request.POST['producer_price']))
+            product.producer_price = request.POST['producer_price']
+            product.customer_price = ProductCard.calculate_customer_price(float(request.POST['producer_price']))
             product.minimum_amount = request.POST['minimum_amount']
             product.expiration_date = request.POST['expiration_date']
             product.category_id = request.POST['category']

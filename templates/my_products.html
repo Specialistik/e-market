@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load l10n %}
 
 {% block js_css %}
     <script src="/static/js/my_products.js"></script>
@@ -118,10 +119,12 @@
                                         <input type="text" class="setting_input" name="minimum_amount" value="{{ product.minimum_amount }}" disabled>
                                     </li>
 
+                                    {% localize off %}
                                     <li>
                                         <label for="">Цена</label>
                                         <input type="text" class="setting_input" name="producer_price" value="{{ product.producer_price }}" disabled>
                                     </li>
+                                    {% endlocalize %}
 
                                     {% comment %}
                                     <li>
@@ -139,23 +142,33 @@
 
                                     <li>
                                         <label for="">Длина:</label>
-                                        <input type="text" class="setting_input" name="length" value="{{ product.length }}" disabled>
+                                        <input class="setting_input" name="length" value="{{ product.length }}" disabled>
                                     </li>
 
                                     <li>
                                         <label for="">Ширина:</label>
-                                        <input type="text" class="setting_input" name="width" value="{{ product.width }}" disabled>
+                                        <input class="setting_input" name="width" value="{{ product.width }}" disabled>
                                     </li>
 
                                     <li>
                                         <label for="">Высота:</label>
-                                        <input type="text" class="setting_input" name="height" value="{{ product.height }}" disabled>
+                                        <input class="setting_input" name="height" value="{{ product.height }}" disabled>
                                     </li>
 
+                                    <div class="wrapp_settings_select right_angle">
+                                        <select data-placeholder="Выбрать склад" required name="product_depot" disabled>
+                                            <option value=""></option>
+                                            {% for depot in depots %}
+                                                <option value="{{ depot.id }}" {% if depot.id == product.product_depot.id %}selected{% endif %}>{{ depot.address.full_address }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    {% comment %}
                                     <li>
                                         <label for="">Адрес склада:</label>
                                         <input type="text" class="setting_input" value="{{ product.product_depot.address.full_address }}" disabled>
                                     </li>
+                                    {% endcomment %}
 
                                     <li>
 
