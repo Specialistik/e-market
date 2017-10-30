@@ -364,8 +364,7 @@
                                         <li class="clearfix">
                                             <label>Кем выдан</label>
                                             <input class="setting_input" required disabled name="issued_by" value="{% if profile.identity_document %}{{ profile.identity_document.issued_by }}{% endif %}">
-                                            <input class="setting_input" required disabled name="issued_by" value="{% if profile.identity_document %}{{ profile.identity_document.issued_by }}{% endif %}">
-                                        </li>
+                                            </li>
                                         <li class="clearfix">
                                             <label>Дата выдачи</label>
                                             <input name="issued_date" required class="datepicker-here setting_input" disabled value="{% if profile.identity_document %}{{ profile.identity_document.issued_date|date:"d.m.Y" }}{% endif %}">
