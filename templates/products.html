@@ -72,7 +72,7 @@
                             <h3 class="light_grey products_title">
                                 {{ product.name }}
                                 {% comment %}Йогурт Danone Активиа творожная{% endcomment %}
-                                <span class="products_subtitle">{{ product.weight }} кг</span>
+                                {% if product.weight %}<span class="products_subtitle">{{ product.weight }} кг</span>{% endif %}
                             </h3>
 
                             <div class="wrapp_btn center">
@@ -319,7 +319,7 @@
     <div style="display: none;">
 
         <!-- popup 1 -->
-            <div class="box-modal modal_popup_product big" id="product1">
+            <div class="box-modal modal_popup_product big" id="product_popup">
 
                 <div class="box-modal_close arcticmodal-close">
                     <i class="fa fa-times" aria-hidden="true"></i>

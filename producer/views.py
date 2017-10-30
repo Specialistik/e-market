@@ -103,6 +103,8 @@ def product_edit(request, pk):
                 product = ProductCard.objects.get(pk=pk)
             except ProductCard.DoesNotExist:
                 return render(request, '500.html', {'error_message': u'Редактируемый товар не найден'})
+            if not product.product_depot.producer_id == request.user.id:
+                return render(request, '500.html', {'error_message': u'Только производитель может редактировать свой товар'})
             product.height = request.POST['height']
             product.width = request.POST['width']
             product.length = request.POST['length']
@@ -112,6 +114,21 @@ def product_edit(request, pk):
             product.expiration_date = request.POST['expiration_date']
             product.category_id = request.POST['category']
             product.save()
+            return redirect(my_products)
+        return render(request, '500.html', {'error_message': u'Только производитель может добавлять товар'})
+    return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
+
+
+def product_del(request, pk):
+    if request.user.profile:
+        if request.user.profile.role == 'producer':
+            try:
+                product = ProductCard.objects.get(pk=pk)
+            except ProductCard.DoesNotExist:
+                return render(request, '500.html', {'error_message': u'Редактируемый товар не найден'})
+            if not product.product_depot.producer_id == request.user.id:
+                return render(request, '500.html', {'error_message': u'Только производитель может удалять свой товар'})
+            product.delete()
             return redirect(my_products)
         return render(request, '500.html', {'error_message': u'Только производитель может добавлять товар'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
