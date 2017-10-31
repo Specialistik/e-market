@@ -70,7 +70,7 @@ def product_add(request):
                     expiration_type_id=request.POST['expiration_type'],
                     producer_price=request.POST['producer_price'],
                     customer_price=ProductCard.calculate_customer_price(float(request.POST['producer_price'])),
-                    pack_amount=request.POST['pack_amount'],
+                    minimum_amount=request.POST['minimum_amount'],
                     weight=request.POST['weight'],
                     barcode=request.POST['barcode'],
                     height=request.POST['height'],
