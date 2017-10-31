@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $('.category_parent').change(function(){
         var self = $(this);
-        var related_subcat = $(this).parent().parent().parent().find('.category_child');
+        var related_subcat = $(this).parent().parent().parent().parent().find('.category_child');
         console.log(related_subcat);
 
         //console.log($(this).val());
