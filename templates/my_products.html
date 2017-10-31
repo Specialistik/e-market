@@ -41,7 +41,7 @@
 
         <div class="wrapp_products wrapp_count_products">
             {% for product in products %}
-                <form action="/my_products/edit/{{ product.id }}/" method="POST">
+                <form action="/my_products/edit/{{ product.id }}/" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="box_form_products_item block_closest clearfix">
 
@@ -126,12 +126,13 @@
                                     </li>
                                     {% endlocalize %}
 
-                                    {% comment %}
                                     <li>
-                                        <label for="">Сумма</label>
-                                        <input type="text" class="setting_input" value="834,12" disabled>
+                                        <label for="">Изменить изображение</label>
+                                        <div class="select_file" style="width: 100%">
+                                            <input type="file" name="product_pic" value="Выберите файл" class="setting_input" disabled>
+                                            <span class="file_notselected">Выберите файл</span>
+                                        </div>
                                     </li>
-                                    {% endcomment %}
                                 </ul>
 
                             </div>

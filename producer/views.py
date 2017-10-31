@@ -114,6 +114,11 @@ def product_edit(request, pk):
             product.expiration_date = request.POST['expiration_date']
             product.category_id = request.POST['category']
             product.save()
+
+            if 'product_pic' in request.FILES:
+                # todo: При изменении файла его было бы неплохо удалять
+                product.image.save(str(uuid.uuid4()) + request.FILES['product_pic'].name, request.FILES['product_pic'])
+                product.save()
             return redirect(my_products)
         return render(request, '500.html', {'error_message': u'Только производитель может добавлять товар'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
