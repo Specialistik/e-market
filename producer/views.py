@@ -80,7 +80,7 @@ def product_add(request):
 
                 if 'product_pic' in request.FILES:
                     # todo: При изменении файла его было бы неплохо удалять
-                    new_product.image.save(str(uuid.uuid4()) + request.FILES['product_pic'].name, request.FILES['product_pic'])
+                    new_product.image.save(str(uuid.uuid4()), request.FILES['product_pic'])
                     new_product.save()
                 return redirect(my_products)
 
@@ -117,7 +117,7 @@ def product_edit(request, pk):
 
             if 'product_pic' in request.FILES:
                 # todo: При изменении файла его было бы неплохо удалять
-                product.image.save(str(uuid.uuid4()) + request.FILES['product_pic'].name, request.FILES['product_pic'])
+                product.image.save(str(uuid.uuid4()), request.FILES['product_pic'])
                 product.save()
             return redirect(my_products)
         return render(request, '500.html', {'error_message': u'Только производитель может добавлять товар'})
