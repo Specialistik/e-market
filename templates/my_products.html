@@ -120,10 +120,15 @@
                                     </li>
 
                                     {% localize off %}
-                                    <li>
-                                        <label for="">Цена</label>
-                                        <input class="setting_input" name="producer_price" value="{{ product.producer_price }}" disabled required data-mask="99999999.99">
-                                    </li>
+                                        <li>
+                                            <label for="">Вес</label>
+                                            <input class="setting_input" name="weight" value="{{ product.weight }}" disabled required data-mask="9999.999">
+                                        </li>
+
+                                        <li>
+                                            <label for="">Цена</label>
+                                            <input class="setting_input" name="producer_price" value="{{ product.producer_price }}" disabled required data-mask="99999999.99">
+                                        </li>
                                     {% endlocalize %}
 
                                     <li>

@@ -106,6 +106,7 @@ def product_edit(request, pk):
             if not product.product_depot.producer_id == request.user.id:
                 return render(request, '500.html', {'error_message': u'Только производитель может редактировать свой товар'})
             product.name = request.POST['name']
+            product.weight = request.POST['weight']
             product.height = request.POST['height']
             product.width = request.POST['width']
             product.length = request.POST['length']
