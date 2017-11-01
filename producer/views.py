@@ -52,7 +52,8 @@ def my_products(request):
             return render(request, 'my_products.html', {
                 'products': ProductCard.objects.filter(product_depot__producer_id=request.user.id).order_by('pk'),
                 'categories': Category.objects.filter(pid__isnull=True),
-                'depots': ProducerDepot.objects.filter(producer_id=request.user.id)
+                'depots': ProducerDepot.objects.filter(producer_id=request.user.id),
+                'expiration_values': ExpirationValue.objects.all(),
             })
         return render(request, '500.html', {'error_message': u'Только производитель может просматривать свои товары'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
@@ -113,7 +114,10 @@ def product_edit(request, pk):
             product.producer_price = request.POST['producer_price']
             product.customer_price = ProductCard.calculate_customer_price(float(request.POST['producer_price']))
             product.minimum_amount = request.POST['minimum_amount']
-            product.expiration_date = request.POST['expiration_date']
+            #product.expiration_date = request.POST['expiration_date']
+            product.expiration_date = request.POST.get('expiration_date', '')
+            product.expiration_type_id = request.POST['expiration_type']
+
             product.category_id = request.POST['category']
             product.save()
 

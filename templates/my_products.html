@@ -74,7 +74,6 @@
                                                 {% endfor %}
                                             </select>
                                         </div>
-
                                     </li>
 
                                     <li>
@@ -97,7 +96,16 @@
 
                                     <li>
                                         <label for="">Срок годности</label>
-                                        <input class="setting_input" name="expiration_date" value="{{ product.expiration_date }}" disabled required>
+                                        <input class="setting_input expiration_date" name="expiration_date" value="{{ product.expiration_date }}" disabled required>
+
+                                        {% comment %}<label for="">Категория</label>{% endcomment %}
+                                        <div class="wrapp_settings_select right_angle">
+                                            <select name="expiration_type" data-placeholder="Тип срока годности" required class="expiration_type">
+                                            {% for expiration_value in expiration_values %}
+                                                <option value="{{ expiration_value.id }}" {% if product.expiration_type.id == expiration_value.id %}selected{% endif %}>{{ expiration_value.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        </div>
                                     </li>
 
                                     {% comment %}
