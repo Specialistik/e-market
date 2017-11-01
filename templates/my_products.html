@@ -122,7 +122,7 @@
                                     {% localize off %}
                                     <li>
                                         <label for="">Цена</label>
-                                        <input type="text" class="setting_input" name="producer_price" value="{{ product.producer_price }}" disabled required>
+                                        <input class="setting_input" name="producer_price" value="{{ product.producer_price }}" disabled required data-mask="99999999.99">
                                     </li>
                                     {% endlocalize %}
 
