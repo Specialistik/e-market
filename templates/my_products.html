@@ -11,17 +11,14 @@
         <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
 
         <form action="" class="wrapp_filter">
-
             <label class="label1 big">Сортировка:</label>
 
             <div class="wrapp_castom_select sorting">
-
                 <select data-placeholder="По умолчанию">
                     <option value="1">По умолчанию</option>
                     <option value="2">По категории</option>
-                    <option value="4">По подкатегории</option>
+                    <option value="3">По подкатегории</option>
                 </select>
-
             </div>
 
             <!-- <div class="wrapp_search">
@@ -30,9 +27,7 @@
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
             </div> -->
-
         </form>
-
 
     <!-- - - - - - - - - - - - - - End of Form - - - - - - - - - - - - - - - - -->
 
@@ -119,12 +114,10 @@
                             </div>
 
                             <div class="form_products_col_quarter">
-
                                 <ul class="setting_list">
-
                                     <li>
                                         <label for="">Минимальное количество</label>
-                                        <input type="text" class="setting_input" name="minimum_amount" value="{{ product.minimum_amount }}" disabled required>
+                                        <input class="setting_input" name="minimum_amount" value="{{ product.minimum_amount }}" disabled required>
                                     </li>
 
                                     {% localize off %}
@@ -147,13 +140,10 @@
                                         </div>
                                     </li>
                                 </ul>
-
                             </div>
 
                             <div class="form_products_col_half">
-
                                 <ul class="setting_list">
-
                                     <li>
                                         <label for="">Длина:</label>
                                         <input class="setting_input" name="length" value="{{ product.length }}" disabled required>
@@ -177,32 +167,19 @@
                                             {% endfor %}
                                         </select>
                                     </div>
-                                    {% comment %}
-                                    <li>
-                                        <label for="">Адрес склада:</label>
-                                        <input type="text" class="setting_input" value="{{ product.product_depot.address.full_address }}" disabled>
-                                    </li>
-                                    {% endcomment %}
 
                                     <li>
-
                                         <div class="ok_box">
                                             <button class="ok_btn">
                                                 <i class="fa fa-check" aria-hidden="true"></i>
                                             </button>
                                         </div>
-
                                     </li>
-
                                 </ul>
-
                             </div>
-
                         </div>
-
                     </div>
                 </form>
-            <!-- product 1 -->
             {% endfor %}
 
             <div class="wrapp_btn_add_plus">
