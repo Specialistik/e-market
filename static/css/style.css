@@ -175,16 +175,12 @@
     overflow: hidden;
   }
 
-  .hide {
-    display: none;
-  }
-
-  .show {
-    display: block;
-  }
-
   .d_ib {
     display: inline-block;
+  }
+
+  .d_b {
+    display: block;
   }
 
   .transparent {
@@ -696,8 +692,36 @@
         justify-content: center;
       }
 
+      .wrapp_btn.between{
+        -webkit-justify-content: space-between;
+        -moz-justify-content: space-between;
+        -ms-justify-content: space-between;
+        -o-justify-content: space-between;
+        justify-content: space-between;
+      }
+
       .wrapp_btn > .btn:not(:last-child){
         margin-right: 32px;
+      }
+
+      /* sorting btn */
+      .sort_btn{
+        width: 23px;
+        height: 22px;
+        background-color: #ffa800;
+        display: inline-block;
+        color: #ffd27a;
+        text-align: center;
+      }
+
+      .sort_btn > .fa{
+        font: normal normal normal 14px/22px FontAwesome;
+      }
+
+      .sort_btn:focus,
+      .sort_btn:active,
+      .sort_btn:hover{
+        color: #fff;
       }
 
   /* --------------------------------------------
@@ -835,6 +859,10 @@
       line-height: 1.3;
     }
 
+    .attention_txt.big{
+      font-size: 18px;
+    }
+
     .attention_txt > .fa{
       width: 45px;
       height: 45px;
@@ -865,7 +893,15 @@
 
     /* left */
     .attention_txt.left{
-      padding: 15px 15px 15px 60px;
+      min-height: 45px;
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flex;
+      display: -o-flex;
+      display: flex;
+      -ms-align-items: center;
+      align-items: center;
+      padding: 0px 15px 0px 60px;
     }
 
     .attention_txt > .fa{
@@ -876,6 +912,35 @@
       -o-transform: translateY(-50%);
       transform: translateY(-50%);
     }
+
+    .wrapp_attention_txt.center{
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flex;
+      display: -o-flex;
+      display: flex;
+      -webkit-justify-content: center;
+      -moz-justify-content: center;
+      -ms-justify-content: center;
+      -o-justify-content: center;
+      justify-content: center;
+    }
+
+    .wrapp_attention_txt:not(:last-child) {
+        margin-bottom: 20px;
+    }
+
+    .attention_offset1:not(:last-child){
+      margin-bottom: 44px;
+    }
+
+    .attention_offset2:not(:last-child){}
+
+    .attention_offset3:not(:last-child){}
+
+    .attention_offset4:not(:last-child){}
+
+    .attention_offset5:not(:last-child){}
     /* attention_txt */
 
     /* attention_title */
@@ -930,7 +995,6 @@
     }
 
     /* radio */
-
     .radio_box:not(:first-child){
       margin-top: 9px;
     }
@@ -979,12 +1043,73 @@
       width: 5px;
       height: 5px;
       background-color: #ffa800;
-      visibility: hidden;
-      opacity: 0;
+      /* visibility: hidden; */
+      /* opacity: 0; */
       -webkit-border-radius: 50%;
       border-radius: 50%;
       display: inline-block;
     }
+
+    /* radio rectangel */
+    .radio_box_rectangel {
+      position: relative;
+      padding-left: 34px;
+      display: block;
+      line-height: 1 !important;
+      cursor: pointer;
+      color: #969696;
+      font-size: 12px;
+      font-weight: 300;
+    }
+
+    .radio_box_rectangel:not(:last-child){
+      margin-bottom: 15px;
+    }
+
+    .radio_box_rectangel input[type='radio'] {
+      display: none;
+      width: auto;
+      float: none;
+      height: auto;
+      margin: 0;
+      -webkit-appearance: radio;
+    }
+
+    .radio_box_rectangel .radio-custom {
+      position: absolute;
+      top: 0px;
+      left: 0;
+      display: block;
+      width: 27px;
+      height: 13px;
+      border: 1px solid #e0dfdf;
+      background-color: #fff;
+      -webkit-border-radius: 13px;
+      border-radius: 13px;
+    }
+
+    .radio_box_rectangel .radio-custom:after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 7px;
+      height: 7px;
+      background-color: #e0dfdf;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+      display: inline-block;
+      -webkit-transition: 0.3s;
+      -o-transition: 0.3s;
+      transition: 0.3s;
+    }
+
+    .radio_box_rectangel input[type='radio']:checked + .radio-custom:after {
+      left: auto;
+      right: 2px;
+      background-color: #ffa800;
+    }
+    /* radio rectangel */
 
     .checkbox_box:not(:first-child){
       margin-top: 9px;
@@ -1068,11 +1193,35 @@
       margin-bottom: 9px;
     }
 
+    .box_form_half.right{
+      float: right;
+    }
+
     .box_form_half{
       padding-left: 25px;
       padding-right: 25px;
       float: left;
       width: 50%;
+    }
+
+    .box_form_full{
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+
+    .box_form_row.type2{
+      margin-left: -11px;
+      margin-right: -11px;
+    }
+
+    .box_form_row.type2 .box_form_half{
+      padding-left: 11px;
+      padding-right: 11px;
+    }
+
+    .box_form_row.type2 .box_form_full{
+      padding-right: 11px;
+      padding-left: 11px;
     }
     /* box */
 
@@ -1221,7 +1370,7 @@
     textarea{
       width: 100%;
       height: 41px;
-      background-color: white;
+      background-color: #fff;
       border: 1px solid #dadada;
       resize: none;
       line-height: 1.3;
@@ -1371,6 +1520,16 @@
       background-color: #fafafa;
     }
 
+  /* --------------------------------------------
+      4.6. Note Block
+  -------------------------------------------- */
+
+    .note_block{
+      background-color: #fafafa;
+      border-left: 5px solid #ffa800;
+      padding: 25px 20px 25px 35px;
+    }
+
 /* ------------------------------------------------
 
     5. Shortcods
@@ -1378,9 +1537,9 @@
 -------------------------------------------------- */
 
   /* ------------------------------------------------
-      5.1. Popup Default and products
+      5.1. Popup Default
   -------------------------------------------------*/
-    /* Default */
+
     .arcticmodal-overlay{
       opacity: 0.45 !important;
     }
@@ -1400,13 +1559,21 @@
       padding: 0 30px 30px 70px;
     }
 
+    .modal_container3{
+      padding: 0 40px 40px 40px;
+    }
+
+    .modal_container4{
+      padding: 0 50px 50px 54px;
+    }
+
     .modal_footer{
       background-color: #fafafa;
       padding: 29px 30px;
       margin: 0 -1px -1px -1px;
     }
 
-    .arcticmodal-close{
+    .box-modal_close{
       display: inline-block;
       cursor: pointer;
       position: absolute;
@@ -1414,11 +1581,14 @@
       right: 23px;
     }
 
-    .arcticmodal-close > .fa{
+    .box-modal_close > .fa{
       color: #a6a6a6;
       font: normal normal normal 18px/1 FontAwesome;
     }
-    /* Default */
+
+  /* ------------------------------------------------
+      5.2. Popup products
+  -------------------------------------------------*/
 
     .modal_popup_product{
       width: 575px;
@@ -1484,6 +1654,22 @@
     }
 
   /* ------------------------------------------------
+      5.2. Popup products
+  -------------------------------------------------*/
+
+    .payment_popup{
+      width: 445px;
+    }
+
+    .payment_popup .wrapp_privacy_policy:not(:last-child){
+      margin-bottom: 30px;
+    }
+
+    .remove_popup{
+      width: 538px;
+    }
+
+  /* ------------------------------------------------
       5.2. Table Order
   -------------------------------------------------*/
 
@@ -1529,6 +1715,8 @@
       font-weight: 300;
       vertical-align: middle;
       position: relative;
+      text-overflow: ellipsis;
+      overflow: hidden;
     }
 
     .table_order td:first-child{
@@ -1558,6 +1746,19 @@
     .table_col5{
       width: 205px;
     }
+
+    .table_col6{
+      width: 250px;
+    }
+
+    .table_col7{
+      width: 300px;
+    }
+
+    .table_order .sort_btn{
+      margin-left: 5px;
+    }
+
 
   /* ------------------------------------------------
       5.3. Validate (error styles)
@@ -1708,6 +1909,8 @@
     /* basket */
     .basket_wrapp{
       margin-right: 40px;
+      display: flex;
+      align-items: flex-end;
     }
 
     .basket_box{
@@ -1715,6 +1918,10 @@
       padding-right: 15px;
       margin-right: 11px;
       display: inline-block;
+    }
+
+    .basket_box.piggy_bank{
+      padding-right: 0;
     }
 
     .basket_box > .fa{
@@ -1829,7 +2036,7 @@
     padding-top: 79px;
     position: fixed;
     z-index: 9;
-    top: 147px;
+    top: 135px;
     left: 38px;
     width: 296px;
     height: 656px;
@@ -1856,7 +2063,7 @@
     background-color: #d3d3d3;
     position: fixed;
     z-index: 10;
-    top: 146px;
+    top: 135px;
     left: 39px;
     width: 28px;
     height: 28px;

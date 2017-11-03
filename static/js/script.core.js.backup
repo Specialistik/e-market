@@ -43,8 +43,6 @@
 			self.settingBox = $('.setting_box');
 			self.editOkBtn = $('.ok_btn');
 
-			self.closestBtn = $('.closest_btn');
-
 			self.editLink.on('click', function(){
 				$(this)
 				.addClass('active')
@@ -57,6 +55,7 @@
 			    .trigger('refresh');
 
 			});
+
 			/*
 			self.editOkBtn.on('click', function(){
 				$(this)
@@ -71,36 +70,6 @@
 
 			});
 			*/
-
-			self.closestBtn.on('click',function(e){
-				e.preventDefault();
-				//console.log('close button clicked ffs');
-
-				var $this = $(this);
-				
-				self.closestBox = $this.closest('.block_closest');
-				//var href_to_delete = $this.attr('href');
-				$('.removeProduct_l').attr('href', $this.attr('href'));
-				$('#remove_product').arcticmodal();
-
-				
-			});
-			/*
-			$('.removeProduct_l').on('click', function(){
-
-				$('#remove_product').arcticmodal('close');
-
-				self.closestBox.animate({
-					'opacity': 0
-				},500, function(){
-					self.closestBox.slideUp(300,function(){
-						self.closestBox.remove();
-					});
-				});
-				
-			});
-			*/
-
 
 		},
 
@@ -219,7 +188,17 @@
 
  			}
 
- 		}
+ 		},
+
+ 		/*
+		*
+		*	NameFunction
+		*
+		*/
+
+ 		NameFunction: function() {
+
+ 		},
 
 	}
 

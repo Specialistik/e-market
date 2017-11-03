@@ -53,6 +53,7 @@
                             </span>
 
                             <a href="/my_products/del/{{ product.id }}/" class="closest_btn">
+                            {% comment %}<a href="javascript:;" class="closest_btn">{% endcomment %}
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </a>
 
@@ -188,6 +189,49 @@
                </a>
            </div>
             <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
-
     </div>
+
+
+{% endblock %}
+
+{% block popup_content %}
+<!-- - - - - - - - - - - - - - Modal Popup - - - - - - - - - - - - - - - - -->
+
+        <div style="display: none;">
+
+        <!-- remove product -->
+            <div class="box-modal modal_popup_product" id="remove_product">
+
+                <div class="box-modal_close arcticmodal-close">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </div>
+
+                <div class="modal_container4">
+
+                    <div class="wrapp_attention_txt attention_offset1 center">
+                        <p class="attention_txt left big">
+                            <i class="fa fa-exclamation" aria-hidden="true"></i>
+                            Вы подтверждаете удаление товара?
+                        </p>
+                    </div>
+
+
+                    <div class="wrapp_btn between">
+
+                        <a href="javascript:;" class="btn hight_grey removeProduct_l">
+                           Подтвердить
+                        </a>
+
+                        <a href="javascript:;" class="btn hight_orange arcticmodal-close">
+                            Отменить
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        <!-- remove product -->
+
+        </div>
 {% endblock %}
