@@ -24,7 +24,7 @@ def trade_point_add(request):
             )
 
             TradePoint.objects.create(
-                producer_id=request.user.id,
+                customer_id=request.user.id,
                 address=depot_address
             )
             return redirect(profile)

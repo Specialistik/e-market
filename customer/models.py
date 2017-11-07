@@ -11,9 +11,8 @@ from producer.models import ProductCard
 
 class TradePoint(models.Model):
     customer = models.ForeignKey(User, verbose_name=u'Заказчик')
-    name = models.CharField(max_length=256, blank=True, verbose_name=u'Название')
+    name = models.CharField(max_length=256, verbose_name=u'Название')
     address = models.OneToOneField(Address, verbose_name=u'Адрес')
-    # address
 
     class Meta:
         db_table = 'trade_points'
@@ -23,7 +22,7 @@ class TradePoint(models.Model):
 
 class Order(models.Model):
     customer = models.ForeignKey(User, verbose_name=u'Заказчик')
-    trade_point = models.ForeignKey(TradePoint, verbose_name=u'Торговая точка ')
+    trade_point = models.ForeignKey(TradePoint, verbose_name=u'Торговая точка')
     created = models.DateTimeField(default=timezone.now, verbose_name=u'Время создания')
 
     class Meta:

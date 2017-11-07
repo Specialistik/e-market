@@ -16,7 +16,7 @@
                         <div class="box_form_half">
 
                             <div class="form_box_offset">
-                                <input name="full_address" placeholder="Город, улица, дом" value="{{ trade_point.full_address }}">
+                                <input name="full_address" placeholder="Город, улица, дом" value="{{ trade_point.address.full_address }}">
                             </div>
 
                             <div class="form_box_offset">
@@ -24,11 +24,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="index" placeholder="Индекс" data-mask="000000" required value="{{ trade_point.index }}">
+                                        <input name="index" placeholder="Индекс" data-mask="000000" required value="{{ trade_point.address.index }}">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="region" placeholder="Регион" required value="{{ trade_point.region }}">
+                                        <input name="region" placeholder="Регион" required value="{{ trade_point.address.region }}">
                                     </div>
 
                                 </div>
@@ -46,11 +46,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="city" placeholder="Город / Населенный пункт" required value="{{ trade_point.city }}">
+                                        <input name="city" placeholder="Город / Населенный пункт" required value="{{ trade_point.address.city }}">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="street" placeholder="Улица" required value="{{ trade_point.street }}">
+                                        <input name="street" placeholder="Улица" required value="{{ trade_point.address.street }}">
                                     </div>
 
                                 </div>
@@ -62,19 +62,19 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col quarter">
-                                        <input name="house" placeholder="Дом" required value="{{ trade_point.house }}">
+                                        <input name="house" placeholder="Дом" required value="{{ trade_point.address.house }}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="block" placeholder="Корпус" value="{{ trade_point.block }}">
+                                        <input name="block" placeholder="Корпус" value="{{ trade_point.address.block }}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="structure" placeholder="Строение" value="{{ trade_point.structure }}">
+                                        <input name="structure" placeholder="Строение" value="{{ trade_point.address.structure }}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="flat" placeholder="Кв. / Офис" required value="{{ trade_point.flat }}">
+                                        <input name="flat" placeholder="Кв. / Офис" required value="{{ trade_point.address.flat }}">
                                     </div>
 
                                 </div>

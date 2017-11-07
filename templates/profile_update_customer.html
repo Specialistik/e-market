@@ -8,9 +8,10 @@
         <h3 class="title_edit">О торговых точках</h3>
 
         <div class="profile_settings_box" data-mh="profile_settings_box">
-            {% if tradepoints %}
+            {% if trade_points %}
                 {% for trade_point in trade_points %}
                     <form action="/trade_point/{{ trade_point.id }}/" method="POST">
+                        {% csrf_token %}
                         <!--  -->
                         <div class="setting_box" data-mh="settings-box">
 
@@ -37,33 +38,36 @@
                                     <label>Город</label>
                                     <input name="city" required class="setting_input" disabled value="{{ trade_point.address.city }}">
                                 </li>
+                                {% comment %}
                                 <li class="clearfix">
                                     <label>Населеный пункт</label>
                                     <input class="setting_input" disabled value="Казань">
                                 </li>
+                                {% endcomment %}
                                 <li class="clearfix">
                                     <label>Улица</label>
-                                    <input class="setting_input" disabled value="Волкова">
+                                    <input name="street" required class="setting_input" disabled value="{{ trade_point.address.street }}">
                                 </li>
                                 <li class="clearfix">
                                     <label>Дом</label>
-                                    <input class="setting_input" disabled value="59">
+                                    <input name="house" required class="setting_input" disabled value="{{ trade_point.address.house }}">
                                 </li>
                                 <li class="clearfix">
                                     <label>Корпус</label>
-                                    <input class="setting_input" disabled value="1">
+                                    <input name="block" class="setting_input" disabled value="{{ trade_point.address.block }}">
                                 </li>
                                 <li class="clearfix">
                                     <label>Строение</label>
-                                    <input class="setting_input" disabled value="1">
+                                    <input name="structure" class="setting_input" disabled value="{{ trade_point.address.structure }}">
                                 </li>
                                 <li class="clearfix">
                                     <label>Кв. / Офис</label>
-                                    <input class="setting_input" disabled value="1">
+                                    <input name="flat" required class="setting_input" disabled value="{{ trade_point.address.flat }}">
                                 </li>
                                 <!-- <li class="clearfix">
                                 </li> -->
 
+                                {% comment %}
                                 <li class="clearfix">
                                     <label for=""></label>
                                     <label for="" class="pull-right">
@@ -102,6 +106,7 @@
                                     </div>
 
                                 </li>
+                                {% endcomment %}
 
                                 <li class="clearfix">
 
@@ -110,7 +115,6 @@
                                     <div class="ok_box">
 
                                         <button class="ok_btn">
-                                            <i class="fa fa-check" aria-hidden="true"></i>
                                             <i class="fa fa-check" aria-hidden="true"></i>
                                         </button>
 
@@ -125,6 +129,7 @@
                 {% endfor %}
             {% else %}
                 <form action="/trade_point/add/" method="POST">
+                    {% csrf_token %}
                     <!--  -->
                     <div class="setting_box" data-mh="settings-box">
 
@@ -159,11 +164,11 @@
                             {% endcomment %}
                             <li class="clearfix">
                                 <label>Улица</label>
-                                <input name="street" class="setting_input" disabled value="">
+                                <input required name="street" class="setting_input" disabled value="">
                             </li>
                             <li class="clearfix">
                                 <label>Дом</label>
-                                <input name="house" class="setting_input" disabled value="">
+                                <input required name="house" class="setting_input" disabled value="">
                             </li>
                             <li class="clearfix">
                                 <label>Корпус</label>
@@ -175,7 +180,7 @@
                             </li>
                             <li class="clearfix">
                                 <label>Кв. / Офис</label>
-                                <input name="flat" class="setting_input" disabled value="">
+                                <input required name="flat" class="setting_input" disabled value="">
                             </li>
                             <!-- <li class="clearfix">
                             </li> -->

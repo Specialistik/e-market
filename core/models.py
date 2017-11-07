@@ -96,8 +96,8 @@ class UserProfile(models.Model):
     identity_document = models.OneToOneField(IdentityDocument, null=True, blank=True, verbose_name=u'Документ')
 
     # У нас две разные страницы для создания и редактирования профиля.
-    # False = используем страницу создания профиля
-    # True = И
+    # False = используем страницу создания профиля profile_create.html
+    # True = Используем страницу редактирования profile_update.html
     created = models.BooleanField(default=False, verbose_name=u'Создание профиля завершено или пропущено')
 
     class Meta:
