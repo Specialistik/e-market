@@ -48,7 +48,6 @@ class Category(AbstractTree):
 
     def get_image_url(self):
         if self.image:
-            print self.image.url
             return self.image.url
         return ''
 

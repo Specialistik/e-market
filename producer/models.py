@@ -53,7 +53,8 @@ class ProductCard(models.Model):
 
     @staticmethod
     def calculate_customer_price(producer_price):
-        return ceil(producer_price + (producer_price * 15 / 100))
+        return producer_price
+        #return ceil(producer_price + (producer_price * 15 / 100))
 
     class Meta:
         db_table = 'product_cards'
