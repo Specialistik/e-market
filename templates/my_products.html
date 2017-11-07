@@ -195,43 +195,43 @@
 {% endblock %}
 
 {% block popup_content %}
-<!-- - - - - - - - - - - - - - Modal Popup - - - - - - - - - - - - - - - - -->
+    <!-- - - - - - - - - - - - - - Modal Popup - - - - - - - - - - - - - - - - -->
 
-        <div style="display: none;">
+    <div style="display: none;">
 
-        <!-- remove product -->
-            <div class="box-modal modal_popup_product" id="remove_product">
+    <!-- remove product -->
+        <div class="box-modal modal_popup_product" id="remove_product">
 
-                <div class="box-modal_close arcticmodal-close">
-                    <i class="fa fa-times" aria-hidden="true"></i>
+            <div class="box-modal_close arcticmodal-close">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+
+            <div class="modal_container4">
+
+                <div class="wrapp_attention_txt attention_offset1 center">
+                    <p class="attention_txt left big">
+                        <i class="fa fa-exclamation" aria-hidden="true"></i>
+                        Вы подтверждаете удаление товара?
+                    </p>
                 </div>
 
-                <div class="modal_container4">
 
-                    <div class="wrapp_attention_txt attention_offset1 center">
-                        <p class="attention_txt left big">
-                            <i class="fa fa-exclamation" aria-hidden="true"></i>
-                            Вы подтверждаете удаление товара?
-                        </p>
-                    </div>
+                <div class="wrapp_btn between">
 
+                    <a href="javascript:;" class="btn hight_grey removeProduct_l">
+                       Подтвердить
+                    </a>
 
-                    <div class="wrapp_btn between">
-
-                        <a href="javascript:;" class="btn hight_grey removeProduct_l">
-                           Подтвердить
-                        </a>
-
-                        <a href="javascript:;" class="btn hight_orange arcticmodal-close">
-                            Отменить
-                        </a>
-
-                    </div>
+                    <a href="javascript:;" class="btn hight_orange arcticmodal-close">
+                        Отменить
+                    </a>
 
                 </div>
 
             </div>
-        <!-- remove product -->
 
         </div>
+    <!-- remove product -->
+
+    </div>
 {% endblock %}

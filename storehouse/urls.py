@@ -64,6 +64,7 @@ urlpatterns = [
     url(r'^depot/([0-9]+)/$', producer_views.depot_edit),
 
     url(r'^products/([0-9]+)/$', producer_views.products),
+    url(r'^products/search/', producer_views.product_search),
 
     url(r'^my_products/edit/([0-9]+)/$', producer_views.product_edit),
     url(r'^my_products/del/([0-9]+)/$', producer_views.product_del),

@@ -145,6 +145,24 @@ def product_del(request, pk):
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
 
 
+def product_search(request): #, search_string, sorting):
+    search_string = request.GET['search_string']
+    results = ProductCard.objects.filter(name__search=search_string)
+    if 'sorting' in request.GET:
+        if int(request.GET['sorting']) == 1:
+            results.order_by('pk')
+        if int(request.GET['sorting']) == 2 or int(request.GET['sorting']) == 3:
+            results.order_by('category_id')
+        if int(request.GET['sorting']) == 4:
+            results.order_by('price')
+    else:
+        results.order_by('pk')
+
+    return render(request, 'search.html', {
+        'products': results,
+    })
+
+
 def depot_add(request):
     if request.user.profile:
         if request.user.profile.role == 'producer':
