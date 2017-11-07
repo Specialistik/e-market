@@ -96,7 +96,7 @@
 
                                         {% comment %}<label for="">Категория</label>{% endcomment %}
                                         <div class="wrapp_settings_select right_angle">
-                                            <select name="expiration_type" data-placeholder="Тип срока годности" required class="expiration_type">
+                                            <select name="expiration_type" data-placeholder="Тип срока годности" disabled required class="expiration_type">
                                             {% for expiration_value in expiration_values %}
                                                 <option value="{{ expiration_value.id }}" {% if product.expiration_type.id == expiration_value.id %}selected{% endif %}>{{ expiration_value.name }}</option>
                                             {% endfor %}
