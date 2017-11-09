@@ -42,6 +42,7 @@
 			self.editInput = $('.setting_input');
 			self.settingBox = $('.setting_box');
 			self.editOkBtn = $('.ok_btn');
+			self.basketCount = $('.basket_count');
 
 			self.closestBtn = $('.closest_btn');
 
@@ -74,16 +75,15 @@
 
 			self.closestBtn.on('click',function(e){
 				e.preventDefault();
-				//console.log('close button clicked ffs');
-
 				var $this = $(this);
 				
 				self.closestBox = $this.closest('.block_closest');
-				//var href_to_delete = $this.attr('href');
 				$('.removeProduct_l').attr('href', $this.attr('href'));
 				$('#remove_product').arcticmodal();
+			});
 
-				
+			self.basketCount.on('click', function(){
+				location.href = '/basket';
 			});
 			/*
 			$('.removeProduct_l').on('click', function(){

@@ -13,39 +13,6 @@ from catalogs.models import Category, ExpirationValue
 from producer.models import ProductCard, ProducerDepot
 
 
-def categories(request):
-    return render(request, 'categories.html', {'categories': Category.objects.filter(pid__isnull=True)})
-
-
-def subcategories(request, pk):
-    try:
-        current_category = Category.objects.get(pk=pk)
-        return render(request, 'subcategories.html', {
-            'category': current_category,
-            'subcategories': Category.objects.filter(pid=pk)
-        })
-    except Category.DoesNotExist:
-        return render(request, '500.html', {'error_message': u'Категория не найдена'})
-
-
-def subcategory_list(request, parent_id):
-    result = {}
-    for subcat in Category.objects.filter(pid=parent_id):
-        result[subcat.id] = subcat.name
-    return JsonResponse(result)
-
-
-def products(request, cat_id):
-    try:
-        current_category = Category.objects.get(pk=cat_id)
-        return render(request, 'products.html', {
-            'category': current_category,
-            'products': ProductCard.objects.filter(category_id=cat_id)
-        })
-    except Category.DoesNotExist:
-        return render(request, '500.html', {'error_message': u'Категория не найдена'})
-
-
 def my_products(request):
     if request.user.profile:
         if request.user.profile.role == 'producer':
@@ -143,24 +110,6 @@ def product_del(request, pk):
             return redirect(my_products)
         return render(request, '500.html', {'error_message': u'Только производитель может добавлять товар'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
-
-
-def product_search(request): #, search_string, sorting):
-    search_string = request.GET['search_string']
-    results = ProductCard.objects.filter(name__search=search_string)
-    if 'sorting' in request.GET:
-        if int(request.GET['sorting']) == 1:
-            results.order_by('pk')
-        if int(request.GET['sorting']) == 2 or int(request.GET['sorting']) == 3:
-            results.order_by('category_id')
-        if int(request.GET['sorting']) == 4:
-            results.order_by('price')
-    else:
-        results.order_by('pk')
-
-    return render(request, 'search.html', {
-        'products': results,
-    })
 
 
 def depot_add(request):

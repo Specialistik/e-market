@@ -73,10 +73,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'customer.context_processors.basket',
             ],
         },
     },
 ]
+
+#TEMPLATE_CONTEXT_PROCESSORS = ('customer.context_processors.basket',)
 
 WSGI_APPLICATION = 'storehouse.wsgi.application'
 

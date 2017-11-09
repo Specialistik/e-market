@@ -3,10 +3,18 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.utils import timezone
-
 from django.contrib.auth.models import User
+
 from core.models import Address
 from producer.models import ProductCard
+from catalogs.models import AbstractList
+
+
+class OrderStatuses(AbstractList):
+    class Meta:
+        db_table = 'order_statuses'
+        verbose_name = u'Статус заявки'
+        verbose_name_plural = u'Статусы заявок'
 
 
 class TradePoint(models.Model):
@@ -22,8 +30,9 @@ class TradePoint(models.Model):
 
 class Order(models.Model):
     customer = models.ForeignKey(User, verbose_name=u'Заказчик')
-    trade_point = models.ForeignKey(TradePoint, verbose_name=u'Торговая точка')
+    #trade_point = models.ForeignKey(TradePoint, verbose_name=u'Торговая точка')
     created = models.DateTimeField(default=timezone.now, verbose_name=u'Время создания')
+    order_status = models.ForeignKey(OrderStatuses, null=True, default=None, verbose_name=u'Статус заявки')
 
     class Meta:
         db_table = 'orders'
@@ -33,13 +42,19 @@ class Order(models.Model):
 
 class OrderUnit(models.Model):
     order = models.ForeignKey(Order, verbose_name=u'Заказ')
-    product = models.ForeignKey(ProductCard, verbose_name=u'Позиции заказа')
+    product = models.ForeignKey(ProductCard, verbose_name=u'Позиция заказа')
     amount = models.IntegerField(verbose_name=u'Количество')
+    trade_point = models.ForeignKey(TradePoint, verbose_name=u'Торговая точка')
+    remark = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Примечание')
+
+    def calculate_sum(self):
+        return self.amount * self.product.producer_price
 
     # from depot
     # to trade point
 
     class Meta:
+        unique_together = ('order', 'product',)
         db_table = 'order_units'
         verbose_name = u'Позиция заказа'
         verbose_name_plural = u'Позиции заказов'

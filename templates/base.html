@@ -105,13 +105,13 @@
                     {% if user.profile %}
                         {% if user.profile.role == 'customer' %}
                             <div class="basket_wrapp">
-                                <a href="javascript:;" class="basket_box">
+                                <a href="/basket" class="basket_box">
                                     <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                                    <span class="basket_item">0</span>
+                                    <span class="basket_item">{{ basket_items }}</span>
                                 </a>
 
                                 <div class="basket_box_count">
-                                    <span class="basket_count">0,00</span> руб
+                                    <span class="basket_count">{{ basket_price }}</span> руб
                                 </div>
 
                             </div> <!-- basket_wrapp -->
@@ -176,8 +176,31 @@
                     {% endif %}
                 </li>
 
-                <li>
+
+                <li class="current">
                     <a href="javascript:;">Мои заказы</a>
+                    <ul class="sub_navigation_menu">
+                        <li>
+                            <a href="/basket">
+                                <img src="/static/images/icons/basket-icon.png" alt="">
+                                Корзина
+                            </a>
+                        </li>
+
+                        <li class="current">
+                            <a href="/current_orders">
+                                <img src="/static/images/icons/box-icon.png" alt="">
+                                Текущие заказы
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="/order_history">
+                                <img src="/static/images/icons/history-icon.png" alt="">
+                                История
+                            </a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li>

@@ -56,33 +56,28 @@
         <div class="wrapp_products">
 
             <div class="row_products clearfix">
-
                 {% for product in products %}
                     <figure class="col_products" data-mh="col-products">
-
+                        <div style="display: none" class="product_minimum_amount">{{ product.minimum_amount }}</div>
+                        <div style="display: none" class="product_id">{{ product.id }}</div>
                         <div class="products_img" data-mh="products-img">
-
                             <a href="javascript:;" data-popup="#product1">
-                                <img src="{{ product.get_image_url }}" alt="">
+                                <img class="img_url" src="{{ product.get_image_url }}" alt="{{ product.name }}">
                             </a>
-
                         </div>
 
                         <figcaption>
-
                             <h3 class="light_grey products_title">
-                                {{ product.name }}
+                                <span class="product_name">{{ product.name }}</span>
                                 {% comment %}Йогурт Danone Активиа творожная{% endcomment %}
                                 {% if product.weight %}<span class="products_subtitle">{{ product.weight }} кг</span>{% endif %}
                             </h3>
 
                             <div class="wrapp_btn center">
                                 <span class="products_price">{{ product.producer_price }}р</span>
-                                <a href="javascript:;" class="btn btn_basket light_orange">В корзину</a>
+                                <a href="javascript:;" class="btn btn_basket light_orange add_to_cart">В корзину</a>
                             </div>
-
                         </figcaption>
-
                     </figure>
                 {% endfor %}
             </div> <!-- row_products -->
@@ -99,89 +94,88 @@
     <div style="display: none;">
 
         <!-- popup 1 -->
-            <div class="box-modal modal_popup_product big" id="product_popup">
+        <div class="box-modal modal_popup_product big" id="product_popup">
 
-                <div class="box-modal_close arcticmodal-close">
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                </div>
+            <div class="box-modal_close arcticmodal-close">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
 
-                <div class="modal_container2">
+            <div class="modal_container2">
 
-                    <form action="/order/add">
+                <form action="/order_unit/add/" method="POST">
+                    {% csrf_token %}
+                    <input name="product" id="popup_product_id" type="hidden" value="">
+                    <h3 class="popup_title light_grey align_left" id="popup_product_name"></h3>
 
-                        <h3 class="popup_title light_grey align_left" id="popup_product_name"></h3>
+                    <div class="wrapp_product_preview">
 
-                        <div class="wrapp_product_preview">
+                        <div class="product_preview_img">
+                            <img id="popup_product_url" src="" alt="">
+                        </div>
 
-                            <div class="product_preview_img">
-                                <img id="popup_product_url" src="" alt="">
+                        <div class="product_preview_desc">
+
+                            <label class="label1 big">
+                                Наличие:
+                            </label>
+
+                            <p class="check_label">Есть в наличии</p>
+
+
+                            <label class="label1 big">
+                                Минимальный заказ:
+                            </label>
+
+                            <span class="sublabel" id="popup_minimum_amount">от 100 шт</span>
+
+                            <p class="popup_price"><span id="popup_price">49</span></p>
+
+                            <label class="label1 big">
+                                Выберите количество:
+                                <span id="popup_tooltip_desc" class="tooltip_desc" data-tooltip-txt="Минимальный заказ: от 100 шт" data-tooltip-pos="right">?</span>
+                            </label>
+
+                            <input id="amount" name="amount" type="number" required value="100" min="100" data-mask="9999">
+
+                            <label class="label1 big">
+                                Выберите адрес доставки:
+                                <span class="tooltip_desc" data-tooltip-txt="Комментарий" data-tooltip-pos="right">?</span>
+                            </label>
+
+                            <div class="wrapp_castom_select bottom_dropdown">
+                                <select data-placeholder="Нажмите, чтобы выбрать" name="trade_point" required>
+                                    {% for trade_point in trade_points %}
+                                        <option value="{{ trade_point.id }}" {% if forloop.first %}selected{% endif %}>{{ trade_point.address.full_address }}</option>
+                                    {% endfor %}
+                                </select>
                             </div>
 
-                            <div class="product_preview_desc">
-
-                                <label class="label1 big">
-                                    Наличие:
-                                </label>
-
-                                <p class="check_label">Есть в наличии</p>
-
-                                <label class="label1 big">
-                                    Минимальный заказ:
-                                </label>
-
-                                <span class="sublabel" id="popup_miminum_amount">от 100 шт</span>
-
-                                <p class="popup_price"><span id="popup_price"49</span>р</p>
-
-                                <label class="label1 big">
-                                    Выберите количество:
-                                    <span class="tooltip_desc" data-tooltip-txt="Минимальный заказ: от 100 шт" data-tooltip-pos="right">?</span>
-                                </label>
-
-                                <input type="number" value="100" min="100" max="9999" data-mask="9999">
-
-                                <label class="label1 big">
-                                    Выберите адрес доставки:
-                                    <span class="tooltip_desc" data-tooltip-txt="Комментарий" data-tooltip-pos="right">?</span>
-                                </label>
-
-                                <div class="wrapp_castom_select bottom_dropdown">
-                                    <select data-placeholder="Нажмите, чтобы выбрать">
-                                        {% comment %}
-                                        <option value=""></option>
-                                        <option value="">адрес доставки 1</option>
-                                        <option value="">адрес доставки 2</option>
-                                        <option value="">адрес доставки 3</option>
-                                        <option value="">адрес доставки 4</option>
-                                        <option value="">адрес доставки 5</option>
-                                        {% endcomment %}
-                                    </select>
-                                </div>
-
-                                <button class="btn btn_basket light_orange" id="add_to_cart">В корзину</button>
-
-                            </div>
+                            <button class="btn btn_basket light_orange">В корзину</button>
 
                         </div>
 
-                    </form>
+                    </div>
 
-                </div>
-
-                <div class="modal_footer">
-
-                    <p class="txt_type2">
-                        <strong>«Активиа»</strong> - это серия пробиотических кисломолочных продуктов с бифидобактериями ActiRegularis®. Клинически доказано, что йогурты «Активиа» помогают уменьшить чувство дискомфорта в животе. Портфель «Активиа» также включает невероятно вкусные творожки и кефирные продукты. «Активиа» рекомендована Российской гастроэнтерологической ассоциацией (РГА) для ежедневного употребления.
-                    </p>
-
-                    <p class="txt_type2">
-                        <strong>Продукты «Активиа»</strong> – это 20 лет исследовательской работы и колоссальный объем экспертных знаний. Клинические испытания подтверждают, что бифидобактерии ActiRegularis®, находящиеся в йогуртах и творожках Активиа, выживают при прохождении через желудочно-кишечный тракт человека и в больших количествах достигают микрофлоры кишечника.
-                    </p>
-
-                </div>
+                </form>
 
             </div>
-        <!-- popup 1 -->
+
+            <div class="modal_footer">
+                {% comment %}
+                <p class="txt_type2">
+
+                    <strong>«Активиа»</strong> - это серия пробиотических кисломолочных продуктов с бифидобактериями ActiRegularis®. Клинически доказано, что йогурты «Активиа» помогают уменьшить чувство дискомфорта в животе. Портфель «Активиа» также включает невероятно вкусные творожки и кефирные продукты. «Активиа» рекомендована Российской гастроэнтерологической ассоциацией (РГА) для ежедневного употребления.
+                </p>
+
+                <p class="txt_type2">
+                    <strong>Продукты «Активиа»</strong> – это 20 лет исследовательской работы и колоссальный объем экспертных знаний. Клинические испытания подтверждают, что бифидобактерии ActiRegularis®, находящиеся в йогуртах и творожках Активиа, выживают при прохождении через желудочно-кишечный тракт человека и в больших количествах достигают микрофлоры кишечника.
+                </p>
+                {% endcomment %}
 
             </div>
+
+        </div>
+    <!-- popup 1 -->
+
+    </div>
 {% endblock %}

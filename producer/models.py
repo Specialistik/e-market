@@ -34,7 +34,6 @@ class ProductCard(models.Model):
     minimum_amount = models.IntegerField(default=1, verbose_name=u'Минимальное количество')
     pack_amount = models.IntegerField(null=True, blank=True, verbose_name=u'Количество в упаковке')
     weight = models.DecimalField(null=True, blank=True, max_digits=12, decimal_places=3, verbose_name=u'Вес')
-    #dimensions = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Размеры')
     image = models.ImageField(upload_to='products', null=True, blank=True, verbose_name=u'Изображение')
     length = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'Длина')
     width = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'Ширина')
@@ -54,7 +53,6 @@ class ProductCard(models.Model):
     @staticmethod
     def calculate_customer_price(producer_price):
         return producer_price
-        #return ceil(producer_price + (producer_price * 15 / 100))
 
     class Meta:
         db_table = 'product_cards'

@@ -62,3 +62,5 @@ class ExpirationValue(AbstractList):
         db_table = 'expiration_values'
         verbose_name = u'Вид срока годности'
         verbose_name_plural = u'Виды сроков годности'
+
+

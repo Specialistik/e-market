@@ -100,6 +100,25 @@ class UserProfile(models.Model):
     # True = Используем страницу редактирования profile_update.html
     created = models.BooleanField(default=False, verbose_name=u'Создание профиля завершено или пропущено')
 
+    """
+    def basket_items(self):
+        try:
+            wanted_order = Order.objects.get(customer_id=self.user.id, order_status__isnull=True)
+            return OrderUnit.objects.filter(order_id=wanted_order.id).count()
+        except Order.DoesNotExist:
+            return 0
+
+    def basket_price(self):
+        try:
+            final_sum = 0
+            wanted_order = Order.objects.get(customer_id=self.user.id, order_status__isnull=True)
+            for order_unit in OrderUnit.objects.filter(order_id=wanted_order.id):
+                final_sum += order_unit.amount * order_unit.product.producer_price
+            return final_sum
+        except Order.DoesNotExist:
+            return 0
+    """
+
     class Meta:
         db_table = 'user_profile'
         verbose_name = u'Профиль пользователя'

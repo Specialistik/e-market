@@ -56,24 +56,30 @@ urlpatterns = [
     url(r'^profile/account/([0-9]+)/$', core_views.profile_account_edit),
 
     # Producer views
-    url(r'^categories/$', producer_views.categories),
-    url(r'^category/([0-9]+)/$', producer_views.subcategories),
-    url(r'^subcategory_list/([0-9]+)/$', producer_views.subcategory_list),
-
     url(r'^depot/add/$', producer_views.depot_add),
     url(r'^depot/([0-9]+)/$', producer_views.depot_edit),
 
-    url(r'^products/([0-9]+)/$', producer_views.products),
-    url(r'^products/search/', producer_views.product_search),
+    url(r'^products/([0-9]+)/$', customer_views.products),
+    url(r'^products/search/', customer_views.product_search),
 
     url(r'^my_products/edit/([0-9]+)/$', producer_views.product_edit),
     url(r'^my_products/del/([0-9]+)/$', producer_views.product_del),
     url(r'^my_products/add/$', producer_views.product_add),
     url(r'^my_products/$', producer_views.my_products),
 
-
     # Customer views
+    url(r'^categories/$', customer_views.categories),
+    url(r'^category/([0-9]+)/$', customer_views.subcategories),
+    url(r'^subcategory_list/([0-9]+)/$', customer_views.subcategory_list),
+
     url(r'^trade_point/add/$', customer_views.trade_point_add),
     url(r'^trade_point/([0-9]+)/$', customer_views.trade_point_edit),
+
+    url(r'^basket$', customer_views.basket),
+    url(r'^order_unit/add/$', customer_views.order_unit_add),
+    url(r'^order_unit/edit/([0-9]+)/$', customer_views.order_unit_edit),
+
+    url(r'^current_orders$', customer_views.current_orders),
+    url(r'^order_history$', customer_views.order_history),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + staticfiles_urlpatterns()

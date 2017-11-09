@@ -8,7 +8,7 @@
     line-height: 1.3;
   }
 
-  .setting_input:readonly:not([type="checkbox"]):not([type="radio"]){
+.setting_input:readonly:not([type="checkbox"]):not([type="radio"]){
     color: #4f4f4e;
     background-color: transparent;
     border-bottom: 2px solid transparent;
@@ -16,4 +16,9 @@
     font-size: 14px;
     line-height: 1.3;
     height: 20px;
-  }
+}
+
+.basket_count {
+    cursor: pointer;
+}
+
