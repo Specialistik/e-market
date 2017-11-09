@@ -78,6 +78,7 @@ urlpatterns = [
     url(r'^basket$', customer_views.basket),
     url(r'^order_unit/add/$', customer_views.order_unit_add),
     url(r'^order_unit/edit/([0-9]+)/$', customer_views.order_unit_edit),
+    url(r'^perform_order$', customer_views.perform_order),
 
     url(r'^current_orders$', customer_views.current_orders),
     url(r'^order_history$', customer_views.order_history),

@@ -30,9 +30,14 @@ class TradePoint(models.Model):
 
 class Order(models.Model):
     customer = models.ForeignKey(User, verbose_name=u'Заказчик')
-    #trade_point = models.ForeignKey(TradePoint, verbose_name=u'Торговая точка')
     created = models.DateTimeField(default=timezone.now, verbose_name=u'Время создания')
     order_status = models.ForeignKey(OrderStatuses, null=True, default=None, verbose_name=u'Статус заявки')
+
+    def calculate_sum(self):
+        cost_of_basket = 0
+        for order_unit in OrderUnit.objects.filter(order_id=self.id):
+            cost_of_basket += order_unit.amount * order_unit.product.producer_price
+        return cost_of_basket
 
     class Meta:
         db_table = 'orders'

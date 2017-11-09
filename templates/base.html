@@ -179,6 +179,7 @@
 
                 <li class="current">
                     <a href="javascript:;">Мои заказы</a>
+                    {% if user.profile.role == 'customer' %}
                     <ul class="sub_navigation_menu">
                         <li>
                             <a href="/basket">
@@ -201,6 +202,7 @@
                             </a>
                         </li>
                     </ul>
+                    {% endif %}
                 </li>
 
                 <li>

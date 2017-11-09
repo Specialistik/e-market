@@ -164,7 +164,7 @@ def order_unit_edit(request, pk):
 def current_orders(request):
     if request.user.profile:
         if request.user.profile.role == 'customer':
-            return render(request, 'current_orders.html')
+            return render(request, 'current_orders.html', {'current_orders': Order.objects.filter()})
         return render(request, '500.html', {'error_message': u'Только заказчик может просматривать свои заказы'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
 

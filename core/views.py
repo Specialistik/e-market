@@ -80,6 +80,12 @@ def index(request):
     if request.user.is_anonymous:
         if request.method == 'GET':
             return render(request, 'sign_in.html')
+    else:
+        if request.user.profile:
+            if request.user.profile.role == 'customer':
+                return redirect('/categories')
+            if request.user.profile.role == 'producer':
+                return redirect('/my_products')
     return redirect(profile)
 
 
