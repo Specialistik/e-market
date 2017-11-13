@@ -118,7 +118,7 @@
                         {% endif %}
                     {% endif %}
 
-                    <a href="javascript:;" class="wrapp_company_logo clearfix">
+                    <a href="/profile/" class="wrapp_company_logo clearfix">
 
                         <span class="company_logo">
                             <img src="/static/images/icons/user-icon.png" alt="">
@@ -214,8 +214,8 @@
                     <a href="javascript:;">Отчеты</a>
                 </li>
 
-                <li {% comment %}class="current"{% endcomment %}>
-                    <a href="/profile/">Настройки</a>
+                <li {% if request.path == '/profile/' %}class="current"{% endif %}{% comment %}class="current"{% endcomment %}>
+                    <a href="/profile/">Данные о компании</a>
                 </li>
             </ul>
 
