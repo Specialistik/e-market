@@ -12,7 +12,7 @@ $(document).ready(function(){
     });
 
     $('#expiration_type').change(function(){
-        console.log($(this).val(), $(this).val() == 1);
+        //console.log($(this).val(), $(this).val() == 1);
         if ($(this).val() == 1) {
             $('#expiration_value').removeAttr("required").attr('disabled' , 'disabled').val('');
         } else {

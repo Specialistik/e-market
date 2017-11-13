@@ -2,7 +2,6 @@
 
 {% block js_css %}
     <script src="/static/js/profile_update.js"></script>
-
 {% endblock %}
 
 {% block content %}
@@ -186,7 +185,7 @@
 
                         <div class="profile_settings_box" data-mh="profile_settings_box">
                             <form action="/profile/company_info/" method="POST">
-                            {% csrf_token %}
+                                {% csrf_token %}
 
                                 <!--  -->
                                 <div class=" setting_box" data-mh="setting_box">
@@ -200,7 +199,7 @@
                                             <div class="wrapp_settings_select">
                                                 <select disabled name="org_type_short" id="org_type_short">
                                                     {% for org_type in organization_types %}
-                                                        <option value="{{ org_type.id }}" {% if profile.organization_type.id == org_type.id %}selected{% endif %}>{{ org_type.short_name }}</option>
+                                                        <option value="{{ org_type.id }}" {% if not profile.organization_type and forloop.first %}selected{% endif %}{% if profile.organization_type.id == org_type.id %}selected{% endif %}>{{ org_type.short_name }}</option>
                                                     {% endfor %}
                                                 </select>
                                             </div>
@@ -213,7 +212,7 @@
                                             <div class="wrapp_settings_select">
                                                 <select disabled name="org_type_full" id="org_type_full">
                                                     {% for org_type in organization_types %}
-                                                        <option value="{{ org_type.id }}" {% if profile.organization_type.id == org_type.id %}selected{% endif %}>{{ org_type.full_name }}</option>
+                                                        <option value="{{ org_type.id }}" {% if not profile.organization_type and forloop.first %}selected{% endif %}{% if profile.organization_type.id == org_type.id %}selected{% endif %}>{{ org_type.full_name }}</option>
                                                     {% endfor %}
                                                 </select>
                                             </div>
