@@ -184,31 +184,35 @@ def profile_fiz_and_jur_address(request):
             u_p.juridical_address.save()
 
         # todo: На фронте пока печалька в плане флага "совпадает с юридическим"
-        #if request.POST['input_radio'] == 'false':
-        if u_p.physical_address is None:
-            u_p.physical_address = Address.objects.create(
-                full_address=request.POST['fiz_full_address'],
-                index=request.POST['fiz_index'],
-                region=request.POST['fiz_region'],
-                city=request.POST['fiz_city'],
-                street=request.POST['fiz_street'],
-                house=request.POST['fiz_house'],
-                block=request.POST['fiz_block'],
-                structure=request.POST['fiz_structure'],
-                flat=request.POST['fiz_flat']
-            )
-            u_p.save()
+        if 'physical_is_juridical' in request.POST:
+            u_p.physical_is_juridical = True
         else:
-            u_p.physical_address.full_address = request.POST['fiz_full_address']
-            u_p.physical_address.index = request.POST['fiz_index']
-            u_p.physical_address.region = request.POST['fiz_region']
-            u_p.physical_address.city = request.POST['fiz_city']
-            u_p.physical_address.street = request.POST['fiz_street']
-            u_p.physical_address.house = request.POST['fiz_house']
-            u_p.physical_address.block = request.POST['fiz_block']
-            u_p.physical_address.structure = request.POST['fiz_structure']
-            u_p.physical_address.flat = request.POST['fiz_flat']
-            u_p.physical_address.save()
+            u_p.physical_is_juridical = False
+            if u_p.physical_address is None:
+                u_p.physical_address = Address.objects.create(
+                    full_address=request.POST['fiz_full_address'],
+                    index=request.POST['fiz_index'],
+                    region=request.POST['fiz_region'],
+                    city=request.POST['fiz_city'],
+                    street=request.POST['fiz_street'],
+                    house=request.POST['fiz_house'],
+                    block=request.POST['fiz_block'],
+                    structure=request.POST['fiz_structure'],
+                    flat=request.POST['fiz_flat']
+                )
+                u_p.save()
+            else:
+                u_p.physical_address.full_address = request.POST['fiz_full_address']
+                u_p.physical_address.index = request.POST['fiz_index']
+                u_p.physical_address.region = request.POST['fiz_region']
+                u_p.physical_address.city = request.POST['fiz_city']
+                u_p.physical_address.street = request.POST['fiz_street']
+                u_p.physical_address.house = request.POST['fiz_house']
+                u_p.physical_address.block = request.POST['fiz_block']
+                u_p.physical_address.structure = request.POST['fiz_structure']
+                u_p.physical_address.flat = request.POST['fiz_flat']
+                u_p.physical_address.save()
+        u_p.save()
 
     return redirect(profile)
 
@@ -239,6 +243,12 @@ def profile_juridical_address(request):
             u_p.juridical_address.structure = request.POST['structure']
             u_p.juridical_address.flat = request.POST['flat']
             u_p.juridical_address.save()
+
+        if request.POST['physical_is_juridical'] == 'on':
+            u_p.physical_is_juridical = True
+        else:
+            u_p.physical_is_juridical = False
+        u_p.save()
 
         return redirect(profile)
     return render(request, '500.html', {'error_message': u'Не найден профиль пользователя'})

@@ -6,4 +6,16 @@ $(document).ready(function(){
     $('#org_type_full').change(function(){
         $('#org_type_short').styler('destroy').val($(this).val()).styler();
     });
+
+    if ($('.physical_is_juridical').not(':checked')) {
+        $('.fiz_input').attr('disabled', true)
+    }
+
+    $('.physical_is_juridical').change(function(){
+         if ($(this).is(':checked')) {
+            $('.fiz_input').attr('disabled', true)
+        } else {
+            $('.fiz_input').attr('disabled', false)
+        }
+    })
 });

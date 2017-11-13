@@ -103,6 +103,12 @@
 
                             </div>
 
+                            <label class="checkbox_box" for="input_checkbox">
+                                <input name="physical_is_juridical" id="input_checkbox" class="input_checkbox physical_is_juridical" type="checkbox" {% if profile.physical_is_juridical %}checked{% endif %}>
+                                <span class="checkbox-custom"></span>
+                                <span>Фактический совпадает с юридическим</span>
+                            </label>
+
                         </div>
                         <!-- col 6 -->
 
@@ -115,24 +121,26 @@
                                     Фактический адрес:
                                 </h3>
 
+                                {% comment %}
                                 <div class="wrapp_radio_box">
-                                    <label class="radio_box" for="input_radio2">
-                                        <input type="radio" id="input_radio2" class="input_radio2" name="input_radio" value="true" checked>
+                                    <label class="radio_box">
+                                        <input type="radio" name="input_radio" value="true">
                                         <span class="radio-custom"></span>
                                         <span>Совпадает с юридическим</span>
                                     </label>
 
-                                    <label class="radio_box" for="input_radio3">
-                                        <input type="radio" id="input_radio3" class="input_radio2" name="input_radio" value="false">
+                                    <label class="radio_box">
+                                        <input type="radio" name="input_radio" value="false">
                                         <span class="radio-custom"></span>
                                         <span>Другой</span>
                                     </label>
                                 </div>
+                                {% endcomment %}
 
                             </div>
 
                             <div class="form_box_offset">
-                                <input name="fiz_full_address" placeholder="Город, улица, дом" value="{% if profile.physical_address %}{{ profile.physical_address.full_address }}{% endif %}">
+                                <input class="fiz_input" name="fiz_full_address" placeholder="Город, улица, дом" value="{% if profile.physical_address %}{{ profile.physical_address.full_address }}{% endif %}">
                             </div>
 
                             <div class="form_box_offset">
@@ -140,11 +148,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="fiz_index" required placeholder="Индекс" data-mask="000000" value="{% if profile.physical_address %}{{ profile.physical_address.index }}{% endif %}">
+                                        <input class="fiz_input" name="fiz_index" required placeholder="Индекс" data-mask="000000" value="{% if profile.physical_address %}{{ profile.physical_address.index }}{% endif %}">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="fiz_region" placeholder="Регион" value="{% if profile.physical_address %}{{ profile.physical_address.region }}{% endif %}">
+                                        <input class="fiz_input" name="fiz_region" placeholder="Регион" value="{% if profile.physical_address %}{{ profile.physical_address.region }}{% endif %}">
                                     </div>
 
                                 </div>
@@ -156,11 +164,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="fiz_city" required placeholder="Город / Населенный пункт" value="{% if profile.physical_address %}{{ profile.physical_address.city }}{% endif %}">
+                                        <input class="fiz_input" name="fiz_city" required placeholder="Город / Населенный пункт" value="{% if profile.physical_address %}{{ profile.physical_address.city }}{% endif %}">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="fiz_street" required placeholder="Улица" value="{% if profile.physical_address %}{{ profile.physical_address.street }}{% endif %}">
+                                        <input class="fiz_input" name="fiz_street" required placeholder="Улица" value="{% if profile.physical_address %}{{ profile.physical_address.street }}{% endif %}">
                                     </div>
 
                                 </div>
@@ -172,19 +180,19 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col quarter">
-                                        <input name="fiz_house" required placeholder="Дом" value="{% if profile.physical_address %}{{ profile.physical_address.house }}{% endif %}">
+                                        <input class="fiz_input" name="fiz_house" required placeholder="Дом" value="{% if profile.physical_address %}{{ profile.physical_address.house }}{% endif %}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="fiz_block" placeholder="Корпус" value="{% if profile.physical_address %}{{ profile.physical_address.block }}{% endif %}">
+                                        <input class="fiz_input" name="fiz_block" placeholder="Корпус" value="{% if profile.physical_address %}{{ profile.physical_address.block }}{% endif %}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="fiz_structure" placeholder="Строение" value="{% if profile.physical_address %}{{ profile.physical_address.structure }}{% endif %}">
+                                        <input class="fiz_input" name="fiz_structure" placeholder="Строение" value="{% if profile.physical_address %}{{ profile.physical_address.structure }}{% endif %}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="fiz_flat" required placeholder="Кв. / Офис" value="{% if profile.physical_address %}{{ profile.physical_address.flat }}{% endif %}">
+                                        <input class="fiz_input" name="fiz_flat" required placeholder="Кв. / Офис" value="{% if profile.physical_address %}{{ profile.physical_address.flat }}{% endif %}">
                                     </div>
 
                                 </div>

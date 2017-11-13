@@ -73,7 +73,11 @@
                                             <input name="flat" class="setting_input" required disabled value="{% if profile.juridical_address %}{{ profile.juridical_address.flat }}{% endif %}">
                                         </li>
                                         <li class="clearfix">
-
+                                            <label class="checkbox_box" for="input_checkbox">
+                                                <input name="physical_is_juridical" id="physical_is_juridical" class="input_checkbox" type="checkbox" {% if profile.physical_is_juridical %}checked{% endif %}>
+                                                <span class="checkbox-custom"></span>
+                                                <span>Фактический совпадает с юридическим</span>
+                                            </label>
                                             {% comment %}
                                             <label class="checkbox_box" for="input_checkbox">
                                                 <input name="physical_is_juridical" id="input_checkbox" class="input_checkbox" type="checkbox">
@@ -112,7 +116,7 @@
                                 <!--  -->
                                 <div class="setting_box" data-mh="setting_box">
 
-                                    <span class="js_edit">
+                                    <span class="js_edit" id="physical_address_block" {% if profile.physical_is_juridical %}style="display: none;"{% endif %}>
                                         <i class="fa fa-pencil" aria-hidden="true"></i>
                                     </span>
 
@@ -153,12 +157,6 @@
                                         </li>
 
                                         <li class="clearfix">
-
-                                            <label class="checkbox_box" for="input_checkbox2">
-                                                <input name="physical_is_juridical" id="input_checkbox2" class="input_checkbox" type="checkbox" {% if profile.physical_is_juridical %}checked{% endif %}>
-                                                <span class="checkbox-custom"></span>
-                                                <span>Совпадает с юридическим</span>
-                                            </label>
 
                                             <div class="ok_box">
                                                 <button class="ok_btn">
