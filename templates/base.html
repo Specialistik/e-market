@@ -177,32 +177,33 @@
                 </li>
 
 
-                <li class="current">
+                <li{% comment %} class="current"{% endcomment %}>
                     <a href="javascript:;">Мои заказы</a>
-                    {% if user.profile.role == 'customer' %}
+
                     <ul class="sub_navigation_menu">
-                        <li>
+                        {% if user.profile.role == 'customer' %}
+                        <li{% if request.path == '/basket' %} class="current"{% endif %}>
                             <a href="/basket">
-                                <img src="/static/images/icons/basket-icon.png" alt="">
+                                <img src="/static/images/icons/basket-icon.png">
                                 Корзина
                             </a>
                         </li>
+                        {% endif %}
 
-                        <li class="current">
+                        <li{% if request.path == '/current_orders' %} class="current"{% endif %}>
                             <a href="/current_orders">
-                                <img src="/static/images/icons/box-icon.png" alt="">
+                                <img src="/static/images/icons/box-icon.png">
                                 Текущие заказы
                             </a>
                         </li>
 
-                        <li>
+                        <li{% if request.path == '/order_history' %} class="current"{% endif %}>
                             <a href="/order_history">
-                                <img src="/static/images/icons/history-icon.png" alt="">
+                                <img src="/static/images/icons/history-icon.png">
                                 История
                             </a>
                         </li>
                     </ul>
-                    {% endif %}
                 </li>
 
                 <li>
@@ -216,7 +217,6 @@
                 <li {% comment %}class="current"{% endcomment %}>
                     <a href="/profile/">Настройки</a>
                 </li>
-
             </ul>
 
         </nav>

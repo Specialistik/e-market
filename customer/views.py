@@ -10,6 +10,8 @@ from core.views import profile
 from core.models import Address
 from models import TradePoint, Order, OrderUnit
 
+from orders.views import current_orders
+
 
 def categories(request):
     return render(request, 'categories.html', {'categories': Category.objects.filter(pid__isnull=True)})
@@ -158,14 +160,6 @@ def order_unit_edit(request, pk):
 
             return redirect(basket)
         return render(request, '500.html', {'error_message': u'Только заказчик может редактировать позиции заказа'})
-    return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
-
-
-def current_orders(request):
-    if request.user.profile:
-        if request.user.profile.role == 'customer':
-            return render(request, 'current_orders.html', {'current_orders': Order.objects.filter()})
-        return render(request, '500.html', {'error_message': u'Только заказчик может просматривать свои заказы'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
 
 

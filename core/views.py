@@ -5,15 +5,13 @@ import uuid
 
 
 from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import get_object_or_404, render, redirect
-from django.contrib.auth.models import Group, User
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout as logout_user
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.conf import settings
-#from django.core.files.storage import FileSystemStorage
-
 
 from rest_framework import status, permissions
 from rest_framework.decorators import api_view, permission_classes
@@ -21,10 +19,8 @@ from rest_framework.response import Response
 
 from .models import UserProfile, Address, OrganizationType, LegalAct, SignerInfo, IdentityDocument, Account
 from customer.models import TradePoint
-from producer.models import ProducerDepot, ProductCard
-from catalogs.models import Category
+from producer.models import ProducerDepot
 from .serializers import SignupSerializer
-from .forms import IdentityDocumentForm
 
 
 @api_view(['POST'])
@@ -65,15 +61,6 @@ def signup(request):
         return Response(serialized_user.data, status=status.HTTP_201_CREATED)
     else:
         return Response(serialized_user.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-"""
-def index(request):
-    if request.user.is_anonymous:
-        if request.method == 'GET':
-            return render(request, 'pick_role.html')
-    return redirect(profile)
-"""
 
 
 def index(request):
@@ -138,7 +125,6 @@ def profile(request):
                 if request.user.profile.created:
                     return render(request, 'profile_update_producer.html', data)
                 return render(request, 'profile_create_producer.html', data)
-            #return render(request, 'profile_update.html', data)
         return render(request, '500.html', {'error_message': u'Только поставщики и заказчики имеют свой профиль'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
 
@@ -165,8 +151,6 @@ def create_profile(request):
                 if request.user.profile.created:
                     return render(request, 'profile_update_producer.html', data)
                 return render(request, 'profile_create_producer.html', data)
-
-            #return render(request, 'profile_create.html', data)
         return render(request, '500.html', {'error_message': u'Только поставщики и заказчики имеют свой профиль'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
 
@@ -199,7 +183,7 @@ def profile_fiz_and_jur_address(request):
             u_p.juridical_address.flat = request.POST['jur_flat']
             u_p.juridical_address.save()
 
-        # todo: На фронте пока печалька в плане флага "совпадает с юридическим", поэтому ожидаем что данные будут вводить
+        # todo: На фронте пока печалька в плане флага "совпадает с юридическим"
         #if request.POST['input_radio'] == 'false':
         if u_p.physical_address is None:
             u_p.physical_address = Address.objects.create(

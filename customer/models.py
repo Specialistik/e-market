@@ -48,9 +48,13 @@ class Order(models.Model):
 class OrderUnit(models.Model):
     order = models.ForeignKey(Order, verbose_name=u'Заказ')
     product = models.ForeignKey(ProductCard, verbose_name=u'Позиция заказа')
+    producer = models.ForeignKey(User, default=1, verbose_name=u'Поставщик')
     amount = models.IntegerField(verbose_name=u'Количество')
     trade_point = models.ForeignKey(TradePoint, verbose_name=u'Торговая точка')
     remark = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Примечание')
+
+    def find_producer(self):
+        return self.product.product_depot.producer.id
 
     def calculate_sum(self):
         return self.amount * self.product.producer_price

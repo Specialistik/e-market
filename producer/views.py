@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 import uuid
 
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 
 from core.views import profile
@@ -71,8 +70,8 @@ def product_edit(request, pk):
                 product = ProductCard.objects.get(pk=pk)
             except ProductCard.DoesNotExist:
                 return render(request, '500.html', {'error_message': u'Редактируемый товар не найден'})
-            if not product.product_depot.producer_id == request.user.id:
-                return render(request, '500.html', {'error_message': u'Только производитель может редактировать свой товар'})
+            if product.product_depot.producer_id != request.user.id:
+                return render(request, '500.html', {'error_message': u'Редактировать можно только свои товары'})
             product.name = request.POST['name']
             product.weight = request.POST['weight']
             product.height = request.POST['height']
@@ -81,7 +80,6 @@ def product_edit(request, pk):
             product.producer_price = request.POST['producer_price']
             product.customer_price = ProductCard.calculate_customer_price(float(request.POST['producer_price']))
             product.minimum_amount = request.POST['minimum_amount']
-            #product.expiration_date = request.POST['expiration_date']
             product.expiration_date = request.POST.get('expiration_date', '')
             product.expiration_type_id = request.POST['expiration_type']
 

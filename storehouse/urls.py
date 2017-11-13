@@ -15,6 +15,7 @@ import core.views as core_views
 import catalogs.views as catalog_views
 import producer.views as producer_views
 import customer.views as customer_views
+import orders.views as orders_views
 import core.api as core_api
 
 #schema_view = get_swagger_view(title='The sklad API')
@@ -67,6 +68,8 @@ urlpatterns = [
     url(r'^my_products/add/$', producer_views.product_add),
     url(r'^my_products/$', producer_views.my_products),
 
+    url(r'^current_orders$', orders_views.current_orders),
+
     # Customer views
     url(r'^categories/$', customer_views.categories),
     url(r'^category/([0-9]+)/$', customer_views.subcategories),
@@ -80,7 +83,7 @@ urlpatterns = [
     url(r'^order_unit/edit/([0-9]+)/$', customer_views.order_unit_edit),
     url(r'^perform_order$', customer_views.perform_order),
 
-    url(r'^current_orders$', customer_views.current_orders),
-    url(r'^order_history$', customer_views.order_history),
+    #url(r'^current_orders_customer$', customer_views.current_orders),
+    #url(r'^order_history$', customer_views.order_history),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + staticfiles_urlpatterns()
