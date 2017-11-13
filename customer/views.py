@@ -134,12 +134,14 @@ def order_unit_add(request):
             if OrderUnit.objects.filter(order=order, product_id=request.POST['product']).count() > 0:
                 return JsonResponse({'error_message': u'Товар уже присутствует в корзине'})
 
-            OrderUnit.objects.create(
+            order_unit = OrderUnit.objects.create(
                 order_id=order.id,
                 product_id=request.POST['product'],
                 amount=int(request.POST['amount']),
                 trade_point_id=int(request.POST['trade_point'])
             )
+            order_unit.producer_id = order_unit.find_producer()
+            order_unit.save()
             return redirect(basket)
         return render(request, '500.html', {'error_message': u'Только заказчик может добавлять позиции заказа'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
