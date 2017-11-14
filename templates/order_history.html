@@ -1,9 +1,73 @@
 {% extends 'base.html' %}
 
-{% block js_css %}
-    {% comment %}<script src="/static/js/products.js"></script> {% endcomment %}
-{% endblock %}
-
 {% block content %}
-    
+    <div id="content" class="wrapp_content">
+
+    <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
+
+    <form action="" class="wrapp_filter">
+        <label class="label1 big">Сортировка:</label>
+
+        <div class="wrapp_castom_select sorting">
+            <select data-placeholder="По умолчанию" name="sorting">
+                <option value=""></option>
+                <option value="1">По умолчанию</option>
+                <option value="2">Подтвержденные</option>
+                <option value="3">Завершенные</option>
+            </select>
+        </div>
+    </form>
+
+    <!-- - - - - - - - - - - - - - End of Form - - - - - - - - - - - - - - - - -->
+
+    <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+
+    <table class="table_order">
+
+        <thead>
+
+            <tr>
+                <th class="table_col1">
+                    №
+                </th>
+
+                <th>
+                    Дата
+                    <a href="javascript:;" class="sort_btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
+                </th>
+
+                <th>
+                    Контрагент
+                    <a href="javascript:;" class="sort_btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
+                </th>
+
+                <th class="table_col4">
+                    Сумма/руб
+                    <a href="javascript:;" class="sort_btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
+                </th>
+
+                <th class="table_col4">
+                    Статус
+                    <a href="javascript:;" class="sort_btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+            {% for order in order_history %}
+                <tr>
+                    <td data-title="№">{{ forloop.counter }}</td>
+                    <td data-title="Дата">{{ order.created|date:'d.m.Y' }}</td>
+                    <td data-title="Контрагент">{{ order.customer.profile.company_name }}</td>
+                    <td data-title="Сумма/руб">{{ order.calculate_sum }}</td>
+                    <td class="blue" data-title="Статус">{{ order.order_status.name }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+</div>
+
 {% endblock %}
