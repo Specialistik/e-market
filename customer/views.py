@@ -132,7 +132,7 @@ def order_unit_add(request):
             order, created = Order.objects.get_or_create(customer_id=request.user.id, order_status__isnull=True)
 
             if OrderUnit.objects.filter(order=order, product_id=request.POST['product']).count() > 0:
-                return JsonResponse({'error_message': u'Товар уже присутствует в корзине'})
+                return redirect(basket)
 
             order_unit = OrderUnit.objects.create(
                 order_id=order.id,

@@ -68,7 +68,7 @@
 
                                     <li>
                                         <label>Количество</label>
-                                        <input type="text" name="amount" class="setting_input" value="{{ order_unit.amount }}" disabled>
+                                        <input type="number" min="{{ order_unit.product.minimum_amount }}" step="{{ order_unit.product.minimum_amount }}" name="amount" class="setting_input" value="{{ order_unit.amount }}" disabled required data-mask="99999">
                                     </li>
 
                                     <li>
@@ -96,17 +96,15 @@
 
                                     <li>
                                         <label>Примечание:</label>
-                                        <input type="text" name="remark" class="setting_input" value="{{ order_unit.remark }}" disabled>
+                                        <input type="text" name="remark" class="setting_input" value="{% if order_unit.remark %}{{ order_unit.remark }}{% endif %}" disabled>
                                     </li>
 
                                     <li>
-
                                         <div class="ok_box">
                                             <button class="ok_btn">
                                                 <i class="fa fa-check" aria-hidden="true"></i>
                                             </button>
                                         </div>
-
                                     </li>
 
                                 </ul>

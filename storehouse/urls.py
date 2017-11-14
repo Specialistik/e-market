@@ -45,7 +45,6 @@ urlpatterns = [
 
     url(r'^profile/$', core_views.profile),
     url(r'^profile/skip_creation/$', core_views.profile_skip_creation),
-    #url(r'^profile_create/$', core_views.create_profile),
     url(r'^profile/fiz_and_jur_address/$', core_views.profile_fiz_and_jur_address),
     url(r'^profile/juridical_address/$', core_views.profile_juridical_address),
     url(r'^profile/physical_address/$', core_views.profile_physical_address),
@@ -68,8 +67,6 @@ urlpatterns = [
     url(r'^my_products/add/$', producer_views.product_add),
     url(r'^my_products/$', producer_views.my_products),
 
-
-
     # Customer views
     url(r'^categories/$', customer_views.categories),
     url(r'^category/([0-9]+)/$', customer_views.subcategories),
@@ -86,8 +83,5 @@ urlpatterns = [
     # Order views
     url(r'^current_orders$', orders_views.current_orders),
     url(r'^order_history$', orders_views.order_history),
-
-    #url(r'^current_orders_customer$', customer_views.current_orders),
-    #url(r'^order_history$', customer_views.order_history),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + staticfiles_urlpatterns()

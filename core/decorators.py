@@ -2,6 +2,7 @@
 #from django.views.decorators.http import
 #from django.views.decorators.csrf import
 #from django.contrib.auth.decorators import
+#from django.contrib.admin.decorators import
 
 
 def customer_required():
