@@ -7,7 +7,7 @@ $(document).ready(function(){
         $('#org_type_short').styler('destroy').val($(this).val()).styler();
     });
 
-    if ($('.physical_is_juridical').not(':checked')) {
+    if ($('.physical_is_juridical').is(':checked')) {
         $('.fiz_input').attr('disabled', true)
     }
 

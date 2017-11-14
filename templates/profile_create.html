@@ -44,7 +44,7 @@
                             <h3 class="subtitle_edit">Юридический адрес:</h3>
 
                             <div class="form_box_offset">
-                                <input name="jur_full_address" placeholder="Город, улица, дом" value="{% if profile.juridical_address %}{{ profile.juridical_address.full_address }}{% endif %}">
+                                <input name="jur_full_address" placeholder="Город, улица, дом" value="{% if profile.juridical_address.full_address %}{{ profile.juridical_address.full_address }}{% endif %}">
                             </div>
 
                             <div class="form_box_offset">
@@ -140,7 +140,7 @@
                             </div>
 
                             <div class="form_box_offset">
-                                <input class="fiz_input" name="fiz_full_address" placeholder="Город, улица, дом" value="{% if profile.physical_address %}{{ profile.physical_address.full_address }}{% endif %}">
+                                <input class="fiz_input" name="fiz_full_address" placeholder="Город, улица, дом" value="{% if profile.physical_address.full_address %}{{ profile.physical_address.full_address }}{% endif %}">
                             </div>
 
                             <div class="form_box_offset">
@@ -402,7 +402,7 @@
 
                                 <div class="wrapp_privacy_policy">
 
-                                    <input type="checkbox" id="privacy_policy" name="privacy_policy">
+                                    <input type="checkbox" id="privacy_policy" name="privacy_policy" checked>
                                     <label for="privacy_policy">
                                     </label>
 
