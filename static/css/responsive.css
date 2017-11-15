@@ -285,13 +285,13 @@
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafafa', endColorstr='#eeeeee',GradientType=1 ); /* IE6-9 */
 	}
 
-	.wrapp_products_item_forms > div{
+	.wrapp_products_item_forms > .form_products_col{
 		width: 100%;
 		padding: 10px;
 		background: none;
 	}
 
-	.form_products_col_quarter.gradient{
+	.form_products_col.gradient{
 		background: none;
 	}
 
@@ -365,7 +365,6 @@
 		font-size: 16px;
 	}
 
-
 	.logo{
 		width: 70px;
 	}
@@ -377,7 +376,6 @@
 	.header_enter li:not(:last-child):after{
 		margin: 0 3px;
 	}
-
 
 	.entered_top {
 	    padding-top: 15px;
@@ -724,9 +722,29 @@
 		margin-bottom: 10px;
 	}
 
-	.wrapp_products_item_forms > .form_products_col_half,
-	.wrapp_products_item_forms > .form_products_col_quarter{
+	.wrapp_products_item_forms > .form_products_settings_col{
 		padding: 10px 10px 0 10px;
+	}
+
+	.form_products_settings{
+		-webkit-flex-direction: column;
+		-moz-flex-direction: column;
+		-ms-flex-direction: column;
+		-o-flex-direction: column;
+		flex-direction: column;
+	}
+
+	.form_products_settings:not(:last-child){
+		margin-bottom: 0;
+	}
+
+	.form_products_settings_col{
+		margin-bottom: 14px;
+	}
+
+	.form_products_settings_col.fix{
+		width: 100%;
+		padding-right: 0;
 	}
 
 	.box-modal_close{
@@ -854,6 +872,15 @@
 
 	.modal_container4{
 		padding: 0 20px 20px 20px;
+	}
+
+	.box_count_textarea{
+		font-size: 12px;
+	}
+
+	.box_form_products_item .setting_list li > .setting_input:not([type="checkbox"]):not([type="radio"]):not([type="number"]){
+		font-size: 12px;
+		line-height: 1.3;
 	}
 
 

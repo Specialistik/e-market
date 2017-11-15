@@ -61,7 +61,7 @@
                         <div style="display: none" class="product_minimum_amount">{{ product.minimum_amount }}</div>
                         <div style="display: none" class="product_id">{{ product.id }}</div>
                         <div class="products_img" data-mh="products-img">
-                            <a href="javascript:;" data-popup="#product1">
+                            <a href="javascript:;" data-popup="#product1" class="add_to_cart">
                                 <img class="img_url" src="{{ product.get_image_url }}" alt="{{ product.name }}">
                             </a>
                         </div>
@@ -141,6 +141,7 @@
                                 Выберите адрес доставки:
                                 <span class="tooltip_desc" data-tooltip-txt="Комментарий" data-tooltip-pos="right">?</span>
                             </label>
+
 
                             <div class="wrapp_castom_select bottom_dropdown">
                                 <select data-placeholder="Нажмите, чтобы выбрать" name="trade_point" required>

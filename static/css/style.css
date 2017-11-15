@@ -1381,6 +1381,23 @@
       margin-bottom: 12px;
     }
 
+    textarea.big{
+      height: 90px;
+      padding: 15px 19px;
+    }
+
+    .box_count_textarea{
+      padding-right: 13px;
+      text-align: right;
+      font-size: 14px;
+      line-height: 1;
+      color: #646463;
+    }
+
+    .wrapp_textarea textarea:not(:last-child){
+      margin-bottom: 3px;
+    }
+
   /* --------------------------------------------
       4.4. Tooltip
   -------------------------------------------- */
@@ -3172,21 +3189,8 @@
       flex-grow: 10;
     }
 
-    .wrapp_products_item_forms > div{
-      display: -webkit-flex;
-      display: -moz-flex;
-      display: -ms-flex;
-      display: -o-flex;
-      display: flex;
-      -webkit-flex-wrap: wrap;
-      -moz-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-      -o-flex-wrap: wrap;
-      flex-wrap: wrap;
-    }
-
-    .form_products_col_half{
-      padding: 31px 34px 31px 0;
+    .form_products_col{
+      padding: 31px 34px 31px 47px;
       background-color: #fafafa;
       -webkit-flex-grow: 1;
       -moz-flex-grow: 1;
@@ -3195,20 +3199,72 @@
       flex-grow: 1;
     }
 
-    .form_products_col_quarter{
-      background-color: #fafafa;
-      padding: 31px 34px;
+    .form_products_col.gradient{
+      -webkit-flex-grow: 0;
+      -moz-flex-grow: 0;
+      -ms-flex-grow: 0;
+      -o-flex-grow: 0;
+      flex-grow: 0;
       width: 260px;
-    }
-
-    .form_products_col_quarter.gradient{
       background: #fafafa; /* Old browsers */
       background: -moz-linear-gradient(left,  #fafafa 55%, #eeeeee 100%); /* FF3.6-15 */
       background: -webkit-linear-gradient(left,  #fafafa 55%,#eeeeee 100%); /* Chrome10-25,Safari5.1-6 */
       background: linear-gradient(to right,  #fafafa 55%,#eeeeee 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafafa', endColorstr='#eeeeee',GradientType=1 ); /* IE6-9 */
     }
+    /* col */
 
+    .form_products_settings{
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flex;
+      display: -o-flex;
+      display: flex;
+      -webkit-justify-content: flex-start;
+      -moz-justify-content: flex-start;
+      -ms-justify-content: flex-start;
+      -o-justify-content: flex-start;
+      justify-content: flex-start;
+    }
+
+    .form_products_settings:not(:last-child){
+      margin-bottom: 14px;
+    }
+
+    .form_products_settings_col{
+      -webkit-flex-grow: 1;
+      -moz-flex-grow: 1;
+      -ms-flex-grow: 1;
+      -o-flex-grow: 1;
+      flex-grow: 1;
+    }
+
+    .form_products_settings_col.fix{
+      -webkit-flex-grow: 0;
+      -moz-flex-grow: 0;
+      -ms-flex-grow: 0;
+      -o-flex-grow: 0;
+      flex-grow: 0;
+      width: 260px;
+      padding-right: 35px;
+    }
+
+    .form_products_settings_col .ok_box{
+      width: 100%;
+    }
+
+    .setting_textarea:not(:disabled){
+      color: #ff6900;
+      border: none;
+      background-color: transparent;
+      border-bottom: 1px solid #dadada
+    }
+
+    .setting_textarea:disabled{
+      color: #4f4f4e;
+      background-color: transparent;
+      border: none;
+    }
 
     /* ------------------------------------------------
 
