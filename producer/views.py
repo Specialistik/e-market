@@ -43,6 +43,7 @@ def product_add(request):
                     height=request.POST['height'],
                     width=request.POST['width'],
                     length=request.POST['length'],
+                    description=request.POST['description'],
                 )
 
                 if 'product_pic' in request.FILES:
@@ -82,6 +83,7 @@ def product_edit(request, pk):
             product.minimum_amount = request.POST['minimum_amount']
             product.expiration_date = request.POST.get('expiration_date', '')
             product.expiration_type_id = request.POST['expiration_type']
+            product.description = request.POST['description']
 
             product.category_id = request.POST['category']
             product.save()

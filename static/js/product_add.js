@@ -19,4 +19,11 @@ $(document).ready(function(){
             $('#expiration_value').attr("required", true).removeAttr("disabled");
         }
     });
+
+
+    if($(".wrapp_textarea").length){
+
+        $('.textarea_item').limit('600','.count_textarea');
+
+    }
 });

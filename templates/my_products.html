@@ -53,11 +53,10 @@
                             </span>
 
                             <a href="/my_products/del/{{ product.id }}/" class="closest_btn">
-                            {% comment %}<a href="javascript:;" class="closest_btn">{% endcomment %}
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </a>
 
-                            <div class="form_products_col_quarter gradient">
+                            <div class="form_products_col gradient">
 
                                 <ul class="setting_list">
 
@@ -94,7 +93,6 @@
                                         <label for="">Срок годности</label>
                                         <input class="setting_input expiration_date" name="expiration_date" value="{{ product.expiration_date }}" disabled required>
 
-                                        {% comment %}<label for="">Категория</label>{% endcomment %}
                                         <div class="wrapp_settings_select right_angle">
                                             <select name="expiration_type" data-placeholder="Тип срока годности" disabled required class="expiration_type">
                                             {% for expiration_value in expiration_values %}
@@ -103,80 +101,85 @@
                                         </select>
                                         </div>
                                     </li>
-
-                                    {% comment %}
-                                    <li>
-                                        <label for="">Производитель</label>
-                                        <input type="text" class="setting_input" value="" disabled>
-                                    </li>
-                                    {% endcomment %}
-                                </ul>
-
-                            </div>
-
-                            <div class="form_products_col_quarter">
-                                <ul class="setting_list">
-                                    <li>
-                                        <label for="">Минимальное количество</label>
-                                        <input class="setting_input" name="minimum_amount" value="{{ product.minimum_amount }}" disabled required>
-                                    </li>
-
-                                    {% localize off %}
-                                        <li>
-                                            <label for="">Вес</label>
-                                            <input class="setting_input" name="weight" value="{{ product.weight }}" disabled required data-mask="9999.999">
-                                        </li>
-
-                                        <li>
-                                            <label for="">Цена</label>
-                                            <input class="setting_input" name="producer_price" value="{{ product.producer_price }}" disabled required data-mask="99999999.99">
-                                        </li>
-                                    {% endlocalize %}
-
-                                    <li>
-                                        <label for="">Изменить изображение</label>
-                                        <div class="select_file" style="width: 100%">
-                                            <input type="file" name="product_pic" value="Выберите файл" class="setting_input" disabled>
-                                            <span class="file_notselected">Выберите файл</span>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
 
-                            <div class="form_products_col_half">
-                                <ul class="setting_list">
-                                    <li>
-                                        <label for="">Длина:</label>
-                                        <input class="setting_input" name="length" value="{{ product.length }}" disabled required>
-                                    </li>
+                            <div class="form_products_col">
+                                <div class="form_products_settings">
+                                    <div class="form_products_settings_col fix">
+                                        <ul class="setting_list">
+                                            <li>
+                                                <label for="">Минимальное количество</label>
+                                                <input class="setting_input" name="minimum_amount" value="{{ product.minimum_amount }}" disabled required>
+                                            </li>
 
-                                    <li>
-                                        <label for="">Ширина:</label>
-                                        <input class="setting_input" name="width" value="{{ product.width }}" disabled required>
-                                    </li>
+                                            {% localize off %}
+                                                <li>
+                                                    <label for="">Вес</label>
+                                                    <input class="setting_input" name="weight" value="{{ product.weight }}" disabled required data-mask="9999.999">
+                                                </li>
 
-                                    <li>
-                                        <label for="">Высота:</label>
-                                        <input class="setting_input" name="height" value="{{ product.height }}" disabled required>
-                                    </li>
+                                                <li>
+                                                    <label for="">Цена</label>
+                                                    <input class="setting_input" name="producer_price" value="{{ product.producer_price }}" disabled required data-mask="99999999.99">
+                                                </li>
+                                            {% endlocalize %}
 
-                                    <div class="wrapp_settings_select right_angle">
-                                        <select data-placeholder="Выбрать склад" required name="product_depot" disabled required>
-                                            <option value=""></option>
-                                            {% for depot in depots %}
-                                                <option value="{{ depot.id }}" {% if depot.id == product.product_depot.id %}selected{% endif %}>{{ depot.address.full_address }}</option>
-                                            {% endfor %}
-                                        </select>
+                                            <li>
+                                                <label for="">Изменить изображение</label>
+                                                <div class="select_file" style="width: 100%">
+                                                    <input type="file" name="product_pic" value="Выберите файл" class="setting_input" disabled>
+                                                    <span class="file_notselected">Выберите файл</span>
+                                                </div>
+                                            </li>
+                                        </ul>
                                     </div>
 
-                                    <li>
-                                        <div class="ok_box">
-                                            <button class="ok_btn">
-                                                <i class="fa fa-check" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </li>
-                                </ul>
+                                    <div class="form_products_settings">
+                                        <ul class="setting_list">
+                                            <li>
+                                                <label for="">Длина:</label>
+                                                <input class="setting_input" name="length" value="{{ product.length }}" disabled required>
+                                            </li>
+
+                                            <li>
+                                                <label for="">Ширина:</label>
+                                                <input class="setting_input" name="width" value="{{ product.width }}" disabled required>
+                                            </li>
+
+                                            <li>
+                                                <label for="">Высота:</label>
+                                                <input class="setting_input" name="height" value="{{ product.height }}" disabled required>
+                                            </li>
+
+                                            <div class="wrapp_settings_select right_angle">
+                                                <select data-placeholder="Выбрать склад" required name="product_depot" disabled required>
+                                                    <option value=""></option>
+                                                    {% for depot in depots %}
+                                                        <option value="{{ depot.id }}" {% if depot.id == product.product_depot.id %}selected{% endif %}>{{ depot.address.full_address }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="form_products_settings_col">
+                                    <ul class="setting_list">
+                                        <li>
+                                            <label for="">Описание:</label>
+                                            <textarea name="description" class="setting_textarea" disabled>{{ product.description }}</textarea>
+                                        </li>
+
+                                        <li>
+                                            <div class="ok_box">
+                                                <button class="ok_btn">
+                                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -312,7 +312,7 @@ def profile_signer_info(request):
                 birth_date=datetime.datetime.strptime(request.POST['issued_date'], "%d.%m.%Y").date(),
                 inn=request.POST['inn'],
                 position=request.POST['position'],
-                code_field=request.POST['code_field']
+                #code_field=request.POST['code_field']
             )
             u_p.save()
         else:
@@ -322,7 +322,7 @@ def profile_signer_info(request):
             u_p.signer_info.birth_date = datetime.datetime.strptime(request.POST['birth_date'], "%d.%m.%Y").date()
             u_p.signer_info.inn = request.POST['inn']
             u_p.signer_info.position = request.POST['position']
-            u_p.signer_info.code_field = request.POST['code_field']
+            #u_p.signer_info.code_field = request.POST['code_field']
             u_p.signer_info.save()
 
         return redirect(profile)
@@ -368,7 +368,7 @@ def profile_signer_info_and_identity(request):
                 birth_date=datetime.datetime.strptime(request.POST['birth_date'], "%d.%m.%Y").date(),
                 inn=request.POST['inn'],
                 position=request.POST.get('position', ''),
-                code_field=request.POST.get('code_field', '')
+                #code_field=request.POST.get('code_field', '')
             )
             u_p.save()
         else:
@@ -378,7 +378,7 @@ def profile_signer_info_and_identity(request):
             u_p.signer_info.birth_date = datetime.datetime.strptime(request.POST['birth_date'], "%d.%m.%Y").date()
             u_p.signer_info.inn = request.POST['inn']
             u_p.signer_info.position = request.POST.get('position', '')
-            u_p.signer_info.code_field = request.POST.get('code_field', '')
+            #u_p.signer_info.code_field = request.POST.get('code_field', '')
             u_p.signer_info.save()
 
         if u_p.identity_document is None:
@@ -409,7 +409,7 @@ def profile_account_add(request):
     if request.user.profile:
         Account.objects.create(
             profile=request.user.profile,
-            name=request.POST['name'],
+            #name=request.POST['name'],
             account_number=request.POST['account_number'],
             bik=request.POST['bik'],
             bank_name=request.POST['bank_name'],
@@ -424,7 +424,7 @@ def profile_account_edit(request, pk):
     if request.user.profile:
         my_account = Account.objects.get(pk=pk, profile_id=request.user.profile.id)
         if my_account:
-            my_account.name = request.POST['name']
+            #my_account.name = request.POST['name']
             my_account.account_number = request.POST['account_number']
             my_account.bik = request.POST['bik']
             my_account.bank_name = request.POST['bank_name']

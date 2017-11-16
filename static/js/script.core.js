@@ -45,13 +45,14 @@
 			self.basketCount = $('.basket_count');
 
 			self.closestBtn = $('.closest_btn');
+			self.editTextarea = $('.setting_textarea');
 
 			self.editLink.on('click', function(){
 				$(this)
 				.addClass('active')
 				.closest(self.settingBox)
 				.addClass('active')
-				.find('.setting_input')
+				.find('.setting_input, .setting_textarea')
 				.removeAttr('disabled');
 
 				$(this).closest('.setting_box').find('.wrapp_settings_select select').attr('disabled', false)

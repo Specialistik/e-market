@@ -227,9 +227,9 @@
                             <div class="form_box_offset">
 
                                 <div class="wrapp_castom_select">
-                                    <select data-placeholder="Краткая организационно-правовая форма" name="org_type_short" id="org_type_short">
+                                    <select data-placeholder="Краткая организационно-правовая форма" name="org_type_short" id="org_type_short" required>
                                         {% for org_type in organization_types %}
-                                            <option value="{{ org_type.id }}" {% if not profile.organization_type and forloop.first %}selected{% endif %}{% if profile.organization_type.id == org_type.id %}selected{% endif %}>{{ org_type.short_name }}</option>
+                                            <option value="{{ org_type.id }}" {% if forloop.first and not profile.organization_type %}selected{% endif %}{% if profile.organization_type.id == org_type.id %}selected{% endif %}>{{ org_type.short_name }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -240,7 +240,7 @@
                                 <div class="wrapp_castom_select">
                                     <select data-placeholder="Полная организационно-правовая форма" name="org_type_full" id="org_type_full">
                                         {% for org_type in organization_types %}
-                                            <option value="{{ org_type.id }}" {% if not profile.organization_type and forloop.first %}selected{% endif %}{% if profile.organization_type.id == org_type.id %}selected{% endif %}>{{ org_type.full_name }}</option>
+                                            <option value="{{ org_type.id }}" {% if forloop.first and not profile.organization_type  %}selected{% endif %}{% if profile.organization_type.id == org_type.id %}selected{% endif %}>{{ org_type.full_name }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>
@@ -439,21 +439,22 @@
 
                                 <!-- col 6 -->
                                 <div class="box_form_half">
-
+                                    {% comment %}
                                     <div class="form_box_offset">
                                         <input name="name" placeholder="Наименование счета" required value="{{ account.name }}">
                                     </div>
+                                    {% endcomment %}
 
                                     <div class="form_box_offset">
 
                                         <div class="form_row clearfix">
 
                                             <div class="form_col half">
-                                                <input name="account_number" placeholder="Номер расчетного счета" required value="{{ account.account_number }}" data-mask="0000000000000000">
+                                                <input name="account_number" placeholder="Номер расчетного счета" required value="{{ account.account_number }}" data-mask="00000000000000000000">
                                             </div>
 
                                             <div class="form_col half">
-                                                <input name="bik" placeholder="БИК" required value="{{ account.bik }}" data-mask="00000000">
+                                                <input name="bik" placeholder="БИК" required value="{{ account.bik }}" data-mask="000000000">
                                             </div>
 
                                         </div>
@@ -471,7 +472,7 @@
                                     </div>
 
                                     <div class="form_box_offset">
-                                        <input name="correspondent_account" placeholder="Корреспондентский счет" required value="{{ account.correspondent_account }}" data-mask="0000000000000000">
+                                        <input name="correspondent_account" placeholder="Корреспондентский счет" required value="{{ account.correspondent_account }}" data-mask="00000000000000000000">
                                     </div>
 
                                 </div>
@@ -504,10 +505,11 @@
 
                             <!-- col 6 -->
                             <div class="box_form_half">
-
+                                {% comment %}
                                 <div class="form_box_offset">
                                     <input name="name" placeholder="Наименование счета" required value="">
                                 </div>
+                                {% endcomment %}
 
                                 <div class="form_box_offset">
 
@@ -558,12 +560,9 @@
                 </form>
             {% endif %}
 
-
-
             {% block role_specific %}
 
             {% endblock %}
-
 
             <div class="align_right">
                 <a href="/profile/skip_creation/" class="btn light_orange icon_right large_width" id="create_profile">

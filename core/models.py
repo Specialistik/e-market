@@ -58,7 +58,7 @@ class SignerInfo(models.Model):
     birth_date = models.DateField(verbose_name=u'Дата рождения')
     inn = models.CharField(max_length=12, verbose_name=u'ИНН')
     position = models.CharField(max_length=60, verbose_name=u'Должность')
-    code_field = models.CharField(max_length=30, verbose_name=u'Кодовое слово')
+    #code_field = models.CharField(max_length=30, verbose_name=u'Кодовое слово')
 
     class Meta:
         db_table = 'signer_info'
@@ -127,11 +127,11 @@ class UserProfile(models.Model):
 
 class Account(models.Model):
     profile = models.ForeignKey(UserProfile, verbose_name=u'Профиль')
-    name = models.CharField(max_length=150, verbose_name=u'Наименование')
-    account_number = models.CharField(max_length=30, verbose_name=u'Рассчётный счёт')
+    #name = models.CharField(max_length=150, verbose_name=u'Наименование')
+    account_number = models.CharField(max_length=20, verbose_name=u'Рассчётный счёт')
     bik = models.CharField(max_length=9, verbose_name=u'БИК')
     bank_name = models.CharField(max_length=256, verbose_name=u'Наименование банка')
-    correspondent_account = models.CharField(max_length=256, verbose_name=u'Корреспондентский счет')
+    correspondent_account = models.CharField(max_length=20, verbose_name=u'Корреспондентский счет')
 
     class Meta:
         db_table = 'account'

@@ -38,6 +38,7 @@ class ProductCard(models.Model):
     length = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'Длина')
     width = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'Ширина')
     height = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'Высота')
+    description = models.TextField(default="", blank=True, verbose_name=u'Описание товара')
 
     def parent_category(self):
         return Category.objects.get(pk=self.category.pid_id)

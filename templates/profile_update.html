@@ -195,7 +195,7 @@
                                             <label>Краткая <br> организационно-правовая форма</label>
 
                                             <div class="wrapp_settings_select">
-                                                <select disabled name="org_type_short" id="org_type_short">
+                                                <select disabled required name="org_type_short" id="org_type_short">
                                                     {% for org_type in organization_types %}
                                                         <option value="{{ org_type.id }}" {% if not profile.organization_type and forloop.first %}selected{% endif %}{% if profile.organization_type.id == org_type.id %}selected{% endif %}>{{ org_type.short_name }}</option>
                                                     {% endfor %}
@@ -220,7 +220,7 @@
                                             <label>Наименование <br> учредительного документа</label>
 
                                             <div class="wrapp_settings_select">
-                                                <select disabled name="legal_act">
+                                                <select disabled required name="legal_act">
                                                     {% for legal_act in legal_acts %}
                                                         <option value="{{ legal_act.id }}" {% if profile.legal_act.id == legal_act.id %}selected{% endif %}>{{ legal_act.name }}</option>
                                                     {% endfor %}
@@ -415,17 +415,19 @@
                                         <form action="/profile/account/{{ account.id }}/" method="POST">
                                             {% csrf_token %}
                                             <ul class="setting_list">
+                                                {% comment %}
                                                 <li class="clearfix">
                                                     <label>Наименование счета</label>
                                                     <input name="name" class="setting_input" required disabled value="{{ account.name }}">
                                                 </li>
+                                                {% endcomment %}
                                                 <li class="clearfix">
                                                     <label>Номер расчетного счета</label>
-                                                    <input name="account_number" class="setting_input" required disabled value="{{ account.account_number }}">
+                                                    <input name="account_number" class="setting_input" required disabled value="{{ account.account_number }}" data-mask="00000000000000000000">
                                                 </li>
                                                 <li class="clearfix">
                                                     <label>БИК</label>
-                                                    <input name="bik" class="setting_input" required disabled value="{{ account.bik }}">
+                                                    <input name="bik" class="setting_input" required disabled value="{{ account.bik }}" data-mask="000000000">
                                                 </li>
                                                 <li class="clearfix">
                                                     <label>Наименование банка</label>
@@ -433,7 +435,7 @@
                                                 </li>
                                                 <li class="clearfix">
                                                     <label>Корреспондентский счет</label>
-                                                    <input name="correspondent_account" class="setting_input" required disabled value="{{ account.correspondent_account }}">
+                                                    <input name="correspondent_account" class="setting_input" required disabled value="{{ account.correspondent_account }}" data-mask="00000000000000000000">
                                                 </li>
                                                 <li class="clearfix">
                                                     <label></label>
@@ -457,17 +459,19 @@
                                         <form action="/profile/account/add/" method="POST">
                                             {% csrf_token %}
                                             <ul class="setting_list">
+                                                {% comment %}
                                                 <li class="clearfix">
                                                     <label>Наименование счета</label>
                                                     <input name="name" class="setting_input" required disabled value="">
                                                 </li>
+                                                {% endcomment %}
                                                 <li class="clearfix">
                                                     <label>Номер расчетного счета</label>
-                                                    <input name="account_number" class="setting_input" required disabled value="">
+                                                    <input name="account_number" class="setting_input" required disabled value="" data-mask="00000000000000000000">
                                                 </li>
                                                 <li class="clearfix">
                                                     <label>БИК</label>
-                                                    <input name="bik" class="setting_input" required disabled value="">
+                                                    <input name="bik" class="setting_input" required disabled value="" data-mask="000000000">
                                                 </li>
                                                 <li class="clearfix">
                                                     <label>Наименование банка</label>
@@ -475,7 +479,7 @@
                                                 </li>
                                                 <li class="clearfix">
                                                     <label>Корреспондентский счет</label>
-                                                    <input name="correspondent_account" class="setting_input" required disabled value="">
+                                                    <input name="correspondent_account" class="setting_input" required disabled value="" data-mask="00000000000000000000">
                                                 </li>
                                                 <li class="clearfix">
                                                     <label></label>
@@ -489,39 +493,6 @@
                                         </form>
                                     </div>
                                 {% endif %}
-
-                                {% comment %}
-                                <ul class="setting_list">
-                                    <li class="clearfix">
-                                        <label>Наименование счета</label>
-                                        <input class="setting_input" disabled value="Резервный счет">
-                                    </li>
-                                    <li class="clearfix">
-                                        <label>Номер расчетного счета</label>
-                                        <input class="setting_input" disabled value="40097 77899 09566 07452">
-                                    </li>
-                                    <li class="clearfix">
-                                        <label>БИК</label>
-                                        <input class="setting_input" disabled value="134265266">
-                                    </li>
-                                    <li class="clearfix">
-                                        <label>Наименование банка</label>
-                                        <input class="setting_input" disabled value="ПАО “АК БАРС” БАНК">
-                                    </li>
-                                    <li class="clearfix">
-                                        <label>Корреспондентский счет</label>
-                                        <input class="setting_input" disabled value="03312 16348 73409 96456">
-                                    </li>
-                                    <li class="clearfix">
-                                        <label></label>
-                                        <div class="ok_box">
-                                            <button class="ok_btn">
-                                                <i class="fa fa-check" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </li>
-                                </ul>
-                                {% endcomment %}
                             </div><!--/end of  -->
 
                         </div>
@@ -534,133 +505,7 @@
                 {% block role_specific %}
 
                 {% endblock %}
-                {% comment %}
-                <!-- profile_settings_box -->
-                <div class="col-sm-6">
 
-                    <div class="profile_settings_item">
-
-                        <h3 class="title_edit">{% if profile.role == 'customer' %}О торговых точках{% else %}О складах{% endif %}</h3>
-
-                        <div class="profile_settings_box" data-mh="profile_settings_box">
-
-                            <!--  -->
-                            <div class="setting_box" data-mh="settings-box">
-
-                                <span class="js_edit">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                </span>
-
-                                <h3 class="subtitle_edit">Юридический адрес:</h3>
-
-                                <ul class="setting_list">
-                                    <li class="clearfix">
-                                        <label class="label_settings">Город / Улица / Дом</label>
-                                        <input class="setting_input" disabled value="Казань, Волкова, 59">
-                                    </li>
-                                    <li class="clearfix">
-                                        <label>Индекс</label>
-                                        <input class="setting_input" disabled value="420 139">
-                                    </li>
-                                    <li class="clearfix">
-                                        <label>Регион</label>
-                                        <input class="setting_input" disabled value="Республика Татарстан">
-                                    </li>
-                                    <li class="clearfix">
-                                        <label>Город</label>
-                                        <input class="setting_input" disabled value="Казань">
-                                    </li>
-                                    <li class="clearfix">
-                                        <label>Населеный пункт</label>
-                                        <input class="setting_input" disabled value="Казань">
-                                    </li>
-                                    <li class="clearfix">
-                                        <label>Улица</label>
-                                        <input class="setting_input" disabled value="Волкова">
-                                    </li>
-                                    <li class="clearfix">
-                                        <label>Дом</label>
-                                        <input class="setting_input" disabled value="59">
-                                    </li>
-                                    <li class="clearfix">
-                                        <label>Корпус</label>
-                                        <input class="setting_input" disabled value="1">
-                                    </li>
-                                    <li class="clearfix">
-                                        <label>Строение</label>
-                                        <input class="setting_input" disabled value="1">
-                                    </li>
-                                    <li class="clearfix">
-                                        <label>Кв. / Офис</label>
-                                        <input class="setting_input" disabled value="1">
-                                    </li>
-                                    <!-- <li class="clearfix">
-                                    </li> -->
-
-                                    <li class="clearfix">
-                                        <label for=""></label>
-                                        <label for="" class="pull-right">
-                                            <a href="javascript:;" class="btn_before_sqare clearfix">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                                Добавить еще торговую точку
-                                            </a>
-                                        </label>
-                                    </li>
-
-                                    <li class="clearfix">
-
-                                        <div class="box_settings_radio clearfix">
-
-                                            <div class="setting_box_col50">
-                                                <label for="">
-                                                    Вы самостоятельно планируете
-                                                    осуществить доставку товаров?
-                                                </label>
-                                            </div>
-
-                                            <div class="setting_box_col50">
-                                                <label class="radio_box" for="input_radio2">
-                                                    <input type="radio" id="input_radio2" class="input_radio2" name="input_radio">
-                                                    <span class="radio-custom"></span>
-                                                    <span>Да, у нас собственная логистика</span>
-                                                </label>
-
-                                                <label class="radio_box" for="input_radio3">
-                                                    <input type="radio" id="input_radio3" class="input_radio2" name="input_radio">
-                                                    <span class="radio-custom"></span>
-                                                    <span>Нет, хотим воспользоваться услугами ваших логистов</span>
-                                                </label>
-                                            </div>
-
-                                        </div>
-
-                                    </li>
-
-                                    <li class="clearfix">
-
-                                        <label for=""></label>
-
-                                        <div class="ok_box">
-
-                                            <button class="ok_btn">
-                                                <i class="fa fa-check" aria-hidden="true"></i>
-                                                <i class="fa fa-check" aria-hidden="true"></i>
-                                            </button>
-
-                                        </div>
-
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <!--/end of  -->
-
-                        </div>
-
-                    </div>
-
-                </div>
-                {% endcomment %}
                 <!--/end of profile_settings_box -->
 
             </div> <!-- row -->

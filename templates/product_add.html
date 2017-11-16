@@ -25,7 +25,7 @@
 
             <div class="wrapp_form_box clearfix">
 
-               <div class="box_form_row clearfix">
+                <div class="box_form_row clearfix">
 
                     <!-- col 6 -->
                     <div class="box_form_half">
@@ -56,7 +56,7 @@
                         <div class="form_box_offset">
 
                             <div class="error_form_container">
-                                <input name="name" placeholder="Наименование" data-name="n_mail">
+                                <input name="name" placeholder="Наименование" required>
                             </div>
 
                         </div>
@@ -91,36 +91,18 @@
 
                             </div>
                         </div>
-                        {% comment %}
+
                         <div class="form_box_offset">
 
-                            <div class="form_row clearfix">
+                            <div class="select_file">
 
-                                <div class="form_col half">
+                                <input type="file" value="Выберите файл" name="product_pic">
 
-                                    <div class="wrapp_label_right">
-
-                                        <div class="box_input error_form_container">
-                                            <input name="expiration_date" placeholder="Срок годности" maxlength="5" required>
-                                        </div>
-
-                                        <label class="label_right">
-                                            дней
-                                        </label>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="form_col half error_form_container">
-                                    <input name="barcode" placeholder="Штрих код" maxlength="20" required>
-                                </div>
+                                <span class="file_notselected">Добавить фото</span>
 
                             </div>
 
                         </div>
-                        {% endcomment %}
-
                     </div>
                     <!-- col 6 -->
 
@@ -167,49 +149,8 @@
 
                         </div>
 
-                        {% comment %}
+
                         <div class="form_box_offset">
-
-                            <div class="form_row clearfix">
-
-                                <div class="form_col half">
-
-                                    <div class="wrapp_label_right">
-
-                                        <div class="box_input error_form_container">
-                                            <input name="dimensions" placeholder="Размеры" required>
-                                        </div>
-
-                                        <label class="label_right">
-                                            см
-                                        </label>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="form_col half">
-
-                                    <div class="wrapp_label_right">
-
-                                        <div class="box_input error_form_container">
-                                            <input name="minimum_amount" placeholder="Минимальный заказ" data-mask="0000000000" required>
-                                        </div>
-
-                                        <label class="label_right">
-                                            шт
-                                        </label>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-                        {% endcomment %}
-
-                    <div class="form_box_offset">
 
                             <div class="form_row clearfix">
 
@@ -250,11 +191,8 @@
                         </div>
 
                         <div class="form_box_offset">
-
                             <div class="form_row clearfix">
-
                                 <div class="form_col half">
-
                                     <div class="wrapp_label_right">
 
                                         <div class="box_input error_form_container">
@@ -264,49 +202,31 @@
                                         <label class="label_right">
                                             см
                                         </label>
-
                                     </div>
-
                                 </div>
 
                                 <div class="form_col half">
-
                                     <div class="wrapp_label_right">
-
                                         <div class="box_input error_form_container">
                                             <input name="minimum_amount" placeholder="Минимальный заказ" data-mask="0000000000" required>
                                         </div>
 
-                                        <label class="label_right">
-                                            шт
-                                        </label>
-
+                                        <label class="label_right">шт</label>
                                     </div>
-
                                 </div>
-
                             </div>
-
                         </div>
 
                         <div class="form_box_offset">
-
                             <div class="form_row clearfix">
-
                                 <div class="form_col half">
-
                                     <div class="wrapp_label_right">
-
                                         <div class="box_input error_form_container">
                                             <input name="producer_price" placeholder="Цена" required>
                                         </div>
 
-                                        <label class="label_right">
-                                            руб
-                                        </label>
-
+                                        <label class="label_right">руб</label>
                                     </div>
-
                                 </div>
 
                                 <div class="form_col half">
@@ -319,36 +239,21 @@
                                         </select>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
 
                         <div class="form_box_offset">
-
-                            <div class="select_file">
-
-                                <input type="file" value="Выберите файл" name="product_pic">
-
-                                <span class="file_notselected">Добавить фото</span>
-
+                            <div class="wrapp_textarea">
+                                <textarea placeholder="Описание" class="textarea_item big" name="description"></textarea>
+                                <div class="box_count_textarea">
+                                    Не более
+                                    <span class="count_textarea">600</span>
+                                    знаков
+                                </div>
                             </div>
-
                         </div>
-
                     </div>
-                    <!-- col 6 -->
-
-
                </div> <!-- box_form_row -->
-
-                {% comment %}
-               <div class="wrapp_btn_add_plus">
-                   <a href="javascript:;" class="btn_add_plus">
-                       Добавить еще продукт
-                   </a>
-               </div>
-               {% endcomment %}
 
                <div class="align_right">
                    <button class="btn hight_orange" type="submit">Добавить</button>

@@ -9,9 +9,116 @@
 				Name function
 		------------------------------------------------ */
 
-		if($("select").length){
-			
-			$('select').styler();
+		if($("select, input[type='number']").length){
+
+			$('select, input[type="number"]').styler();
+
+		}
+
+        /* ------------------------------------------------
+				End of Name function
+		------------------------------------------------ */
+
+
+		/* ------------------------------------------------
+				Popup Call
+		------------------------------------------------ */
+
+		if($("[data-popup]").length){
+
+		    $("[data-popup]").on('click', function(){
+
+		        var modal = $(this).data("popup");
+
+		        $(modal).arcticmodal({
+
+		        	afterOpen: function(){
+
+		        	    if($(modal).find('select, input[type="number"]').length){
+
+		        	        $(modal).find('select, input[type="number"]').trigger('refresh');
+
+		        	    }
+
+		        	    if($(modal).find('data-mask').length){
+
+		        	    	$.applyDataMask([selector]);
+
+		        	    }
+
+		        	}
+		        });
+
+		    });
+
+		}
+
+        /* ------------------------------------------------
+				End of Popup Call
+		------------------------------------------------ */
+
+		/* ------------------------------------------------
+				Validation Form
+		------------------------------------------------ */
+
+			if($('.validate').length){
+
+				$('.validate').validateForm({
+
+					// пример
+					rules: {
+						n_mail: {
+							required: true,
+							email: false,
+							number: true,
+							maxlength: 5,
+							minlength: 2
+						}
+					},
+
+					payment_number: {
+						required: true
+					},
+
+					messages: {
+
+						n_mail: {
+							required: "Это поле обязательно для заполнения",
+							email: "Неверный формат email",
+							number: "",
+							maxlength: "Максимальное количество символов",
+							minlength: "Минимальное количество символов"
+						},
+
+						n_captcha: {
+							required: "Введите код с картинки"
+						},
+
+						payment_number: {
+							required: "Номер платежного поручения необходим <br> для отслеживания поступления денег на безопасный счет"
+						}
+
+					}
+					// elementContainer: 'error_form_container', // клас обертки элемента формы (обязательно!!!!!!!)
+			    	// errorClassEl: 'error', // клас элемента ошибки элемента формы
+			    	// errorClass: 'error_massage', // клас элемента с сообщением об ошибке
+			    	// errorEl: 'div',   // какой тег будет обернуто сообщени об ошибка (только парные теги)
+
+				});
+
+			}
+
+		/* ------------------------------------------------
+				End of Validation Form
+		------------------------------------------------ */
+
+		/* ------------------------------------------------
+				Name function
+		------------------------------------------------ */
+
+		if($(".wrapp_textarea").length){
+
+			$('.textarea_item').limit('600','.count_textarea');
 
 		}
 
