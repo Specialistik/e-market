@@ -116,42 +116,25 @@
 
                             </div> <!-- basket_wrapp -->
                         {% endif %}
+
+
+                        <a href="/profile/" class="wrapp_company_logo clearfix">
+
+                            <span class="company_logo">
+                                <img src="/static/images/icons/user-icon.png" alt="">
+                            </span>
+
+                            <span class="company_name">
+                                {{ user.profile.company_name }}
+                            </span>
+
+                        </a>
                     {% endif %}
-
-                    <a href="/profile/" class="wrapp_company_logo clearfix">
-
-                        <span class="company_logo">
-                            <img src="/static/images/icons/user-icon.png" alt="">
-                        </span>
-
-                        <span class="company_name">
-                            {{ user.profile.company_name }}
-                        </span>
-
-                    </a>
 
                     <a href="/logout" class="out_btn">
                         Выйти
-                        {% comment %}<i class="fa fa-angle-down" aria-hidden="true"></i>{% endcomment %}
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
                     </a>
-
-                </div>
-            {% else %}
-                <div>
-                    {% comment %}
-                    <ul class="header_enter">
-
-                        <li class="current">
-                            <a href="/signin">Войти</a>
-                        </li>
-
-                        <li>
-                            <a href="/pick_role">Зарегистрироваться</a>
-                        </li>
-
-                    </ul>
-                    {% endcomment %}
-
                 </div>
             {% endif %}
             <!-- - - - - - - - - - - - - - End of ? - - - - - - - - - - - - - - - - -->
@@ -164,6 +147,29 @@
         </button>
 
         <nav id="nav" class="navigation">
+            {% if user.is_authenticated and user.profile %}
+                <div class="user_navigation">
+                    {% if user.profile.role == 'customer' %}
+                        <div class="basket_wrapp">
+                            <a href="/basket" class="basket_box">
+                                <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                                <span class="basket_item">{{ basket_items }}</span>
+                            </a>
+
+                            <div class="basket_box_count">
+                                <span class="basket_count">{{ basket_price }}</span> руб
+                            </div>
+
+                        </div> <!-- basket_wrapp -->
+                    {% endif %}
+
+                    <a href="/logout" class="out_btn">
+                        Выйти
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </a>
+
+                </div>
+            {% endif %}
 
             <ul class="navigation_menu">
 
