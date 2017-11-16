@@ -11,9 +11,10 @@
 
         <div class="wrapp_products  wrapp_count_products">
             {% for order_unit in order_units %}
-                <form action="/order_unit/edit/{{ order_unit.id }}/" method="POST">
-                    {% csrf_token %}
-                    <div class="box_form_products_item block_closest clearfix">
+                <div class="box_form_products_item block_closest clearfix">
+                    <form action="/order_unit/edit/{{ order_unit.id }}/" method="POST">
+                        {% csrf_token %}
+
 
                         <div class="box_form_products_item_img count_products" data-mh="height-products">
                             <a href="javascript:;" data-popup="#form_product1">
@@ -31,7 +32,7 @@
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </a>
 
-                            <div class="form_products_col_quarter gradient">
+                            <div class="form_products_col gradient">
 
                                 {% comment %}
                                 Эти вещи менять уже в корзине, учитывая архитектуру БД и здравый смысл не стоило бы
@@ -62,55 +63,51 @@
 
                             </div>
 
-                            <div class="form_products_col_quarter">
+                            <div class="form_products_col">
+                                <div class="form_products_settings">
+                                    <div class="form_products_settings_col fix">
+                                        <ul class="setting_list">
+                                            <li>
+                                                <label>Количество</label>
+                                                <input type="number" min="{{ order_unit.product.minimum_amount }}" step="{{ order_unit.product.minimum_amount }}" name="amount" class="setting_input" value="{{ order_unit.amount }}" disabled required data-mask="99999">
+                                            </li>
 
-                                <ul class="setting_list">
+                                            <li>
+                                                <label>Цена</label>
+                                                <input type="text" class="setting_input" value="{{ order_unit.product.producer_price }}" disabled>
+                                            </li>
 
-                                    <li>
-                                        <label>Количество</label>
-                                        <input type="number" min="{{ order_unit.product.minimum_amount }}" step="{{ order_unit.product.minimum_amount }}" name="amount" class="setting_input" value="{{ order_unit.amount }}" disabled required data-mask="99999">
-                                    </li>
+                                            <li>
+                                                <label>Сумма</label>
+                                                <input type="text" class="setting_input" value="{{ order_unit.calculate_sum }}" disabled>
+                                            </li>
 
-                                    <li>
-                                        <label>Цена</label>
-                                        <input type="text" class="setting_input" value="{{ order_unit.product.producer_price }}" disabled>
-                                    </li>
+                                        </ul>
+                                    </div>
 
-                                    <li>
-                                        <label>Сумма</label>
-                                        <input type="text" class="setting_input" value="{{ order_unit.calculate_sum }}" disabled>
-                                    </li>
+                                    <div class="form_products_settings_col">
+                                        <ul class="setting_list">
+                                            <li>
+                                                <label>Доставить до:</label>
+                                                <input type="text" class="setting_input" value="{{ order_unit.trade_point.address.full_address }}" disabled>
+                                            </li>
 
-                                </ul>
+                                            <li>
+                                                <label>Примечание:</label>
+                                                <input type="text" name="remark" class="setting_input" value="{% if order_unit.remark %}{{ order_unit.remark }}{% endif %}" disabled>
+                                            </li>
 
+                                            <li>
+                                                <div class="ok_box">
+                                                    <button class="ok_btn">
+                                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-
-                            <div class="form_products_col_half">
-
-                                <ul class="setting_list">
-
-                                    <li>
-                                        <label>Доставить до:</label>
-                                        <input type="text" class="setting_input" value="{{ order_unit.trade_point.address.full_address }}" disabled>
-                                    </li>
-
-                                    <li>
-                                        <label>Примечание:</label>
-                                        <input type="text" name="remark" class="setting_input" value="{% if order_unit.remark %}{{ order_unit.remark }}{% endif %}" disabled>
-                                    </li>
-
-                                    <li>
-                                        <div class="ok_box">
-                                            <button class="ok_btn">
-                                                <i class="fa fa-check" aria-hidden="true"></i>
-                                            </button>
-                                        </div>
-                                    </li>
-
-                                </ul>
-
-                            </div>
-
                         </div>
                     </form>
                 </div>
@@ -118,14 +115,13 @@
 
         </div>
 
-               <div class="wrapp_btn right">
-                    <a href="/categories" class="btn hight_grey icon_left middle_width">
-                      <i class="fa fa-plus" aria-hidden="true"></i>
-                       Добавить товар
-                   </a>
+        <div class="wrapp_btn right">
+            <a href="/categories" class="btn hight_grey icon_left middle_width">
+                <i class="fa fa-plus" aria-hidden="true"></i>Добавить товар
+           </a>
 
-                   <button class="btn hight_orange" id="perform_order" onclick="location.href = '/perform_order'">Заказать</button>
-               </div>
+           <button class="btn hight_orange" id="perform_order" onclick="location.href = '/perform_order'">Заказать</button>
+       </div>
 
                 <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
 
