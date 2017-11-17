@@ -11,11 +11,9 @@
 
         <div class="wrapp_products  wrapp_count_products">
             {% for order_unit in order_units %}
-                <div class="box_form_products_item block_closest clearfix">
-                    <form action="/order_unit/edit/{{ order_unit.id }}/" method="POST">
-                        {% csrf_token %}
-
-
+                <form action="/order_unit/edit/{{ order_unit.id }}/" method="POST">
+                    {% csrf_token %}
+                    <div class="box_form_products_item block_closest clearfix">
                         <div class="box_form_products_item_img count_products" data-mh="height-products">
                             <a href="javascript:;" data-popup="#form_product1">
                                 <img src="{{ order_unit.product.get_image_url }}">
@@ -28,7 +26,7 @@
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </span>
 
-                            <a href="javascript:;" class="closest_btn">
+                            <a href="/order_unit/del/{{ order_unit.id }}/" class="closest_btn">
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </a>
 
@@ -109,8 +107,8 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             {% endfor %}
 
         </div>
@@ -134,6 +132,7 @@
             <div style="display: none;">
 
             <!-- popup 1 -->
+                {% comment %}
                 <div class="box-modal modal_popup_product" id="form_product1">
 
                     <div class="box-modal_close arcticmodal-close">
@@ -180,6 +179,7 @@
                     </div>
 
                 </div>
+                {% endcomment %}
             <!-- popup 1 -->
 
             <!-- popup 2 -->
@@ -200,7 +200,7 @@
                                 </p>
                             </div>
 
-                            <p p="label1 big">Укажите способ оплаты:</p>
+                            <p class="label1 big">Укажите способ оплаты:</p>
 
                             <label for="radio_item1" class="radio_box_rectangel">
                                 <input type="radio" id="radio_item1" name="radio_rectangel">

@@ -165,6 +165,22 @@ def order_unit_edit(request, pk):
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
 
 
+def order_unit_del(request, pk):
+    if request.user.profile:
+        if request.user.profile.role == 'customer':
+            try:
+                order_unit = OrderUnit.objects.get(pk=pk)
+                if order_unit.order.customer_id != request.user.id:
+                    return render(request, '500.html', {'error_message': u'Удалять можно только свои позиции заказа'})
+                order_unit.delete()
+            except OrderUnit.DoesNotExist:
+                return render(request, '500.html', {'error_message': u'Позиция заказа не существует'})
+
+            return redirect(basket)
+        return render(request, '500.html', {'error_message': u'Только заказчик может редактировать позиции заказа'})
+    return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
+
+
 def order_history(request):
     if request.user.profile:
         if request.user.profile.role == 'customer':
