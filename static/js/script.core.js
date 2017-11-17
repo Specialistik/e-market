@@ -53,10 +53,11 @@
 				.closest(self.settingBox)
 				.addClass('active')
 				.find('.setting_input, .setting_textarea')
-				.removeAttr('disabled');
+				.removeAttr('disabled').trigger('refresh');
 
 				$(this).closest('.setting_box').find('.wrapp_settings_select select').attr('disabled', false)
 			    .trigger('refresh');
+
 
 			});
 			/*
