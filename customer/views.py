@@ -199,11 +199,18 @@ def perform_order(request):
                 order = Order.objects.get(customer_id=request.user.id, order_status__isnull=True)
                 if OrderUnit.objects.filter(order_id=order.id).count() == 0:
                     return render(request, '500.html', {'error_message': u'Не выбраны продукты для совершения заказа'})
+
+                if 'trade_point' not in request.POST:
+                    return render(request, '500.html', {'error_message': u'Не указана торговая точка при создании заказа'})
+
+                trade_point = TradePoint.objects.get(pk=request.POST['trade_point'], customer_id=request.user.id)
                 order.order_status_id = 1
-                order.trade_point_id = request.POST['trade_point']
+                order.trade_point_id = trade_point.id
                 order.save()
                 return redirect(current_orders)
             except Order.DoesNotExist:
                 return render(request, '500.html', {'error_message': u'Не выбраны продукты для совершения заказа'})
+            except TradePoint.DoesNotExist:
+                return render(request, '500.html', {'error_message': u'Выбранная торговая точка не пренадлежит вам'})
         return render(request, '500.html', {'error_message': u'Только заказчик может просматривать свои заказы'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})

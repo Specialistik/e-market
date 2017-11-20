@@ -301,7 +301,7 @@
 
                                     <select data-placeholder="Выберите" name="trade_point" required>
                                         {% for trade_point in trade_points %}
-                                            <option value="{{ trade_point.id }}">{{ trade_point.address.full_address }}</option>
+                                            <option value="{{ trade_point.id }}" {% if forloop.first %}selected{% endif %}>{{ trade_point.address.full_address }}</option>
                                         {% endfor %}
                                     </select>
 

@@ -34,7 +34,7 @@ class Order(models.Model):
     order_status = models.ForeignKey(OrderStatuses, null=True, default=None, verbose_name=u'Статус заявки')
 
     # Новый концепт денормализации
-    trade_point = models.ForeignKey(TradePoint, verbose_name=u'Торговая точка')
+    trade_point = models.ForeignKey(TradePoint, null=True, verbose_name=u'Торговая точка')
     #producer = models.ForeignKey(User, null=True, verbose_name=u'Поставщик')
 
     def calculate_sum(self):
