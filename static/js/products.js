@@ -10,9 +10,10 @@ $(document).ready(function(){
         $('#popup_product_name').html(product.find('.product_name').html());
         $('#popup_product_url').attr('src', product.find('.img_url').attr('src'));
         $('#popup_minimum_amount').html('от ' + product.find('.product_minimum_amount').html() + ' шт.');
-        $('#amount').attr('min', minimal_price).attr('step', minimal_price).val(minimal_price);
+        $('#amount').attr('min', minimal_price).attr('step', minimal_price).val(minimal_price).trigger('refresh');;
         $('#popup_price').html(product.find('.products_price').html());
         $('#popup_tooltip_desc').attr('data-tooltip-txt', 'Минимальный заказ: от ' + minimal_price + ' шт');
+        $('#popup_description').html(product.find('.product_description').html());
         $('#product_popup').arcticmodal();
     });
 });

@@ -121,7 +121,10 @@ def basket(request):
             except Order.DoesNotExist:
                 order_units = []
 
-            return render(request, 'basket.html', {'order_units': order_units})
+            return render(request, 'basket.html', {
+                'order_units': order_units, 
+                'trade_points': TradePoint.objects.filter(customer_id=request.user.id)
+            })
         return render(request, '500.html', {'error_message': u'Только заказчик может просматривать корзину'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
 
@@ -138,7 +141,7 @@ def order_unit_add(request):
                 order_id=order.id,
                 product_id=request.POST['product'],
                 amount=int(request.POST['amount']),
-                trade_point_id=int(request.POST['trade_point'])
+                #trade_point_id=int(request.POST['trade_point'])
             )
             order_unit.producer_id = order_unit.find_producer()
             order_unit.save()
@@ -197,6 +200,7 @@ def perform_order(request):
                 if OrderUnit.objects.filter(order_id=order.id).count() == 0:
                     return render(request, '500.html', {'error_message': u'Не выбраны продукты для совершения заказа'})
                 order.order_status_id = 1
+                order.trade_point_id = request.POST['trade_point']
                 order.save()
                 return redirect(current_orders)
             except Order.DoesNotExist:

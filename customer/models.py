@@ -33,6 +33,10 @@ class Order(models.Model):
     created = models.DateTimeField(default=timezone.now, verbose_name=u'Время создания')
     order_status = models.ForeignKey(OrderStatuses, null=True, default=None, verbose_name=u'Статус заявки')
 
+    # Новый концепт денормализации
+    trade_point = models.ForeignKey(TradePoint, verbose_name=u'Торговая точка')
+    #producer = models.ForeignKey(User, null=True, verbose_name=u'Поставщик')
+
     def calculate_sum(self):
         cost_of_basket = 0
         for order_unit in OrderUnit.objects.filter(order_id=self.id):
@@ -50,7 +54,7 @@ class OrderUnit(models.Model):
     product = models.ForeignKey(ProductCard, verbose_name=u'Позиция заказа')
     producer = models.ForeignKey(User, default=1, verbose_name=u'Поставщик')
     amount = models.IntegerField(verbose_name=u'Количество')
-    trade_point = models.ForeignKey(TradePoint, verbose_name=u'Торговая точка')
+    #trade_point = models.ForeignKey(TradePoint, verbose_name=u'Торговая точка')
     remark = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Примечание')
 
     def find_producer(self):

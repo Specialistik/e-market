@@ -60,6 +60,7 @@
                     <figure class="col_products" data-mh="col-products">
                         <div style="display: none" class="product_minimum_amount">{{ product.minimum_amount }}</div>
                         <div style="display: none" class="product_id">{{ product.id }}</div>
+                        <div style="display: none" class="product_description">{{ product.description }}</div>
                         <div class="products_img" data-mh="products-img">
                             <a href="javascript:;" data-popup="#product1" class="add_to_cart">
                                 <img class="img_url" src="{{ product.get_image_url }}" alt="{{ product.name }}">
@@ -136,12 +137,12 @@
                             </label>
 
                             <input id="amount" name="amount" type="number" required value="100" min="100" step="100" data-mask="99999">
-
+                            <div class="clearfix"></div>
+                            {% comment %}
                             <label class="label1 big">
                                 Выберите адрес доставки:
                                 <span class="tooltip_desc" data-tooltip-txt="Комментарий" data-tooltip-pos="right">?</span>
                             </label>
-
 
                             <div class="wrapp_castom_select bottom_dropdown">
                                 <select data-placeholder="Нажмите, чтобы выбрать" name="trade_point" required>
@@ -150,10 +151,13 @@
                                     {% endfor %}
                                 </select>
                             </div>
+                            {% endcomment %}
 
                             <button class="btn btn_basket light_orange">В корзину</button>
 
                         </div>
+
+
 
                     </div>
 
@@ -162,12 +166,14 @@
             </div>
 
             <div class="modal_footer">
-                {% comment %}
-                <p class="txt_type2">
 
+                <p class="txt_type2" id="popup_description">
+
+                    {% comment %}
                     <strong>«Активиа»</strong> - это серия пробиотических кисломолочных продуктов с бифидобактериями ActiRegularis®. Клинически доказано, что йогурты «Активиа» помогают уменьшить чувство дискомфорта в животе. Портфель «Активиа» также включает невероятно вкусные творожки и кефирные продукты. «Активиа» рекомендована Российской гастроэнтерологической ассоциацией (РГА) для ежедневного употребления.
+                    {% endcomment %}
                 </p>
-
+              {% comment %}
                 <p class="txt_type2">
                     <strong>Продукты «Активиа»</strong> – это 20 лет исследовательской работы и колоссальный объем экспертных знаний. Клинические испытания подтверждают, что бифидобактерии ActiRegularis®, находящиеся в йогуртах и творожках Активиа, выживают при прохождении через желудочно-кишечный тракт человека и в больших количествах достигают микрофлоры кишечника.
                 </p>
