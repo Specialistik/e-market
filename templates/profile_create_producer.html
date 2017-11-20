@@ -6,9 +6,9 @@
             <form action="/depot/{{ depot.id }}/" class="wrapp_company_form" method="POST">
                 {% csrf_token %}
 
-                <h3 class="title_edit angle_right">Данные о складах</h3>
+                <h3 class="title_edit angle_right active">Данные о складах</h3>
 
-                <div class="wrapp_form_box clearfix">
+                <div class="wrapp_form_box clearfix" style="display: none;">
 
                    <div class="box_form_row clearfix">
 
@@ -105,9 +105,9 @@
         <form action="/depot/add/" class="wrapp_company_form" method="POST">
             {% csrf_token %}
 
-            <h3 class="title_edit angle_right">Данные о торговых точках</h3>
+            <h3 class="title_edit angle_right active">Данные о торговых точках</h3>
 
-            <div class="wrapp_form_box clearfix">
+            <div class="wrapp_form_box clearfix" style="display: none;">
 
                <div class="box_form_row clearfix">
 

@@ -215,9 +215,9 @@
             <!-- form 2 -->
             <form action="/profile/company_info/" method="POST" class="wrapp_company_form">
                 {% csrf_token %}
-                <h3 class="title_edit angle_right">Общие данные о компании</h3>
+                <h3 class="title_edit angle_right active">Общие данные о компании</h3>
 
-                <div class="wrapp_form_box clearfix">
+                <div class="wrapp_form_box clearfix" style="display: none;">
 
                    <div class="box_form_row clearfix">
 
@@ -302,9 +302,9 @@
             <form action="/profile/signer_info_and_identity/" class="wrapp_company_form" method="POST">
                 {% csrf_token %}
 
-                <h3 class="title_edit angle_right">Данные подписанта</h3>
+                <h3 class="title_edit angle_right active">Данные подписанта</h3>
 
-                <div class="wrapp_form_box clearfix">
+                <div class="wrapp_form_box clearfix" style="display: none;">
 
                    <div class="box_form_row clearfix">
 
@@ -431,9 +431,9 @@
                     <form action="/profile/account/{{ account.id }}/" method="POST" class="wrapp_company_form">
                         {% csrf_token %}
 
-                        <h3 class="title_edit angle_right">Настройка счета</h3>
+                        <h3 class="title_edit angle_right active">Настройка счета</h3>
 
-                        <div class="wrapp_form_box clearfix">
+                        <div class="wrapp_form_box clearfix" style="display: none;">
 
                             <div class="box_form_row clearfix">
 
@@ -497,9 +497,9 @@
                 <form action="/profile/account/add/" method="POST" class="wrapp_company_form">
                     {% csrf_token %}
 
-                    <h3 class="title_edit angle_right">Настройка счета</h3>
+                    <h3 class="title_edit angle_right active">Настройка счета</h3>
 
-                    <div class="wrapp_form_box clearfix">
+                    <div class="wrapp_form_box clearfix" style="display: none;">
 
                         <div class="box_form_row clearfix">
 
