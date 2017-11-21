@@ -74,7 +74,7 @@
                                         </li>
                                         <li class="clearfix">
                                             <label>Кв. / Офис</label>
-                                            <input name="flat" class="setting_input" disabled value="{% if profile.juridical_address %}{{ profile.juridical_address.flat }}{% endif %}">
+                                            <input name="flat" class="setting_input" autocomplete="off" disabled value="{% if profile.juridical_address %}{{ profile.juridical_address.flat }}{% endif %}">
                                         </li>
                                         <li class="clearfix">
                                             {% comment %}
@@ -231,15 +231,15 @@
                                         </li>
                                         <li class="clearfix">
                                             <label>ИНН</label>
-                                            <input class="setting_input" name="inn" required disabled value="{{ profile.inn }}" data-mask="000000000099">
+                                            <input class="setting_input" name="inn" required disabled value="{{ profile.inn }}" data-mask="000000000099" minlength="10">
                                         </li>
                                         <li class="clearfix">
                                             <label>ОГРН</label>
-                                            <input class="setting_input" name="ogrn" required disabled value="{% if profile.ogrn %}{{ profile.ogrn }}{% endif %}" data-mask="0000000000000">
+                                            <input class="setting_input" name="ogrn" required disabled value="{% if profile.ogrn %}{{ profile.ogrn }}{% endif %}" data-mask="0000000000000" minlength="13">
                                         </li>
                                         <li class="clearfix">
                                             <label>КПП</label>
-                                            <input class="setting_input" name="kpp" required disabled value="{% if profile.kpp %}{{ profile.kpp }}{% endif %}" data-mask="000000000">
+                                            <input class="setting_input" name="kpp" required disabled value="{% if profile.kpp %}{{ profile.kpp }}{% endif %}" data-mask="000000000" minlength="9">
                                         </li>
                                         <li class="clearfix">
                                             <label></label>
