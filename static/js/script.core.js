@@ -164,12 +164,14 @@
  		ToggleForm: function() {
 
  			$(".title_edit.angle_right").on("click", function () {
+ 				/*
 				if (!$(this).hasClass('active')) {
 					$(this).addClass('active').next().stop().hide();
 				} else {
 					$(".title_edit.angle_right").addClass('active').next().stop().hide();
-					$(this).removeClass("active").next().stop().show();
-				}
+				*/
+					$(this).toggleClass("active").next().stop().slideToggle();
+				//}
  			});
 
  		},
