@@ -183,7 +183,6 @@ def profile_fiz_and_jur_address(request):
             u_p.juridical_address.flat = request.POST['jur_flat']
             u_p.juridical_address.save()
 
-        # todo: На фронте пока печалька в плане флага "совпадает с юридическим"
         if 'physical_is_juridical' in request.POST:
             u_p.physical_is_juridical = True
         else:
@@ -223,6 +222,7 @@ def profile_juridical_address(request):
     if u_p:
         if u_p.juridical_address is None:
             u_p.juridical_address = Address.objects.create(
+                full_address=request.POST['full_address'],
                 index=request.POST['index'],
                 region=request.POST['region'],
                 city=request.POST['city'],
@@ -234,6 +234,7 @@ def profile_juridical_address(request):
             )
             u_p.save()
         else:
+            u_p.juridical_address.full_address = request.POST['full_address']
             u_p.juridical_address.index = request.POST['index']
             u_p.juridical_address.region = request.POST['region']
             u_p.juridical_address.city = request.POST['city']
@@ -244,7 +245,7 @@ def profile_juridical_address(request):
             u_p.juridical_address.flat = request.POST['flat']
             u_p.juridical_address.save()
 
-        if request.POST['physical_is_juridical'] == 'on':
+        if 'physical_is_juridical' in request.POST and request.POST['physical_is_juridical'] == 'on':
             u_p.physical_is_juridical = True
         else:
             u_p.physical_is_juridical = False
@@ -310,7 +311,7 @@ def profile_signer_info(request):
                 name=request.POST['name'],
                 patronymic=request.POST['patronymic'],
                 birth_date=datetime.datetime.strptime(request.POST['issued_date'], "%d.%m.%Y").date(),
-                inn=request.POST['inn'],
+                #inn=request.POST['inn'],
                 position=request.POST['position'],
                 #code_field=request.POST['code_field']
             )
@@ -320,7 +321,7 @@ def profile_signer_info(request):
             u_p.signer_info.name = request.POST['name']
             u_p.signer_info.patronymic = request.POST['patronymic']
             u_p.signer_info.birth_date = datetime.datetime.strptime(request.POST['birth_date'], "%d.%m.%Y").date()
-            u_p.signer_info.inn = request.POST['inn']
+            #u_p.signer_info.inn = request.POST['inn']
             u_p.signer_info.position = request.POST['position']
             #u_p.signer_info.code_field = request.POST['code_field']
             u_p.signer_info.save()
@@ -366,7 +367,7 @@ def profile_signer_info_and_identity(request):
                 name=request.POST['name'],
                 patronymic=request.POST['patronymic'],
                 birth_date=datetime.datetime.strptime(request.POST['birth_date'], "%d.%m.%Y").date(),
-                inn=request.POST['inn'],
+                #inn=request.POST['inn'],
                 position=request.POST.get('position', ''),
                 #code_field=request.POST.get('code_field', '')
             )
@@ -376,7 +377,7 @@ def profile_signer_info_and_identity(request):
             u_p.signer_info.name = request.POST['name']
             u_p.signer_info.patronymic = request.POST['patronymic']
             u_p.signer_info.birth_date = datetime.datetime.strptime(request.POST['birth_date'], "%d.%m.%Y").date()
-            u_p.signer_info.inn = request.POST['inn']
+            #u_p.signer_info.inn = request.POST['inn']
             u_p.signer_info.position = request.POST.get('position', '')
             #u_p.signer_info.code_field = request.POST.get('code_field', '')
             u_p.signer_info.save()

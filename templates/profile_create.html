@@ -27,7 +27,104 @@
         <!-- - - - - - - - - - - - - - ? - - - - - - - - - - - - - - - - -->
 
         <section>
+            <form action="/profile/juridical_address/" class="wrapp_company_form" method="POST">
+                {% csrf_token %}
 
+                <h3 class="title_edit angle_right">Юридический адрес</h3>
+
+                <div class="wrapp_form_box clearfix">
+
+                   <div class="box_form_row clearfix">
+
+                        <!-- col 6 -->
+                        <div class="box_form_half">
+
+                            <div class="form_box_offset">
+                                <input name="full_address" placeholder="Город, улица, дом" value="{% if profile.juridical_address.full_address %}{{ profile.juridical_address.full_address }}{% endif %}">
+                            </div>
+
+                            <div class="form_box_offset">
+
+                                <div class="form_row clearfix">
+
+                                    <div class="form_col half">
+                                        <input name="index" placeholder="Индекс" data-mask="000000" required value="{% if profile.juridical_address.index %}{{ profile.juridical_address.index }}{% endif %}">
+                                    </div>
+
+                                    <div class="form_col half">
+                                        <input name="region" placeholder="Регион" required value="{% if profile.juridical_address.region %}{{ profile.juridical_address.region }}{% endif %}">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- col 6 -->
+
+                        <!-- col 6 -->
+                        <div class="box_form_half">
+
+                            <div class="form_box_offset">
+
+                                <div class="form_row clearfix">
+
+                                    <div class="form_col half">
+                                        <input name="city" placeholder="Город / Населенный пункт" required value="{% if profile.juridical_address.city %}{{ profile.juridical_address.city }}{% endif %}">
+                                    </div>
+
+                                    <div class="form_col half">
+                                        <input name="street" placeholder="Улица" required value="{% if profile.juridical_address.street %}{{ profile.juridical_address.street }}{% endif %}">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form_box_offset">
+
+                                <div class="form_row clearfix">
+
+                                    <div class="form_col quarter">
+                                        <input name="house" placeholder="Дом" required value="{% if profile.juridical_address.house %}{{ profile.juridical_address.house }}{% endif %}">
+                                    </div>
+
+                                    <div class="form_col quarter">
+                                        <input name="block" placeholder="Корпус" value="{% if profile.juridical_address.block %}{{ profile.juridical_address.block }}{% endif %}">
+                                    </div>
+
+                                    <div class="form_col quarter">
+                                        <input name="structure" placeholder="Строение" value="{% if profile.juridical_address.structure %}{{ profile.juridical_address.structure }}{% endif %}">
+                                    </div>
+
+                                    <div class="form_col quarter">
+                                        <input name="flat" placeholder="Кв. / Офис" value="{% if profile.juridical_address.flat %}{{ profile.juridical_address.flat }}{% endif %}">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- col 6 -->
+
+                   </div> <!-- box_form_row -->
+
+                    {% comment %}
+                    <div class="wrapp_btn_add_plus">
+                        <a href="javascript:;" class="btn_add_plus" id="tradepoint_add">
+                            Добавить еще торговую точку
+                        </a>
+                    </div>
+                    {% endcomment %}
+
+                   <div class="align_right">
+                       <button class="btn hight_orange" type="submit">Сохранить</button>
+                   </div>
+
+                </div> <!-- wrapp_form -->
+            </form>
+            {% comment %}
             <!-- form 1 -->
             <form action="/profile/fiz_and_jur_address/" class="wrapp_company_form" method="POST">
                 {% csrf_token %}
@@ -121,22 +218,6 @@
                                     Фактический адрес:
                                 </h3>
 
-                                {% comment %}
-                                <div class="wrapp_radio_box">
-                                    <label class="radio_box">
-                                        <input type="radio" name="input_radio" value="true">
-                                        <span class="radio-custom"></span>
-                                        <span>Совпадает с юридическим</span>
-                                    </label>
-
-                                    <label class="radio_box">
-                                        <input type="radio" name="input_radio" value="false">
-                                        <span class="radio-custom"></span>
-                                        <span>Другой</span>
-                                    </label>
-                                </div>
-                                {% endcomment %}
-
                             </div>
 
                             <div class="form_box_offset">
@@ -211,6 +292,7 @@
                 </div> <!-- wrapp_form -->
 
             </form>
+            {% endcomment %}
 
             <!-- form 2 -->
             <form action="/profile/company_info/" method="POST" class="wrapp_company_form">
@@ -335,9 +417,11 @@
                                         </div>
                                     </div>
 
+                                    {% comment %}
                                     <div class="form_col half">
                                         <input required name="inn" placeholder="ИНН" data-mask="0000000000000000" value="{{ profile.inn }}">
                                     </div>
+                                    {% endcomment %}
 
                                 </div>
 

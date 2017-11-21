@@ -41,8 +41,12 @@
 
                                     <ul class="setting_list">
                                         <li class="clearfix">
+                                            <label class="label_settings" for="index">Полный адрес</label>
+                                            <input name="full_address" class="setting_input" required disabled value="{% if profile.juridical_address %}{{ profile.juridical_address.full_address }}{% endif %}">
+                                        </li>
+                                        <li class="clearfix">
                                             <label class="label_settings" for="index">Индекс</label>
-                                            <input type="text" name="index" class="setting_input" required disabled value="{% if profile.juridical_address %}{{ profile.juridical_address.index }}{% endif %}">
+                                            <input name="index" class="setting_input" required disabled value="{% if profile.juridical_address %}{{ profile.juridical_address.index }}{% endif %}" data-mask="000000">
                                         </li>
                                         <li class="clearfix">
                                             <label>Регион</label>
@@ -70,19 +74,14 @@
                                         </li>
                                         <li class="clearfix">
                                             <label>Кв. / Офис</label>
-                                            <input name="flat" class="setting_input" required disabled value="{% if profile.juridical_address %}{{ profile.juridical_address.flat }}{% endif %}">
+                                            <input name="flat" class="setting_input" disabled value="{% if profile.juridical_address %}{{ profile.juridical_address.flat }}{% endif %}">
                                         </li>
                                         <li class="clearfix">
+                                            {% comment %}
                                             <label class="checkbox_box" for="input_checkbox">
                                                 <input name="physical_is_juridical" id="physical_is_juridical" class="input_checkbox" type="checkbox" {% if profile.physical_is_juridical %}checked{% endif %}>
                                                 <span class="checkbox-custom"></span>
                                                 <span>Фактический совпадает с юридическим</span>
-                                            </label>
-                                            {% comment %}
-                                            <label class="checkbox_box" for="input_checkbox">
-                                                <input name="physical_is_juridical" id="input_checkbox" class="input_checkbox" type="checkbox">
-                                                <span class="checkbox-custom"></span>
-                                                <span>Совпадает с юридическим</span>
                                             </label>
                                             {% endcomment %}
 
@@ -103,6 +102,7 @@
                 </div>
                 <!--/end of profile_settings_box -->
 
+                {% comment %}
                 <!-- profile_settings_box -->
                 <div class="col-sm-6">
 
@@ -173,6 +173,7 @@
 
                 </div>
                 <!--/end of profile_settings_box -->
+                {% endcomment %}
 
                 <!-- profile_settings_box -->
                 <div class="col-sm-6">
@@ -299,10 +300,12 @@
                                             <input name="birth_date" required class="datepicker-here setting_input" disabled value="{% if profile.signer_info %}{{ profile.signer_info.birth_date|date:"d.m.Y" }}{% endif %}">
                                             {% comment %}</div>{% endcomment %}
                                         </li>
+                                        {% comment %}
                                         <li class="clearfix">
                                             <label>ИНН</label>
                                             <input name="inn" required class="setting_input" disabled value="{% if profile.signer_info %}{{ profile.signer_info.inn }}{% endif %}">
                                         </li>
+                                        {% endcomment %}
                                         <li class="clearfix">
                                             <label>Должность</label>
                                             <input name="position" required class="setting_input" disabled value="{% if profile.signer_info %}{{ profile.signer_info.position }}{% endif %}">
@@ -500,6 +503,7 @@
                     </div>
 
                 </div>
+
                 <!--/end of profile_settings_box -->
 
                 {% block role_specific %}
@@ -507,6 +511,7 @@
                 {% endblock %}
 
                 <!--/end of profile_settings_box -->
+
 
             </div> <!-- row -->
 

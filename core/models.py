@@ -42,7 +42,7 @@ class Address(models.Model):
     house = models.CharField(max_length=100, verbose_name=u'Дом')
     block = models.CharField(max_length=20, null=True, blank=True, verbose_name=u'Корпус')
     structure = models.CharField(max_length=20, null=True, blank=True, verbose_name=u'Строение')
-    flat = models.CharField(max_length=20, verbose_name=u'Квартира/Офис')
+    flat = models.CharField(max_length=20, blank=True, default='', verbose_name=u'Квартира/Офис')
     full_address = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Полный адрес')
 
     class Meta:
@@ -56,7 +56,7 @@ class SignerInfo(models.Model):
     name = models.CharField(max_length=40, verbose_name=u'Имя')
     patronymic = models.CharField(max_length=40, verbose_name=u'Отчество')
     birth_date = models.DateField(verbose_name=u'Дата рождения')
-    inn = models.CharField(max_length=12, verbose_name=u'ИНН')
+    #inn = models.CharField(max_length=12, verbose_name=u'ИНН')
     position = models.CharField(max_length=60, verbose_name=u'Должность')
     #code_field = models.CharField(max_length=30, verbose_name=u'Кодовое слово')
 
