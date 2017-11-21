@@ -41,12 +41,12 @@
 
                                     <ul class="setting_list">
                                         <li class="clearfix">
-                                            <label class="label_settings" for="index">Полный адрес</label>
+                                            <label class="label_settings" for="full_address">Полный адрес</label>
                                             <input name="full_address" class="setting_input" required disabled value="{% if profile.juridical_address %}{{ profile.juridical_address.full_address }}{% endif %}">
                                         </li>
                                         <li class="clearfix">
                                             <label class="label_settings" for="index">Индекс</label>
-                                            <input name="index" class="setting_input" required disabled value="{% if profile.juridical_address %}{{ profile.juridical_address.index }}{% endif %}" data-mask="000000">
+                                            <input name="index" class="setting_input" minlength="6" required disabled value="{% if profile.juridical_address %}{{ profile.juridical_address.index }}{% endif %}" data-mask="000000">
                                         </li>
                                         <li class="clearfix">
                                             <label>Регион</label>

@@ -48,7 +48,7 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="index" placeholder="Индекс" data-mask="000000" required value="{% if profile.juridical_address.index %}{{ profile.juridical_address.index }}{% endif %}">
+                                        <input name="index" placeholder="Индекс" minlength="6" data-mask="000000" required value="{% if profile.juridical_address.index %}{{ profile.juridical_address.index }}{% endif %}">
                                     </div>
 
                                     <div class="form_col half">

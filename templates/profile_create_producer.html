@@ -24,7 +24,7 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="index" placeholder="Индекс" required data-mask="000000" value="{{ depot.address.index }}">
+                                        <input name="index" placeholder="Индекс" required minlength="6" data-mask="000000" value="{{ depot.address.index }}">
                                     </div>
 
                                     <div class="form_col half">
@@ -123,7 +123,7 @@
                             <div class="form_row clearfix">
 
                                 <div class="form_col half">
-                                    <input name="index" placeholder="Индекс" required data-mask="000000" value="">
+                                    <input name="index" placeholder="Индекс" minlength="6" required data-mask="000000" value="">
                                 </div>
 
                                 <div class="form_col half">
