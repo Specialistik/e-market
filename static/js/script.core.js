@@ -58,6 +58,9 @@
 				$(this).closest('.setting_box').find('.wrapp_settings_select select').attr('disabled', false)
 			    .trigger('refresh');
 
+				if ($(this).closest(self.settingBox).find('select.expiration_type').val() == 1) {
+					$(this).closest(self.settingBox).find('.expiration_date').val('').attr('disabled','disabled');
+				}
 
 			});
 			/*
