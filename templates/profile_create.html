@@ -49,7 +49,7 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input id="postal_code" name="index" placeholder="Индекс" readonly minlength="6" data-mask="000000" disabled required value="{% if profile.juridical_address.index %}{{ profile.juridical_address.index }}{% endif %}">
+                                        <input id="postal_code" name="index" placeholder="Индекс" readonly minlength="6" data-mask="000000" required value="{% if profile.juridical_address.index %}{{ profile.juridical_address.index }}{% endif %}">
                                     </div>
 
                                     <div class="form_col half">
@@ -300,7 +300,7 @@
                 {% csrf_token %}
                 <h3 class="title_edit angle_right">Общие данные о компании</h3>
 
-                <div class="wrapp_form_box clearfix" style="display: none;">
+                <div class="wrapp_form_box clearfix">
 
                    <div class="box_form_row clearfix">
 
@@ -357,7 +357,7 @@
 
                             <div class="form_box_offset">
 
-                                <input name="ogrn" placeholder="ОГРН" minlength="13" data-mask="0000000000000" value="{% if profile.ogrn %}{{ profile.ogrn }}{% endif %}">
+                                <input name="ogrn" placeholder="ОГРН" minlength="13" data-mask="000000000000099" value="{% if profile.ogrn %}{{ profile.ogrn }}{% endif %}">
 
                             </div>
 
