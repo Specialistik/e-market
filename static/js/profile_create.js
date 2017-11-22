@@ -17,5 +17,8 @@ $(document).ready(function(){
         } else {
             $('.fiz_input').attr('disabled', false)
         }
-    })
+    });
+
+
+    
 });

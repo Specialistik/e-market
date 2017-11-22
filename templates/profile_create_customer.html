@@ -16,7 +16,7 @@
                         <div class="box_form_half">
 
                             <div class="form_box_offset">
-                                <input name="full_address" placeholder="Город, улица, дом" value="{{ trade_point.address.full_address }}">
+                                <input name="full_address" id="autocomplete_bottom" onfocus="geolocateBottom()" placeholder="Город, улица, дом" value="{{ trade_point.address.full_address }}">
                             </div>
 
                             <div class="form_box_offset">
@@ -24,11 +24,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="index" placeholder="Индекс" minlength="6" data-mask="000000" required value="{{ trade_point.address.index }}">
+                                        <input name="index" readonly placeholder="Индекс" id="postal_code_bottom" minlength="6" data-mask="000000" required value="{{ trade_point.address.index }}">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="region" placeholder="Регион" required value="{{ trade_point.address.region }}">
+                                        <input name="region" readonly placeholder="Регион" id="administrative_area_level_1_bottom" required value="{{ trade_point.address.region }}">
                                     </div>
 
                                 </div>
@@ -46,11 +46,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="city" placeholder="Город / Населенный пункт" required value="{{ trade_point.address.city }}">
+                                        <input name="city" id="locality_bottom" readonly placeholder="Город / Населенный пункт" required value="{{ trade_point.address.city }}">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="street" placeholder="Улица" required value="{{ trade_point.address.street }}">
+                                        <input name="street" id="route_bottom" readonly placeholder="Улица" required value="{{ trade_point.address.street }}">
                                     </div>
 
                                 </div>
@@ -62,7 +62,7 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col quarter">
-                                        <input name="house" placeholder="Дом" required value="{{ trade_point.address.house }}">
+                                        <input name="house" placeholder="Дом" readonly required value="{{ trade_point.address.house }}">
                                     </div>
 
                                     <div class="form_col quarter">
@@ -74,7 +74,7 @@
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="flat" placeholder="Кв. / Офис" autocomplete="off" value="{{ trade_point.address.flat }}">
+                                        <input name="flat" placeholder="Кв. / Офис" value="{{ trade_point.address.flat }}">
                                     </div>
 
                                 </div>
@@ -115,7 +115,7 @@
                     <div class="box_form_half">
 
                         <div class="form_box_offset">
-                            <input name="full_address" placeholder="Город, улица, дом" value="">
+                            <input name="full_address" id="autocomplete_bottom" placeholder="Город, улица, дом" value="">
                         </div>
 
                         <div class="form_box_offset">
@@ -123,11 +123,11 @@
                             <div class="form_row clearfix">
 
                                 <div class="form_col half">
-                                    <input name="index" placeholder="Индекс" minlength="6" required data-mask="000000" value="">
+                                    <input name="index" readonly placeholder="Индекс" id="postal_code_bottom" required data-mask="000000" value="">
                                 </div>
 
                                 <div class="form_col half">
-                                    <input name="region" placeholder="Регион" required value="">
+                                    <input name="region" readonly placeholder="Регион" id="administrative_area_level_1_bottom" required value="">
                                 </div>
 
                             </div>
@@ -145,11 +145,11 @@
                             <div class="form_row clearfix">
 
                                 <div class="form_col half">
-                                    <input name="city" placeholder="Город / Населенный пункт" required value="">
+                                    <input name="city" readonly id="locality_bottom" placeholder="Город / Населенный пункт" required value="">
                                 </div>
 
                                 <div class="form_col half">
-                                    <input name="street" placeholder="Улица" required value="">
+                                    <input name="street" id="route_bottom" readonly placeholder="Улица" required value="">
                                 </div>
 
                             </div>
@@ -173,7 +173,7 @@
                                 </div>
 
                                 <div class="form_col quarter">
-                                    <input name="flat" autocomplete="off" placeholder="Кв. / Офис" value="">
+                                    <input name="flat" placeholder="Кв. / Офис" value="">
                                 </div>
 
                             </div>

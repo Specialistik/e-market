@@ -2,7 +2,8 @@
 
 {% block js_css %}
     <script src="/static/js/profile_create.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo4M1eTyWA-HOp51b88dUln62wdg8pg9M&libraries=places" async defer></script>
+    <script src="/static/js/geolocation.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo4M1eTyWA-HOp51b88dUln62wdg8pg9M&libraries=places&callback=initAutocomplete" async defer></script>
 {% endblock %}
 
 {% block content %}
@@ -34,13 +35,13 @@
 
                 <div class="wrapp_form_box clearfix">
 
-                   <div class="box_form_row clearfix">
+                   <div class="box_form_row clearfix geo_container">
 
                         <!-- col 6 -->
                         <div class="box_form_half">
 
-                            <div class="form_box_offset">
-                                <input name="full_address" placeholder="Город, улица, дом" value="{% if profile.juridical_address.full_address %}{{ profile.juridical_address.full_address }}{% endif %}">
+                            <div class="form_box_offset" id="location_field">
+                                <input name="full_address" class="geo_full" id="autocomplete" onFocus="geolocate()" placeholder="Город, улица, дом" value="{% if profile.juridical_address.full_address %}{{ profile.juridical_address.full_address }}{% endif %}">
                             </div>
 
                             <div class="form_box_offset">
@@ -48,11 +49,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="index" placeholder="Индекс" minlength="6" data-mask="000000" required value="{% if profile.juridical_address.index %}{{ profile.juridical_address.index }}{% endif %}">
+                                        <input id="postal_code" name="index" placeholder="Индекс" readonly minlength="6" data-mask="000000" disabled required value="{% if profile.juridical_address.index %}{{ profile.juridical_address.index }}{% endif %}">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="region" placeholder="Регион" required value="{% if profile.juridical_address.region %}{{ profile.juridical_address.region }}{% endif %}">
+                                        <input id="administrative_area_level_1" name="region" placeholder="Регион" readonly required value="{% if profile.juridical_address.region %}{{ profile.juridical_address.region }}{% endif %}">
                                     </div>
 
                                 </div>
@@ -70,11 +71,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="city" placeholder="Город / Населенный пункт" required value="{% if profile.juridical_address.city %}{{ profile.juridical_address.city }}{% endif %}">
+                                        <input id="locality" name="city" placeholder="Город / Населенный пункт" readonly required value="{% if profile.juridical_address.city %}{{ profile.juridical_address.city }}{% endif %}">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="street" placeholder="Улица" required value="{% if profile.juridical_address.street %}{{ profile.juridical_address.street }}{% endif %}">
+                                        <input id="route" name="street" placeholder="Улица" readonly required value="{% if profile.juridical_address.street %}{{ profile.juridical_address.street }}{% endif %}">
                                     </div>
 
                                 </div>
@@ -86,7 +87,7 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col quarter">
-                                        <input name="house" placeholder="Дом" required value="{% if profile.juridical_address.house %}{{ profile.juridical_address.house }}{% endif %}">
+                                        <input id="street_number" name="house" placeholder="Дом" readonly required value="{% if profile.juridical_address.house %}{{ profile.juridical_address.house }}{% endif %}">
                                     </div>
 
                                     <div class="form_col quarter">
