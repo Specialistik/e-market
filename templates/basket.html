@@ -11,9 +11,9 @@
 
         <div class="wrapp_products  wrapp_count_products">
             {% for order_unit in order_units %}
-                <form action="/order_unit/edit/{{ order_unit.id }}/" method="POST">
-                    {% csrf_token %}
-                    <div class="box_form_products_item block_closest clearfix">
+                <div class="box_form_products_item block_closest clearfix">
+                    <form action="/order_unit/edit/{{ order_unit.id }}/" method="POST" class="adjusted_form">
+                        {% csrf_token %}
                         <div class="box_form_products_item_img count_products" data-mh="height-products">
                             <a href="javascript:;" data-popup="#form_product1">
                                 <img src="{{ order_unit.product.get_image_url }}">
@@ -21,7 +21,6 @@
                         </div>
 
                         <div class="wrapp_products_item_forms setting_box" data-mh="height-products">
-
                             <span class="js_edit">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                             </span>
@@ -30,8 +29,8 @@
                                 <i class="fa fa-times" aria-hidden="true"></i>
                             </a>
 
-                            <div class="form_products_col gradient">
 
+                            <div class="form_products_col gradient">
                                 {% comment %}
                                 Эти вещи менять уже в корзине, учитывая архитектуру БД и здравый смысл не стоило бы
                                 Поэтому даже не передаём эти параметры на бэк, чтобы не случилось чего
@@ -40,7 +39,7 @@
                                     <li>
                                         <label>Наименование</label>
                                         <div class="wrapp_settings_select right_angle">
-                                            <select data-placeholder="выбрать" disabled>
+                                            <select data-placeholder="выбрать" disabled readonly>
                                                 <option value="{{ order_unit.id }}">{{ order_unit.product.name }}</option>
                                             </select>
                                         </div>
@@ -50,7 +49,7 @@
                                         <label>Производитель</label>
 
                                         <div class="wrapp_settings_select right_angle">
-                                            <select data-placeholder="выбрать" disabled>
+                                            <select data-placeholder="выбрать" disabled readonly>
                                                 <option value="1">{{ order_unit.product.product_depot.producer.profile.company_name }}</option>
                                             </select>
                                         </div>
@@ -109,10 +108,9 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             {% endfor %}
-
         </div>
 
         <div class="wrapp_btn right">

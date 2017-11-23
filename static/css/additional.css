@@ -22,3 +22,6 @@
     cursor: pointer;
 }
 
+.adjusted_form {
+    width: -webkit-fill-available;
+}
