@@ -85,7 +85,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, related_name='profile', verbose_name=u'Пользователь', on_delete=models.CASCADE)
     phone = models.CharField(max_length=15, verbose_name=u'Телефон')  # validators should be a list
     inn = models.CharField(max_length=12, null=True, blank=True, verbose_name=u'ИНН')
-    ogrn = models.CharField(max_length=13, null=True, blank=True, verbose_name=u'ОГРН')
+    ogrn = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'ОГРН')
     kpp = models.CharField(max_length=9, null=True, blank=True, verbose_name=u'КПП')
     organization_type = models.ForeignKey(OrganizationType, null=True, blank=True, verbose_name=u'Организационно правовая форма')
     legal_act = models.ForeignKey(LegalAct, null=True, blank=True, verbose_name=u'Правовой акт')
