@@ -64,9 +64,15 @@
                 <tr>
                     <td data-title="№">{{ forloop.counter }}</td>
                     <td data-title="Дата">{{ order.created|date:'d.m.Y' }}</td>
-                    <td data-title="Контрагент">{{ order.customer.profile.company_name }}</td>
+                    <td data-title="Контрагент">
+                        {% if user.profile.role == 'customer' %}
+                            {{ order.producer.profile.company_name }}
+                        {% else %}
+                            {{ order.customer.profile.company_name }}
+                        {% endif %}
+                    </td>
                     <td data-title="Сумма/руб">{{ order.calculate_sum }}</td>
-                    <td class="blue" data-title="Статус">{{ order.order_status.name }}</td>
+                    <td class="blue" data-title="Статус">На согласовании</td>
                 </tr>
             {% endfor %}
         </tbody>

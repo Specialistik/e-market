@@ -116,8 +116,8 @@ def basket(request):
     if request.user.profile:
         if request.user.profile.role == 'customer':
             try:
-                order = Order.objects.get(customer_id=request.user.id, order_status__isnull=True)
-                order_units = OrderUnit.objects.filter(order_id=order.id)
+                #order = Order.objects.get(customer_id=request.user.id, order_status__isnull=True)
+                order_units = OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id)
             except Order.DoesNotExist:
                 order_units = []
 
@@ -132,19 +132,30 @@ def basket(request):
 def order_unit_add(request):
     if request.user.profile:
         if request.user.profile.role == 'customer':
-            order, created = Order.objects.get_or_create(customer_id=request.user.id, order_status__isnull=True)
 
-            if OrderUnit.objects.filter(order=order, product_id=request.POST['product']).count() > 0:
+            #order, created = Order.objects.get_or_create(customer_id=request.user.id, order_status__isnull=True)
+
+            """Если в корзине уже есть товар - меняем цену"""
+            if OrderUnit.objects.filter(order__isnull=True, product_id=request.POST['product'], customer_id=request.user.id).count() > 0:
+                order_unit = OrderUnit.objects.get(order__isnull=True, product_id=request.POST['product'], customer_id=request.user.id)
+                order_unit.amount = int(request.POST['amount'])
+                order_unit.save()
                 return redirect(basket)
 
-            order_unit = OrderUnit.objects.create(
-                order_id=order.id,
-                product_id=request.POST['product'],
-                amount=int(request.POST['amount']),
-                #trade_point_id=int(request.POST['trade_point'])
-            )
-            order_unit.producer_id = order_unit.find_producer()
-            order_unit.save()
+            try:
+                product = ProductCard.objects.get(pk=request.POST['product'])
+                order_unit = OrderUnit.objects.create(
+                    producer_id=product.product_depot.producer.id,
+                    customer_id=request.user.id,
+                    product_id=request.POST['product'],
+                    amount=int(request.POST['amount']),
+                )
+                order_unit.save()
+            except ProductCard.DoesNotExist:
+                return render(request, '500.html', {'error_message': u'Не найден добавляемый продукт'})
+
+            #order_unit.producer_id = order_unit.find_producer()
+            #order_unit.save()
             return redirect(basket)
         return render(request, '500.html', {'error_message': u'Только заказчик может добавлять позиции заказа'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
@@ -155,7 +166,7 @@ def order_unit_edit(request, pk):
         if request.user.profile.role == 'customer':
             try:
                 order_unit = OrderUnit.objects.get(pk=pk)
-                if order_unit.order.customer_id != request.user.id:
+                if order_unit.customer_id != request.user.id:
                     return render(request, '500.html', {'error_message': u'Редактировать можно только свои позиции заказа'})
                 order_unit.amount = request.POST['amount']
                 order_unit.remark = request.POST['remark']
@@ -173,7 +184,7 @@ def order_unit_del(request, pk):
         if request.user.profile.role == 'customer':
             try:
                 order_unit = OrderUnit.objects.get(pk=pk)
-                if order_unit.order.customer_id != request.user.id:
+                if order_unit.customer_id != request.user.id:
                     return render(request, '500.html', {'error_message': u'Удалять можно только свои позиции заказа'})
                 order_unit.delete()
             except OrderUnit.DoesNotExist:
@@ -196,6 +207,24 @@ def perform_order(request):
     if request.user.profile:
         if request.user.profile.role == 'customer':
             try:
+                order_unit_producer_id = 0
+                for order_unit in (OrderUnit.objects.filter(order__isnull=True, customer=request.user.id).order_by('producer_id')):
+                    if order_unit.producer_id != order_unit_producer_id:
+                        order = Order.objects.create(
+                            customer_id=request.user.id,
+                            trade_point_id=request.POST['trade_point'],
+                            producer_id=order_unit.producer_id)
+                        order_unit.order_id = order.id
+                        order_unit.save()
+                    else:
+                        order = Order.objects.filter(
+                            customer_id=request.user.id,
+                            trade_point_id=request.POST['trade_point'],
+                            producer_id=order_unit.producer_id).order_by('id').reverse()[0]
+                        order_unit.order_id = order.id
+                        order_unit.save()
+                    order_unit_producer_id = order_unit.producer_id
+                """
                 order = Order.objects.get(customer_id=request.user.id, order_status__isnull=True)
                 if OrderUnit.objects.filter(order_id=order.id).count() == 0:
                     return render(request, '500.html', {'error_message': u'Не выбраны продукты для совершения заказа'})
@@ -207,6 +236,7 @@ def perform_order(request):
                 order.order_status_id = 1
                 order.trade_point_id = trade_point.id
                 order.save()
+                """
                 return redirect(current_orders)
             except Order.DoesNotExist:
                 return render(request, '500.html', {'error_message': u'Не выбраны продукты для совершения заказа'})
