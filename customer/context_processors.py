@@ -3,7 +3,7 @@ from customer.models import OrderUnit, Order
 
 
 def basket(request):
-    if request.user.is_authenticated() and not request.user.is_superuser:
+    if request.user.is_authenticated and not request.user.is_superuser:
 
         if request.user.profile:
             if request.user.profile.role == 'customer':
