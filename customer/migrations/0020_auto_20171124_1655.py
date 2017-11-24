@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='orderunit',
             name='customer',
-            field=models.ForeignKey(default=0, on_delete=django.db.models.deletion.CASCADE, related_name='customer_unit', to=settings.AUTH_USER_MODEL, verbose_name='\u0417\u0430\u043a\u0430\u0437\u0447\u0438\u043a'),
+            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, related_name='customer_unit', to=settings.AUTH_USER_MODEL, verbose_name='\u0417\u0430\u043a\u0430\u0437\u0447\u0438\u043a'),
             preserve_default=False,
         ),
         migrations.AlterField(
