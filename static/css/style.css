@@ -132,6 +132,10 @@
       color: #505050;
     }
 
+    .light_black{
+      color: #4f4f4e;
+    }
+
     .blue{
       color: #56a8fe;
     }
@@ -314,6 +318,10 @@
       font-size: 18px;
     }
 
+    h4{
+      font-size: 16px;
+    }
+
     strong{
       font-weight: 400;
     }
@@ -322,6 +330,10 @@
       font-size: 14px;
       color: #505050;
       line-height: 1.3;
+    }
+
+    .clear_offset{
+      margin-bottom: 0;
     }
 
     /* box_title_button */
@@ -793,6 +805,9 @@
     /* input[type="file"] */
     .select_file{
       position: relative;
+      -webkit-transition: 0.3s;
+      -o-transition: 0.3s;
+      transition: 0.3s;
     }
 
     .file_notselected{
@@ -809,6 +824,24 @@
       display: inline-block;
       cursor: pointer;
       text-decoration: underline;
+      -ms-text-overflow: ellipsis;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 285px;
+      height: 24px;
+      -webkit-white-space: nowrap;
+      -moz-white-space: nowrap;
+      -ms-white-space: nowrap;
+      -o-white-space: nowrap;
+      white-space: nowrap;
+      -webkit-cursor: pointer;
+      -moz-cursor: pointer;
+      -ms-cursor: pointer;
+      -o-cursor: pointer;
+      cursor: pointer;
+      -webkit-transition: 0.3s;
+      -o-transition: 0.3s;
+      transition: 0.3s;
     }
 
     .file_notselected:before{
@@ -821,6 +854,9 @@
       display: inline-block;
       margin-right: 9px;
       text-align: center;
+      -webkit-transition: 0.3s;
+      -o-transition: 0.3s;
+      transition: 0.3s;
     }
 
     .file_notselected.checked:before{
@@ -829,9 +865,58 @@
 
     input[type="file"]{
       opacity: 0;
-      visibility: hidden;
+      /* visibility: hidden; */
       width: 100%;
     }
+
+    /* .select_file.big_grey */
+    .select_file.big_grey{
+      width: 340px;
+      height: 52px;
+      background-color: #fff;
+      border: 1px solid #dadada;
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
+      -ms-border-radius: 30px;
+      -o-border-radius: 30px;
+      border-radius: 30px;
+    }
+
+    .select_file.big_grey .file_notselected{
+      left: 4px;
+      color: #4f4f4e;
+      text-decoration: none;
+      height: 45px;
+      font-size: 16px;
+    }
+
+    .select_file.big_grey .file_notselected:before{
+      width: 45px;
+      height: 45px;
+      font: normal normal normal 17px/45px FontAwesome;
+      background-color: #fff;
+      border: 1px solid #dadada;
+      color: #dadada;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      border-radius: 50%;
+    }
+
+    .select_file.big_grey:hover{
+      border-color: #ffa800;
+    }
+
+    .select_file.big_grey:hover .file_notselected{
+      color: #ffa800;
+    }
+
+    .select_file.big_grey:hover .file_notselected:before{
+      color: #ffa800;
+      border-color: #ffa800;
+    }
+
     /* input[type="file"] */
 
     .wrapp_privacy_policy{
@@ -857,6 +942,7 @@
       position: relative;
       font-size: 14px;
       line-height: 1.3;
+      color: #505050;
     }
 
     .attention_txt.big{
@@ -867,7 +953,7 @@
       width: 45px;
       height: 45px;
       text-align: center;
-      background-color: white;
+      background-color: #fff;
       border: 1px solid #ffa800;
       display: inline-block;
       border-radius: 50%;
@@ -913,17 +999,33 @@
       transform: translateY(-50%);
     }
 
-    .wrapp_attention_txt.center{
+    .wrapp_attention_txt{
       display: -webkit-flex;
       display: -moz-flex;
       display: -ms-flex;
       display: -o-flex;
       display: flex;
+      -webkit-flex-wrap: wrap;
+      -moz-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      -o-flex-wrap: wrap;
+      flex-wrap: wrap;
+    }
+
+    .wrapp_attention_txt.center{
       -webkit-justify-content: center;
       -moz-justify-content: center;
       -ms-justify-content: center;
       -o-justify-content: center;
       justify-content: center;
+    }
+
+    .wrapp_attention_txt.justify{
+      -webkit-justify-content: space-between;
+      -moz-justify-content: space-between;
+      -ms-justify-content: space-between;
+      -o-justify-content: space-between;
+      justify-content: space-between;
     }
 
     .wrapp_attention_txt:not(:last-child) {
@@ -1584,6 +1686,10 @@
       padding: 0 50px 50px 54px;
     }
 
+    .modal_container5{
+      padding: 0 80px 43px;
+    }
+
     .modal_footer{
       background-color: #fafafa;
       padding: 29px 30px;
@@ -1609,6 +1715,10 @@
 
     .modal_popup_product{
       width: 575px;
+    }
+
+    .modal_popup_delivery{
+      width: 515px;
     }
 
     .modal_popup_product.big{
@@ -1671,7 +1781,7 @@
     }
 
   /* ------------------------------------------------
-      5.2. Popup products
+      5.2. Popup Paymen
   -------------------------------------------------*/
 
     .payment_popup{
@@ -1686,8 +1796,45 @@
       width: 538px;
     }
 
+    .modal_popup_delivery .wrapp_btn > .btn:not(:last-child){
+      margin-right: 10px;
+    }
+
   /* ------------------------------------------------
-      5.2. Table Order
+      5.2. Preloder file Popup
+  -------------------------------------------------*/
+
+    .preloder_modal{
+      width: 342px;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .wrapp_preloder{
+      margin-bottom: 18px;
+    }
+
+  /* ------------------------------------------------
+      5.2. Preloder Count file Popup
+  -------------------------------------------------*/
+
+  .wrapp_preloadfile_txt{
+    text-align: center;
+    margin-bottom: 27px;
+  }
+
+  .preloadfile_txt_item{
+    color: #969696;
+    font-size: 14px;
+    line-height: 1.3;
+  }
+
+  .preloadfile_txt_item:not(:last-child){
+    margin-bottom: 3px;
+  }
+
+  /* ------------------------------------------------
+      5.?. Table Order
   -------------------------------------------------*/
 
     .table_order{
@@ -1776,9 +1923,8 @@
       margin-left: 5px;
     }
 
-
   /* ------------------------------------------------
-      5.3. Validate (error styles)
+      5.?. Validate (error styles)
   -------------------------------------------------*/
 
     .error_form_container{
@@ -1826,31 +1972,6 @@
     .error_form_container.error input:not(.setting_input):not([type="checkbox"]):not([type="radio"]):not([type="number"]){
       border: 1px solid #ffa800;
     }
-
-
-  /* ------------------------------------------------
-      5.4.
-  -------------------------------------------------*/
-
-  /* ------------------------------------------------
-      5.5.
-  -------------------------------------------------*/
-
-  /* ------------------------------------------------
-      5.6.
-  -------------------------------------------------*/
-
-  /* ------------------------------------------------
-      5.7.
-  -------------------------------------------------*/
-
-  /* ------------------------------------------------
-      5.8.
-  -------------------------------------------------*/
-
-  /* ------------------------------------------------
-      5.9.
-  -------------------------------------------------*/
 
 /* -------------------------------------------------
 
@@ -2907,6 +3028,14 @@
 
   .wrapp_castom_select.sorting .jq-selectbox{
     width: 201px;
+  }
+
+  .wrapp_castom_select.full_width{
+    width: 100%;
+  }
+
+  .wrapp_castom_select.full_width .jq-selectbox{
+    width: 100%;
   }
 
   .wrapp_castom_select.sorting .jq-selectbox__select{

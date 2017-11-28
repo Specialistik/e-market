@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 
@@ -35,6 +36,7 @@ def subcategory_list(request, parent_id):
     return JsonResponse(result)
 
 
+@login_required(login_url='/sign_in/')
 def trade_point_add(request):
     if request.user.profile:
         if request.user.profile.role == 'customer':
@@ -59,6 +61,7 @@ def trade_point_add(request):
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
 
 
+@login_required(login_url='/sign_in/')
 def trade_point_edit(request, pk):
     if request.user.profile:
         if request.user.profile.role == 'customer':
@@ -112,6 +115,7 @@ def products(request, cat_id):
         return render(request, '500.html', {'error_message': u'Категория не найдена'})
 
 
+@login_required(login_url='/sign_in/')
 def basket(request):
     if request.user.profile:
         if request.user.profile.role == 'customer':
@@ -129,6 +133,7 @@ def basket(request):
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
 
 
+@login_required(login_url='/sign_in/')
 def order_unit_add(request):
     if request.user.profile:
         if request.user.profile.role == 'customer':
@@ -161,6 +166,7 @@ def order_unit_add(request):
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
 
 
+@login_required(login_url='/sign_in/')
 def order_unit_edit(request, pk):
     if request.user.profile:
         if request.user.profile.role == 'customer':
@@ -179,6 +185,7 @@ def order_unit_edit(request, pk):
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
 
 
+@login_required(login_url='/sign_in/')
 def order_unit_del(request, pk):
     if request.user.profile:
         if request.user.profile.role == 'customer':

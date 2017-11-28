@@ -5,6 +5,7 @@ import uuid
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 from core.views import profile
 from core.models import Address
@@ -23,6 +24,21 @@ def my_products(request):
             })
         return render(request, '500.html', {'error_message': u'Только производитель может просматривать свои товары'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
+
+
+def my_products_import(request):
+    """
+    if request.user.profile:
+        if request.user.profile.role == 'producer':
+            return render(request, 'my_products.html', {
+                'products': ProductCard.objects.filter(product_depot__producer_id=request.user.id).order_by('pk'),
+                'categories': Category.objects.filter(pid__isnull=True),
+                'depots': ProducerDepot.objects.filter(producer_id=request.user.id),
+                'expiration_values': ExpirationValue.objects.all(),
+            })
+        return render(request, '500.html', {'error_message': u'Только производитель может просматривать свои товары'})
+    """
+    return JsonResponse({'added': 15, 'canceled': 2})
 
 
 def product_add(request):

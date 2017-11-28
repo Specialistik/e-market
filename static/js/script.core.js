@@ -190,6 +190,72 @@
  			$('.select_file').children('span').on('click',function(){$(this).parent().find("input[type='file']").trigger('click')});
  			$('.select_file').children('input').on('change',function(){$(this).siblings("span").addClass("checked").text($(this).val())});
 
+ 			$('#file').on('change', function(){
+ 				console.log('file changed');
+
+ 				startRead();
+
+ 			});
+
+ 			function startRead() {
+
+ 			  var file = document.getElementById('file').files[0];
+
+ 			  if(file){
+ 			    getAsText(file);
+ 			  }
+
+ 			  	$("#preloadfile").arcticmodal({
+ 					closeOnEsc: false,
+ 					closeOnOverlayClick: false
+ 				});
+
+ 			}
+
+ 			function getAsText(readFile) {
+
+ 			  var reader = new FileReader();
+
+ 			  // Read file into memory as UTF-16
+ 			  reader.readAsText(readFile, "UTF-16");
+
+ 			  // Handle progress, success, and errors
+ 			  reader.onprogress = updateProgress;
+ 			  reader.onload = loaded;
+ 			  reader.onerror = errorHandler;
+ 			}
+
+ 			function updateProgress(evt) {
+
+	 			if (evt.lengthComputable) {
+
+	 			    var loaded = (evt.loaded / evt.total);
+
+	 			    if (loaded < 1) {
+
+	 			    }
+
+	 			}
+ 			}
+
+ 			function loaded(evt) {
+ 			  // Obtain the read file data
+				console.log(evt);
+ 			  $("#preloadfile").arcticmodal('close');
+ 			  $('#countPreloadfile').arcticmodal();
+
+ 			}
+
+ 			function errorHandler(evt) {
+ 				console.log('error happened');
+
+ 			    if(evt.target.error.name == "NotReadableError") {
+ 			  		console.log('file not readable error occured');
+ 			    	// The file could not be read
+
+				}
+
+ 			}
  		},
 
 

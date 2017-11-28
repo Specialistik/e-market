@@ -7,17 +7,26 @@
 {% block content %}
     <div id="content" class="wrapp_content">
 
-        <div class="box_title_button">
+         <form class="wrapp_company_form validate" action="/my_products/import/" method="post" novalidate enctype="multipart/form-data">
+            <div class="wrapp_attention_txt justify">
 
-            <h3 class="title_line"><span>Каталог товаров</span></h3>
+                <p class="attention_txt left">
+                    {% comment %}
+                    <i class="fa fa-exclamation" aria-hidden="true"></i>
+                    Каталог продукции пуст. Пожалуйста заполните его вашими продуктами
+                    {% endcomment %}
+                </p>
 
-        </div>
 
-        <p class="attention_txt left">
-            <i class="fa fa-exclamation" aria-hidden="true"></i>
-            Каталог товаров пуст. Пожалуйста заполните его вашими продуктами
-        </p>
+                <div class="select_file big_grey preload_popup">
 
+                    <input id="file" type="file" value="Выберите файл" accept=".xls,.xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" />
+
+                    <span class="file_notselected">Загрузить все товары из файла</span>
+
+                </div>
+            </div>
+         </form>
         <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
 
         <form action="/my_products/add/" class="wrapp_company_form validate" id="add_product_form" method="POST" enctype="multipart/form-data">
@@ -272,6 +281,60 @@
         <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
 
     </div>
+
+    <!-- - - - - - - - - - - - - - Popup - - - - - - - - - - - - - - - - -->
+
+    <div style="display: none;">
+
+        <!-- preloadfile -->
+        <div class="box-modal preloder_modal" id="preloadfile">
+
+            <div class="wrapp_preloder">
+                <img src="/static/images/Spinner.svg" alt="">
+            </div>
+
+            <h4 class="light_black clear_offset">Загружается...</h4>
+
+        </div>
+        <!-- preloadfile -->
+
+        <!-- countPreloadfile -->
+        <div class="box-modal" id="countPreloadfile">
+
+            <div class="box-modal_close arcticmodal-close">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+
+            <div class="modal_container5">
+
+                <div class="wrapp_attention_txt center">
+
+                    <p class="attention_txt left big">
+                        <i class="fa fa-exclamation" aria-hidden="true"></i>
+                        Список обработан
+                    </p>
+
+                </div>
+
+                <div class="wrapp_preloadfile_txt">
+                    <div class="preloadfile_txt_item">Добавлено: <span class="preloadfile_qt add">10</span></div>
+                    <div class="preloadfile_txt_item">Не добавлено: <span class="preloadfile_qt canceled">2</span></div>
+                </div>
+
+                <a href="/my_products/" class="btn light_orange icon_right large_width">
+                   <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    Перейти в каталог продукции
+                </a>
+
+            </div>
+
+        </div>
+        <!-- countPreloadfile -->
+
+    </div>
+
+    <!-- - - - - - - - - - - - - - End of Popup - - - - - - - - - - - - - - - - -->
+
 
     <!-- - - - - - - - - - - - - - End of Content - - - - - - - - - - - - - - - - -->
 
