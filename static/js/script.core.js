@@ -212,10 +212,13 @@
                         $('#processed_products_count').html(data['processed_products']);
                         $('#unprocessed_products_count').html(data['unprocessed_products']);
                     } else {
-						alert(data['error_msg'])
+						alert(data['error_msg']);
 					}
 
 					$("#countPreloadfile").arcticmodal();
+					$("#countPreloadfile").close(function(){
+						location.href = '/my_products/'
+					});
 
 				}).fail(function(data) {
 					alert(data['error_msg']);

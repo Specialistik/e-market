@@ -55,7 +55,6 @@ def my_products_import(request):
                     minimum_amount=excel_row[3].value,
                     category=subcat,
                     expiration_type_id=1,
-                    expiration_date=None,
                     barcode=excel_row[7].value,
                     pack_amount=excel_row[8].value,
                     weight=excel_row[9].value,
