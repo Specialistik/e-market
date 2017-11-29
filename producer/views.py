@@ -62,7 +62,7 @@ def my_products_import(request):
                     width=excel_row[11].value,
                     height=excel_row[12].value,
                     product_depot=depot,
-
+                    description=excel_row[13].value,
                 )
                 result['processed_products'] += 1
             except Exception:
