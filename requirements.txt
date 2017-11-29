@@ -1,3 +1,4 @@
+openpyxl
 -e git+https://github.com/kevinastone/django-api-rest-and-angular.git@b0a1ea487c6d7028e491e7558a7a0cfd2243d2ec#egg=API_Example
 bootstrap-admin==0.3.7.1
 certifi==2017.7.27.1

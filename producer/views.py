@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 import uuid
-from pyexcel_io import get_data
 import openpyxl
 
 from django.shortcuts import render, redirect
