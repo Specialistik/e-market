@@ -7,7 +7,8 @@
 {% block content %}
     <div id="content" class="wrapp_content">
 
-         <form class="wrapp_company_form validate" action="/my_products/import/" method="post" novalidate enctype="multipart/form-data">
+        <form class="wrapp_company_form validate" action="/my_products/import/" method="post" id="import_form" novalidate enctype="multipart/form-data">
+            {% csrf_token %}
             <div class="wrapp_attention_txt justify">
 
                 <p class="attention_txt left">
@@ -17,13 +18,9 @@
                     {% endcomment %}
                 </p>
 
-
                 <div class="select_file big_grey preload_popup">
-
-                    <input id="file" type="file" value="Выберите файл" accept=".xls,.xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" />
-
+                    <input name="import_file" id="file" type="file" value="Выберите файл" accept=".xls,.xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel" />
                     <span class="file_notselected">Загрузить все товары из файла</span>
-
                 </div>
             </div>
          </form>
@@ -317,8 +314,8 @@
                 </div>
 
                 <div class="wrapp_preloadfile_txt">
-                    <div class="preloadfile_txt_item">Добавлено: <span class="preloadfile_qt add">10</span></div>
-                    <div class="preloadfile_txt_item">Не добавлено: <span class="preloadfile_qt canceled">2</span></div>
+                    <div class="preloadfile_txt_item">Добавлено: <span class="preloadfile_qt add" id="processed_products_count">10</span></div>
+                    <div class="preloadfile_txt_item">Не добавлено: <span class="preloadfile_qt canceled" id="unprocessed_products_count">2</span></div>
                 </div>
 
                 <a href="/my_products/" class="btn light_orange icon_right large_width">

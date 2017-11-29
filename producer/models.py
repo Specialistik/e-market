@@ -23,12 +23,18 @@ class ProducerDepot(models.Model):
 
 
 class ProductCard(models.Model):
+    EXPIRATION_TYPES = (
+        (1, u"Не ограничен"),
+        (2, u"дней"),
+        (3, u"месяцев"),
+    )
+
     category = models.ForeignKey(Category, verbose_name=u"Категория")
     product_depot = models.ForeignKey(ProducerDepot, verbose_name=u'Склад')
     name = models.CharField(max_length=256, verbose_name=u"Название")
     barcode = models.CharField(max_length=64, verbose_name=u'Штрих-код')
     expiration_date = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Срок годности')
-    expiration_type = models.ForeignKey(ExpirationValue, default=2, verbose_name=u'Тип срока годности')
+    expiration_type = models.ForeignKey(ExpirationValue, default=1, verbose_name=u'Тип срока годности')
     producer_price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=u'Цена производителя')
     customer_price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=u'Цена для заказчика')
     minimum_amount = models.IntegerField(default=1, verbose_name=u'Минимальное количество')

@@ -2,9 +2,12 @@
 from __future__ import unicode_literals
 
 import uuid
+from pyexcel_io import get_data
+import openpyxl
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 
 from core.views import profile
@@ -13,6 +16,7 @@ from catalogs.models import Category, ExpirationValue
 from producer.models import ProductCard, ProducerDepot
 
 
+@login_required(login_url='/sign_in/')
 def my_products(request):
     if request.user.profile:
         if request.user.profile.role == 'producer':
@@ -26,21 +30,50 @@ def my_products(request):
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
 
 
+@csrf_exempt
+@login_required(login_url='/sign_in/')
 def my_products_import(request):
-    """
-    if request.user.profile:
-        if request.user.profile.role == 'producer':
-            return render(request, 'my_products.html', {
-                'products': ProductCard.objects.filter(product_depot__producer_id=request.user.id).order_by('pk'),
-                'categories': Category.objects.filter(pid__isnull=True),
-                'depots': ProducerDepot.objects.filter(producer_id=request.user.id),
-                'expiration_values': ExpirationValue.objects.all(),
-            })
-        return render(request, '500.html', {'error_message': u'Только производитель может просматривать свои товары'})
-    """
-    return JsonResponse({'added': 15, 'canceled': 2})
+    if not request.user.profile.role == 'producer':
+        return JsonResponse({'success': False, 'error_msg': u'Только производители могут импортировать продукты'})
+
+    if 'import_file' in request.FILES:
+        depot = ProducerDepot.objects.filter(producer=request.user.id).order_by('pk').first()
+        if not depot:
+            return JsonResponse({'success': False, 'error_msg': u'Заведите хотя-бы один склад'})
+        ws = openpyxl.load_workbook(request.FILES['import_file']).get_active_sheet()
+        result = {
+            'success': True,
+            'processed_products': 0,
+            'unprocessed_products': 0,
+        }
+        for excel_row in ws.iter_rows(min_row=6):
+            try:
+                subcat = Category.objects.get(name=excel_row[5].value)
+                ProductCard.objects.create(
+                    name=excel_row[1].value,
+                    producer_price=excel_row[2].value,
+                    customer_price=ProductCard.calculate_customer_price(float(excel_row[2].value)),
+                    minimum_amount=excel_row[3].value,
+                    category=subcat,
+                    expiration_type_id=1,
+                    expiration_date=None,
+                    barcode=excel_row[7].value,
+                    pack_amount=excel_row[8].value,
+                    weight=excel_row[9].value,
+                    length=excel_row[10].value,
+                    width=excel_row[11].value,
+                    height=excel_row[12].value,
+                    product_depot=depot,
+
+                )
+                result['processed_products'] += 1
+            except Exception:
+                result['unprocessed_products'] += 1
+        return JsonResponse(result)
+    return JsonResponse({'success': False, 'error_msg': u'Не удалось прочесть файл'})
 
 
+@login_required(login_url='/sign_in/')
 def product_add(request):
     if request.user.profile:
         if request.user.profile.role == 'producer':
@@ -77,6 +110,7 @@ def product_add(request):
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
 
 
+@login_required(login_url='/sign_in/')
 def product_edit(request, pk):
     """
         todo: only owners should be allowed to edit products
@@ -113,6 +147,7 @@ def product_edit(request, pk):
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
 
 
+@login_required(login_url='/sign_in/')
 def product_del(request, pk):
     if request.user.profile:
         if request.user.profile.role == 'producer':
@@ -128,6 +163,7 @@ def product_del(request, pk):
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
 
 
+@login_required(login_url='/sign_in/')
 def depot_add(request):
     if request.user.profile:
         if request.user.profile.role == 'producer':
@@ -152,6 +188,7 @@ def depot_add(request):
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
 
 
+@login_required(login_url='/sign_in/')
 def depot_edit(request, pk):
     if request.user.profile:
         if request.user.profile.role == 'producer':
