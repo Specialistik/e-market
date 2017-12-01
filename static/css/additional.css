@@ -25,3 +25,7 @@
 .adjusted_form {
     width: -webkit-fill-available;
 }
+
+.clickable_order {
+    cursor: pointer;
+}

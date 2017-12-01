@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block js_css %}
-    {% comment %}<script src="/static/js/products.js"></script> {% endcomment %}
+    <script src="/static/js/current_orders.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -61,8 +61,8 @@
 
         <tbody>
             {% for order in current_orders %}
-                <tr>
-                    <td data-title="№">{{ forloop.counter }}</td>
+                <tr class="clickable_order">
+                    <td data-title="№">{{ order.id }}</td>
                     <td data-title="Дата">{{ order.created|date:'d.m.Y' }}</td>
                     <td data-title="Контрагент">
                         {% if user.profile.role == 'customer' %}
@@ -72,7 +72,7 @@
                         {% endif %}
                     </td>
                     <td data-title="Сумма/руб">{{ order.calculate_sum }}</td>
-                    <td class="blue" data-title="Статус">На согласовании</td>
+                    <td class="blue" data-title="Статус">{{ order.get_order_status_display }}</td>
                 </tr>
             {% endfor %}
         </tbody>

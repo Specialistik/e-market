@@ -1,0 +1,273 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
+    <div id="content" class="wrapp_content">
+
+        <div class="hideAfterCall">
+
+            <div class="box_title_button">
+
+                <h3 class="title_line"><span>Заказ №{{ order.id }} от {{ order.created|date:'d.m.Y' }}</span></h3>
+
+                <a href="/current_orders" class="btn light_orange icon_left large_width">
+                    <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                    Назад к заказам
+                </a>
+
+            </div>
+
+            <p class="attention_txt left green_line grey">
+                {% if user.profile.role == 'producer' and order.status_new %}
+                    <i class="fa fa-exclamation" aria-hidden="true"></i>
+                    Если вы отправили товары заказчику, пожалуйста, подтвердите отправку
+                {% endif %}
+
+                {% if user.profile.role == 'customer' and order.status_sent %}
+                    <i class="fa fa-exclamation" aria-hidden="true"></i>
+                    Если товары были доставлены, пожалуйста, подтвердите доставку
+                {% endif %}
+            </p>
+
+            <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+
+            <div class="wrapp_products  wrapp_count_products">
+                {% for order_unit in order_units %}
+                    <!-- product 1 -->
+                    <div class="box_form_products_item block_closest clearfix">
+
+                        <div class="box_form_products_item_img count_products" data-mh="height-products">
+                            <a href="/order_unit/{{ order_unit.id }}" data-popup="#form_product1">
+                                <img src="{{ order_unit.get_image_url }}" alt="">
+                            </a>
+                        </div>
+
+                        <div class="wrapp_products_item_forms setting_box" data-mh="height-products">
+
+                            <!-- <span class="js_edit">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </span>
+
+                            <a href="javascript:;" class="closest_btn">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </a> -->
+
+                            <div class="form_products_col gradient">
+
+                                <ul class="setting_list">
+
+                                    <li>
+
+                                        <label>Наименование</label>
+
+                                        <div class="wrapp_settings_select right_angle">
+                                            <select data-placeholder="выбрать" disabled>
+                                                <option value="">Сметана</option>
+                                                <option value="">Тип 2</option>
+                                                <option value="">Тип 3</option>
+                                            </select>
+                                        </div>
+
+                                    </li>
+
+                                    <li>
+                                        <label>Производитель</label>
+
+                                        <div class="wrapp_settings_select right_angle">
+                                            <select data-placeholder="выбрать" disabled>
+                                                <option value="">Valio</option>
+                                                <option value="">Другой</option>
+                                                <option value="">Другой</option>
+                                            </select>
+                                        </div>
+
+                                    </li>
+
+                                </ul>
+
+                            </div>
+
+                            <div class="form_products_col">
+
+                                <div class="form_products_settings">
+
+                                    <div class="form_products_settings_col fix">
+
+                                        <ul class="setting_list">
+
+                                            <li>
+                                                <label>Количество</label>
+                                                <input type="text" class="setting_input" value="6" disabled>
+                                            </li>
+
+                                            <li>
+                                                <label>Цена</label>
+                                                <input type="text" class="setting_input" value="139,02" disabled>
+                                            </li>
+
+                                            <li>
+                                                <label>Сумма</label>
+                                                <input type="text" class="setting_input" value="834,12" disabled>
+                                            </li>
+
+                                        </ul>
+
+                                    </div>
+
+                                    <div class="form_products_settings_col">
+
+                                        <ul class="setting_list">
+
+                                           <li>
+                                               <label>Доставить до:</label>
+                                               <input type="text" class="setting_input" value="Республика Татарстан, г.Казань, ул.Волкова,59" disabled>
+                                           </li>
+
+                                           <li>
+                                               <label>Примечание:</label>
+                                               <input type="text" class="setting_input" value="Доставить в течении не более 10 суток, соблюдая температурный режим - не выше 5 градусов" disabled>
+                                           </li>
+
+                                           <li>
+
+                                               <div class="ok_box">
+                                                   <button class="ok_btn">
+                                                       <i class="fa fa-check" aria-hidden="true"></i>
+                                                   </button>
+                                               </div>
+
+                                           </li>
+
+                                       </ul>
+
+                                   </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- product 1 -->
+                {% endfor %}
+            </div>
+
+            <div class="wrapp_btn right">
+                {% if user.profile.role == 'producer' and order.status_new %}
+                    <button class="btn green icon_left middle_width" data-popup="#delivery_popup">
+                    <i class="fa fa-question" aria-hidden="true"></i>
+                    Товары отправлены?
+                </button>
+                {% endif %}
+
+                {% if user.profile.role == 'customer' and order.status_sent %}
+                    <button class="btn green icon_left middle_width" data-popup="#delivery_popup">
+                        <i class="fa fa-question" aria-hidden="true"></i>
+                        Товары доставлены?
+                    </button>
+                {% endif %}
+            </div>
+
+            <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
+
+        </div>
+
+    </div> <!-- wrapp_content -->
+
+            <!-- - - - - - - - - - - - - - End of Content - - - - - - - - - - - - - - - - -->
+
+            <!-- - - - - - - - - - - - - - Modal Popup - - - - - - - - - - - - - - - - -->
+
+            <div style="display: none;">
+
+            <!-- product popup -->
+                <div class="box-modal modal_popup_product" id="form_product1">
+
+                    <div class="box-modal_close arcticmodal-close">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </div>
+
+                    <div class="modal_container1">
+
+                        <form action="">
+
+                            <h3 class="popup_title align_center">Сметана Valio, 130г</h3>
+
+                            <div class="wrapp_product_preview">
+
+                                <div class="product_preview_img">
+                                    <img src="static/images/catalog-img/catalog-img-big1.png" alt="">
+                                </div>
+
+                                <div class="product_preview_desc">
+                                    <p class="popup_price"><span>139,02</span>р</p>
+
+                                    <label class="label1 big">
+                                        Выберите количество:
+                                        <span class="tooltip_desc" data-tooltip-txt="Минимальный заказ: от 100 шт" data-tooltip-pos="right">?</span>
+                                    </label>
+
+                                    <input type="number" value="100" min="100" max="9999" data-mask="9999">
+
+                                    <label class="label1 big">
+                                        Добавьте примечание к заказу:
+                                        <span class="tooltip_desc" data-tooltip-txt="Комментарий" data-tooltip-pos="right">?</span>
+                                    </label>
+
+                                    <textarea></textarea>
+
+                                    <button class="btn btn_basket light_orange">В корзину</button>
+
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+            <!-- product popup -->
+
+    <!-- delivery popup -->
+        <div class="box-modal modal_popup_delivery" id="delivery_popup">
+
+            <div class="box-modal_close arcticmodal-close">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+
+            <div class="modal_container3">
+
+                <form action="">
+
+                    <div class="wrapp_attention_txt center attention_offset1">
+                        <p class="attention_txt left orange_line big">
+                            <i class="fa fa-exclamation" aria-hidden="true"></i>
+                            Вы подтверждаете, что товары <br>
+                            по Заказу №{{ order.id }} от {{ order.created|date:'d.m.Y' }} {% if user.profile.role == 'producer' and order.status_new %}отправлены?{% endif %}{% if user.profile.role == 'customer' and order.status_sent %}доставлены?{% endif %}
+                        </p>
+                    </div>
+
+                    <div class="wrapp_btn between">
+
+                        <a href="/order/set_status_{% if user.profile.role == 'producer' and order.status_new %}sent{% endif %}{% if user.profile.role == 'customer' and order.status_sent %}delivered{% endif %}/{{ order.id }}/" class="btn hight_orange remove_btn">
+                            Подтвердить
+                        </a>
+
+                        <a href="javascript:;" class="btn hight_grey arcticmodal-close">
+                           Отклонить
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    <!-- delivery popup -->
+
+    </div>
+
+{% endblock %}

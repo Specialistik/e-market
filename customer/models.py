@@ -11,6 +11,7 @@ from catalogs.models import AbstractList
 
 
 class OrderStatuses(AbstractList):
+    """TODO: таблица не используется"""
     class Meta:
         db_table = 'order_statuses'
         verbose_name = u'Статус заявки'
@@ -55,10 +56,19 @@ class Order(models.Model):
             cost_of_basket += order_unit.amount * order_unit.product.producer_price
         return cost_of_basket
 
-    """
-    def status_name(self):
-        return self.order_status
-    """
+    def status_new(self):
+        return self.order_status == 1
+
+    def status_sent(self):
+        return self.order_status == 4
+
+    def set_status_delivered(self):
+        self.order_status = 7
+        self.save()
+
+    def set_status_sent(self):
+        self.order_status = 4
+        self.save()
 
     class Meta:
         db_table = 'orders'
@@ -83,6 +93,9 @@ class OrderUnit(models.Model):
 
     def calculate_sum(self):
         return self.amount * self.product.producer_price
+
+    def get_image_url(self):
+        return self.product.get_image_url()
 
     # from depot
     # to trade point

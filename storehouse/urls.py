@@ -85,5 +85,9 @@ urlpatterns = [
     # Order views
     url(r'^current_orders$', orders_views.current_orders),
     url(r'^order_history$', orders_views.order_history),
+    url(r'^order/([0-9]+)/$', orders_views.order),
+    url(r'^order/set_status_sent/([0-9]+)/$', orders_views.set_status_sent),
+    url(r'^order/set_status_delivered/([0-9]+)/$', orders_views.set_status_delivered),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + staticfiles_urlpatterns()

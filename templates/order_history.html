@@ -68,7 +68,7 @@
                         {% endif %}
                     </td>
                     <td data-title="Сумма/руб">{{ order.calculate_sum }}</td>
-                    <td class="blue" data-title="Статус">На согласовании</td>
+                    <td class="blue" data-title="Статус">{{ order.get_order_status_display }}</td>
                 </tr>
             {% endfor %}
         </tbody>
