@@ -31,7 +31,12 @@ def subcategories(request, pk):
 
 def subcategory_list(request, parent_id):
     return JsonResponse({cat.id: cat.name for cat in Category.objects.filter(pid=parent_id)})
-
+    """
+    result = {}
+    for subcat in Category.objects.filter(pid=parent_id):
+        result[subcat.id] = subcat.name
+    return JsonResponse(result)
+    """
 
 @login_required(login_url='/sign_in/')
 def trade_point_add(request):
@@ -117,6 +122,7 @@ def basket(request):
     if request.user.profile:
         if request.user.profile.role == 'customer':
             try:
+                #order = Order.objects.get(customer_id=request.user.id, order_status__isnull=True)
                 order_units = OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id)
             except Order.DoesNotExist:
                 order_units = []
@@ -133,26 +139,27 @@ def basket(request):
 def order_unit_add(request):
     if request.user.profile:
         if request.user.profile.role == 'customer':
-            """Если в корзине уже есть товар - меняем цену"""
-            if OrderUnit.objects.filter(order__isnull=True, product_id=request.POST['product'], customer_id=request.user.id).count() > 0:
-                order_unit = OrderUnit.objects.get(order__isnull=True, product_id=request.POST['product'], customer_id=request.user.id)
-                order_unit.amount = int(request.POST['amount'])
-                order_unit.save()
-                return redirect(basket)
-
             try:
                 product = ProductCard.objects.get(pk=request.POST['product'])
-                order_unit = OrderUnit.objects.create(
-                    producer_id=product.product_depot.producer.id,
-                    customer_id=request.user.id,
-                    product_id=request.POST['product'],
-                    amount=int(request.POST['amount']),
-                )
-                order_unit.save()
+                endpoint = '/products/{}/'.format(product.category_id)
             except ProductCard.DoesNotExist:
                 return render(request, '500.html', {'error_message': u'Не найден добавляемый продукт'})
 
-            return redirect(basket)
+            """Если в корзине уже есть товар - меняем цену"""
+            if OrderUnit.objects.filter(order__isnull=True, product=product, customer_id=request.user.id).count() > 0:
+                order_unit = OrderUnit.objects.get(order__isnull=True, product_id=request.POST['product'], customer_id=request.user.id)
+                order_unit.amount = int(request.POST['amount'])
+                order_unit.save()
+                return redirect(endpoint)
+
+            order_unit = OrderUnit.objects.create(
+                producer_id=product.product_depot.producer.id,
+                customer_id=request.user.id,
+                product=product,
+                amount=int(request.POST['amount']),
+            )
+            order_unit.save()
+            return redirect(endpoint)
         return render(request, '500.html', {'error_message': u'Только заказчик может добавлять позиции заказа'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
 
