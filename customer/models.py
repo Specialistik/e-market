@@ -10,14 +10,6 @@ from producer.models import ProductCard
 from catalogs.models import AbstractList
 
 
-class OrderStatuses(AbstractList):
-    """TODO: таблица не используется"""
-    class Meta:
-        db_table = 'order_statuses'
-        verbose_name = u'Статус заявки'
-        verbose_name_plural = u'Статусы заявок'
-
-
 class TradePoint(models.Model):
     customer = models.ForeignKey(User, verbose_name=u'Заказчик')
     name = models.CharField(max_length=256, verbose_name=u'Название')
@@ -85,7 +77,6 @@ class OrderUnit(models.Model):
     customer = models.ForeignKey(User, verbose_name=u'Заказчик', related_name="customer_unit")
 
     amount = models.IntegerField(verbose_name=u'Количество')
-    #trade_point = models.ForeignKey(TradePoint, verbose_name=u'Торговая точка')
     remark = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Примечание')
 
     def find_producer(self):
@@ -97,11 +88,18 @@ class OrderUnit(models.Model):
     def get_image_url(self):
         return self.product.get_image_url()
 
-    # from depot
-    # to trade point
-
     class Meta:
-        #unique_together = ('order', 'product', '')
         db_table = 'order_units'
         verbose_name = u'Позиция заказа'
         verbose_name_plural = u'Позиции заказов'
+
+
+class OrderPayment(models.Model):
+    order = models.ForeignKey(Order, verbose_name=u'Заказ')
+    document = models.FileField(upload_to='order_payments', verbose_name=u'Платёжное поручение')
+    date = models.DateField(verbose_name=u'Дата поручения')
+
+    class Meta:
+        db_table = 'order_payments'
+        verbose_name = u'Платёж по заказу'
+        verbose_name_plural = u'Платежи по заказам'

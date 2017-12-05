@@ -24,7 +24,7 @@ SECRET_KEY = '@9#xuxho&p&vh@o&!$u#mwvq&bd0kzwzs3jwt_*8+&vg9b-%yq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', '95.183.10.45', 'the-sklad.ru', 'www.the-sklad.ru', 'online.the-sklad.ru', 'www.online.the-sklad.ru', 'app.the-sklad.ru', 'www.app.the-sklad.ru']
+ALLOWED_HOSTS = ['127.0.0.1', '95.183.10.45', 'app.the-sklad.ru', 'www.app.the-sklad.ru']
 #ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 

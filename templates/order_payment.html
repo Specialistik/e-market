@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
+
+    <div id="content" class="wrapp_content">
+
+        <div class="box_title_button">
+
+            <h3 class="title_line"><span>Оплата товаров с расчетного счета</span></h3>
+
+            <a href="javascript:;" class="btn light_orange icon_left middle_width">
+               <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                Назад в корзину
+            </a>
+
+        </div>
+
+        <h3 class="subtitle_edit">Заказ №{{ order.id }} от {{ order.created|date:'d.m.Y' }}</h3>
+
+        <p class="attention_txt orange_line left">
+            <i class="fa fa-exclamation" aria-hidden="true"></i>
+            Пожалуйста произведите оплату заказа по счету, скачав его ниже. Оплату вы можете произвести со своего бизнес онлайн-банка либо через отделение вашего банка. <br>
+            А также прикрепите платежное поручение с отметкой банка и укажите его дату и номер.
+        </p>
+
+        <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
+
+        <form action="/order/commit_payment/" class="wrapp_company_form validate" method="post">
+            {% csrf_token %}
+
+            <div class="clearfix">
+
+                <div class="form_box_offset">
+                    <a href="javascript:;" class="btn_before_sqare clearfix" download>
+                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                        Скачайте реквизиты для оплаты суммы сделки
+                    </a>
+                </div>
+
+               <div class="box_form_row type2 clearfix">
+
+                    <!-- col 6 -->
+                    <div class="box_form_half">
+
+                        <div class="form_box_offset">
+
+                            <div class="error_form_container">
+                                <input type="text" placeholder="Укажите номер платежного поручения" data-mask="000000000000000000" data-name="payment_number" required>
+                            </div>
+
+                        </div>
+
+                        <div class="form_box_offset">
+
+                            <div class="select_file">
+
+                                <input type="file" value="Выберите файл" class="setting_input">
+
+                                <span class="file_notselected">Прикрепите платежку</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- col 6 -->
+
+                    <!-- col 6 -->
+                    <div class="box_form_half">
+
+                        <div class="form_box_offset">
+
+                            <div class="wrapp_datepicker_calendar error_form_container">
+                                <input type="text" class="datepicker-here" placeholder="Дата платежного поручения" required>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- col 6 -->
+
+               </div> <!-- box_form_row -->
+
+               <div class="box_form_row type2 clearfix">
+
+                    <div class="box_form_full">
+
+                        <div class="note_block">
+
+                            <h3 class="subtitle_edit">Примите оферту</h3>
+
+                            <div class="wrapp_privacy_policy">
+
+                                <input type="checkbox" id="privacy_policy">
+
+                                <label for="privacy_policy">
+                                </label>
+
+                                <label for="privacy_policy" class="privacy_policy_txt">
+                                    Заключая сделку вы принимаете
+                                    <a href="javascript:;" target="_blank" class="hight_orange">оферту на заключение договора об исполнении онлайн сервиса «Национальная эскроу система»</a>
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+               </div> <!-- box_form_row -->
+
+               <div class="align_right">
+                    <button class="btn hight_orange icon_right middle_width">
+                        Оплату подтверждаю
+                        <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    </button>
+               </div>
+
+            </div> <!-- wrapp_form -->
+
+        </form>
+
+        <!-- - - - - - - - - - - - - - End of Form - - - - - - - - - - - - - - - - -->
+
+
+        <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+
+
+        <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
+
+    </div>
+
+    <!-- - - - - - - - - - - - - - End of Content - - - - - - - - - - - - - - - - -->
+
+{% endblock %}

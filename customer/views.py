@@ -30,10 +30,7 @@ def subcategories(request, pk):
 
 
 def subcategory_list(request, parent_id):
-    result = {}
-    for subcat in Category.objects.filter(pid=parent_id):
-        result[subcat.id] = subcat.name
-    return JsonResponse(result)
+    return JsonResponse({cat.id: cat.name for cat in Category.objects.filter(pid=parent_id)})
 
 
 @login_required(login_url='/sign_in/')
@@ -120,7 +117,6 @@ def basket(request):
     if request.user.profile:
         if request.user.profile.role == 'customer':
             try:
-                #order = Order.objects.get(customer_id=request.user.id, order_status__isnull=True)
                 order_units = OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id)
             except Order.DoesNotExist:
                 order_units = []
@@ -137,9 +133,6 @@ def basket(request):
 def order_unit_add(request):
     if request.user.profile:
         if request.user.profile.role == 'customer':
-
-            #order, created = Order.objects.get_or_create(customer_id=request.user.id, order_status__isnull=True)
-
             """Если в корзине уже есть товар - меняем цену"""
             if OrderUnit.objects.filter(order__isnull=True, product_id=request.POST['product'], customer_id=request.user.id).count() > 0:
                 order_unit = OrderUnit.objects.get(order__isnull=True, product_id=request.POST['product'], customer_id=request.user.id)
@@ -159,8 +152,6 @@ def order_unit_add(request):
             except ProductCard.DoesNotExist:
                 return render(request, '500.html', {'error_message': u'Не найден добавляемый продукт'})
 
-            #order_unit.producer_id = order_unit.find_producer()
-            #order_unit.save()
             return redirect(basket)
         return render(request, '500.html', {'error_message': u'Только заказчик может добавлять позиции заказа'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
@@ -202,6 +193,7 @@ def order_unit_del(request, pk):
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
 
 
+@login_required(login_url='/sign_in/')
 def order_history(request):
     if request.user.profile:
         if request.user.profile.role == 'customer':
@@ -210,6 +202,7 @@ def order_history(request):
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
 
 
+@login_required(login_url='/sign_in/')
 def perform_order(request):
     if request.user.profile:
         if request.user.profile.role == 'customer':
@@ -231,19 +224,7 @@ def perform_order(request):
                         order_unit.order_id = order.id
                         order_unit.save()
                     order_unit_producer_id = order_unit.producer_id
-                """
-                order = Order.objects.get(customer_id=request.user.id, order_status__isnull=True)
-                if OrderUnit.objects.filter(order_id=order.id).count() == 0:
-                    return render(request, '500.html', {'error_message': u'Не выбраны продукты для совершения заказа'})
 
-                if 'trade_point' not in request.POST:
-                    return render(request, '500.html', {'error_message': u'Не указана торговая точка при создании заказа'})
-
-                trade_point = TradePoint.objects.get(pk=request.POST['trade_point'], customer_id=request.user.id)
-                order.order_status_id = 1
-                order.trade_point_id = trade_point.id
-                order.save()
-                """
                 return redirect(current_orders)
             except Order.DoesNotExist:
                 return render(request, '500.html', {'error_message': u'Не выбраны продукты для совершения заказа'})

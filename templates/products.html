@@ -16,16 +16,10 @@
             </a>
 
         </div>
-        {% comment %}
-        <p class="attention_txt left">
-            <i class="fa fa-exclamation" aria-hidden="true"></i>
-            Выберите категорию товара
-        </p>
-        {% endcomment %}
 
         <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
-
         <form action="/products/search/" method="get" class="wrapp_filter">
+            {% csrf_token %}
             <label class="label1 big">Сортировка:</label>
 
             <div class="wrapp_castom_select sorting">
@@ -48,7 +42,6 @@
             </div>
 
         </form>
-
         <!-- - - - - - - - - - - - - - End of Form - - - - - - - - - - - - - - - - -->
 
         <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->

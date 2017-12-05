@@ -24,6 +24,7 @@
 				Popup Call
 		------------------------------------------------ */
 
+
 		if($("[data-popup]").length){
 
 		    $("[data-popup]").on('click', function(){
