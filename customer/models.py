@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from core.models import Address
 from producer.models import ProductCard
 from catalogs.models import AbstractList
+from payments.models import OrderPayment
 
 
 class TradePoint(models.Model):
@@ -35,12 +36,12 @@ class Order(models.Model):
         (7, u"Доставлен"),
         (8, u"Исполнен"),
     )
-    #order_status = models.ForeignKey(OrderStatuses, null=True, default=1, verbose_name=u'Статус заявки')
     order_status = models.IntegerField(choices=STATUSES, default=1, verbose_name=u'Статус заявки')
 
     # Новый концепт денормализации
     trade_point = models.ForeignKey(TradePoint, null=True, verbose_name=u'Торговая точка')
     producer = models.ForeignKey(User, null=True, verbose_name=u'Поставщик', related_name="producer")
+    payment = models.ForeignKey(OrderPayment, verbose_name=u'Платёжная сущность')
 
     def calculate_sum(self):
         cost_of_basket = 0
@@ -78,12 +79,13 @@ class OrderUnit(models.Model):
 
     amount = models.IntegerField(verbose_name=u'Количество')
     remark = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Примечание')
+    price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=u'Цена на момент заказа')
 
     def find_producer(self):
         return self.product.product_depot.producer.id
 
     def calculate_sum(self):
-        return self.amount * self.product.producer_price
+        return self.amount * self.price
 
     def get_image_url(self):
         return self.product.get_image_url()
@@ -93,13 +95,3 @@ class OrderUnit(models.Model):
         verbose_name = u'Позиция заказа'
         verbose_name_plural = u'Позиции заказов'
 
-
-class OrderPayment(models.Model):
-    order = models.ForeignKey(Order, verbose_name=u'Заказ')
-    document = models.FileField(upload_to='order_payments', verbose_name=u'Платёжное поручение')
-    date = models.DateField(verbose_name=u'Дата поручения')
-
-    class Meta:
-        db_table = 'order_payments'
-        verbose_name = u'Платёж по заказу'
-        verbose_name_plural = u'Платежи по заказам'

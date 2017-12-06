@@ -7,11 +7,12 @@ from django.http import JsonResponse
 
 from catalogs.models import Category
 from producer.models import ProductCard
-from core.views import profile
-from core.models import Address
 from models import TradePoint, Order, OrderUnit
+from core.models import Address
 
+from core.views import profile
 from orders.views import current_orders
+from payments.models import OrderPayment
 
 
 def categories(request):
@@ -31,12 +32,7 @@ def subcategories(request, pk):
 
 def subcategory_list(request, parent_id):
     return JsonResponse({cat.id: cat.name for cat in Category.objects.filter(pid=parent_id)})
-    """
-    result = {}
-    for subcat in Category.objects.filter(pid=parent_id):
-        result[subcat.id] = subcat.name
-    return JsonResponse(result)
-    """
+
 
 @login_required(login_url='/sign_in/')
 def trade_point_add(request):
@@ -122,8 +118,7 @@ def basket(request):
     if request.user.profile:
         if request.user.profile.role == 'customer':
             try:
-                #order = Order.objects.get(customer_id=request.user.id, order_status__isnull=True)
-                order_units = OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id)
+                order_units = OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id).order_by('pk')
             except Order.DoesNotExist:
                 order_units = []
 
@@ -157,6 +152,7 @@ def order_unit_add(request):
                 customer_id=request.user.id,
                 product=product,
                 amount=int(request.POST['amount']),
+                price=product.producer_price,
             )
             order_unit.save()
             return redirect(endpoint)
@@ -174,6 +170,7 @@ def order_unit_edit(request, pk):
                     return render(request, '500.html', {'error_message': u'Редактировать можно только свои позиции заказа'})
                 order_unit.amount = request.POST['amount']
                 order_unit.remark = request.POST['remark']
+                order_unit.price = order_unit.product.producer_price
                 order_unit.save()
             except OrderUnit.DoesNotExist:
                 return render(request, '500.html', {'error_message': u'Позиция заказа не существует'})
@@ -201,26 +198,25 @@ def order_unit_del(request, pk):
 
 
 @login_required(login_url='/sign_in/')
-def order_history(request):
-    if request.user.profile:
-        if request.user.profile.role == 'customer':
-            return render(request, 'order_history.html')
-        return render(request, '500.html', {'error_message': u'Только заказчик может просматривать историю заказов'})
-    return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
-
-
-@login_required(login_url='/sign_in/')
 def perform_order(request):
     if request.user.profile:
         if request.user.profile.role == 'customer':
             try:
+                cost_of_basket = 0
+                for order_unit in OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id):
+                    cost_of_basket += order_unit.amount * order_unit.price
+
+                order_payment = OrderPayment.objects.create(price=cost_of_basket, customer_id=request.user.id)
+
+                # todo: Тут можно покрасивее переписать, group_by
                 order_unit_producer_id = 0
-                for order_unit in (OrderUnit.objects.filter(order__isnull=True, customer=request.user.id).order_by('producer_id')):
+                for order_unit in (OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id).order_by('producer_id')):
                     if order_unit.producer_id != order_unit_producer_id:
                         order = Order.objects.create(
                             customer_id=request.user.id,
                             trade_point_id=request.POST['trade_point'],
-                            producer_id=order_unit.producer_id)
+                            producer_id=order_unit.producer_id,
+                            payment=order_payment)
                         order_unit.order_id = order.id
                         order_unit.save()
                     else:

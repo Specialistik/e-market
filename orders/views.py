@@ -75,15 +75,3 @@ def set_status_delivered(request, pk):
         return redirect(order, pk)
     except Order.DoesNotExist:
         return render(request, '500.html', {'error_message': u'Заказ не существует'})
-
-
-@login_required(login_url='/sign_in/')
-def order_payment(request, pk):
-    try:
-        current_order = Order.objects.get(pk=pk)
-        if not request.user.id == current_order.customer_id:
-            return render(request, '500.html', {'error_message': u'Только заказчик может оплачивать заказ'})
-
-        return render(request, 'order_payment.html', {'order': current_order})
-    except Order.DoesNotExist:
-        return render(request, '500.html', {'error_message': u'Заказ не существует'})

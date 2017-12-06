@@ -16,6 +16,7 @@ import catalogs.views as catalog_views
 import producer.views as producer_views
 import customer.views as customer_views
 import orders.views as orders_views
+import payments.views as payment_views
 import core.api as core_api
 
 #schema_view = get_swagger_view(title='The sklad API')
@@ -88,6 +89,8 @@ urlpatterns = [
     url(r'^order/([0-9]+)/$', orders_views.order),
     url(r'^order/set_status_sent/([0-9]+)/$', orders_views.set_status_sent),
     url(r'^order/set_status_delivered/([0-9]+)/$', orders_views.set_status_delivered),
-    url(r'^order_payment/([0-9]+)/$', orders_views.order_payment),
+
+    # Payment views
+    url(r'^order_payment/([0-9]+)/$', payment_views.order_payment),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + staticfiles_urlpatterns()

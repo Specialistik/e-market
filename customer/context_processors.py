@@ -9,7 +9,7 @@ def basket(request):
             if request.user.profile.role == 'customer':
                 cost_of_basket = 0
                 for order_unit in OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id):
-                    cost_of_basket += order_unit.amount * order_unit.product.producer_price
+                    cost_of_basket += order_unit.amount * order_unit.price
                 return {
                     'basket_items': OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id).count(),
                     'basket_price': cost_of_basket

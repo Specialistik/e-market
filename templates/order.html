@@ -78,17 +78,17 @@
                                         <ul class="setting_list">
                                             <li>
                                                 <label>Количество</label>
-                                                <input type="text" class="setting_input" value="6" disabled>
+                                                <input type="text" class="setting_input" value="{{ order_unit.amount }}" disabled>
                                             </li>
 
                                             <li>
                                                 <label>Цена</label>
-                                                <input type="text" class="setting_input" value="139,02" disabled>
+                                                <input type="text" class="setting_input" value="{{ order_unit.price }}" disabled>
                                             </li>
 
                                             <li>
                                                 <label>Сумма</label>
-                                                <input type="text" class="setting_input" value="834,12" disabled>
+                                                <input type="text" class="setting_input" value="{{ order_unit.calculate_sum }}" disabled>
                                             </li>
 
                                         </ul>
@@ -101,12 +101,12 @@
 
                                            <li>
                                                <label>Доставить до:</label>
-                                               <input type="text" class="setting_input" value="Республика Татарстан, г.Казань, ул.Волкова,59" disabled>
+                                               <input type="text" class="setting_input" value="{{ order_unit.order.trade_point.address.full_address }}" disabled>
                                            </li>
 
                                            <li>
                                                <label>Примечание:</label>
-                                               <input type="text" class="setting_input" value="Доставить в течении не более 10 суток, соблюдая температурный режим - не выше 5 градусов" disabled>
+                                               <input type="text" class="setting_input" value="{% if order_unit.remark %}{{ order_unit.remark }}{% endif %}" disabled>
                                            </li>
 
                                            <li>
