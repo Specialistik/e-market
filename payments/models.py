@@ -17,8 +17,9 @@ class OrderPayment(models.Model):
 
 
 class DirectPayment(models.Model):
-    payment = models.OneToOneField(OrderPayment, verbose_name=u'платёжная сущность')
+    payment = models.OneToOneField(OrderPayment, verbose_name=u'Платёжная сущность')
     document = models.FileField(upload_to='order_payments', verbose_name=u'Платёжное поручение')
+    document_id = models.DecimalField(max_digits=20, decimal_places=0, default=None, verbose_name=u'Номер платёжного поручения')
     date = models.DateField(verbose_name=u'Дата поручения')
 
     class Meta:

@@ -16,7 +16,7 @@
 
         </div>
 
-        <h3 class="subtitle_edit">Заказ №{{ order.id }} от {{ order.created|date:'d.m.Y' }}</h3>
+        <h3 class="subtitle_edit">Произведите оплату на сумму {{ payment. }}</h3>
 
         <p class="attention_txt orange_line left">
             <i class="fa fa-exclamation" aria-hidden="true"></i>
@@ -26,7 +26,7 @@
 
         <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
 
-        <form action="/order/commit_payment/" class="wrapp_company_form validate" method="post">
+        <form action="/direct_payment/{{ payment.id }}/" class="wrapp_company_form validate" method="post" enctype='multipart/form-data'>
             {% csrf_token %}
 
             <div class="clearfix">
@@ -46,7 +46,7 @@
                         <div class="form_box_offset">
 
                             <div class="error_form_container">
-                                <input type="text" placeholder="Укажите номер платежного поручения" data-mask="000000000000000000" data-name="payment_number" required>
+                                <input name="document_id" placeholder="Укажите номер платежного поручения" data-name="payment_number" required>
                             </div>
 
                         </div>
@@ -55,7 +55,7 @@
 
                             <div class="select_file">
 
-                                <input type="file" value="Выберите файл" class="setting_input">
+                                <input name="document" type="file" value="Выберите файл" class="setting_input" required>
 
                                 <span class="file_notselected">Прикрепите платежку</span>
 
@@ -72,7 +72,7 @@
                         <div class="form_box_offset">
 
                             <div class="wrapp_datepicker_calendar error_form_container">
-                                <input type="text" class="datepicker-here" placeholder="Дата платежного поручения" required>
+                                <input name="date" class="datepicker-here" placeholder="Дата платежного поручения" required>
                             </div>
 
                         </div>

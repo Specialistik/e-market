@@ -228,7 +228,7 @@ def perform_order(request):
                         order_unit.save()
                     order_unit_producer_id = order_unit.producer_id
 
-                return redirect(current_orders)
+                return redirect('/order_payment/{}/'.format(order_payment.id))
             except Order.DoesNotExist:
                 return render(request, '500.html', {'error_message': u'Не выбраны продукты для совершения заказа'})
             except TradePoint.DoesNotExist:
