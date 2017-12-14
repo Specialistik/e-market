@@ -25,10 +25,10 @@ def order_history(request):
     if request.user.profile:
         cur_orders = None
         if request.user.profile.role == 'customer':
-            cur_orders = Order.objects.filter(customer_id=request.user.id, order_status__in=(2, 3, 6, 7))
+            cur_orders = Order.objects.filter(customer_id=request.user.id, order_status__in=(2, 4, 6, 7))
 
         if request.user.profile.role == 'producer':
-            cur_orders = Order.objects.filter(producer_id=request.user.id, order_status__in=(2, 3, 6, 7))
+            cur_orders = Order.objects.filter(producer_id=request.user.id, order_status__in=(2, 4, 6, 7))
         return render(request, 'order_history.html', {
             'current_orders': cur_orders
         })

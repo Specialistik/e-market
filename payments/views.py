@@ -4,7 +4,6 @@ import datetime
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
-
 from orders.views import current_orders
 from .models import OrderPayment, DirectPayment
 from customer.models import Order
@@ -42,3 +41,5 @@ def direct_payment(request, pk):
     )
 
     return redirect(current_orders)
+
+
