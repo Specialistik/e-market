@@ -10,10 +10,10 @@ def current_orders(request):
     if request.user.profile:
         cur_orders = None
         if request.user.profile.role == 'customer':
-            cur_orders = Order.objects.filter(customer_id=request.user.id, order_status__in=(1, 4, 7))
+            cur_orders = Order.objects.filter(customer_id=request.user.id, order_status__in=(1, 2, 4, 6, 8))
 
         if request.user.profile.role == 'producer':
-            cur_orders = Order.objects.filter(producer_id=request.user.id, order_status__in=(1, 4, 7))
+            cur_orders = Order.objects.filter(producer_id=request.user.id, order_status__in=(1, 2, 4, 6, 8))
         return render(request, 'current_orders.html', {
             'current_orders': cur_orders
         })
@@ -25,10 +25,10 @@ def order_history(request):
     if request.user.profile:
         cur_orders = None
         if request.user.profile.role == 'customer':
-            cur_orders = Order.objects.filter(customer_id=request.user.id, order_status__in=(2, 3, 5, 6, 8))
+            cur_orders = Order.objects.filter(customer_id=request.user.id, order_status__in=(3, 5, 7))
 
         if request.user.profile.role == 'producer':
-            cur_orders = Order.objects.filter(producer_id=request.user.id, order_status__in=(2, 3, 5, 6, 8))
+            cur_orders = Order.objects.filter(producer_id=request.user.id, order_status__in=(3, 5, 7))
         return render(request, 'order_history.html', {
             'current_orders': cur_orders
         })
