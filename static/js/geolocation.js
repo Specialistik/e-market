@@ -35,10 +35,8 @@ function initAutocomplete() {
 function fillInAddressBottom() {
   // Get the place details from the autocomplete object.
   var place = autocomplete_bottom.getPlace();
-  console.log(place);
 
   for (var component in componentForm) {
-    console.log(component + '_bottom');
     document.getElementById(component + '_bottom').value = '';
     document.getElementById(component + '_bottom').disabled = false;
   }
