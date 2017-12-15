@@ -35,13 +35,14 @@ function initAutocomplete() {
 function fillInAddressBottom() {
   // Get the place details from the autocomplete object.
   var place = autocomplete_bottom.getPlace();
+  console.log(place);
 
   for (var component in componentForm) {
+    console.log(component + '_bottom');
     document.getElementById(component + '_bottom').value = '';
     document.getElementById(component + '_bottom').disabled = false;
   }
 
-  // TODO: FIGURE OUT SHIT ON THE BOTTOM JEEZ
   // Get each component of the address from the place details
   // and fill the corresponding field on the form.
   for (var i = 0; i < place.address_components.length; i++) {
