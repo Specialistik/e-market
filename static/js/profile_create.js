@@ -19,6 +19,8 @@ $(document).ready(function(){
         }
     });
 
-
-    
+    $('#tradepoint_add').click(function(){
+        $(this).hide();
+        $('#hidden_trade_point').show();
+    })
 });

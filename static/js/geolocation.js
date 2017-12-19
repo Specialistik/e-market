@@ -6,6 +6,7 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 var placeSearch, autocomplete, autocomplete_bottom;
+var autocompletes = [];
 var componentForm = {
   street_number: 'short_name',
   route: 'long_name',
@@ -16,6 +17,7 @@ var componentForm = {
 };
 
 function initAutocomplete() {
+
   // Create the autocomplete object, restricting the search to geographical
   // location types.
   autocomplete = new google.maps.places.Autocomplete(
@@ -105,3 +107,29 @@ function geolocateBottom() {
     });
   }
 }
+
+/*
+$(document).ready(function(){
+  $('.subjoin_address').each(function(index, element){
+    function (fillInAddressBottom + '_' + index()){
+      var place = autocomplete_bottom.getPlace();
+
+      for (var component in componentForm) {
+        document.getElementById(component + '_bottom').value = '';
+        document.getElementById(component + '_bottom').disabled = false;
+      }
+
+      for (var i = 0; i < place.address_components.length; i++) {
+        var addressType = place.address_components[i].types[0];
+        if (componentForm[addressType]) {
+          var val = place.address_components[i][componentForm[addressType]];
+          document.getElementById(addressType + '_bottom').value = val;
+        }
+      }
+    }
+    //function
+
+    //console.log(index, element);
+  });
+});
+*/

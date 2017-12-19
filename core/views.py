@@ -116,14 +116,14 @@ def profile(request):
 
             if request.user.profile.role == 'customer':
                 data['trade_points'] = TradePoint.objects.filter(customer_id=request.user.id)
-                if request.user.profile.created:
-                    return render(request, 'profile_update_customer.html', data)
+                #if request.user.profile.created:
+                #    return render(request, 'profile_update_customer.html', data)
                 return render(request, 'profile_create_customer.html', data)
 
             if request.user.profile.role == 'producer':
                 data['depots'] = ProducerDepot.objects.filter(producer_id=request.user.id)
-                if request.user.profile.created:
-                    return render(request, 'profile_update_producer.html', data)
+                #if request.user.profile.created:
+                #    return render(request, 'profile_update_producer.html', data)
                 return render(request, 'profile_create_producer.html', data)
         return render(request, '500.html', {'error_message': u'Только поставщики и заказчики имеют свой профиль'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})

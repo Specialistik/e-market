@@ -2,11 +2,11 @@
 
 {% block role_specific %}
     {% if trade_points %}
-        {% for trade_point in trade_points %} {% if forloop.first %}
-            <form action="/trade_point/{{ trade_point.id }}/" class="wrapp_company_form" method="POST">
+        {% for trade_point in trade_points %}
+            <form action="/trade_point/{{ trade_point.id }}/" class="wrapp_company_form subjoin_address" method="POST">
                 {% csrf_token %}
 
-                <h3 class="title_edit angle_right">Адреса доставки</h3>
+                <h3 class="title_edit angle_right">Адрес доставки № {{ forloop.counter }}</h3>
 
                 <div class="wrapp_form_box clearfix">
 
@@ -16,7 +16,7 @@
                         <div class="box_form_half">
 
                             <div class="form_box_offset">
-                                <input name="full_address" id="autocomplete_bottom" onfocus="geolocateBottom()" placeholder="Город, улица, дом" value="{{ trade_point.address.full_address }}">
+                                <input name="full_address" id="autocomplete_bottom_{{ forloop.counter }}" disabled placeholder="Город, улица, дом" value="{{ trade_point.address.full_address }}">
                             </div>
 
                             <div class="form_box_offset">
@@ -24,11 +24,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="index" readonly placeholder="Индекс" id="postal_code_bottom" minlength="6" data-mask="000000" required value="{{ trade_point.address.index }}">
+                                        <input name="index" readonly placeholder="Индекс" id="postal_code_bottom_{{ forloop.counter }}" minlength="6" data-mask="000000" required value="{{ trade_point.address.index }}">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="region" readonly placeholder="Регион" id="administrative_area_level_1_bottom" required value="{{ trade_point.address.region }}">
+                                        <input name="region" readonly placeholder="Регион" id="administrative_area_level_1_bottom_{{ forloop.counter }}" required value="{{ trade_point.address.region }}">
                                     </div>
 
                                 </div>
@@ -46,11 +46,11 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="city" id="locality_bottom" readonly placeholder="Город / Населенный пункт" required value="{{ trade_point.address.city }}">
+                                        <input name="city" id="locality_bottom_{{ forloop.counter }}" readonly placeholder="Город / Населенный пункт" required value="{{ trade_point.address.city }}">
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="street" id="route_bottom" readonly placeholder="Улица" required value="{{ trade_point.address.street }}">
+                                        <input name="street" id="route_bottom_{{ forloop.counter }}" readonly placeholder="Улица" required value="{{ trade_point.address.street }}">
                                     </div>
 
                                 </div>
@@ -62,7 +62,7 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col quarter">
-                                        <input name="house" placeholder="Дом" id="street_number_bottom" readonly required value="{{ trade_point.address.house }}">
+                                        <input name="house" placeholder="Дом" id="street_number_bottom_{{ forloop.counter }}" readonly required value="{{ trade_point.address.house }}">
                                     </div>
 
                                     <div class="form_col quarter">
@@ -85,14 +85,13 @@
                         <!-- col 6 -->
 
                    </div> <!-- box_form_row -->
-
-                    {% comment %}
+                    {% if forloop.last %}
                     <div class="wrapp_btn_add_plus">
                         <a href="javascript:;" class="btn_add_plus" id="tradepoint_add">
                             Добавить еще торговую точку
                         </a>
                     </div>
-                    {% endcomment %}
+                    {% endif %}
 
                    <div class="align_right">
                        <button class="btn hight_orange" type="submit">Сохранить</button>
@@ -100,16 +99,19 @@
 
                 </div> <!-- wrapp_form -->
             </form>
-        {% endif %}{% endfor %}
-    {% else %}
+        {% endfor %}
+    {% endif %}
+    {% if trade_points %}
+    <div style="display: none" id="hidden_trade_point">
+    {% endif %}
         <form action="/trade_point/add/" class="wrapp_company_form" method="POST">
             {% csrf_token %}
 
-            <h3 class="title_edit angle_right">Адреса доставки</h3>
+            <h3 class="title_edit angle_right">Добавить адрес доставки</h3>
 
             <div class="wrapp_form_box clearfix">
 
-               <div class="box_form_row clearfix">
+                <div class="box_form_row clearfix">
 
                     <!-- col 6 -->
                     <div class="box_form_half">
@@ -161,7 +163,7 @@
                             <div class="form_row clearfix">
 
                                 <div class="form_col quarter">
-                                    <input name="house" placeholder="Дом" required value="">
+                                    <input name="house" id="street_number_bottom" placeholder="Дом" readonly required value="">
                                 </div>
 
                                 <div class="form_col quarter">
@@ -183,21 +185,24 @@
                     </div>
                     <!-- col 6 -->
 
-               </div> <!-- box_form_row -->
+                </div> <!-- box_form_row -->
+
 
                 {% comment %}
                 <div class="wrapp_btn_add_plus">
-                    <a href="javascript:;" class="btn_add_plus" id="tradepoint_add">
-                        Добавить еще торговую точку
-                    </a>
+                     <a href="javascript:;" class="btn_add_plus" id="tradepoint_add">
+                         Добавить еще торговую точку
+                     </a>
                 </div>
                 {% endcomment %}
 
-               <div class="align_right">
+                <div class="align_right">
                    <button class="btn hight_orange" type="submit">Сохранить</button>
-               </div>
+                </div>
 
             </div> <!-- wrapp_form -->
         </form>
+    {% if trade_points %}
+    </div>
     {% endif %}
 {% endblock %}
