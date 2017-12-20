@@ -45,6 +45,10 @@ class Address(models.Model):
     flat = models.CharField(max_length=20, blank=True, default='', verbose_name=u'Квартира/Офис')
     full_address = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Полный адрес')
 
+    # Обрезать строку до n-ой запятой
+    def castrate_nicely(self, trim_until_n_th_coma=3):
+        return ','.join(self.full_address.split(',', trim_until_n_th_coma)[:trim_until_n_th_coma])
+
     class Meta:
         db_table = 'address'
         verbose_name = u'Адрес'
