@@ -15,16 +15,38 @@ from orders.views import current_orders
 from payments.models import OrderPayment
 
 
+# TODO: Для незарегистрированных пользователей во имя оптимизации можно
 def categories(request):
-    return render(request, 'categories.html', {'categories': Category.objects.filter(pid__isnull=True)})
+    cats = []
+    for cat in Category.objects.filter(pid__isnull=True):
+        final_unseen = 0
+        for sub_cat in Category.objects.filter(pid=cat.id):
+            final_unseen += sub_cat.productcard_set.count() - sub_cat.productcard_set.filter(seen__id=request.user.id).count()
+
+        cats.append({
+            'id': cat.id,
+            'name': cat.name,
+            'get_image_url': cat.get_image_url(),
+            'unseen': final_unseen
+        })
+    return render(request, 'categories.html', {'categories': cats})
 
 
 def subcategories(request, pk):
     try:
         current_category = Category.objects.get(pk=pk)
+        sub_cats = []
+        for sub_cat in Category.objects.filter(pid=pk):
+            sub_cats.append({
+                'id': sub_cat.id,
+                'name': sub_cat.name,
+                'get_image_url': sub_cat.get_image_url(),
+                'unseen': sub_cat.productcard_set.count() - sub_cat.productcard_set.filter(seen__id=request.user.id).count()
+            })
+
         return render(request, 'subcategories.html', {
             'category': current_category,
-            'subcategories': Category.objects.filter(pid=pk)
+            'subcategories': sub_cats,
         })
     except Category.DoesNotExist:
         return render(request, '500.html', {'error_message': u'Категория не найдена'})
@@ -104,6 +126,12 @@ def product_search(request):
 def products(request, cat_id):
     try:
         current_category = Category.objects.get(pk=cat_id)
+        if hasattr(request.user, 'profile'):
+            if request.user.profile.role == 'customer':
+                for product in ProductCard.objects.filter(category=current_category):
+                    product.seen.add(request.user.id)
+                    product.save()
+
         return render(request, 'products.html', {
             'category': current_category,
             'products': ProductCard.objects.filter(category_id=cat_id),

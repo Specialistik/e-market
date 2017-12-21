@@ -46,12 +46,16 @@
             <div class="row_products clearfix">
                 {% for subcategory in subcategories %}
                     <figure class="col_products category_products" data-mh="col-products">
-                            <div class="products_img" data-mh="products-img">
-
+                        <div class="products_img" data-mh="products-img">
                             <a href="/products/{{ subcategory.id }}">
                                 <img src="{{ subcategory.get_image_url }}" alt="{{ subcategory.name }}">
                             </a>
 
+                            {% if user.profile.role == 'customer' %}
+                                <div class="products_count">
+                                    {{ subcategory.unseen }}
+                                </div>
+                            {% endif %}
                         </div>
 
                         <figcaption>

@@ -94,4 +94,3 @@ class OrderUnit(models.Model):
         db_table = 'order_units'
         verbose_name = u'Позиция заказа'
         verbose_name_plural = u'Позиции заказов'
-

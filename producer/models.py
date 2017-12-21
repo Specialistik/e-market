@@ -45,6 +45,7 @@ class ProductCard(models.Model):
     width = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'Ширина')
     height = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'Высота')
     description = models.TextField(default="", blank=True, verbose_name=u'Описание товара')
+    seen = models.ManyToManyField(User, verbose_name=u'Товар просмотрен')
 
     def parent_category(self):
         return Category.objects.get(pk=self.category.pid_id)
@@ -76,3 +77,4 @@ class ProductPrice(models.Model):
         db_table = 'product_prices'
         verbose_name = u'Цена продукта'
         verbose_name_plural = u'Цены продуктов'
+
