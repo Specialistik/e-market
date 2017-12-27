@@ -95,4 +95,7 @@ urlpatterns = [
     url(r'^order_payment/([0-9]+)/$', payment_views.order_payment),
     url(r'^direct_payment/([0-9]+)/$', payment_views.direct_payment),
 
+    # generated documents
+    #url(r'^documents/', payment_views.generated_document),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + staticfiles_urlpatterns()

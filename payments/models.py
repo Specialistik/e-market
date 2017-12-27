@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -9,6 +10,7 @@ class OrderPayment(models.Model):
     # Краеугольный камень всея системы, количество денег за заказ
     customer = models.ForeignKey(User, verbose_name=u'Заказчик')
     price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=u'Цена')
+    created = models.DateTimeField(default=timezone.now, verbose_name=u'Время создания')
 
     class Meta:
         db_table = 'order_payments'

@@ -144,6 +144,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+DOCS_ROOT = os.path.join(BASE_DIR, "docs")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
