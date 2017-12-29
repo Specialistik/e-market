@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block js_css %}
-    {% comment %}<script src="/static/js/products.js"></script> {% endcomment %}
+    <script src="/static/js/basket.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -137,57 +137,6 @@
 
     <div style="display: none;">
 
-    <!-- popup 1 -->
-        {% comment %}
-        <div class="box-modal modal_popup_product" id="form_product1">
-
-            <div class="box-modal_close arcticmodal-close">
-                <i class="fa fa-times" aria-hidden="true"></i>
-            </div>
-
-            <div class="modal_container1">
-
-                <form action="">
-
-                    <h3 class="popup_title align_center">Сметана Valio, 130г</h3>
-
-                    <div class="wrapp_product_preview">
-
-                        <div class="product_preview_img">
-                            <img src="static/images/catalog-img/catalog-img-big1.png" alt="">
-                        </div>
-
-                        <div class="product_preview_desc">
-                            <p class="popup_price"><span>139,02</span>р</p>
-
-                            <label class="label1 big">
-                                Выберите количество:
-                                <span class="tooltip_desc" data-tooltip-txt="Минимальный заказ: от 100 шт" data-tooltip-pos="right">?</span>
-                            </label>
-
-                            <input type="number" value="100" min="100" max="9999" data-mask="9999">
-
-                            <label class="label1 big">
-                                Добавьте примечание к заказу:
-                                <span class="tooltip_desc" data-tooltip-txt="Комментарий" data-tooltip-pos="right">?</span>
-                            </label>
-
-                            <textarea></textarea>
-
-                            <button class="btn btn_basket light_orange">В корзину</button>
-
-                        </div>
-
-                    </div>
-
-                </form>
-
-            </div>
-
-        </div>
-        {% endcomment %}
-    <!-- popup 1 -->
-
     <!-- popup 2 -->
         <div class="box-modal payment_popup" id="payment_popup">
 
@@ -197,31 +146,34 @@
 
             <div class="modal_container3">
 
-                <form action="">
+                <form action="/perform_order" method="POST">
+                    {% csrf_token %}
+
+                    <input type="hidden" id="proxy_tradepoint" name="trade_point" value="{{ trade_points.0.id }}">
 
                     <div class="wrapp_attention_txt center">
                         <p class="attention_txt left big">
                             <i class="fa fa-exclamation" aria-hidden="true"></i>
-                            К оплате 1 900.00 руб
+                            К оплате {{ basket_price }} руб
                         </p>
                     </div>
 
                     <p class="label1 big">Укажите способ оплаты:</p>
 
                     <label for="radio_item1" class="radio_box_rectangel">
-                        <input type="radio" id="radio_item1" name="radio_rectangel">
+                        <input type="radio" id="radio_item1" name="payment_type" value="1">
                         <span class="radio-custom"></span>
                         <span>Оплата банковской картой (VISA, MasterCard, Мир и др.)</span>
                     </label>
 
                     <label for="radio_item2" class="radio_box_rectangel">
-                        <input type="radio" id="radio_item2" name="radio_rectangel" checked>
+                        <input type="radio" id="radio_item2" name="payment_type" checked value="0">
                         <span class="radio-custom"></span>
                         <span>Оплата расчетного счета</span>
                     </label>
 
+                    {% comment %}
                     <div class="wrapp_privacy_policy">
-
                         <input type="checkbox" id="privacy_policy">
 
                         <label for="privacy_policy">
@@ -231,8 +183,8 @@
                             Требуются
                             <a href="javascript:;" class="hight_orange">документы по НДС от поставщика</a>
                         </label>
-
                     </div>
+                    {% endcomment %}
 
                    <div class="wrapp_btn center">
                         <button class="btn hight_orange">Оплатить</button>
@@ -287,17 +239,17 @@
             </div>
 
             <div class="modal_container3">
-
+                {% comment %}
                 <form action="/perform_order" method="POST">
                     {% csrf_token %}
-
+                {% endcomment %}
                     <h3 class="align_center">Выберите адрес доставки:</h3>
 
                     <div class="wrapp_filter">
 
                         <div class="wrapp_castom_select sorting full_width">
 
-                            <select data-placeholder="Выберите" name="trade_point" required>
+                            <select data-placeholder="Выберите" name="trade_point" required id="popup_tradepoint">
                                 {% for trade_point in trade_points %}
                                     <option value="{{ trade_point.id }}" {% if forloop.first %}selected{% endif %}>{{ trade_point.address.castrate_nicely }}</option>
                                 {% endfor %}
@@ -309,7 +261,7 @@
 
                     <div class="wrapp_btn between">
 
-                        <button class="btn hight_orange" type="submit">
+                        <button class="btn hight_orange" data-popup="#payment_popup">
                             Заказать
                         </button>
 
@@ -318,9 +270,9 @@
                         </a>
 
                     </div>
-
+                {% comment %}
                 </form>
-
+                {% endcomment %}
             </div>
 
         </div>

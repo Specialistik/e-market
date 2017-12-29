@@ -12,6 +12,12 @@ class OrderPayment(models.Model):
     price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=u'Цена')
     created = models.DateTimeField(default=timezone.now, verbose_name=u'Время создания')
 
+    TYPES = (
+        (0, u"Оплата рассчётного счёта"),
+        (1, u"Оплата картой"),
+    )
+    type = models.IntegerField(choices=TYPES, default=0, verbose_name=u'Тип оплаты')
+
     class Meta:
         db_table = 'order_payments'
         verbose_name = u'Платёж по заказу'

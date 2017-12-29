@@ -94,6 +94,7 @@ urlpatterns = [
     # Payment views
     url(r'^order_payment/([0-9]+)/$', payment_views.order_payment),
     url(r'^direct_payment/([0-9]+)/$', payment_views.direct_payment),
+    url(r'^bank_payment/([0-9]+)/$', payment_views.bank_payment),
 
     # generated documents
     #url(r'^documents/', payment_views.generated_document),

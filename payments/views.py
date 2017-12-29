@@ -72,6 +72,41 @@ def direct_payment(request, pk):
 
     return redirect(current_orders)
 
+
+@login_required(login_url='/sign_in/')
+def direct_payment(request, pk):
+    try:
+        payment = OrderPayment.objects.get(pk=pk)
+    except OrderPayment.DoesNotExist:
+        return render(request, '500.html', {'error_message': u'Платёж не найден'})
+    if not request.user.id == payment.customer_id:
+        return render(request, '500.html', {'error_message': u'Только создатель заказа может его оплачивать'})
+
+    if 'document' not in request.FILES:
+        return render(request, '500.html', {'error_message': u'Прикрепите платёжное поручение'})
+
+    DirectPayment.objects.create(
+        payment=payment,
+        document=request.FILES['document'],
+        document_id=request.POST['document_id'],
+        date=datetime.datetime.strptime(request.POST['date'], "%d.%m.%Y").date()
+    )
+
+    return redirect(current_orders)
+
+
+@login_required(login_url='/sign_in/')
+def bank_payment(request, pk):
+    try:
+        payment = OrderPayment.objects.get(pk=pk)
+    except OrderPayment.DoesNotExist:
+        return render(request, '500.html', {'error_message': u'Платёж не найден'})
+    if not request.user.id == payment.customer_id:
+        return render(request, '500.html', {'error_message': u'Только создатель заказа может его оплачивать'})
+
+    return render(request, 'bank_payment.html', {'payment': payment})
+
+# TODO: Тут идея в том, чтобы ограничить загрузку счетов на оплату только для тех, кто формиовал заказ
 """
 @login_required(login_url='/sign_in/')
 def generated_document(request, document_name):

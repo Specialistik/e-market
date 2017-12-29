@@ -152,7 +152,7 @@ def basket(request):
 
             return render(request, 'basket.html', {
                 'order_units': order_units, 
-                'trade_points': TradePoint.objects.filter(customer_id=request.user.id)
+                'trade_points': TradePoint.objects.filter(customer_id=request.user.id).order_by('pk')
             })
         return render(request, '500.html', {'error_message': u'Только заказчик может просматривать корзину'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
@@ -234,7 +234,9 @@ def perform_order(request):
                 for order_unit in OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id):
                     cost_of_basket += order_unit.amount * order_unit.price
 
-                order_payment = OrderPayment.objects.create(price=cost_of_basket, customer_id=request.user.id)
+                payment_type = int(request.POST['payment_type'])
+                order_payment = OrderPayment.objects.create(
+                    price=cost_of_basket, customer_id=request.user.id, type=payment_type)
 
                 # todo: Тут можно покрасивее переписать, group_by
                 order_unit_producer_id = 0
@@ -256,7 +258,9 @@ def perform_order(request):
                         order_unit.save()
                     order_unit_producer_id = order_unit.producer_id
 
-                return redirect('/order_payment/{}/'.format(order_payment.id))
+                if payment_type == 0:
+                    return redirect('/order_payment/{}/'.format(order_payment.id))
+                return redirect('/bank_payment/{}/'.format(order_payment.id))
             except Order.DoesNotExist:
                 return render(request, '500.html', {'error_message': u'Не выбраны продукты для совершения заказа'})
             except TradePoint.DoesNotExist:
