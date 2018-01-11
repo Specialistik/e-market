@@ -106,6 +106,20 @@ def bank_payment(request, pk):
 
     return render(request, 'bank_payment.html', {'payment': payment})
 
+
+@login_required(login_url='/sign_in/')
+def payment_notification(request):
+
+    return render(request, 'payment_notification.html')
+
+
+@login_required(login_url='/sign_in/')
+def payment_redirect(request):
+    return render(request, 'payment_redirect.html')
+
+
+
+
 # TODO: Тут идея в том, чтобы ограничить загрузку счетов на оплату только для тех, кто формиовал заказ
 """
 @login_required(login_url='/sign_in/')

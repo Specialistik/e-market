@@ -34,3 +34,23 @@ class DirectPayment(models.Model):
         db_table = 'direct_payment'
         verbose_name = u'Прямой перевод на рассчётный счёт'
         verbose_name_plural = u'Прямые переводы на рассчётный счёт'
+
+
+"""
+class PaymentNotification(models.Model):
+    response = models.TextField(verbose_name=u'Тело ответа')
+
+    class Meta:
+        db_table = 'payment_notification'
+        verbose_name = u'Payment notification системы paymaster'
+        verbose_name_plural = u'Payment notifications системы paymaster'
+
+
+class Success(models.Model):
+    response = models.TextField(verbose_name=u'Тело ответа')
+
+    class Meta:
+        db_table = 'payment_notification'
+        verbose_name = u'Payment notification системы paymaster'
+        verbose_name_plural = u'Payment notifications системы paymaster'
+"""
