@@ -33,6 +33,7 @@
 
 @import "reset.css";
 @import "bootstrap.min.css";
+
 @import "../fonts/font-awesome-4.7.0/css/font-awesome.min.css";
 
 @import "../fonts/lato/stylesheet.css";
@@ -116,42 +117,41 @@
         1.1. Color Schemes
    -------------------------------------------- */
 
-    .light_orange{
-      color: #ff7c21;
-    }
+      .light_orange{
+        color: #ff7c21;
+      }
 
-    .hight_orange{
-      color: #ff6900;
-    }
+      .hight_orange{
+        color: #ff6900;
+      }
 
-    .orange{
-      color: #ffa800;
-    }
+      .orange{
+        color: #ffa800;
+      }
 
-    .light_grey{
-      color: #505050;
-    }
+      .light_grey{
+        color: #505050;
+      }
 
-    .grey{
-      color: #969696;
-    }
+      .grey{
+        color: #969696;
+      }
 
-    .light_black{
-      color: #4f4f4e;
-    }
+      .light_black{
+        color: #4f4f4e;
+      }
 
-    .blue{
-      color: #56a8fe;
-    }
+      .blue{
+        color: #56a8fe;
+      }
 
-    .green{
-      color: #3ab835;
-    }
+      .green{
+        color: #3ab835;
+      }
 
-    .red{
-      color: #ff2621;
-    }
-
+      .red{
+        color: #ff2621;
+      }
 
 /* ------------------------------------------------
 
@@ -777,7 +777,7 @@
       padding-right: 15px;
     }
 
-    input:not(.setting_input):not([type="checkbox"]):not([type="radio"]):not([type="number"]){
+    input:not(.setting_input):not([type="checkbox"]):not([type="radio"]):not(.number_type_btn){
       padding: 12px 15px 11px;
       width: 100%;
       background-color: #fff;
@@ -790,7 +790,7 @@
       line-height: 1;
     }
 
-    input:not(.setting_input):not([type="checkbox"]):not([type="radio"]):not([type="number"]):focus{
+    input:not(.setting_input):not([type="checkbox"]):not([type="radio"]):not(.number_type_btn):focus{
       border: 1px solid #dadada;
       box-shadow: 0 0 4.9px 0.1px rgba(77, 72, 72, 0.21);
       outline: none;
@@ -1395,18 +1395,23 @@
     /* datepicker calendar icon */
     .wrapp_datepicker_calendar{
       position: relative;
+      background-color: #fff;
     }
 
-    .wrapp_datepicker_calendar > .datepicker-here:not([type="checkbox"]):not([type="radio"]){
+    .wrapp_datepicker_calendar > .datepicker-here:not(.setting_input):not([type="checkbox"]):not([type="radio"]):not(.number_type_btn){
       padding-right: 50px;
+      background-color: transparent;
+      position: relative;
+      z-index: 1;
     }
 
-    .wrapp_datepicker_calendar:before{
+    .wrapp_datepicker_calendar:after{
       content: "\f073";
       position: absolute;
       top: 0;
       right: 0;
       bottom: 0;
+      z-index: 0;
       width: 41px;
       font: normal normal normal 14px/40px FontAwesome;
       background-color: #ffa800;
@@ -1432,29 +1437,29 @@
     }
 
     /* jq-number */
-    input[type="number"]:not([type="checkbox"]):not([type="radio"]){
+    .number_type_btn:not([type="checkbox"]):not([type="radio"]){
       padding: 0;
-      margin: 0;
       background-color: transparent;
       border: none;
     }
 
-    input[type="number"]:not([type="checkbox"]):not([type="radio"]):focus{
+    .number_type_btn:not([type="checkbox"]):not([type="radio"]):focus{
       outline: none;
     }
 
-    .jq-number{
+    /* number type btn */
+    .jq-number.number_type_btn{
       display: inline-block;
-      width: 70px;
+      width: 120px;
       position: relative;
       overflow: hidden;
     }
 
-    .jq-number:not(:last-child){
+    .jq-number.number_type_btn:not(:last-child){
       margin-bottom: 17px;
     }
 
-    .jq-number input[type="number"]:not([type="checkbox"]):not([type="radio"]){
+    .jq-number.number_type_btn input.number_type_btn:not([type="checkbox"]):not([type="radio"]){
       padding: 0 14px;
       color: #505050;
       line-height: 1;
@@ -1464,10 +1469,10 @@
       text-align: center;
     }
 
-    .jq-number__spin{
+    .jq-number.number_type_btn .jq-number__spin{
       cursor: pointer;
-      width: 14px;
-      height: 14px;
+      width: 34px;
+      height: 24px;
       background-color: #ff6c05;
       position: absolute;
       top: 50%;
@@ -1480,11 +1485,11 @@
       transition: 0.3s;
     }
 
-    .jq-number__spin:hover{
+    .jq-number.number_type_btn .jq-number__spin:hover{
       opacity: 0.7;
     }
 
-    .jq-number__spin:before{
+    .jq-number.number_type_btn .jq-number__spin:before{
       content: "";
       position: absolute;
       top: 50%;
@@ -1494,25 +1499,47 @@
       -o-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
       color: #fff;
-      font-size: 11px;
+      font-size: 18px;
+      line-height: 1;
+      padding-top: 1px;
+      display: inline-block;
       font-weight: 400;
     }
 
-    .jq-number__spin.plus:before{
+    .jq-number.number_type_btn .jq-number__spin.plus:before{
       content: "+";
     }
 
-    .jq-number__spin.plus{
+    .jq-number.number_type_btn .jq-number__spin.plus{
       right: 0;
     }
 
-    .jq-number__spin.minus:before{
+    .jq-number.number_type_btn .jq-number__spin.minus:before{
       content: "-";
     }
 
-    .jq-number__spin.minus{
+    .jq-number.number_type_btn .jq-number__spin.minus{
       left: 0;
     }
+    /* number type btn */
+
+    /* number type clear */
+    .jq-number.number_type_clear{
+      width: 100%;
+    }
+
+    .jq-number.number_type_clear .jq-number__spin{
+      display: none;
+    }
+
+    .number_type_clear:focus{
+      outline: none;
+    }
+
+    input.number_type_clear{
+      width: 100%;
+    }
+    /* number type clear */
 
     /* textarea */
     textarea{
@@ -1705,8 +1732,8 @@
       5.1. Popup Default
   -------------------------------------------------*/
 
-    .arcticmodal-overlay{
-      opacity: 0.45 !important;
+    .mfp-bg{
+      opacity: 0.45;
     }
 
     .box-modal{
@@ -1714,6 +1741,7 @@
       background-color: #fff;
       border: 1px solid #dadada;
       position: relative;
+      margin: auto;
     }
 
     .modal_container1{
@@ -1740,19 +1768,6 @@
       background-color: #fafafa;
       padding: 29px 30px;
       margin: 0 -1px -1px -1px;
-    }
-
-    .box-modal_close{
-      display: inline-block;
-      cursor: pointer;
-      position: absolute;
-      top: 23px;
-      right: 23px;
-    }
-
-    .box-modal_close > .fa{
-      color: #a6a6a6;
-      font: normal normal normal 18px/1 FontAwesome;
     }
 
   /* ------------------------------------------------
@@ -1787,7 +1802,6 @@
     }
 
     .modal_popup_product label{
-      display: block;
       display: -webkit-flex;
       display: -moz-flex;
       display: -ms-flex;
@@ -2015,7 +2029,7 @@
     }
 
     /* input error */
-    .error_form_container.error input:not(.setting_input):not([type="checkbox"]):not([type="radio"]):not([type="number"]){
+    .error_form_container.error input:not(.setting_input):not([type="checkbox"]):not([type="radio"]):not(.number_type_btn){
       border: 1px solid #ffa800;
     }
 
@@ -2034,7 +2048,7 @@
     right: 0;
     left: 0;
     background-color: #fff;
-    z-index: 9;
+    z-index: 999;
   }
 
   .header_inner{
@@ -2202,8 +2216,6 @@
 
 ------------------------------------------------ */
 
-  #nav{}
-
   .user_navigation{
     -webkit-justify-content: space-between;
     -moz-justify-content: space-between;
@@ -2320,10 +2332,51 @@
     margin-right: 10px;
   }
 
+  /* navigation mobi */
+  .navigation_mobi{
+    display: none;
+    padding: 5px 0;
+    border-top: 1px solid #ff7d20;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    z-index: 999;
+  }
+
+  .navigation_mobi_menu{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    -moz-justify-content: space-between;
+    -ms-justify-content: space-between;
+    -o-justify-content: space-between;
+    justify-content: space-between;
+  }
+
+  .navigation_mobi_menu > li{
+    text-align: center;
+    padding: 2px 5px;
+  }
+
+  .navigation_mobi_menu > li > a{
+    color: #ff7d20;
+  }
+  .navigation_mobi_menu > li > a > .fa{
+    display: block;
+    margin-bottom: 5px;
+    font: normal normal normal 20px/1 FontAwesome;
+  }
+  /* navigation mobi */
+
 
 /* ------------------------------------------------
 
-    . Page Entered
+     Page Entered
 
 ------------------------------------------------ */
 
@@ -2543,7 +2596,7 @@
     width: 48px;
   }
 
-  .wrapp_form_signup .verification_col.code_country > input:not(.setting_input):not([type="checkbox"]):not([type="radio"]):not([type="number"]){
+  .wrapp_form_signup .verification_col.code_country > input:not(.setting_input):not([type="checkbox"]):not([type="radio"]):not(.number_type_btn){
     padding: 12px 5px 11px;
     text-align: center;
   }
@@ -2637,7 +2690,7 @@
     padding: 28px 45px;
   }
 
-  .setting_input:not(:disabled):not([type="checkbox"]):not([type="radio"]):not([type="number"]){
+  .setting_input:not(:disabled):not([type="checkbox"]):not([type="radio"]):not(.number_type_btn){
     color: #ff6900;
     background-color: transparent;
     border: none;
@@ -2647,7 +2700,7 @@
     line-height: 1.3;
   }
 
-  .setting_input:disabled:not([type="checkbox"]):not([type="radio"]):not([type="number"]){
+  .setting_input:disabled:not([type="checkbox"]):not([type="radio"]):not(.number_type_btn){
     color: #4f4f4e;
     background-color: transparent;
     border-bottom: 2px solid transparent;
@@ -2670,7 +2723,8 @@
   }
 
   /*  */
-  .profile_settings_box  .setting_list li > input{
+  .profile_settings_box  .setting_list li > .jq-number.number_type_clear,
+  .profile_settings_box  .setting_list li > input:not(.number_type_clear){
     float: right;
     width: 50%;
   }
@@ -3141,7 +3195,7 @@
     width: 200px;
   }
 
-  .wrapp_search input:not(.setting_input):not([type="checkbox"]):not([type="radio"]):not([type="number"]){
+  .wrapp_search input:not(.setting_input):not([type="checkbox"]):not([type="radio"]):not(.number_type_btn){
     padding: 10px 23px 10px  15px;
   }
 
@@ -3346,7 +3400,7 @@
       width: 100%;
     }
 
-    .box_form_products_item .setting_list li > .setting_input:not([type="checkbox"]):not([type="radio"]):not([type="number"]){
+    .box_form_products_item .setting_list li > .setting_input:not([type="checkbox"]):not([type="radio"]):not(.number_type_btn){
       width: 100%;
       font-size: 16px;
     }
@@ -3573,4 +3627,45 @@
         -ms-border-radius: 10px;
         -o-border-radius: 10px;
         border-radius: 10px;
+      }
+
+    /* --------------------------------------------
+        4.7. Products List
+    -------------------------------------------- */
+
+      .wrapp_products_list{
+        display: none;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .products_list{
+        display: inline-block;
+      }
+
+      .products_list > li{
+        text-align: left;
+      }
+
+      .products_list > li:not(:last-child){
+        margin-bottom: 10px;
+      }
+
+      .products_list > li > a{
+        white-space: nowrap;
+        -ms-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        display: inline-block;
+        line-height: 40px;
+      }
+
+      .products_list > li > a > span{
+        min-width: 40px;
+        margin-right: 10px;
+        display: inline-block;
+      }
+
+      .products_list > li > a img{
+        max-width: 40px;
+        max-height: 30px;
       }

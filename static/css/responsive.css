@@ -337,6 +337,10 @@
 		line-height: 1.3;
 	}
 
+	.hide_xs{
+		display: none;
+	}
+
 	.header_wrapp{
 		padding: 15px;
 	}
@@ -455,7 +459,7 @@
 	}
 
 	.wrapp_content {
-	    padding: 147px 20px 20px;
+	    padding: 147px 20px 70px;
 	}
 
 	.wrapp_content.changed{
@@ -463,6 +467,7 @@
 	}
 
 	.navigation{
+		display: none;
 		width: 100%;
 		top: 85px;
 		left: 0;
@@ -479,6 +484,7 @@
 	}
 
 	.navigation_btn{
+		display: none;
 		top: 55px;
 		left: 15px;
 	}
@@ -828,6 +834,7 @@
 	}
 
 	.col_products{
+		display: none;
 		width: 100%;
 		float: none;
 		margin-bottom: 20px;
@@ -882,7 +889,7 @@
 		font-size: 12px;
 	}
 
-	.box_form_products_item .setting_list li > .setting_input:not([type="checkbox"]):not([type="radio"]):not([type="number"]){
+	.box_form_products_item .setting_list li > .setting_input:not([type="checkbox"]):not([type="radio"]):not(.number_type_btn){
 		font-size: 12px;
 		line-height: 1.3;
 	}
@@ -916,8 +923,30 @@
 		font-size: 12px;
 	}
 
-} /* (max-width: 767px) */
+	.navigation_mobi{
+		display: block;
+	}
 
+	.wrapp_products_list{
+		display: block;
+	}
+
+	.profile_settings_box .setting_list li > .jq-number.number_type_clear{
+		float: none;
+		width: 100%;
+	}
+
+	.profile_settings_box .setting_list li > input:not(.number_type_clear){
+		float: none;
+		width: 100%;
+	}
+
+	.profile_settings_box .setting_list li > label{
+		float: none;
+		width: 100%;
+	}
+
+} /* (max-width: 767px) */
 
 @media only screen and (max-width: 469px) {
 
