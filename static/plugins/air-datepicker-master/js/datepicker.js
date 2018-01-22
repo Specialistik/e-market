@@ -279,8 +279,8 @@
             } else {
                 $appendTarget = $inline.appendTo(this.$el)
             }
-
-            this.$datepicker = $(baseTemplate).appendTo($appendTarget);
+            /* Fix Position Custom */
+            this.$datepicker = $(baseTemplate).appendTo(this.$el.parent());
             this.$content = $('.datepicker--content', this.$datepicker);
             this.$nav = $('.datepicker--nav', this.$datepicker);
         },
@@ -2201,7 +2201,7 @@
         _onChangeRange: function (e) {
             var $target = $(e.target),
                 name = $target.attr('name');
-            
+
             this.d.timepickerIsActive = true;
 
             this[name] = $target.val();

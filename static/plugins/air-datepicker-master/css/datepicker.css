@@ -168,6 +168,58 @@
     .datepickers-container {
       display: none; } }
 
+  /* top */
+  .datepicker.-top-right-,
+  .datepicker.-top-center-,
+  .datepicker.-top-left-{
+    bottom: 100% !important;
+    top: auto !important;
+    margin-bottom: 8px;
+  }
+
+  .datepicker.-top-left-{
+    left: 0 !important;
+  }
+
+  .datepicker.-top-right-{
+    right: 0 !important;
+    left: auto !important;
+  }
+
+  .datepicker.-top-center-{
+    left: 50% !important;
+    -webkit-transform: translateX(-50%) !important;
+    -ms-transform: translateX(-50%) !important;
+    -o-transform: translateX(-50%) !important;
+    transform: translateX(-50%) !important;
+  }
+
+  /* bottom */
+  .datepicker.-bottom-right-,
+  .datepicker.-bottom-center-,
+  .datepicker.-bottom-left-{
+    bottom: auto !important;
+    top: 100% !important;
+    margin-top: 8px;
+  }
+
+  .datepicker.-bottom-right-{
+    right: 0 !important;
+    left: auto !important;
+  }
+
+  .datepicker.-bottom-center-{
+    left: 50% !important;
+    -webkit-transform: translateX(-50%) !important;
+    -ms-transform: translateX(-50%) !important;
+    -o-transform: translateX(-50%) !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .datepicker.-bottom-left-{
+    left: 0 !important;
+  }
+
 .datepicker {
   background: #fff;
   border: 1px solid #dbdbdb;
@@ -185,18 +237,7 @@
   transition: opacity 0.3s ease, transform 0.3s ease, left 0s 0.3s;
   transition: opacity 0.3s ease, transform 0.3s ease, left 0s 0.3s, -webkit-transform 0.3s ease;
   z-index: 100; }
-  .datepicker.-from-top- {
-    -webkit-transform: translateY(-8px);
-            transform: translateY(-8px); }
-  .datepicker.-from-right- {
-    -webkit-transform: translateX(8px);
-            transform: translateX(8px); }
-  .datepicker.-from-bottom- {
-    -webkit-transform: translateY(8px);
-            transform: translateY(8px); }
-  .datepicker.-from-left- {
-    -webkit-transform: translateX(-8px);
-            transform: translateX(-8px); }
+
   .datepicker.active {
     opacity: 1;
     -webkit-transform: translate(0);
