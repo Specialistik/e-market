@@ -22,5 +22,15 @@ $(document).ready(function(){
     $('#tradepoint_add').click(function(){
         $(this).hide();
         $('#hidden_trade_point').show();
-    })
+    });
+
+    /*
+    $('.submit_button').click(function(e){
+        e.preventDefault();
+        console.log(window.pageYOffset);
+        console.log(window.scrollY);
+        console.log(document.documentElement.scrollTop );
+        console.log(document.body.scrollTop );
+    });
+    */
 });

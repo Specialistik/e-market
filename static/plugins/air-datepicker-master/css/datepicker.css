@@ -166,7 +166,8 @@
   top: 0; }
   @media print {
     .datepickers-container {
-      display: none; } }
+      display: none; }
+    }
 
   /* top */
   .datepicker.-top-right-,
@@ -177,16 +178,16 @@
     margin-bottom: 8px;
   }
 
-  .datepicker.-top-left-{
+  .datepicker.-top-left-.active{
     left: 0 !important;
   }
 
-  .datepicker.-top-right-{
+  .datepicker.-top-right-.active{
     right: 0 !important;
     left: auto !important;
   }
 
-  .datepicker.-top-center-{
+  .datepicker.-top-center-.active{
     left: 50% !important;
     -webkit-transform: translateX(-50%) !important;
     -ms-transform: translateX(-50%) !important;
@@ -203,12 +204,12 @@
     margin-top: 8px;
   }
 
-  .datepicker.-bottom-right-{
+  .datepicker.-bottom-right-.active{
     right: 0 !important;
     left: auto !important;
   }
 
-  .datepicker.-bottom-center-{
+  .datepicker.-bottom-center-.active{
     left: 50% !important;
     -webkit-transform: translateX(-50%) !important;
     -ms-transform: translateX(-50%) !important;
@@ -216,7 +217,7 @@
     transform: translateX(-50%) !important;
   }
 
-  .datepicker.-bottom-left-{
+  .datepicker.-bottom-left-.active{
     left: 0 !important;
   }
 
