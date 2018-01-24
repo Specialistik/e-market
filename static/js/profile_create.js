@@ -27,10 +27,11 @@ $(document).ready(function(){
     /*
     $('.submit_button').click(function(e){
         e.preventDefault();
-        console.log(window.pageYOffset);
-        console.log(window.scrollY);
-        console.log(document.documentElement.scrollTop );
-        console.log(document.body.scrollTop );
+        $(this).closest('form').append($('input', {
+            type: 'hidden',
+            name: 'scroll_y',
+            value: window.scrollY
+        }));
     });
     */
 });
