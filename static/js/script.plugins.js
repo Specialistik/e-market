@@ -9,9 +9,9 @@
 				Name function
 		------------------------------------------------ */
 
-		if($("select, input[type='number']").length){
+		if($("select, .number_type_btn, .number_type_clear").length){
 
-			$('select, input[type="number"]').styler();
+			$('select, .number_type_btn, .number_type_clear').styler();
 
 		}
 
@@ -24,35 +24,42 @@
 				Popup Call
 		------------------------------------------------ */
 
+		/* When click btn */
+			/* ~ open popup ~ */
+		if($(".btn_popup").length){
 
-		if($("[data-popup]").length){
-
-		    $("[data-popup]").on('click', function(){
-
-		        var modal = $(this).data("popup");
-
-		        $(modal).arcticmodal({
-
-		        	afterOpen: function(){
-
-		        	    if($(modal).find('select, input[type="number"]').length){
-
-		        	        $(modal).find('select, input[type="number"]').trigger('refresh');
-
-		        	    }
-
-		        	    if($(modal).find('data-mask').length){
-
-		        	    	$.applyDataMask([selector]);
-
-		        	    }
-
-		        	}
-		        });
-
-		    });
+			$('.btn_popup').magnificPopup({
+				type: 'inline'
+			});
 
 		}
+			/* ~ open popup ~ */
+
+			/* ~ close popup ~ */
+		$(document).on('click', '.close_popup', function (e) {
+			e.preventDefault();
+			$.magnificPopup.close();
+		});
+			/* ~ close popup ~ */
+		/* When click btn */
+
+		/* When load Page show popup (add this class from popup) */
+		if($(".onload_popup").length){
+
+			setTimeout(function() {
+
+			   	$.magnificPopup.open({
+
+			    items: {
+			        src: '.onload_popup'
+			    },
+			    	type: 'inline'
+		      	});
+
+		   	}, 300);
+
+		}
+		/* When load Page show popup*/
 
         /* ------------------------------------------------
 				End of Popup Call
@@ -126,6 +133,7 @@
         /* ------------------------------------------------
 				End of Name function
 		------------------------------------------------ */
+
 
 		/* ------------------------------------------------
 				Name function
