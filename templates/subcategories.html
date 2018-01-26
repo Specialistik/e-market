@@ -63,6 +63,21 @@
                         </figcaption>
                     </figure>
                 {% endfor %}
+
+                <!-- products list -->
+                <div class="wrapp_products_list">
+                    <ul class="products_list">
+                        {% for category in subcategories %}
+                            <li>
+                                <a href="/category/{{ category.id }}/">
+                                    <span><img src="{{ category.get_image_url }}"></span>
+                                    {{ category.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- products list -->
             </div> <!-- row_products -->
 
             {% comment %}
