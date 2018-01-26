@@ -67,11 +67,11 @@
                 <!-- products list -->
                 <div class="wrapp_products_list">
                     <ul class="products_list">
-                        {% for category in subcategories %}
+                        {% for subcategory in subcategories %}
                             <li>
-                                <a href="/category/{{ category.id }}/">
-                                    <span><img src="{{ category.get_image_url }}"></span>
-                                    {{ category.name }}
+                                <a href="/products/{{ subcategory.id }}">
+                                    <span><img src="{{ subcategory.get_image_url }}"></span>
+                                    {{ subcategory.name }}
                                 </a>
                             </li>
                         {% endfor %}
