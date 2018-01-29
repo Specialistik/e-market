@@ -85,7 +85,7 @@
 				self.closestBox = $this.closest('.block_closest');
 				$('.removeProduct_l').attr('href', $this.attr('href'));
 				//$('#remove_product').arcticmodal();
-				$.magnificPopup.close({
+				$.magnificPopup.open({
 				  	items: {
 				    	src: '#remove_product'
 				  	},
@@ -97,6 +97,8 @@
 			self.basketCount.on('click', function(){
 				location.href = '/basket';
 			});
+
+
 			/*
 			$('.removeProduct_l').on('click', function(){
 
