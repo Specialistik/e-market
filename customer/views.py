@@ -18,7 +18,7 @@ from payments.models import OrderPayment
 # TODO: Для незарегистрированных пользователей во имя оптимизации можно
 def categories(request):
     cats = []
-    for cat in Category.objects.filter(pid__isnull=True):
+    for cat in Category.objects.filter(pid__isnull=True, disabled=False):
         final_unseen = 0
         for sub_cat in Category.objects.filter(pid=cat.id):
             final_unseen += sub_cat.productcard_set.count() - sub_cat.productcard_set.filter(seen__id=request.user.id).count()

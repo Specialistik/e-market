@@ -45,6 +45,7 @@ class Measure(AbstractList):
 
 class Category(AbstractTree):
     image = ImageField(upload_to='category', null=True, blank=True, verbose_name=u'Изображение')
+    disabled = models.BooleanField(default=False, verbose_name=u'Неактивная')
 
     def get_image_url(self):
         if self.image:
