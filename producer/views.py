@@ -65,7 +65,7 @@ def my_products_import(request):
                     description=excel_row[13].value,
                 )
                 result['processed_products'] += 1
-            except Exception:
+            except Exception as e:
                 result['unprocessed_products'] += 1
         return JsonResponse(result)
     return JsonResponse({'success': False, 'error_msg': u'Не удалось прочесть файл'})

@@ -2062,7 +2062,7 @@
       background-color: #ffa800;
       border-radius: 2px;
       display: inline-block;
-      z-index: 2;
+      z-index: 1;
       color: #fff;
       font-size: 10px;
       line-height: 1.3;
@@ -3093,7 +3093,10 @@
   /* castom select */
   .wrapp_castom_select {
     position: relative;
-    z-index: 2;
+  }
+
+  .jq-selectbox.jqselect.opened{
+    z-index: 2 !important;
   }
 
   .wrapp_castom_select .jq-selectbox {
@@ -3161,6 +3164,7 @@
     right: -1px;
     background-color: #fff;
     min-width: 260px;
+    outline: 1px solid #dadada;
   }
 
   .wrapp_castom_select .jq-selectbox__dropdown ul > li{
