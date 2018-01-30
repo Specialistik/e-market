@@ -207,3 +207,8 @@ def depot_edit(request, pk):
             return redirect(profile)
         return render(request, '500.html', {'error_message': u'Только производитель может редактировать склады'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
+
+
+@login_required(login_url='/sign_in/')
+def my_previous_deals(request):
+    pass

@@ -330,6 +330,10 @@
 			padding: 20px 10px 20px 10px;
 		}
 
+		.basket_wrapp{
+			margin-right: 10px;
+		}
+
 	} /* (max-width: 991px) */
 
 	@media only screen and (max-width: 767px) {
