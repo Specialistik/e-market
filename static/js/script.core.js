@@ -200,10 +200,12 @@
  			$('.select_file').children('input').on('change',function(){$(this).siblings("span").addClass("checked").text($(this).val())});
 
  			$('#file').on('change', function(){
-				$("#preloadfile").arcticmodal({
- 					closeOnEsc: false,
- 					closeOnOverlayClick: false
- 				});
+				$.magnificPopup.open({
+			    items: {
+			        src: '#preloadfile'
+			    },
+			    	type: 'inline'
+		      	});
 
 				var file_data = new FormData($('#file'));
 				file_data.append('import_file', $('#file')[0].files[0]);
@@ -216,18 +218,32 @@
 					processData: false,  // tell jQuery not to process the data
 				  	contentType: false   // tell jQuery not to set contentType
 				}).done(function(data) {
-					$("#preloadfile").arcticmodal('close');
+					$.magnificPopup.close({
+						items: {
+							src: '#preloadfile'
+						},
+							type: 'inline'
+					});
+
 					if (data['success'] === true) {
                         $('#processed_products_count').html(data['processed_products']);
                         $('#unprocessed_products_count').html(data['unprocessed_products']);
                     } else {
 						alert(data['error_msg']);
 					}
-
+					$.magnificPopup.open({
+						items: {
+							src: '#countPreloadfile'
+						},
+							type: 'inline'
+					});
+/*
 					$("#countPreloadfile").arcticmodal();
+*/
 					$("#countPreloadfile").close(function(){
 						location.href = '/my_products/'
 					});
+
 
 				}).fail(function(data) {
 					alert(data['error_msg']);
