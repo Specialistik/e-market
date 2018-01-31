@@ -3506,6 +3506,7 @@
     .box_form_products_item .setting_list li > .setting_input:not([type="checkbox"]):not([type="radio"]):not(.number_type_btn){
       width: 100%;
       font-size: 16px;
+      outline: none;
     }
 
     .box_form_products_item .setting_list li > label{
