@@ -7,8 +7,8 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from rest_framework import routers
-from rest_framework_nested.routers import NestedSimpleRouter, NestedDefaultRouter
-from rest_framework_swagger.views import get_swagger_view
+#from rest_framework_nested.routers import NestedSimpleRouter, NestedDefaultRouter
+#from rest_framework_swagger.views import get_swagger_view
 
 
 import core.views as core_views
