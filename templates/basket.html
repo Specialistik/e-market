@@ -123,7 +123,7 @@
                 {% csrf_token %}
                 <input type="hidden" value="" name="trade_point">
             {% endcomment %}
-                <button class="btn hight_orange" data-popup="#delivery_popup">Заказать</button>
+                <button class="btn hight_orange" data-popup="#delivery_popup" id="perform_order">Заказать</button>
             {% comment %}</form>{% endcomment %}
         </div>
 
@@ -139,11 +139,6 @@
 
     <!-- popup 2 -->
         <div class="box-modal payment_popup" id="payment_popup">
-
-            <div class="box-modal_close arcticmodal-close">
-                <i class="fa fa-times" aria-hidden="true"></i>
-            </div>
-
             <div class="modal_container3">
 
                 <form action="/perform_order" method="POST">
@@ -233,16 +228,7 @@
 
     <!-- delivery popup -->
         <div class="box-modal modal_popup_delivery" id="delivery_popup">
-
-            <div class="box-modal_close arcticmodal-close">
-                <i class="fa fa-times" aria-hidden="true"></i>
-            </div>
-
             <div class="modal_container3">
-                {% comment %}
-                <form action="/perform_order" method="POST">
-                    {% csrf_token %}
-                {% endcomment %}
                     <h3 class="align_center">Выберите адрес доставки:</h3>
 
                     <div class="wrapp_filter">
@@ -261,11 +247,11 @@
 
                     <div class="wrapp_btn between">
 
-                        <button class="btn hight_orange" data-popup="#payment_popup">
+                        <button class="btn hight_orange" data-popup="#payment_popup" id="tradepoint_pick">
                             Заказать
                         </button>
 
-                        <a href="javascript:;" class="btn hight_grey arcticmodal-close">
+                        <a href="javascript:;" class="btn hight_grey close_popup">
                            Отменить
                         </a>
 
