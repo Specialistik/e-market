@@ -6,6 +6,7 @@
 
 {% block content %}
     <div id="content" class="wrapp_content">
-        <script type='text/javascript' src='https://paymaster.ru/ru-RU/widget/Basic/1?LMI_MERCHANT_ID=1aeb3619-3832-4a83-982f-c505de8d85f3&LMI_PAYMENT_AMOUNT={{ payment.price| stringformat:'d' }}&LMI_PAYMENT_DESC=The+sklad&LMI_CURRENCY=RUB'></script>
+        <script type='text/javascript' src='https://paymaster.ru/ru-RU/widget/Basic/1?LMI_MERCHANT_ID=ac215136-2cf2-419f-8e17-ea490a184e6f&LMI_PAYMENT_AMOUNT={{ payment.price| stringformat:'d' }}&LMI_PAYMENT_DESC=The+sklad&LMI_CURRENCY=RUB'></script>
+        {% comment %}<script type='text/javascript' src='https://paymaster.ru/ru-RU/widget/Basic/1?LMI_MERCHANT_ID=1aeb3619-3832-4a83-982f-c505de8d85f3&LMI_PAYMENT_AMOUNT={{ payment.price| stringformat:'d' }}&LMI_PAYMENT_DESC=The+sklad&LMI_CURRENCY=RUB'></script>{% endcomment %}
     </div>
 {% endblock %}
