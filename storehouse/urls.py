@@ -28,15 +28,15 @@ router.register(r'category', catalog_views.CategoryViewSet)
 router.register(r'profile', core_api.ProfileViewSet)
 
 
-profile_router = NestedDefaultRouter(router, r'profile', lookup='profile')
-profile_router.register(r'physical_address', core_api.PhysicalAddressViewSet)
-profile_router.register(r'juridical_address', core_api.JuridicalAddressViewSet)
+#profile_router = NestedDefaultRouter(router, r'profile', lookup='profile')
+#profile_router.register(r'physical_address', core_api.PhysicalAddressViewSet)
+#profile_router.register(r'juridical_address', core_api.JuridicalAddressViewSet)
 
 urlpatterns = [
     url(r'^api/signup/$', core_views.signup),
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     url(r'^api/', include(router.urls)),
-    url(r'^api/', include(profile_router.urls)),
+ #   url(r'^api/', include(profile_router.urls)),
     url(r'^admin/', admin.site.urls),
 
     url(r'^$', core_views.index),
@@ -79,7 +79,7 @@ urlpatterns = [
     url(r'^trade_point/add/$', customer_views.trade_point_add),
     url(r'^trade_point/([0-9]+)/$', customer_views.trade_point_edit),
 
-    url(r'^basket$', customer_views.basket),
+    #url(r'^basket$', customer_views.basket),
     url(r'^basket$', customer_views.basket),
     url(r'^order_unit/add/$', customer_views.order_unit_add),
     url(r'^order_unit/edit/([0-9]+)/$', customer_views.order_unit_edit),
