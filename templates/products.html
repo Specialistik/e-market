@@ -87,12 +87,10 @@
 
     <div style="display: none;">
 
-        <!-- popup 1 -->
+        <!-- product popup -->
         <div class="box-modal modal_popup_product big" id="product_popup">
             {% comment %}
-            <div class="box-modal_close arcticmodal-close">
-                <i class="fa fa-times" aria-hidden="true"></i>
-            </div>
+
             {% endcomment %}
             <div class="modal_container2">
 
@@ -109,48 +107,57 @@
 
                         <div class="product_preview_desc">
 
-                            <label class="label1 big">
-                                Наличие:
-                            </label>
+                            <div class="row">
 
-                            <p class="check_label">Есть в наличии</p>
+                                <div class="col-sm-12 col-xs-6">
 
+                                    <label class="label1 big">
+                                        Наличие:
+                                    </label>
 
-                            <label class="label1 big">
-                                Минимальный заказ:
-                            </label>
+                                    <p class="check_label">Есть в наличии</p>
 
-                            <span class="sublabel" id="popup_minimum_amount">от 100 шт</span>
+                                    <label class="label1 big">
+                                        Минимальный заказ:
+                                    </label>
 
-                            <p class="popup_price"><span id="popup_price">49</span></p>
+                                    <span class="sublabel" id="popup_minimum_amount">от 100 шт</span>
 
-                            <label class="label1 big">
-                                Выберите количество:
-                                <span id="popup_tooltip_desc" class="tooltip_desc" data-tooltip-txt="Минимальный заказ: от 100 шт" data-tooltip-pos="right">?</span>
-                            </label>
+                                    <p class="popup_price"><span id="popup_price">49</span></p>
 
-                            <input id="amount" name="amount" type="number" required value="100" min="100" step="100" data-mask="99999" class="number_type_btn">
-                            <div class="clearfix"></div>
-                            {% comment %}
-                            <label class="label1 big">
-                                Выберите адрес доставки:
-                                <span class="tooltip_desc" data-tooltip-txt="Комментарий" data-tooltip-pos="right">?</span>
-                            </label>
+                                </div> <!-- end col -->
 
-                            <div class="wrapp_castom_select bottom_dropdown">
-                                <select data-placeholder="Нажмите, чтобы выбрать" name="trade_point" required>
-                                    {% for trade_point in trade_points %}
-                                        <option value="{{ trade_point.id }}" {% if forloop.first %}selected{% endif %}>{{ trade_point.address.full_address }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            {% endcomment %}
+                                <div class="col-sm-12 col-xs-6">
 
-                            <button class="btn btn_basket light_orange">В корзину</button>
+                                    <label class="label1 big">
+                                        Выберите количество:
+                                        <span id="popup_tooltip_desc" class="tooltip_desc" data-tooltip-txt="Минимальный заказ: от 100 шт" data-tooltip-pos="right">?</span>
+                                    </label>
 
-                        </div>
+                                    <input id="amount" name="amount" type="number" required value="100" min="100" step="100" data-mask="99999" class="number_type_btn">
+                                    <div class="clearfix"></div>
+                                    {% comment %}
+                                    <label class="label1 big">
+                                        Выберите адрес доставки:
+                                        <span class="tooltip_desc" data-tooltip-txt="Комментарий" data-tooltip-pos="right">?</span>
+                                    </label>
 
+                                    <div class="wrapp_castom_select bottom_dropdown">
+                                        <select data-placeholder="Нажмите, чтобы выбрать" name="trade_point" required>
+                                            {% for trade_point in trade_points %}
+                                                <option value="{{ trade_point.id }}" {% if forloop.first %}selected{% endif %}>{{ trade_point.address.full_address }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    {% endcomment %}
 
+                                    <button class="btn btn_basket light_orange">В корзину</button>
+
+                                </div> <!-- end col -->
+
+                            </div> <!-- row -->
+
+                        </div> <!-- End product_preview_desc -->
 
                     </div>
 
@@ -175,9 +182,9 @@
             </div>
 
         </div>
-        <!-- popup 1 -->
-
         <!-- product popup -->
+
+        <!-- product desc popup -->
         <div class="box-modal modal_popup_product big" id="modal_desc_product">
 
             <div class="modal_container2">
@@ -217,6 +224,7 @@
 
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
                             {% endcomment %}
+
                         </div>
 
                     </div>
@@ -226,7 +234,7 @@
             </div>
 
         </div>
-        <!-- product popup -->
+        <!-- product desc popup -->
 
     </div>
 {% endblock %}
