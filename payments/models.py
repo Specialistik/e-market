@@ -35,7 +35,6 @@ class DirectPayment(models.Model):
         verbose_name = u'Прямой перевод на рассчётный счёт'
         verbose_name_plural = u'Прямые переводы на рассчётный счёт'
 
-
 """
 class PaymentNotification(models.Model):
     response = models.TextField(verbose_name=u'Тело ответа')

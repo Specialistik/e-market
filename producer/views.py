@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 import uuid
 import openpyxl
 
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
@@ -211,4 +212,4 @@ def depot_edit(request, pk):
 
 @login_required(login_url='/sign_in/')
 def my_previous_deals(request):
-    pass
+    export_file = openpyxl.load_workbook(settings.DOCS_ROOT)
