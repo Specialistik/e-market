@@ -1507,7 +1507,6 @@
     }
 
     .jq-number.number_type_btn input.number_type_btn:not([type="checkbox"]):not([type="radio"]){
-      padding: 0 14px;
       color: #505050;
       line-height: 1;
       font-size: 14px;
@@ -1519,19 +1518,12 @@
     .jq-number.number_type_btn .jq-number__spin{
       cursor: pointer;
       width: 34px;
-      height: 24px;
+      height: 34px;
       background-color: #ff6c05;
-      position: absolute;
-      top: 50%;
-      -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-      -o-transform: translateY(-50%);
-      transform: translateY(-50%);
       -webkit-transition: all .3s ease-in-out;
       -moz-transition:    all .3s ease-in-out;
-      -o-transition:      all .3s ease-in-out;
-      -ms-transition:     all .3s ease-in-out;
       transition:         all .3s ease-in-out;
+      position: relative;
     }
 
     .jq-number.number_type_btn .jq-number__spin:hover{
@@ -1546,7 +1538,7 @@
       -webkit-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
       color: #fff;
-      font-size: 18px;
+      font-size: 24px;
       line-height: 1;
       padding-top: 1px;
       display: inline-block;
@@ -1558,7 +1550,7 @@
     }
 
     .jq-number.number_type_btn .jq-number__spin.plus{
-      right: 0;
+      float: right;
     }
 
     .jq-number.number_type_btn .jq-number__spin.minus:before{
@@ -1566,7 +1558,17 @@
     }
 
     .jq-number.number_type_btn .jq-number__spin.minus{
-      left: 0;
+      float: left;
+    }
+
+    .jq-number.number_type_btn .jq-number__field{
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      padding: 0 34px;
     }
     /* number type btn */
 
