@@ -3362,6 +3362,8 @@
 
   ------------------------------------------------ */
 
+    .wrapp_products{padding: 6px;}
+
     .wrapp_products:not(:last-child){
       margin-bottom: 40px;
     }
@@ -3506,6 +3508,7 @@
     .box_form_products_item .setting_list li > .setting_input:not([type="checkbox"]):not([type="radio"]):not(.number_type_btn){
       width: 100%;
       font-size: 16px;
+      outline: none;
     }
 
     .box_form_products_item .setting_list li > label{
@@ -3760,7 +3763,7 @@
 
       .products_list > li > a{
         display: inline-block;
-        padding: 9px 0 9px 55px;
+        padding: 9px 0 9px 105px;
         position: relative;
         z-index: 1;
         font-size: 4.5vw;
@@ -3769,7 +3772,7 @@
       }
 
       .products_list > li > a > span{
-        min-width: 50px;
+        min-width: 100px;
         display: inline-block;
         position: absolute;
         top: 50%;
@@ -3782,6 +3785,5 @@
       }
 
       .products_list > li > a img{
-        max-width: 40px;
-        max-height: 36px;
+        max-width: 100px;
       }

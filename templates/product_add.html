@@ -7,7 +7,7 @@
 {% block content %}
     <div id="content" class="wrapp_content">
 
-        <form class="wrapp_company_form validate" action="/my_products/import/" method="post" id="import_form" novalidate enctype="multipart/form-data">
+        <form class="wrapp_company_form validate" action="/my_products/import/" method="post" id="import_form" novalidate enctype="multipart/form-data" novalidate>
             {% csrf_token %}
             <div class="wrapp_attention_txt justify">
 
@@ -26,7 +26,7 @@
          </form>
         <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
 
-        <form action="/my_products/add/" class="wrapp_company_form validate" id="add_product_form" method="POST" enctype="multipart/form-data">
+        <form action="/my_products/add/" class="wrapp_company_form validate" id="add_product_form" method="POST" enctype="multipart/form-data" novalidate>
             {% csrf_token %}
 
             <div class="wrapp_form_box clearfix">

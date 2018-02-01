@@ -14,17 +14,21 @@
             </div>
 
             <div class="content_verification">
-                <form action="/sign_in" method="POST" class="wrapp_form_signin">
+                <form action="/sign_in" method="POST" class="wrapp_form_signin validate" novalidate>
                     {% csrf_token %}
                     <div class="wrapp_verification_col">
                         <div class="verification_box_col">
                             <label for="" class="label1">E-mail</label>
-                            <input name="email" type="email" required>
+                            <div class="error_form_container">
+                                <input name="email" type="email" required>
+                            </div>
                         </div>
 
                         <div class="verification_box_col">
                             <label for="" class="label1">Пароль</label>
-                            <input name="password" type="password" required>
+                            <div class="error_form_container">
+                                <input name="password" type="password" required>
+                            </div>
                             {% if error %}
                             <p class="tooltip_txt1">
                                 {{ error }}
