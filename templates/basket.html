@@ -195,10 +195,6 @@
     <!-- remove product -->
         <div class="box-modal modal_popup_product" id="remove_product">
 
-            <div class="box-modal_close arcticmodal-close">
-                <i class="fa fa-times" aria-hidden="true"></i>
-            </div>
-
             <div class="modal_container4">
 
                 <div class="wrapp_attention_txt attention_offset1 center">
@@ -229,36 +225,33 @@
     <!-- delivery popup -->
         <div class="box-modal modal_popup_delivery" id="delivery_popup">
             <div class="modal_container3">
-                    <h3 class="align_center">Выберите адрес доставки:</h3>
+                <h3 class="align_center">Выберите адрес доставки:</h3>
 
-                    <div class="wrapp_filter">
+                <div class="wrapp_filter">
 
-                        <div class="wrapp_castom_select sorting full_width">
+                    <div class="wrapp_castom_select sorting full_width">
 
-                            <select data-placeholder="Выберите" name="trade_point" required id="popup_tradepoint">
-                                {% for trade_point in trade_points %}
-                                    <option value="{{ trade_point.id }}" {% if forloop.first %}selected{% endif %}>{{ trade_point.address.castrate_nicely }}</option>
-                                {% endfor %}
-                            </select>
-
-                        </div>
+                        <select data-placeholder="Выберите" name="trade_point" required id="popup_tradepoint">
+                            {% for trade_point in trade_points %}
+                                <option value="{{ trade_point.id }}" {% if forloop.first %}selected{% endif %}>{{ trade_point.address.castrate_nicely }}</option>
+                            {% endfor %}
+                        </select>
 
                     </div>
 
-                    <div class="wrapp_btn between">
+                </div>
 
-                        <button class="btn hight_orange" data-popup="#payment_popup" id="tradepoint_pick">
-                            Заказать
-                        </button>
+                <div class="wrapp_btn between">
 
-                        <a href="javascript:;" class="btn hight_grey close_popup">
-                           Отменить
-                        </a>
+                    <button class="btn hight_orange" data-popup="#payment_popup" id="tradepoint_pick">
+                        Заказать
+                    </button>
 
-                    </div>
-                {% comment %}
-                </form>
-                {% endcomment %}
+                    <a href="javascript:;" class="btn hight_grey close_popup">
+                       Отменить
+                    </a>
+
+                </div>
             </div>
 
         </div>
