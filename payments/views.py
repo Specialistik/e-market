@@ -110,17 +110,17 @@ def bank_payment(request, pk):
 
 def payment_notification(request):
     PaymentNotification.objects.create(response=json.dumps(request.body))
-    return request('/')
+    return redirect('/')
 
 
 def success_redirect(request):
     Success.objects.create(response=json.dumps(request.body))
-    return request('/')
+    return redirect('/')
 
 
 def failure_redirect(request):
     Success.objects.create(response=json.dumps(request.body))
-    return request('/')
+    return redirect('/')
 
 # TODO: Тут идея в том, чтобы ограничить загрузку счетов на оплату только для тех, кто формиовал заказ
 """
