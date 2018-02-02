@@ -35,9 +35,10 @@ class DirectPayment(models.Model):
         verbose_name = u'Прямой перевод на рассчётный счёт'
         verbose_name_plural = u'Прямые переводы на рассчётный счёт'
 
-"""
+
 class PaymentNotification(models.Model):
     response = models.TextField(verbose_name=u'Тело ответа')
+    customer = models.ForeignKey(User, null=True, blank=True, verbose_name=u'Заказчик')
 
     class Meta:
         db_table = 'payment_notification'
@@ -47,9 +48,19 @@ class PaymentNotification(models.Model):
 
 class Success(models.Model):
     response = models.TextField(verbose_name=u'Тело ответа')
+    customer = models.ForeignKey(User, null=True, blank=True, verbose_name=u'Заказчик')
 
     class Meta:
-        db_table = 'payment_notification'
-        verbose_name = u'Payment notification системы paymaster'
-        verbose_name_plural = u'Payment notifications системы paymaster'
-"""
+        db_table = 'success_redirect'
+        verbose_name = u'Success redirect системы paymaster'
+        verbose_name_plural = u'Success redirect системы paymaster'
+
+
+class Failure(models.Model):
+    response = models.TextField(verbose_name=u'Тело ответа')
+    customer = models.ForeignKey(User, null=True, blank=True, verbose_name=u'Заказчик')
+
+    class Meta:
+        db_table = 'failure_redirect'
+        verbose_name = u'Failure redirect системы paymaster'
+        verbose_name_plural = u'Failure redirect системы paymaster'

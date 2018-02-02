@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import os
 import uuid
 import openpyxl
 
@@ -14,6 +15,7 @@ from core.views import profile
 from core.models import Address
 from catalogs.models import Category, ExpirationValue
 from producer.models import ProductCard, ProducerDepot
+from customer.models import Order
 
 
 @login_required(login_url='/sign_in/')
@@ -214,8 +216,12 @@ def depot_edit(request, pk):
 def my_previous_deals(request):
     if request.user.profile:
         if request.user.profile.role == 'producer':
-            export_file = openpyxl.load_workbook(os.path.join(settings.DOCS_ROOT, 'orders_export.xlsx')).get_active_sheet()
-            export_file.insert_rows()
+            ws = openpyxl.load_workbook(os.path.join(settings.DOCS_ROOT, 'orders_export.xlsx')).get_active_sheet()
+            #ws.append([1, 2, 3])
+
+            for order in Order.objects.filter(producer_id=request.user.id):
+                ws.append([order.barcode, 2, 3])
+            #export_file.insert_rows()
 
         return render(request, '500.html', {'error_message': u'Только производитель производить выгрузку'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})

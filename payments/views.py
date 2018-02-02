@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 import os
+import json
 from docx import Document
 
 from django.shortcuts import render, redirect
@@ -8,7 +9,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 
 from orders.views import current_orders
-from .models import OrderPayment, DirectPayment
+from .models import OrderPayment, DirectPayment, PaymentNotification, Success, Failure
 from customer.models import Order
 
 
@@ -107,18 +108,19 @@ def bank_payment(request, pk):
     return render(request, 'bank_payment.html', {'payment': payment})
 
 
-@login_required(login_url='/sign_in/')
 def payment_notification(request):
-
-    return render(request, 'payment_notification.html')
-
-
-@login_required(login_url='/sign_in/')
-def payment_redirect(request):
-    return render(request, 'payment_redirect.html')
+    PaymentNotification.objects.create(response=json.dumps(request.body))
+    return request('/')
 
 
+def success_redirect(request):
+    Success.objects.create(response=json.dumps(request.body))
+    return request('/')
 
+
+def failure_redirect(request):
+    Success.objects.create(response=json.dumps(request.body))
+    return request('/')
 
 # TODO: Тут идея в том, чтобы ограничить загрузку счетов на оплату только для тех, кто формиовал заказ
 """
