@@ -98,9 +98,9 @@ urlpatterns = [
     url(r'^direct_payment/([0-9]+)/$', payment_views.direct_payment),
     url(r'^bank_payment/([0-9]+)/$', payment_views.bank_payment),
 
-    url(r'^/payment_notification', payment_views.payment_notification),
-    url(r'^/success_redirect', payment_views.success_redirect),
-    url(r'^/failure_redirect', payment_views.failure_redirect),
+    url(r'^payment_notification', payment_views.payment_notification),
+    url(r'^success_redirect', payment_views.success_redirect),
+    url(r'^failure_redirect', payment_views.failure_redirect),
 
     # generated documents
     #url(r'^documents/', payment_views.generated_document),
