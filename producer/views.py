@@ -212,4 +212,10 @@ def depot_edit(request, pk):
 
 @login_required(login_url='/sign_in/')
 def my_previous_deals(request):
-    export_file = openpyxl.load_workbook(settings.DOCS_ROOT)
+    if request.user.profile:
+        if request.user.profile.role == 'producer':
+            export_file = openpyxl.load_workbook(os.path.join(settings.DOCS_ROOT, 'orders_export.xlsx')).get_active_sheet()
+            export_file.insert_rows()
+
+        return render(request, '500.html', {'error_message': u'Только производитель производить выгрузку'})
+    return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
