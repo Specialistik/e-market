@@ -4,6 +4,7 @@ import os
 import json
 from docx import Document
 
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
@@ -108,16 +109,19 @@ def bank_payment(request, pk):
     return render(request, 'bank_payment.html', {'payment': payment})
 
 
+@csrf_exempt
 def payment_notification(request):
     PaymentNotification.objects.create(response=json.dumps(request.body))
     return redirect('/')
 
 
+@csrf_exempt
 def success_redirect(request):
     Success.objects.create(response=json.dumps(request.body))
     return redirect('/')
 
 
+@csrf_exempt
 def failure_redirect(request):
     Success.objects.create(response=json.dumps(request.body))
     return redirect('/')
