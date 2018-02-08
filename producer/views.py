@@ -216,12 +216,14 @@ def depot_edit(request, pk):
 def my_previous_deals(request):
     if request.user.profile:
         if request.user.profile.role == 'producer':
-            ws = openpyxl.load_workbook(os.path.join(settings.DOCS_ROOT, 'orders_export.xlsx')).get_active_sheet()
+            document = openpyxl.load_workbook(os.path.join(settings.DOCS_ROOT, 'orders_export.xlsx'))
+            ws = document.get_active_sheet()
             #ws.append([1, 2, 3])
 
-            for order in Order.objects.filter(producer_id=request.user.id):
+            for order in Order.objects.filter(producer_id=request.user.id, order_status__in=(1, 2, 4, 6, 8)):
                 ws.append([order.barcode, 2, 3])
-            #export_file.insert_rows()
 
-        return render(request, '500.html', {'error_message': u'Только производитель производить выгрузку'})
+            document.save(os.path.join(settings.MEDIA_ROOT, 'generated_docs', 'my_orders_{}.xlsx'.format(request.user.id)))
+            return redirect('/current_orders')
+        return render(request, '500.html', {'error_message': u'Только поставщик производить выгрузку'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
-    'sslserver',
+    #'django.contrib.gis',
+    #'sslserver',
     'oauth2_provider',
     'rest_framework',
     'rest_framework_swagger',
@@ -92,6 +93,7 @@ WSGI_APPLICATION = 'storehouse.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'the_sklad',
         'USER': 'admin',
         'PASSWORD': '1f53601c',
@@ -176,10 +178,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # https thingies
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+##SECURE_SSL_REDIRECT = True
+##SESSION_COOKIE_SECURE = True
+#CSRF_COOKIE_SECURE = True
 
 #APPEND_SLASH = False
 #FIXTURE_DIRS = os.path.join(BASE_DIR, "fixtures")
