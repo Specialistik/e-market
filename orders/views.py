@@ -13,7 +13,7 @@ from customer.models import Order, OrderUnit
 def current_orders(request):
     if request.user.profile:
         cur_orders = None
-        link_to_excel = None
+        document = None
         if request.user.profile.role == 'customer':
             cur_orders = Order.objects.filter(customer_id=request.user.id, order_status__in=(1, 2, 4, 6, 8))
 
@@ -36,8 +36,8 @@ def current_orders(request):
                 os.path.join(settings.MEDIA_ROOT, 'generated_docs', 'my_orders_{}.xlsx'.format(request.user.id)))
 
         final_data = {'current_orders': cur_orders}
-        if link_to_excel is not None:
-            final_data['link_to_excel'] = os.path.join('media', 'generated_docs', 'orders_export.xlsx')
+        if document is not None:
+            final_data['link_to_excel'] = os.path.join('media', 'generated_docs', 'my_orders_{}.xlsx'.format(request.user.id))
         return render(request, 'current_orders.html', final_data)
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
 
