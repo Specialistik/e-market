@@ -12,8 +12,9 @@
 			self.NavMenu.init();
 			self.ToggleForm();
 			self.SelectFile();
-
-			/* self.NameFunction*/
+			self.CustomScroll();
+			self.tabs();
+			self.Gmap.init();
 
 		},
 
@@ -23,8 +24,6 @@
 			var self = this;
 
 			self.HeaderHeight.init();
-
-			/* self.NameFunction*/
 
 		},
 
@@ -81,7 +80,7 @@
 			self.closestBtn.on('click',function(e){
 				e.preventDefault();
 				var $this = $(this);
-				
+
 				self.closestBox = $this.closest('.block_closest');
 				$('.removeProduct_l').attr('href', $this.attr('href'));
 				//$('#remove_product').arcticmodal();
@@ -111,7 +110,7 @@
 						self.closestBox.remove();
 					});
 				});
-				
+
 			});
 			*/
 
@@ -237,12 +236,10 @@
 						},
 							type: 'inline'
 					});
-/*
-					$("#countPreloadfile").arcticmodal();
-*/
-					$("#countPreloadfile").close(function(){
-						location.href = '/my_products/'
-					});
+
+				$("#countPreloadfile").close(function(){
+					location.href = '/my_products/'
+				});
 
 
 				}).fail(function(data) {
@@ -291,7 +288,162 @@
 
  			}
 
- 		}
+ 		},
+
+
+ 		/*
+ 		*
+ 		*
+ 		*	Custom Scroll
+ 		*
+ 		*/
+
+ 		CustomScroll: function() {
+
+            var GetAgent = navigator.userAgent;
+
+            if ($(window).width() > 767){
+
+	            if (GetAgent.search(/Chrome/) > 0 || GetAgent.search(/Opera/) > 0 || GetAgent.search(/Safari/) > 0){
+	            	$("html").addClass('custom_scroll');
+	            }
+
+            }
+
+ 		},
+
+ 		/**
+ 		**  G-Map
+ 		**/
+
+ 		Gmap: {
+
+ 			init: function(){
+
+ 				var self = this;
+
+                self.map = new GMaps({
+                    el: '.gmap',
+                    lat: -12.037,
+                    lng: -77.041,
+                    zoom: 16,
+                    scrollwheel: false,
+                });
+
+                var blue_styles = [{"featureType": "administrative", "elementType": "labels.text.fill", "stylers": [{"color": "#444444"} ] }, {"featureType": "landscape", "elementType": "all", "stylers": [{"color": "#f2f2f2"} ] }, {"featureType": "poi", "elementType": "all", "stylers": [{"visibility": "off"} ] }, {"featureType": "road", "elementType": "all", "stylers": [{"saturation": -100 }, {"lightness": 45 } ] }, {"featureType": "road.highway", "elementType": "all", "stylers": [{"visibility": "simplified"} ] }, {"featureType": "road.arterial", "elementType": "labels.icon", "stylers": [{"visibility": "off"} ] }, {"featureType": "transit", "elementType": "all", "stylers": [{"visibility": "off"} ] }, {"featureType": "water", "elementType": "all", "stylers": [{"color": "#46bcec"}, {"visibility": "on"} ] } ];
+
+                self.map.addStyle({
+                    styledMapName:"Blue Map",
+                    styles: blue_styles,
+                    mapTypeId: "blue_styles"
+                });
+
+                self.map.setStyle("blue_styles");
+
+                // addMarker
+                var dryLiningMarkers = [
+
+	                self.map.addMarker({
+		                lat: -12.042,
+		                lng: -77.028333,
+		                title: 'Marker with InfoWindow 1',
+		                infoWindow: {
+		                	content: '<p>HTML Content 1</p>'
+		                }
+	                }),
+
+	                self.map.addMarker({
+		                lat: -12.040,
+		                lng: -77.029,
+		                title: 'Marker with InfoWindow 2',
+		                infoWindow: {
+		                	content: '<p>HTML Content 2</p>'
+		                }
+	                }),
+
+	                self.map.addMarker({
+		                lat: -12.044,
+		                lng: -77.027,
+		                title: 'Marker with InfoWindow 3',
+		                infoWindow: {
+		                	content: '<p>HTML Content 3</p>'
+		                }
+	                }),
+
+	                self.map.addMarker({
+	                	lat: -12.047,
+	                	lng: -77.030,
+		                title: 'Marker with InfoWindow 4',
+		                infoWindow: {
+		                	content: '<p>HTML Content 4</p>'
+		                }
+	                }),
+
+                ];
+                // addMarker
+
+ 			},
+
+ 			refreshMap: function(){
+
+ 				var self = this;
+
+	 		    /**
+		         * Trigger a `resize` event, useful if you need to repaint the current map (for changes in the viewport or display / hide actions).
+		        */
+
+	 			self.map.refresh();
+
+ 			}
+
+ 		},
+
+ 		/**
+ 		**  Tabs
+ 		**/
+
+ 		tabs: function(){
+
+ 		    $('.wrapp_tabs').each(function(){
+
+ 		        var $this = $(this),
+ 		            active = $this.find('.tabs_list').find(".tabs_item.active"),
+ 		            index = active.index();
+
+ 		        $this.find('.wrapp_tabs_content').children(".tabs_content").eq(index).show().siblings().hide();;
+
+ 		    });
+
+ 		    $('.tabs_list').on('click', '.tabs_item', function(){
+
+ 		        var listIndex = $(this).index(),
+ 		        	tabActive = $(this).closest('.wrapp_tabs').find('.wrapp_tabs_content').children().eq(listIndex);
+
+ 		        $(this)
+ 		        .addClass('active')
+ 		        .siblings()
+ 		        .removeClass('active');
+
+ 		        tabActive
+ 		        .addClass('active')
+ 		        .show()
+ 		        .siblings()
+ 		        .removeClass('active')
+ 		        .hide();
+
+	 		    if(tabActive.find(".gmap").length){
+
+		 		    /**
+			         * Trigger a `resize` event, useful if you need to repaint the current map (for changes in the viewport or display / hide actions).
+			        */
+
+			        Core.Gmap.refreshMap();
+
+	 		    }
+
+ 		    });
+
+ 		},
 
 	};
 

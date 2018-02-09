@@ -175,6 +175,9 @@
 			font-size: 12px;
 		}
 
+		.gmap{
+			height: 500px !important;
+		}
 
 	} /* (max-width: 1200px) */
 
@@ -332,6 +335,10 @@
 
 		.basket_wrapp{
 			margin-right: 10px;
+		}
+
+		.gmap{
+			height: 400px !important;
 		}
 
 	} /* (max-width: 991px) */
@@ -614,7 +621,7 @@
 			height: 30px;
 		}
 
-		.btn.icon_right>i, .btn.icon_left > i{
+		.btn.icon_right > .fa, .btn.icon_left > .fa{
 			width: 30px;
 			height: 30px;
 			font: normal normal normal 12px/30px FontAwesome;
@@ -624,7 +631,7 @@
 		    padding: 10px 35px 10px 7px;
 		}
 
-		.btn.icon_left>i, .btn.icon_left > i{
+		.btn.icon_left > .fa, .btn.icon_left > .fa{
 			width: 30px;
 			height: 30px;
 			font: normal normal normal 12px/30px FontAwesome;
@@ -985,6 +992,10 @@
 
 		.jq-number.number_type_btn:not(:last-child) {
 		    margin-bottom: 30px;
+		}
+
+		.gmap{
+			height: 300px !important;
 		}
 
 	} /* (max-width: 767px) */
