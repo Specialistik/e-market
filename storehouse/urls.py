@@ -78,6 +78,7 @@ urlpatterns = [
 
     url(r'^trade_point/add/$', customer_views.trade_point_add),
     url(r'^trade_point/([0-9]+)/$', customer_views.trade_point_edit),
+    url(r'^trade_point/([0-9]+)/del/$', customer_views.trade_point_del),
 
     #url(r'^basket$', customer_views.basket),
     url(r'^basket$', customer_views.basket),

@@ -15,8 +15,22 @@ from core.views import profile
 from core.models import Address
 from catalogs.models import Category, ExpirationValue
 from producer.models import ProductCard, ProducerDepot
-from customer.models import Order
+from customer.models import Order, OrderUnit
 
+"""
+CELL_LETTER = {
+    0: 'A',
+    1: 'B',
+    2: 'C',
+    3: 'D',
+    4: 'E',
+    5: 'F',
+    6: 'G',
+    7: 'H',
+    8: 'I',
+    9: 'J'
+}
+"""
 
 @login_required(login_url='/sign_in/')
 def my_products(request):
@@ -216,12 +230,18 @@ def depot_edit(request, pk):
 def my_previous_deals(request):
     if request.user.profile:
         if request.user.profile.role == 'producer':
-            document = openpyxl.load_workbook(os.path.join(settings.DOCS_ROOT, 'orders_export.xlsx'))
+            document = openpyxl.load_workbook(filename=os.path.join(settings.DOCS_ROOT, 'orders_export.xlsx'))
             ws = document.get_active_sheet()
-            #ws.append([1, 2, 3])
 
-            for order in Order.objects.filter(producer_id=request.user.id, order_status__in=(1, 2, 4, 6, 8)):
-                ws.append([order.barcode, 2, 3])
+            for index, order_unit in enumerate(OrderUnit.objects.filter(producer_id=request.user.id)):
+                ws['A' + str(index + 2)] = order_unit.product.barcode
+                ws['B' + str(index + 2)] = order_unit.product.name
+                ws['C' + str(index + 2)] = order_unit.customer.profile.company_name
+                ws['D' + str(index + 2)] = order_unit.order.trade_point.address.castrate_nicely()
+                ws['E' + str(index + 2)] = order_unit.order.created.strftime('%d. %m .%Y')
+                ws['F' + str(index + 2)] = order_unit.amount
+                ws['G' + str(index + 2)] = order_unit.price
+                ws['H' + str(index + 2)] = order_unit.calculate_sum()
 
             document.save(os.path.join(settings.MEDIA_ROOT, 'generated_docs', 'my_orders_{}.xlsx'.format(request.user.id)))
             return redirect('/current_orders')

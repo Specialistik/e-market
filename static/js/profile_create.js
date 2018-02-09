@@ -24,6 +24,29 @@ $(document).ready(function(){
         $('#hidden_trade_point').show();
     });
 
+    $('.delete_button').click(function(e){
+        e.preventDefault();
+        var del_action = $(this).closest('form').attr('action') + 'del/';
+        $(this).closest('form').attr('action', del_action);
+        $(this).closest('form').submit();
+        /*
+        $.ajax({
+            type: "get",
+            url: $(this).closest('form').attr('action') + 'del/',
+            processData: false,  // tell jQuery not to process the data
+            contentType: false   // tell jQuery not to set contentType
+        }).done(function(data) {
+            if (data['success'] === true) {
+                location.reload();
+            } else {
+                alert(data['error_msg']);
+            }
+        }).fail(function(data) {
+            alert(data['error_msg']);
+        });
+        */
+    });
+
     /*
     $('.submit_button').click(function(e){
         e.preventDefault();

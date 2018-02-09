@@ -1,4 +1,8 @@
 # -*- coding: utf-8 -*-
+import os
+import openpyxl
+
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 
@@ -9,14 +13,32 @@ from customer.models import Order, OrderUnit
 def current_orders(request):
     if request.user.profile:
         cur_orders = None
+        link_to_excel = None
         if request.user.profile.role == 'customer':
             cur_orders = Order.objects.filter(customer_id=request.user.id, order_status__in=(1, 2, 4, 6, 8))
 
         if request.user.profile.role == 'producer':
             cur_orders = Order.objects.filter(producer_id=request.user.id, order_status__in=(1, 2, 4, 6, 8))
-        return render(request, 'current_orders.html', {
-            'current_orders': cur_orders
-        })
+            document = openpyxl.load_workbook(filename=os.path.join(settings.DOCS_ROOT, 'orders_export.xlsx'))
+            ws = document.get_active_sheet()
+
+            for index, order_unit in enumerate(OrderUnit.objects.filter(producer_id=request.user.id)):
+                ws['A' + str(index + 2)] = order_unit.product.barcode
+                ws['B' + str(index + 2)] = order_unit.product.name
+                ws['C' + str(index + 2)] = order_unit.customer.profile.company_name
+                ws['D' + str(index + 2)] = order_unit.order.trade_point.address.castrate_nicely()
+                ws['E' + str(index + 2)] = order_unit.order.created.strftime('%d. %m .%Y')
+                ws['F' + str(index + 2)] = order_unit.amount
+                ws['G' + str(index + 2)] = order_unit.price
+                ws['H' + str(index + 2)] = order_unit.calculate_sum()
+
+            document.save(
+                os.path.join(settings.MEDIA_ROOT, 'generated_docs', 'my_orders_{}.xlsx'.format(request.user.id)))
+
+        final_data = {'current_orders': cur_orders}
+        if link_to_excel is not None:
+            final_data['link_to_excel'] = os.path.join('media', 'generated_docs', 'orders_export.xlsx')
+        return render(request, 'current_orders.html', final_data)
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
 
 

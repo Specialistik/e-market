@@ -85,7 +85,16 @@
                         <!-- col 6 -->
 
                    </div> <!-- box_form_row -->
+
+
+                   <div class="align_right clearfix">
+                       {% comment %}
+                       <button class="btn hight_orange submit_button" type="submit">Сохранить</button>
+                       {% endcomment %}
+                       <button class="btn hight_orange delete_button" type="submit">Удалить</button>
+                   </div>
                     {% if forloop.last %}
+                    <br><br>
                     <div class="wrapp_btn_add_plus">
                         <a href="javascript:;" class="btn_add_plus" id="tradepoint_add">
                             Добавить еще торговую точку
@@ -93,9 +102,6 @@
                     </div>
                     {% endif %}
 
-                   <div class="align_right">
-                       <button class="btn hight_orange submit_button" type="submit">Сохранить</button>
-                   </div>
 
                 </div> <!-- wrapp_form -->
             </form>

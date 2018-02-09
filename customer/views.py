@@ -104,6 +104,29 @@ def trade_point_edit(request, pk):
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
 
 
+@login_required(login_url='/sign_in/')
+def trade_point_del(request, pk):
+    if request.user.profile:
+        if request.user.profile.role == 'customer':
+            try:
+                trade_point = TradePoint.objects.get(pk=pk)
+            except TradePoint.DoesNotExist:
+                return render(request, '500.html', {'error_message': u'Торговая точка не существует'})
+
+            if trade_point.customer_id != request.user.id:
+                return render(request, '500.html', {'error_message': u'Торговая точка вам не пренадлежит'})
+
+            trade_point_orders = Order.objects.filter(trade_point_id=pk).count()
+            if trade_point_orders > 0:
+                return render(request, '500.html', {'error_message': u'У торговой точки есть заказы'})
+
+            trade_point.delete()
+
+            return redirect(profile)
+        return render(request, '500.html', {'error_message': u'Только заказчик может редактировать торговые точки'})
+    return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
+
+
 def product_search(request):
     search_string = request.GET['search_string']
     results = ProductCard.objects.filter(name__search=search_string)
