@@ -9,127 +9,152 @@
 
     <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
 
-    <form action="" class="wrapp_filter">
-        <label class="label1 big">Сортировка:</label>
+    <div class="wrapp_tabs">
 
-        <div class="wrapp_castom_select sorting">
-            <select data-placeholder="По умолчанию" name="sorting">
-                <option value=""></option>
-                <option value="1">По умолчанию</option>
-                <option value="2">Подтвержденные</option>
-                <option value="3">Завершенные</option>
-            </select>
-        </div>
-    </form>
+            <ul class="tabs_list blue">
 
-    <!-- - - - - - - - - - - - - - End of Form - - - - - - - - - - - - - - - - -->
+                <li class="tabs_item active">
+                    Мои заказы
+                </li>
 
-    <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+                <li class="tabs_item">
+                    Карта
+                </li>
 
-    <div class="wrapp_btn right">
+            </ul> <!-- tabs_list -->
 
-        <a href="javascript:;" class="btn icon_left line_grey" download>
-            <i class="fa fa-paperclip"></i>
-            выгрузка в excel
-        </a>
+        <div class="wrapp_tabs_content">
 
-        <a href="javascript:;" class="btn icon_right blue">
-            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-            показать на карте
-        </a>
+            <div class="tabs_content">
 
-    </div>
+                <form action="" class="wrapp_filter">
+                    <label class="label1 big">Сортировка:</label>
 
-    <table class="table_order">
+                    <div class="wrapp_castom_select sorting">
+                        <select data-placeholder="По умолчанию" name="sorting">
+                            <option value=""></option>
+                            <option value="1">По умолчанию</option>
+                            <option value="2">Подтвержденные</option>
+                            <option value="3">Завершенные</option>
+                        </select>
+                    </div>
+                </form>
 
-        <thead>
+                <!-- - - - - - - - - - - - - - End of Form - - - - - - - - - - - - - - - - -->
 
-            <tr>
-                <th class="table_col1">
-                    №
-                </th>
+                <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
 
-                <th>
-                    Дата
-                    <a href="javascript:;" class="sort_btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
-                </th>
+                <div class="wrapp_btn right">
 
-                <th>
-                    Контрагент
-                    <a href="javascript:;" class="sort_btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
-                </th>
+                    <a href="javascript:;" class="btn icon_left line_grey" download>
+                        <i class="fa fa-paperclip"></i>
+                        выгрузка в excel
+                    </a>
 
-                <th class="table_col4">
-                    Сумма/руб
-                    <a href="javascript:;" class="sort_btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
-                </th>
+                </div>
 
-                <th class="table_col4">
-                    Статус
-                    <a href="javascript:;" class="sort_btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
-                </th>
+                <table class="table_order">
 
-            </tr>
+                    <thead>
 
-        </thead>
+                        <tr>
+                            <th class="table_col1">
+                                №
+                            </th>
 
-        <tbody>
-            {% for order in current_orders %}
-                <tr class="clickable_order">
-                    <td data-title="№">{{ order.id }}</td>
-                    <td data-title="Дата">{{ order.created|date:'d.m.Y' }}</td>
-                    <td data-title="Контрагент">
-                        {% if user.profile.role == 'customer' %}
-                            {{ order.producer.profile.company_name }}
-                        {% else %}
-                            {{ order.customer.profile.company_name }}
-                        {% endif %}
-                    </td>
-                    <td data-title="Сумма/руб">{{ order.calculate_sum }}</td>
-                    <td class="blue" data-title="Статус">{{ order.get_order_status_display }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
+                            <th>
+                                Дата
+                                <a href="javascript:;" class="sort_btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
+                            </th>
 
-    </table>
+                            <th>
+                                Контрагент
+                                <a href="javascript:;" class="sort_btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
+                            </th>
 
-    <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
-    {% comment %}
-    <ul class="pagination">
+                            <th class="table_col4">
+                                Сумма/руб
+                                <a href="javascript:;" class="sort_btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
+                            </th>
 
-        <!-- angle -->
-        <li>
-            <a href="javascript:;">«</a>
-        </li>
-        <!-- angle -->
+                            <th class="table_col4">
+                                Статус
+                                <a href="javascript:;" class="sort_btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
+                            </th>
 
-        <li>
-            <a href="javascript:;" class="current">1</a>
-        </li>
+                        </tr>
 
-        <li>
-            <a href="javascript:;">2</a>
-        </li>
+                    </thead>
 
-        <li>
-            <a href="javascript:;">3</a>
-        </li>
+                    <tbody>
+                        {% for order in current_orders %}
+                            <tr class="clickable_order">
+                                <td data-title="№">{{ order.id }}</td>
+                                <td data-title="Дата">{{ order.created|date:'d.m.Y' }}</td>
+                                <td data-title="Контрагент">
+                                    {% if user.profile.role == 'customer' %}
+                                        {{ order.producer.profile.company_name }}
+                                    {% else %}
+                                        {{ order.customer.profile.company_name }}
+                                    {% endif %}
+                                </td>
+                                <td data-title="Сумма/руб">{{ order.calculate_sum }}</td>
+                                <td class="blue" data-title="Статус">{{ order.get_order_status_display }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
 
-        <li>
-            <a href="javascript:;">4</a>
-        </li>
+                </table>
 
-        <li>
-            <a href="javascript:;">5</a>
-        </li>
+                <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
+                {% comment %}
+                <ul class="pagination">
 
-        <!-- angle -->
-        <li>
-            <a href="javascript:;">»</a>
-        </li>
-        <!-- angle -->
-    </ul>
-    {% endcomment %}
+                    <!-- angle -->
+                    <li>
+                        <a href="javascript:;">«</a>
+                    </li>
+                    <!-- angle -->
+
+                    <li>
+                        <a href="javascript:;" class="current">1</a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:;">2</a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:;">3</a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:;">4</a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:;">5</a>
+                    </li>
+
+                    <!-- angle -->
+                    <li>
+                        <a href="javascript:;">»</a>
+                    </li>
+                    <!-- angle -->
+                </ul>
+                {% endcomment %}
+
+            </div> <!-- tabs_content -->
+
+            <div class="tabs_content">
+
+                <div class="gmap"></div>
+
+            </div> <!-- tabs_content -->
+
+        </div> <!-- wrapp_tabs_content -->
+
+    </div> <!-- wrapp_tabs -->
 
 </div>
 
