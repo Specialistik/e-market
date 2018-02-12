@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 
 {% block js_css %}
+    {% comment %}
+    <!-- Key! -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUCun4zAzRJ7No2n6qs1ifIVGxeh9qqpc">
+    </script>
+    <script type="text/javascript" src="/static/plugins/gmaps.js"></script>
+    {% endcomment %}
+
     <script src="/static/js/profile_create.js"></script>
     <script src="/static/js/geolocation.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo4M1eTyWA-HOp51b88dUln62wdg8pg9M&libraries=places&language=ru&callback=initAutocomplete" async defer></script>
