@@ -179,7 +179,15 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 
-GOOGLE_MAPS_V3_APIKEY = 'AIzaSyBo4M1eTyWA-HOp51b88dUln62wdg8pg9M'
+# might be redundant as long as we have that in admin
+MAP_WIDGETS = {
+    "GooglePointFieldWidget": (
+        ("zoom", 15),
+        ("mapCenterLocation", [55.8654762, 37.0608073]),
+    ),
+    "GOOGLE_MAP_API_KEY": "AIzaSyBo4M1eTyWA-HOp51b88dUln62wdg8pg9M"
+}
+#GOOGLE_MAPS_V3_APIKEY = 'AIzaSyBo4M1eTyWA-HOp51b88dUln62wdg8pg9M'
 
 # https thingies
 #SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
