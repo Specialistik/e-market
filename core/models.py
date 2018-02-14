@@ -36,7 +36,7 @@ class LegalAct(AbstractList):
 
 class Address(models.Model):
     index = models.CharField(max_length=6, null=True, blank=True, verbose_name=u'Индекс')
-    region = models.CharField(max_length=40, verbose_name=u'Регион')
+    region = models.CharField(max_length=40, null=True, blank=True, verbose_name=u'Регион')
     city = models.CharField(max_length=80, verbose_name=u'Город/Населённый пункт')
     street = models.CharField(max_length=80, verbose_name=u'Улица')
     house = models.CharField(max_length=100, verbose_name=u'Дом')
