@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
-
+from django.contrib.gis.db.models import PointField
 from catalogs.models import AbstractList
 
 
@@ -44,6 +44,7 @@ class Address(models.Model):
     structure = models.CharField(max_length=20, null=True, blank=True, verbose_name=u'Строение')
     flat = models.CharField(max_length=20, blank=True, default='', verbose_name=u'Квартира/Офис')
     full_address = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Полный адрес')
+    location = PointField(null=True, default=None, verbose_name=u'Широта\долгота')
 
     # Обрезать строку до n-ой запятой
     def castrate_nicely(self, trim_until_n_th_coma=3):
@@ -104,25 +105,6 @@ class UserProfile(models.Model):
     # True = Используем страницу редактирования profile_update.html
     created = models.BooleanField(default=False, verbose_name=u'Создание профиля завершено или пропущено')
 
-    """
-    def basket_items(self):
-        try:
-            wanted_order = Order.objects.get(customer_id=self.user.id, order_status__isnull=True)
-            return OrderUnit.objects.filter(order_id=wanted_order.id).count()
-        except Order.DoesNotExist:
-            return 0
-
-    def basket_price(self):
-        try:
-            final_sum = 0
-            wanted_order = Order.objects.get(customer_id=self.user.id, order_status__isnull=True)
-            for order_unit in OrderUnit.objects.filter(order_id=wanted_order.id):
-                final_sum += order_unit.amount * order_unit.product.producer_price
-            return final_sum
-        except Order.DoesNotExist:
-            return 0
-    """
-
     class Meta:
         db_table = 'user_profile'
         verbose_name = u'Профиль пользователя'
@@ -141,3 +123,16 @@ class Account(models.Model):
         db_table = 'account'
         verbose_name = u'Используемый счёт'
         verbose_name_plural = u'Используемые счета'
+
+
+class Territory(models.Model):
+    """
+    Упрощённая модель территорий, левая верхняя и правая нижняя gps-координаты прямоугольной площади
+    """
+    upper_left = PointField(verbose_name=u'Верхняя левая точка прямоугольника')
+    lower_right = PointField(verbose_name=u'Правая нижняя точка прямоугольника')
+
+    class Meta:
+        db_table = 'territory_simple'
+        verbose_name = u'Прямоугольная территория'
+        verbose_name_plural = u'Прямоугольные территории'

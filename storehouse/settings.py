@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
-    #'django.contrib.gis',
+    'django.contrib.gis',
+    'mapwidgets',
     #'sslserver',
     'oauth2_provider',
     'rest_framework',
@@ -92,8 +93,8 @@ WSGI_APPLICATION = 'storehouse.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        #'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'the_sklad',
         'USER': 'admin',
         'PASSWORD': '1f53601c',
