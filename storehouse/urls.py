@@ -36,7 +36,6 @@ urlpatterns = [
     url(r'^api/signup/$', core_views.signup),
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     url(r'^api/', include(router.urls)),
- #   url(r'^api/', include(profile_router.urls)),
     url(r'^admin/', admin.site.urls),
 
     url(r'^$', core_views.index),
