@@ -104,6 +104,8 @@
     {% else %}
         <form action="/depot/add/" class="wrapp_company_form" method="POST">
             {% csrf_token %}
+            <input type="hidden" id="lat_bottom" name="lat">
+            <input type="hidden" id="lng_bottom" name="lng">
 
             <h3 class="title_edit angle_right">Данные о складах</h3>
 

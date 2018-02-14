@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
+from django.contrib.gis.geos import Point
 
 from catalogs.models import Category
 from producer.models import ProductCard
@@ -69,7 +70,8 @@ def trade_point_add(request):
                 house=request.POST['house'],
                 block=request.POST['block'],
                 structure=request.POST['structure'],
-                flat=request.POST['flat']
+                flat=request.POST['flat'],
+                location=Point(float(request.POST['lng']), float(request.POST['lat'])),
             )
 
             TradePoint.objects.create(
