@@ -46,6 +46,15 @@ class Address(models.Model):
     full_address = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Полный адрес')
     location = PointField(null=True, default=None, verbose_name=u'Широта\долгота')
 
+    def __repr__(self):
+        return self.full_address
+
+    def __str__(self):
+        return self.full_address
+
+    def __unicode__(self):
+        return self.full_address
+
     # Обрезать строку до n-ой запятой
     def castrate_nicely(self, trim_until_n_th_coma=3):
         return ','.join(self.full_address.split(',', trim_until_n_th_coma)[:trim_until_n_th_coma])
@@ -131,6 +140,16 @@ class Territory(models.Model):
     """
     upper_left = PointField(verbose_name=u'Верхняя левая точка прямоугольника')
     lower_right = PointField(verbose_name=u'Правая нижняя точка прямоугольника')
+    name = models.CharField(max_length=256, verbose_name=u'Название')
+
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
+
+    def __unicode__(self):
+        return self.name
 
     class Meta:
         db_table = 'territory_simple'
