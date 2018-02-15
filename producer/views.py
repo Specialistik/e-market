@@ -18,24 +18,10 @@ from catalogs.models import Category, ExpirationValue
 from producer.models import ProductCard, ProducerDepot
 from customer.models import Order, OrderUnit
 
-"""
-CELL_LETTER = {
-    0: 'A',
-    1: 'B',
-    2: 'C',
-    3: 'D',
-    4: 'E',
-    5: 'F',
-    6: 'G',
-    7: 'H',
-    8: 'I',
-    9: 'J'
-}
-"""
 
 @login_required(login_url='/sign_in/')
 def my_products(request):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'producer':
             return render(request, 'my_products.html', {
                 'products': ProductCard.objects.filter(product_depot__producer_id=request.user.id).order_by('pk'),
@@ -91,7 +77,7 @@ def my_products_import(request):
 
 @login_required(login_url='/sign_in/')
 def product_add(request):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'producer':
             if request.method == 'POST':
                 new_product = ProductCard.objects.create(
@@ -131,7 +117,7 @@ def product_edit(request, pk):
     """
         todo: only owners should be allowed to edit products
     """
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'producer':
             try:
                 product = ProductCard.objects.get(pk=pk)
@@ -181,7 +167,7 @@ def product_del(request, pk):
 
 @login_required(login_url='/sign_in/')
 def depot_add(request):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'producer':
             depot_address = Address.objects.create(
                 full_address=request.POST['full_address'],
@@ -207,7 +193,7 @@ def depot_add(request):
 
 @login_required(login_url='/sign_in/')
 def depot_edit(request, pk):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'producer':
             try:
                 depot = ProducerDepot.objects.get(pk=pk, producer_id=request.user.id)
@@ -230,7 +216,7 @@ def depot_edit(request, pk):
 
 @login_required(login_url='/sign_in/')
 def my_previous_deals(request):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'producer':
             document = openpyxl.load_workbook(filename=os.path.join(settings.DOCS_ROOT, 'orders_export.xlsx'))
             ws = document.get_active_sheet()

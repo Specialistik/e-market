@@ -105,7 +105,7 @@ def logout(request):
 
 @login_required(login_url='/sign_in/')
 def profile(request):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         if request.user.profile.role in ('customer', 'producer'):
             data = {
                 'profile': request.user.profile,
@@ -131,7 +131,7 @@ def profile(request):
 
 @login_required(login_url='/sign_in/')
 def create_profile(request):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         if request.user.profile.role in ('customer', 'producer'):
             data = {
                 'profile': request.user.profile,
@@ -407,7 +407,7 @@ def profile_signer_info_and_identity(request):
 
 @login_required(login_url='/sign_in')
 def profile_account_add(request):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         Account.objects.create(
             profile=request.user.profile,
             #name=request.POST['name'],
@@ -422,7 +422,7 @@ def profile_account_add(request):
 
 @login_required(login_url='/sign_in')
 def profile_account_edit(request, pk):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         my_account = Account.objects.get(pk=pk, profile_id=request.user.profile.id)
         if my_account:
             #my_account.name = request.POST['name']
@@ -438,7 +438,7 @@ def profile_account_edit(request, pk):
 
 @login_required(login_url='/sign_in')
 def profile_skip_creation(request):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         my_profile = UserProfile.objects.get(pk=request.user.profile.id)
         my_profile.created = True
         my_profile.save()

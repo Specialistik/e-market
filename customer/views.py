@@ -85,7 +85,7 @@ def trade_point_add(request):
 
 @login_required(login_url='/sign_in/')
 def trade_point_edit(request, pk):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'customer':
             try:
                 depot = TradePoint.objects.get(pk=pk, customer_id=request.user.id)
@@ -108,7 +108,7 @@ def trade_point_edit(request, pk):
 
 @login_required(login_url='/sign_in/')
 def trade_point_del(request, pk):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'customer':
             try:
                 trade_point = TradePoint.objects.get(pk=pk)
@@ -168,7 +168,7 @@ def products(request, cat_id):
 
 @login_required(login_url='/sign_in/')
 def basket(request):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'customer':
             try:
                 order_units = OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id).order_by('pk')
@@ -185,7 +185,7 @@ def basket(request):
 
 @login_required(login_url='/sign_in/')
 def order_unit_add(request):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'customer':
             try:
                 product = ProductCard.objects.get(pk=request.POST['product'])
@@ -215,7 +215,7 @@ def order_unit_add(request):
 
 @login_required(login_url='/sign_in/')
 def order_unit_edit(request, pk):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'customer':
             try:
                 order_unit = OrderUnit.objects.get(pk=pk)
@@ -235,7 +235,7 @@ def order_unit_edit(request, pk):
 
 @login_required(login_url='/sign_in/')
 def order_unit_del(request, pk):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'customer':
             try:
                 order_unit = OrderUnit.objects.get(pk=pk)
@@ -252,7 +252,7 @@ def order_unit_del(request, pk):
 
 @login_required(login_url='/sign_in/')
 def perform_order(request):
-    if request.user.profile:
+    if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'customer':
             try:
                 cost_of_basket = 0
