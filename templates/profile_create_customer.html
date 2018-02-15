@@ -28,7 +28,7 @@
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="region" readonly placeholder="Регион" id="administrative_area_level_1_bottom_{{ forloop.counter }}" required value="{{ trade_point.address.region }}">
+                                        <input name="region" readonly placeholder="Регион" id="administrative_area_level_1_bottom_{{ forloop.counter }}" value="{{ trade_point.address.region }}">
                                     </div>
 
                                 </div>
@@ -112,6 +112,8 @@
     {% endif %}
         <form action="/trade_point/add/" class="wrapp_company_form" method="POST">
             {% csrf_token %}
+            <input type="hidden" id="lat_bottom" name="lat">
+            <input type="hidden" id="lng_bottom" name="lng">
 
             <h3 class="title_edit angle_right">Добавить адрес доставки</h3>
 
@@ -135,7 +137,7 @@
                                 </div>
 
                                 <div class="form_col half">
-                                    <input name="region" readonly placeholder="Регион" id="administrative_area_level_1_bottom" required value="">
+                                    <input name="region" readonly placeholder="Регион" id="administrative_area_level_1_bottom" value="">
                                 </div>
 
                             </div>

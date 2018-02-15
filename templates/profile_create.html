@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 
 {% block js_css %}
+    {% comment %}
+    <!-- Key! -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUCun4zAzRJ7No2n6qs1ifIVGxeh9qqpc">
+    </script>
+    <script type="text/javascript" src="/static/plugins/gmaps.js"></script>
+    {% endcomment %}
+
     <script src="/static/js/profile_create.js"></script>
     <script src="/static/js/geolocation.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo4M1eTyWA-HOp51b88dUln62wdg8pg9M&libraries=places&language=ru&callback=initAutocomplete" async defer></script>
@@ -53,7 +60,7 @@
                                     </div>
 
                                     <div class="form_col half">
-                                        <input id="administrative_area_level_1" name="region" placeholder="Регион" readonly required value="{% if profile.juridical_address.region %}{{ profile.juridical_address.region }}{% endif %}">
+                                        <input id="administrative_area_level_1" name="region" placeholder="Регион" readonly value="{% if profile.juridical_address.region %}{{ profile.juridical_address.region }}{% endif %}">
                                     </div>
 
                                 </div>
@@ -432,7 +439,7 @@
                                     <div class="form_row clearfix">
 
                                         <div class="form_col half">
-                                            <input name="account_number" placeholder="Номер расчетного счета" required value="" data-mask="0000000000000000">
+                                            <input name="account_number" placeholder="Номер расcчетного счета" required value="" data-mask="0000000000000000">
                                         </div>
 
                                         <div class="form_col half">

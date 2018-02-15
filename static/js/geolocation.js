@@ -36,8 +36,13 @@ function initAutocomplete() {
 
 function fillInAddressBottom() {
   // Get the place details from the autocomplete object.
-  var place = autocomplete_bottom.getPlace();
+    var place = autocomplete_bottom.getPlace();
+    var gps = place.geometry.location;
 
+    $('#lat_bottom').val(gps.lat());
+    $('#lng_bottom').val(gps.lng());
+
+  console.log(gps.lat(), gps.lng());
   for (var component in componentForm) {
     document.getElementById(component + '_bottom').value = '';
     document.getElementById(component + '_bottom').disabled = false;
@@ -57,6 +62,11 @@ function fillInAddressBottom() {
 function fillInAddress() {
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
+
+  /*
+  var gps = place.geometry.location;
+  console.log(gps.lat(), gps.lng());
+  */
 
   for (var component in componentForm) {
     document.getElementById(component).value = '';

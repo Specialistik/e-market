@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block js_css %}
+    <!-- Key! -->
     <script src="/static/js/orders_grid.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUCun4zAzRJ7No2n6qs1ifIVGxeh9qqpc&callback=place_markers"></script>
+    <script type="text/javascript" src="/static/plugins/gmaps.js"></script>
+
+
 {% endblock %}
 
 {% block content %}
@@ -148,7 +153,7 @@
 
             <div class="tabs_content">
 
-                <div class="gmap"></div>
+                <div id="map" class="gmap"></div>
 
             </div> <!-- tabs_content -->
 

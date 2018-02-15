@@ -36,7 +36,6 @@ urlpatterns = [
     url(r'^api/signup/$', core_views.signup),
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     url(r'^api/', include(router.urls)),
- #   url(r'^api/', include(profile_router.urls)),
     url(r'^admin/', admin.site.urls),
 
     url(r'^$', core_views.index),
@@ -89,10 +88,12 @@ urlpatterns = [
 
     # Order views
     url(r'^current_orders$', orders_views.current_orders),
+    url(r'^current_orders_json$', orders_views.current_orders_json),
     url(r'^order_history$', orders_views.order_history),
     url(r'^order/([0-9]+)/$', orders_views.order),
     url(r'^order/set_status_sent/([0-9]+)/$', orders_views.set_status_sent),
     url(r'^order/set_status_delivered/([0-9]+)/$', orders_views.set_status_delivered),
+
 
     # Payment views
     url(r'^order_payment/([0-9]+)/$', payment_views.order_payment),

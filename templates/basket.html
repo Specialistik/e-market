@@ -118,13 +118,9 @@
                 <i class="fa fa-plus" aria-hidden="true"></i>Добавить товар
            </a>
 
-            {% comment %}
-            <form action="/perform_order">
-                {% csrf_token %}
-                <input type="hidden" value="" name="trade_point">
-            {% endcomment %}
+            {% if basket_items > 0 %}
                 <button class="btn hight_orange" data-popup="#delivery_popup" id="perform_order">Заказать</button>
-            {% comment %}</form>{% endcomment %}
+            {% endif %}
         </div>
 
                 <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
@@ -164,7 +160,9 @@
                     <label for="radio_item2" class="radio_box_rectangel">
                         <input type="radio" id="radio_item2" name="payment_type" checked value="0">
                         <span class="radio-custom"></span>
+
                         <span>Оплата с расчетного счета</span>
+
                     </label>
 
                     {% comment %}
@@ -242,7 +240,6 @@
                 </div>
 
                 <div class="wrapp_btn between">
-
                     <button class="btn hight_orange" data-popup="#payment_popup" id="tradepoint_pick">
                         Заказать
                     </button>

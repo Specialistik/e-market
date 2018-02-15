@@ -54,23 +54,6 @@ class Category(AbstractTree):
 
     def is_root(self):
         return self.pid is None
-    """
-        def subcategory_unseen(self):
-            return self.productcard_set.count() - self.productcard_set.filter(seen__customer=customer_id).count()
-    
-        def category_unseen(self):
-            final_sum = 0
-            for sub_cat in self.objects.filter(pid=self.id):
-                final_sum += sub_cat.subcategory_unseen()
-            return final_sum
-    """
-    # todo: implement this shit
-    """
-    def unseen_products(self):
-        if self.is_root():
-            return self.category_unseen()
-        return self.subcategory_unseen()
-    """
 
     class Meta:
         db_table = 'categories'
@@ -83,5 +66,3 @@ class ExpirationValue(AbstractList):
         db_table = 'expiration_values'
         verbose_name = u'Вид срока годности'
         verbose_name_plural = u'Виды сроков годности'
-
-
