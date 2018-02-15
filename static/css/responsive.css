@@ -824,6 +824,9 @@
 
 		.wrapp_product_preview > .product_preview_img{
 			margin-bottom: 20px;
+		}
+
+		.wrapp_product_preview > .product_preview_img > img{
 			height: 70px;
 		}
 

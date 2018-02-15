@@ -14,7 +14,12 @@
 			self.SelectFile();
 			self.CustomScroll();
 			self.tabs();
-			self.Gmap.init();
+
+			if($('.gmap').length){
+
+				self.Gmap.init();
+
+			}
 
 		},
 

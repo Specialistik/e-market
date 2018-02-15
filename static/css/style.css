@@ -1797,75 +1797,75 @@
       padding: 25px 20px 25px 35px;
     }
 
-    /* --------------------------------------------
-        4.7. Gmap
-    -------------------------------------------- */
+  /* --------------------------------------------
+      4.7. Gmap
+  -------------------------------------------- */
 
-      .gmap{
-        height: 600px !important;
-        width: 100% !important;
-      }
+    .gmap{
+      height: 600px !important;
+      width: 100% !important;
+    }
 
-    /* --------------------------------------------
-        4.8. Tabs
-    -------------------------------------------- */
+  /* --------------------------------------------
+      4.8. Tabs
+  -------------------------------------------- */
 
-      .wrapp_tabs:not(:last-child){
-        margin-bottom: 20px;
-      }
+    .wrapp_tabs:not(:last-child){
+      margin-bottom: 20px;
+    }
 
-      .tabs_list:not(:last-child){
-        margin-bottom: 20px;
-      }
+    .tabs_list:not(:last-child){
+      margin-bottom: 20px;
+    }
 
-      .tabs_list{
-        display: -webkit-flex;
-        display: -moz-flex;
-        display: -ms-flex;
-        display: -o-flex;
-        display: -webkit-box;
-        display: -ms-flexbox;
-        display: flex;
-        -webkit-justify-content: space-between;
-        -moz-justify-content: space-between;
-        -ms-justify-content: space-between;
-        -o-justify-content: space-between;
-        -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
-                justify-content: space-between;
-      }
+    .tabs_list{
+      display: -webkit-flex;
+      display: -moz-flex;
+      display: -ms-flex;
+      display: -o-flex;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-justify-content: space-between;
+      -moz-justify-content: space-between;
+      -ms-justify-content: space-between;
+      -o-justify-content: space-between;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+    }
 
-      .tabs_list.blue > li{
-        cursor: pointer;
-        text-align: center;
-        padding: 7px 5px;
-        -webkit-transition: all .3s ease-in-out;
-        -moz-transition: all .3s ease-in-out;
-        transition: all .3s ease-in-out;
-        -webkit-box-flex: 10;
-            -ms-flex-positive: 10;
-                flex-grow: 10;
-      }
+    .tabs_list.blue > li{
+      cursor: pointer;
+      text-align: center;
+      padding: 7px 5px;
+      -webkit-transition: all .3s ease-in-out;
+      -moz-transition: all .3s ease-in-out;
+      transition: all .3s ease-in-out;
+      -webkit-box-flex: 10;
+          -ms-flex-positive: 10;
+              flex-grow: 10;
+    }
 
-      /* stylesheets */
+    /* stylesheets */
 
-      /* blue */
-      .tabs_list.blue > li{
-        color: #2CA0FF;
-      }
+    /* blue */
+    .tabs_list.blue > li{
+      color: #2CA0FF;
+    }
 
-      .tabs_list.blue > li.active{
-        background-color: #2CA0FF;
-        color: #fff;
-      }
+    .tabs_list.blue > li.active{
+      background-color: #2CA0FF;
+      color: #fff;
+    }
 
-      .tabs_list.blue > li:hover{
-        background-color: #2CA0FF;
-        color: #fff;
-      }
-      /* blue */
+    .tabs_list.blue > li:hover{
+      background-color: #2CA0FF;
+      color: #fff;
+    }
+    /* blue */
 
-      /* stylesheets */
+    /* stylesheets */
 
 /* ------------------------------------------------
 
@@ -2773,7 +2773,7 @@
     width: 48px;
   }
 
-  .wrapp_form_signup .verification_col.code_country > input:not(.setting_input):not([type="checkbox"]):not([type="radio"]):not(.number_type_btn){
+  .wrapp_form_signup .verification_col.code_country  input:not(.setting_input):not([type="checkbox"]):not([type="radio"]):not(.number_type_btn){
     padding: 12px 5px 11px;
     text-align: center;
   }
