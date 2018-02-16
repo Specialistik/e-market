@@ -35,7 +35,7 @@
         <!-- - - - - - - - - - - - - - ? - - - - - - - - - - - - - - - - -->
 
         <section>
-            <form action="/profile/juridical_address/" class="wrapp_company_form" method="POST">
+            <form action="/profile/juridical_address/" class="wrapp_company_form validate" method="POST" novalidate>
                 {% csrf_token %}
 
                 <h3 class="title_edit angle_right">Юридический адрес</h3>
@@ -56,7 +56,9 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input id="postal_code" name="index" placeholder="Индекс" readonly minlength="6" data-mask="000000" required value="{% if profile.juridical_address.index %}{{ profile.juridical_address.index }}{% endif %}">
+                                        <div class="error_form_container">
+                                            <input id="postal_code" name="index" placeholder="Индекс" readonly minlength="6" data-mask="000000" required value="{% if profile.juridical_address.index %}{{ profile.juridical_address.index }}{% endif %}">
+                                        </div>
                                     </div>
 
                                     <div class="form_col half">
@@ -78,11 +80,15 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input id="locality" name="city" placeholder="Город / Населенный пункт" readonly required value="{% if profile.juridical_address.city %}{{ profile.juridical_address.city }}{% endif %}">
+                                        <div class="error_form_container">
+                                            <input id="locality" name="city" placeholder="Город / Населенный пункт" readonly required value="{% if profile.juridical_address.city %}{{ profile.juridical_address.city }}{% endif %}">
+                                        </div>
                                     </div>
 
                                     <div class="form_col half">
-                                        <input id="route" name="street" placeholder="Улица" readonly required value="{% if profile.juridical_address.street %}{{ profile.juridical_address.street }}{% endif %}">
+                                        <div class="error_form_container">
+                                            <input id="route" name="street" placeholder="Улица" readonly required value="{% if profile.juridical_address.street %}{{ profile.juridical_address.street }}{% endif %}">
+                                        </div>
                                     </div>
 
                                 </div>
@@ -94,7 +100,9 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col quarter">
-                                        <input id="street_number" name="house" placeholder="Дом" readonly required value="{% if profile.juridical_address.house %}{{ profile.juridical_address.house }}{% endif %}">
+                                        <div class="error_form_container">
+                                            <input id="street_number" name="house" placeholder="Дом" readonly required value="{% if profile.juridical_address.house %}{{ profile.juridical_address.house }}{% endif %}">
+                                        </div>
                                     </div>
 
                                     <div class="form_col quarter">
@@ -134,7 +142,7 @@
             </form>
 
             <!-- form 2 -->
-            <form action="/profile/company_info/" method="POST" class="wrapp_company_form">
+            <form action="/profile/company_info/" method="POST" class="wrapp_company_form validate" novalidate>
                 {% csrf_token %}
                 <h3 class="title_edit angle_right">Общие данные о компании</h3>
 
@@ -220,7 +228,7 @@
             </form>
 
             <!-- form 3 -->
-            <form action="/profile/signer_info_and_identity/" class="wrapp_company_form" method="POST">
+            <form action="/profile/signer_info_and_identity/" class="wrapp_company_form validate" method="POST" novalidate>
                 {% csrf_token %}
 
                 <h3 class="title_edit angle_right">Данные подписанта</h3>
@@ -235,15 +243,21 @@
                             <h3 class="subtitle_edit">Данные лица, от имени которого будут заключаться сделки</h3>
 
                             <div class="form_box_offset">
-                                <input required placeholder="Фамилия" name="surname" value="{% if profile.signer_info %}{{ profile.signer_info.surname }}{% endif %}">
+                                <div class="error_form_container">
+                                    <input required placeholder="Фамилия" name="surname" value="{% if profile.signer_info %}{{ profile.signer_info.surname }}{% endif %}">
+                                </div>
                             </div>
 
                             <div class="form_box_offset">
-                                <input required placeholder="Имя" name="name" value="{% if profile.signer_info %}{{ profile.signer_info.name }}{% endif %}">
+                                <div class="error_form_container">
+                                    <input required placeholder="Имя" name="name" value="{% if profile.signer_info %}{{ profile.signer_info.name }}{% endif %}">
+                                </div>
                             </div>
 
                             <div class="form_box_offset">
-                                <input required placeholder="Отчество" name="patronymic" value="{% if profile.signer_info %}{{ profile.signer_info.patronymic }}{% endif %}">
+                                <div class="error_form_container">
+                                    <input required placeholder="Отчество" name="patronymic" value="{% if profile.signer_info %}{{ profile.signer_info.patronymic }}{% endif %}">
+                                </div>
                             </div>
 
                             <div class="form_box_offset">
@@ -251,14 +265,16 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <div class="wrapp_datepicker_calendar">
+                                        <div class="wrapp_datepicker_calendar error_form_container">
                                             <input required name="birth_date" class="datepicker-here" placeholder="Дата рождения" value="{% if profile.signer_info %}{{ profile.signer_info.birth_date|date:"d.m.Y" }}{% endif %}">
                                         </div>
                                     </div>
 
                                     {% comment %}
                                     <div class="form_col half">
-                                        <input required name="inn" placeholder="ИНН" data-mask="0000000000000000" value="{{ profile.inn }}">
+                                        <div class="error_form_container">
+                                            <input required name="inn" placeholder="ИНН" data-mask="0000000000000000" value="{{ profile.inn }}">
+                                        </div>
                                     </div>
                                     {% endcomment %}
 
@@ -288,11 +304,15 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input required placeholder="Серия" name="series" value="{% if profile.identity_document %}{{ profile.identity_document.series }}{% endif %}" data-mask="0000">
+                                        <div class="error_form_container">
+                                            <input required placeholder="Серия" name="series" value="{% if profile.identity_document %}{{ profile.identity_document.series }}{% endif %}" data-mask="0000">
+                                        </div>
                                     </div>
 
                                     <div class="form_col half">
-                                        <input required placeholder="Номер" name="number" value="{% if profile.identity_document %}{{ profile.identity_document.number}}{% endif %}" data-mask="000000">
+                                        <div class="error_form_container">
+                                            <input required placeholder="Номер" name="number" value="{% if profile.identity_document %}{{ profile.identity_document.number}}{% endif %}" data-mask="000000">
+                                        </div>
                                     </div>
 
                                 </div>
@@ -300,11 +320,13 @@
                             </div>
 
                             <div class="form_box_offset">
-                                <input required placeholder="Кем выдан" name="issued_by" value="{% if profile.identity_document %}{{ profile.identity_document.issued_by }}{% endif %}">
+                                <div class="error_form_container">
+                                    <input required placeholder="Кем выдан" name="issued_by" value="{% if profile.identity_document %}{{ profile.identity_document.issued_by }}{% endif %}">
+                                </div>
                             </div>
 
                             <div class="form_box_offset">
-                                <div class="wrapp_datepicker_calendar">
+                                <div class="wrapp_datepicker_calendar error_form_container">
                                     <input required name="issued_date" class="datepicker-here" placeholder="Дата выдачи" value="{% if profile.identity_document %}{{ profile.identity_document.issued_date|date:"d.m.Y" }}{% endif %}">
                                 </div>
                             </div>
@@ -351,7 +373,7 @@
             {% if accounts %}
                 {% for account in accounts %}{% if forloop.first %}
                     <!-- form 4 -->
-                    <form action="/profile/account/{{ account.id }}/" method="POST" class="wrapp_company_form">
+                    <form action="/profile/account/{{ account.id }}/" method="POST" class="wrapp_company_form validate" novalidate>
                         {% csrf_token %}
 
                         <h3 class="title_edit angle_right">Настройка счета</h3>
@@ -364,7 +386,9 @@
                                 <div class="box_form_half">
                                     {% comment %}
                                     <div class="form_box_offset">
-                                        <input name="name" placeholder="Наименование счета" required value="{{ account.name }}">
+                                        <div class="error_form_container">
+                                            <input name="name" placeholder="Наименование счета" required value="{{ account.name }}">
+                                        </div>
                                     </div>
                                     {% endcomment %}
 
@@ -373,7 +397,9 @@
                                         <div class="form_row clearfix">
 
                                             <div class="form_col half">
-                                                <input name="account_number" placeholder="Номер расчетного счета" required value="{{ account.account_number }}" data-mask="00000000000000000000">
+                                                <div class="error_form_container">
+                                                    <input name="account_number" placeholder="Номер расчетного счета" required value="{{ account.account_number }}" data-mask="00000000000000000000">
+                                                </div>
                                             </div>
 
                                             <div class="form_col half">
@@ -391,11 +417,15 @@
                                 <div class="box_form_half">
 
                                     <div class="form_box_offset">
-                                        <input name="bank_name" placeholder="Наименование банка" required value="{{ account.bank_name }}">
+                                        <div class="error_form_container">
+                                            <input name="bank_name" placeholder="Наименование банка" required value="{{ account.bank_name }}">
+                                        </div>
                                     </div>
 
                                     <div class="form_box_offset">
-                                        <input name="correspondent_account" placeholder="Корреспондентский счет" required value="{{ account.correspondent_account }}" data-mask="00000000000000000000">
+                                        <div class="error_form_container">
+                                            <input name="correspondent_account" placeholder="Корреспондентский счет" required value="{{ account.correspondent_account }}" data-mask="00000000000000000000">
+                                        </div>
                                     </div>
 
                                 </div>
@@ -417,7 +447,7 @@
                     </form>
                 {% endif %}{% endfor %}
             {% else %}
-                <form action="/profile/account/add/" method="POST" class="wrapp_company_form">
+                <form action="/profile/account/add/" method="POST" class="wrapp_company_form validate" novalidate>
                     {% csrf_token %}
 
                     <h3 class="title_edit angle_right">Настройка счета</h3>
@@ -430,7 +460,9 @@
                             <div class="box_form_half">
                                 {% comment %}
                                 <div class="form_box_offset">
-                                    <input name="name" placeholder="Наименование счета" required value="">
+                                    <div class="error_form_container">
+                                        <input name="name" placeholder="Наименование счета" required value="">
+                                    </div>
                                 </div>
                                 {% endcomment %}
 
@@ -439,11 +471,15 @@
                                     <div class="form_row clearfix">
 
                                         <div class="form_col half">
-                                            <input name="account_number" placeholder="Номер расcчетного счета" required value="" data-mask="0000000000000000">
+                                            <div class="error_form_container">
+                                                <input name="account_number" placeholder="Номер расcчетного счета" required value="" data-mask="0000000000000000">
+                                            </div>
                                         </div>
 
                                         <div class="form_col half">
-                                            <input name="bik" placeholder="БИК" required value="" data-mask="00000000">
+                                            <div class="error_form_container">
+                                                <input name="bik" placeholder="БИК" required value="" data-mask="00000000">
+                                            </div>
                                         </div>
 
                                     </div>
@@ -457,11 +493,15 @@
                             <div class="box_form_half">
 
                                 <div class="form_box_offset">
-                                    <input name="bank_name" placeholder="Наименование банка" required value="">
+                                    <div class="error_form_container">
+                                        <input name="bank_name" placeholder="Наименование банка" required value="">
+                                    </div>
                                 </div>
 
                                 <div class="form_box_offset">
-                                    <input name="correspondent_account" placeholder="Корреспондентский счет" required value="" data-mask="0000000000000000">
+                                    <div class="error_form_container">
+                                        <input name="correspondent_account" placeholder="Корреспондентский счет" required value="" data-mask="0000000000000000">
+                                    </div>
                                 </div>
 
                             </div>

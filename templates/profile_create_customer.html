@@ -3,7 +3,7 @@
 {% block role_specific %}
     {% if trade_points %}
         {% for trade_point in trade_points %}
-            <form action="/trade_point/{{ trade_point.id }}/" class="wrapp_company_form subjoin_address" method="POST">
+            <form action="/trade_point/{{ trade_point.id }}/" class="wrapp_company_form subjoin_address validate" method="POST" novalidate>
                 {% csrf_token %}
 
                 <h3 class="title_edit angle_right">Адрес доставки № {{ forloop.counter }}</h3>
@@ -24,7 +24,9 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="index" readonly placeholder="Индекс" id="postal_code_bottom_{{ forloop.counter }}" minlength="6" data-mask="000000" required value="{{ trade_point.address.index }}">
+                                        <div class="error_form_container">
+                                            <input name="index" readonly placeholder="Индекс" id="postal_code_bottom_{{ forloop.counter }}" minlength="6" data-mask="000000" required value="{{ trade_point.address.index }}">
+                                        </div>
                                     </div>
 
                                     <div class="form_col half">
@@ -50,7 +52,9 @@
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="street" id="route_bottom_{{ forloop.counter }}" readonly placeholder="Улица" required value="{{ trade_point.address.street }}">
+                                        <div class="error_form_container">
+                                            <input name="street" id="route_bottom_{{ forloop.counter }}" readonly placeholder="Улица" required value="{{ trade_point.address.street }}">
+                                        </div>
                                     </div>
 
                                 </div>
@@ -110,7 +114,7 @@
     {% if trade_points %}
     <div style="display: none" id="hidden_trade_point">
     {% endif %}
-        <form action="/trade_point/add/" class="wrapp_company_form" method="POST">
+        <form action="/trade_point/add/" class="wrapp_company_form validate" method="POST" novalidate>
             {% csrf_token %}
             <input type="hidden" id="lat_bottom" name="lat">
             <input type="hidden" id="lng_bottom" name="lng">
@@ -133,11 +137,15 @@
                             <div class="form_row clearfix">
 
                                 <div class="form_col half">
-                                    <input name="index" readonly placeholder="Индекс" id="postal_code_bottom" required data-mask="000000" value="">
+                                    <div class="error_form_container">
+                                        <input name="index" readonly placeholder="Индекс" id="postal_code_bottom" required data-mask="000000" value="">
+                                    </div>
                                 </div>
 
                                 <div class="form_col half">
-                                    <input name="region" readonly placeholder="Регион" id="administrative_area_level_1_bottom" value="">
+                                    <div class="error_form_container">
+                                        <input name="region" readonly placeholder="Регион" id="administrative_area_level_1_bottom" value="">
+                                    </div>
                                 </div>
 
                             </div>
@@ -155,11 +163,15 @@
                             <div class="form_row clearfix">
 
                                 <div class="form_col half">
-                                    <input name="city" readonly id="locality_bottom" placeholder="Город / Населенный пункт" required value="">
+                                    <div class="error_form_container">
+                                        <input name="city" readonly id="locality_bottom" placeholder="Город / Населенный пункт" required value="">
+                                    </div>
                                 </div>
 
                                 <div class="form_col half">
-                                    <input name="street" id="route_bottom" readonly placeholder="Улица" required value="">
+                                    <div class="error_form_container">
+                                        <input name="street" id="route_bottom" readonly placeholder="Улица" required value="">
+                                    </div>
                                 </div>
 
                             </div>
@@ -171,7 +183,9 @@
                             <div class="form_row clearfix">
 
                                 <div class="form_col quarter">
-                                    <input name="house" id="street_number_bottom" placeholder="Дом" readonly required value="">
+                                    <div class="error_form_container">
+                                        <input name="house" id="street_number_bottom" placeholder="Дом" readonly required value="">
+                                    </div>
                                 </div>
 
                                 <div class="form_col quarter">
