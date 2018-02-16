@@ -15,7 +15,7 @@
                     <form action="/order_unit/edit/{{ order_unit.id }}/" method="POST" class="adjusted_form">
                         {% csrf_token %}
                         <div class="box_form_products_item_img count_products" data-mh="height-products">
-                            <a href="javascript:;" data-popup="#form_product1">
+                            <a href="#form_product1" class="btn_popup">
                                 <img src="{{ order_unit.product.get_image_url }}">
                             </a>
                         </div>
@@ -119,7 +119,7 @@
            </a>
 
             {% if basket_items > 0 %}
-                <button class="btn hight_orange" data-popup="#delivery_popup" id="perform_order">Заказать</button>
+                <a href="#delivery_popup" class="btn hight_orange btn_popup" id="perform_order">Заказать</a>
             {% endif %}
         </div>
 
@@ -240,15 +240,17 @@
                 </div>
 
                 <div class="wrapp_btn between">
-                    <button class="btn hight_orange" data-popup="#payment_popup" id="tradepoint_pick">
+
+                    <a href="#payment_popup" class="btn hight_orange btn_popup" id="tradepoint_pick">
                         Заказать
-                    </button>
+                    </a>
 
                     <a href="javascript:;" class="btn hight_grey close_popup">
                        Отменить
                     </a>
 
                 </div>
+
             </div>
 
         </div>

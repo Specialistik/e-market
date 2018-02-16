@@ -8,151 +8,154 @@
     <!-- - - - - - - - - - - - - - Content - - - - - - - - - - - - - - - - -->
     <div id="content" class="wrapp_content">
 
-        <div class="hideAfterCall">
+        <div class="box_title_button">
 
-            <div class="box_title_button">
+            <h3 class="title_line"><span>Заказ №{{ order.id }} от {{ order.created|date:'d.m.Y' }}</span></h3>
 
-                <h3 class="title_line"><span>Заказ №{{ order.id }} от {{ order.created|date:'d.m.Y' }}</span></h3>
+            <a href="/current_orders" class="btn light_orange icon_left large_width">
+                <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                Назад к заказам
+            </a>
 
-                <a href="/current_orders" class="btn light_orange icon_left large_width">
-                    <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
-                    Назад к заказам
-                </a>
+        </div>
 
-            </div>
+        <p class="attention_txt left green_line grey">
+            {% if user.profile.role == 'producer' and order.status_new %}
+                <i class="fa fa-exclamation" aria-hidden="true"></i>
+                Если вы отправили товары заказчику, пожалуйста, подтвердите отправку
+            {% endif %}
 
-            <p class="attention_txt left green_line grey">
-                {% if user.profile.role == 'producer' and order.status_new %}
-                    <i class="fa fa-exclamation" aria-hidden="true"></i>
-                    Если вы отправили товары заказчику, пожалуйста, подтвердите отправку
-                {% endif %}
+            {% if user.profile.role == 'customer' and order.status_sent %}
+                <i class="fa fa-exclamation" aria-hidden="true"></i>
+                Если товары были доставлены, пожалуйста, подтвердите доставку
+            {% endif %}
+        </p>
 
-                {% if user.profile.role == 'customer' and order.status_sent %}
-                    <i class="fa fa-exclamation" aria-hidden="true"></i>
-                    Если товары были доставлены, пожалуйста, подтвердите доставку
-                {% endif %}
-            </p>
+        <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
 
-            <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+        <div class="wrapp_products  wrapp_count_products">
+            {% for order_unit in order_units %}
+                <!-- product 1 -->
+                <div class="box_form_products_item block_closest clearfix">
 
-            <div class="wrapp_products  wrapp_count_products">
-                {% for order_unit in order_units %}
-                    <!-- product 1 -->
-                    <div class="box_form_products_item block_closest clearfix">
+                    <div class="box_form_products_item_img count_products" data-mh="height-products">
 
-                        <div class="box_form_products_item_img count_products" data-mh="height-products">
-                            {% comment %}<a href="/order_unit/add/{{ order_unit.id }}" data-popup="#form_product1">{% endcomment %}
-                            <a href="java" class="order_img">
-                                <img class="img_url" src="{{ order_unit.get_image_url }}" alt="">
-                            </a>
-                        </div>
+                        {% comment %}
+                        <a href="/order_unit/add/{{ order_unit.id }}" class="btn_popup">
+                            href="#form_product1"
+                        </a>
+                        {% endcomment %}
 
-                        <div class="wrapp_products_item_forms setting_box" data-mh="height-products">
+                        <a href="java" class="order_img">
+                            <img class="img_url" src="{{ order_unit.get_image_url }}" alt="">
+                        </a>
 
-                            <div class="form_products_col gradient">
-                                <ul class="setting_list">
-                                    <li>
-                                        <label>Наименование</label>
-                                        <div class="wrapp_settings_select right_angle">
-                                            <select data-placeholder="выбрать" disabled>
-                                                <option value="{{ order_unit.id }}">{{ order_unit.product.name }}</option>
-                                            </select>
-                                        </div>
+                    </div>
 
-                                    </li>
+                    <div class="wrapp_products_item_forms setting_box" data-mh="height-products">
 
-                                    <li>
-                                        <label>Производитель</label>
-                                        <div class="wrapp_settings_select right_angle">
-                                            <select data-placeholder="выбрать" disabled>
-                                                <option value="1">{{ order_unit.product.product_depot.producer.profile.company_name }}</option>
-                                            </select>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="form_products_col">
-                                <div class="form_products_settings">
-                                    <div class="form_products_settings_col fix">
-                                        <ul class="setting_list">
-                                            <li>
-                                                <label>Количество</label>
-                                                <input type="text" class="setting_input" value="{{ order_unit.amount }}" disabled>
-                                            </li>
-
-                                            <li>
-                                                <label>Цена</label>
-                                                <input type="text" class="setting_input" value="{{ order_unit.price }}" disabled>
-                                            </li>
-
-                                            <li>
-                                                <label>Сумма</label>
-                                                <input type="text" class="setting_input" value="{{ order_unit.calculate_sum }}" disabled>
-                                            </li>
-
-                                        </ul>
-
+                        <div class="form_products_col gradient">
+                            <ul class="setting_list">
+                                <li>
+                                    <label>Наименование</label>
+                                    <div class="wrapp_settings_select right_angle">
+                                        <select data-placeholder="выбрать" disabled>
+                                            <option value="{{ order_unit.id }}">{{ order_unit.product.name }}</option>
+                                        </select>
                                     </div>
 
-                                    <div class="form_products_settings_col">
+                                </li>
 
-                                        <ul class="setting_list">
+                                <li>
+                                    <label>Производитель</label>
+                                    <div class="wrapp_settings_select right_angle">
+                                        <select data-placeholder="выбрать" disabled>
+                                            <option value="1">{{ order_unit.product.product_depot.producer.profile.company_name }}</option>
+                                        </select>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
 
-                                           <li>
-                                               <label>Доставить до:</label>
-                                               <input type="text" class="setting_input" value="{{ order_unit.order.trade_point.address.full_address }}" disabled>
-                                           </li>
+                        <div class="form_products_col">
+                            <div class="form_products_settings">
+                                <div class="form_products_settings_col fix">
+                                    <ul class="setting_list">
+                                        <li>
+                                            <label>Количество</label>
+                                            <input type="text" class="setting_input" value="{{ order_unit.amount }}" disabled>
+                                        </li>
 
-                                           <li>
-                                               <label>Примечание:</label>
-                                               <input type="text" class="setting_input" value="{% if order_unit.remark %}{{ order_unit.remark }}{% endif %}" disabled>
-                                           </li>
+                                        <li>
+                                            <label>Цена</label>
+                                            <input type="text" class="setting_input" value="{{ order_unit.price }}" disabled>
+                                        </li>
 
-                                           <li>
+                                        <li>
+                                            <label>Сумма</label>
+                                            <input type="text" class="setting_input" value="{{ order_unit.calculate_sum }}" disabled>
+                                        </li>
 
-                                               <div class="ok_box">
-                                                   <button class="ok_btn">
-                                                       <i class="fa fa-check" aria-hidden="true"></i>
-                                                   </button>
-                                               </div>
-
-                                           </li>
-
-                                       </ul>
-
-                                   </div>
+                                    </ul>
 
                                 </div>
+
+                                <div class="form_products_settings_col">
+
+                                    <ul class="setting_list">
+
+                                       <li>
+                                           <label>Доставить до:</label>
+                                           <input type="text" class="setting_input" value="{{ order_unit.order.trade_point.address.full_address }}" disabled>
+                                       </li>
+
+                                       <li>
+                                           <label>Примечание:</label>
+                                           <input type="text" class="setting_input" value="{% if order_unit.remark %}{{ order_unit.remark }}{% endif %}" disabled>
+                                       </li>
+
+                                       <li>
+
+                                           <div class="ok_box">
+                                               <button class="ok_btn">
+                                                   <i class="fa fa-check" aria-hidden="true"></i>
+                                               </button>
+                                           </div>
+
+                                       </li>
+
+                                   </ul>
+
+                               </div>
 
                             </div>
 
                         </div>
 
                     </div>
-                    <!-- product 1 -->
-                {% endfor %}
-            </div>
 
-            <div class="wrapp_btn right">
-                {% if user.profile.role == 'producer' and order.status_new %}
-                    <button class="btn green icon_left middle_width" data-popup="#delivery_popup">
+                </div>
+                <!-- product 1 -->
+            {% endfor %}
+        </div>
+
+        <div class="wrapp_btn right">
+            {% if user.profile.role == 'producer' and order.status_new %}
+                <a href="#delivery_popup" class="btn green icon_left middle_width btn_popup">
                     <i class="fa fa-question" aria-hidden="true"></i>
                     Товары отправлены?
-                </button>
-                {% endif %}
+                </a>
+            {% endif %}
 
-                {% if user.profile.role == 'customer' and order.status_sent %}
-                    <button class="btn green icon_left middle_width" data-popup="#delivery_popup">
-                        <i class="fa fa-question" aria-hidden="true"></i>
-                        Товары доставлены?
-                    </button>
-                {% endif %}
-            </div>
-
-            <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
-
+            {% if user.profile.role == 'customer' and order.status_sent %}
+                <a href="#delivery_popup" class="btn green icon_left middle_width btn_popup">
+                    <i class="fa fa-question" aria-hidden="true"></i>
+                    Товары доставлены?
+                </a>
+            {% endif %}
         </div>
+
+        <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
 
     </div> <!-- wrapp_content -->
 
