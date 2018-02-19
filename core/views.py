@@ -2,6 +2,7 @@
 
 import datetime
 import uuid
+import os
 
 
 from django.views.decorators.csrf import csrf_exempt
@@ -21,6 +22,7 @@ from .models import UserProfile, Address, OrganizationType, LegalAct, SignerInfo
 from customer.models import TradePoint
 from producer.models import ProducerDepot
 from .serializers import SignupSerializer
+from manager.views import my_clients, my_personal_data
 
 
 @api_view(['POST'])
@@ -73,6 +75,10 @@ def index(request):
                 return redirect('/categories')
             if request.user.profile.role == 'producer':
                 return redirect('/my_products')
+            if request.user.profile.role == 'manager':
+                if request.user.profile.created:
+                    return redirect(my_clients)
+                return redirect(my_personal_data)
     return redirect(profile)
 
 
@@ -106,25 +112,25 @@ def logout(request):
 @login_required(login_url='/sign_in/')
 def profile(request):
     if hasattr(request.user, 'profile'):
+        data = {
+            'profile': request.user.profile,
+            'organization_types': OrganizationType.objects.all(),
+            'legal_acts': LegalAct.objects.all(),
+            'accounts': Account.objects.filter(profile_id=request.user.profile.id),
+        }
         if request.user.profile.role in ('customer', 'producer'):
-            data = {
-                'profile': request.user.profile,
-                'organization_types': OrganizationType.objects.all(),
-                'legal_acts': LegalAct.objects.all(),
-                'accounts': Account.objects.filter(profile_id=request.user.profile.id),
-            }
-
             if request.user.profile.role == 'customer':
                 data['trade_points'] = TradePoint.objects.filter(customer_id=request.user.id)
-                #if request.user.profile.created:
-                #    return render(request, 'profile_update_customer.html', data)
                 return render(request, 'profile_create_customer.html', data)
 
             if request.user.profile.role == 'producer':
                 data['depots'] = ProducerDepot.objects.filter(producer_id=request.user.id)
-                #if request.user.profile.created:
-                #    return render(request, 'profile_update_producer.html', data)
                 return render(request, 'profile_create_producer.html', data)
+
+        if request.user.profile.role == 'manager':
+            if request.user.profile.created:
+                return redirect(my_clients)
+            return redirect(my_personal_data)
         return render(request, '500.html', {'error_message': u'Только поставщики и заказчики имеют свой профиль'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
 
@@ -332,6 +338,7 @@ def profile_signer_info(request):
 
 @login_required(login_url='/sign_in/')
 def profile_identity_document(request):
+    test = 233
     u_p = request.user.profile
     if u_p:
         if u_p.identity_document is None:
@@ -377,9 +384,7 @@ def profile_signer_info_and_identity(request):
             u_p.signer_info.name = request.POST['name']
             u_p.signer_info.patronymic = request.POST['patronymic']
             u_p.signer_info.birth_date = datetime.datetime.strptime(request.POST['birth_date'], "%d.%m.%Y").date()
-            #u_p.signer_info.inn = request.POST['inn']
             u_p.signer_info.position = request.POST.get('position', '')
-            #u_p.signer_info.code_field = request.POST.get('code_field', '')
             u_p.signer_info.save()
 
         if u_p.identity_document is None:

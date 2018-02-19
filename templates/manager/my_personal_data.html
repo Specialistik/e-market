@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div id="content" class="wrapp_content">
+
+        <div class="box_title_button">
+
+            <h3 class="title_line"><span>Данные обо мне</span></h3>
+
+        </div>
+
+        <p class="attention_txt orange_line left">
+            <i class="fa fa-exclamation" aria-hidden="true"></i>
+            Для получения доступа к системе необходимо заполнить форму
+        </p>
+
+        <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
+
+        <form action="/profile/signer_info_and_identity/" class="wrapp_company_form validate" method="POST" novalidate>
+            {% csrf_token %}
+            <div class="wrapp_form_box clearfix">
+
+                <div class="box_form_row clearfix">
+
+                     <!-- col 6 -->
+                     <div class="box_form_half">
+
+                        <h3 class="subtitle_edit">&nbsp;</h3>
+
+                         <div class="form_box_offset">
+                             <div class="error_form_container">
+                                 <input type="text" placeholder="Фамилия" name="surname" required value="{% if profile.signer_info %}{{ profile.signer_info.surname }}{% endif %}">
+                             </div>
+                         </div>
+
+                         <div class="form_box_offset">
+                             <div class="error_form_container">
+                                 <input type="text" placeholder="Имя" name="name" required value="{% if profile.signer_info %}{{ profile.signer_info.name }}{% endif %}">
+                             </div>
+                         </div>
+
+                         <div class="form_box_offset">
+                             <div class="error_form_container">
+                                 <input type="text" placeholder="Отчество" name="patronymic" required value="{% if profile.signer_info %}{{ profile.signer_info.patronymic }}{% endif %}">
+                             </div>
+                         </div>
+
+                         <div class="form_box_offset">
+
+                             <div class="form_row clearfix">
+
+                                 <div class="form_col half">
+                                     <div class="wrapp_datepicker_calendar error_form_container">
+                                         <input type='text' class="datepicker-here" name="birth_date" placeholder="Дата рождения" required value="{% if profile.signer_info %}{{ profile.signer_info.birth_date|date:"d.m.Y" }}{% endif %}">
+                                     </div>
+                                 </div>
+
+                                {% comment %}
+                                 <div class="form_col half">
+                                     <div class="error_form_container">
+                                         <input type="number" class="number_type_clear" placeholder="ИНН" data-mask="0000000000000000" required pattern="[0-9]*">
+                                     </div>
+                                 </div>
+                                {% endcomment %}
+                             </div>
+
+                         </div>
+
+                         <div class="form_box_offset">
+                             <div class="error_form_container">
+                                 <input type="text" placeholder="Должность" name="position" required value="{% if profile.signer_info %}{{ profile.signer_info.position }}{% endif %}">
+                             </div>
+                         </div>
+
+                     </div>
+                     <!-- col 6 -->
+
+                     <!-- col 6 -->
+                     <div class="box_form_half">
+
+                        <h3 class="subtitle_edit">Документ, подтверждающий личность (паспорт)</h3>
+
+                         <div class="form_box_offset">
+
+                             <div class="form_row clearfix">
+
+                                 <div class="form_col half">
+                                     <div class="error_form_container">
+                                         <input type="number" class="number_type_clear" placeholder="Серия" data-mask="0000" name="series" required value="{% if profile.identity_document %}{{ profile.identity_document.series }}{% endif %}">
+                                     </div>
+                                 </div>
+
+                                 <div class="form_col half">
+                                     <div class="error_form_container">
+                                         <input type="number" class="number_type_clear" placeholder="Номер" data-mask="000000" name="number" required value="{% if profile.identity_document %}{{ profile.identity_document.number}}{% endif %}">
+                                     </div>
+                                 </div>
+
+                             </div>
+
+                         </div>
+
+                         <div class="form_box_offset">
+                             <div class="error_form_container">
+                                 <input type="text" placeholder="Кем выдан" required name="issued_by" value="{% if profile.identity_document %}{{ profile.identity_document.issued_by }}{% endif %}">
+                             </div>
+                         </div>
+
+                         <div class="form_box_offset">
+                             <div class="wrapp_datepicker_calendar error_form_container">
+                                 <input type='text' class="datepicker-here" name="issued_date" placeholder="Дата выдачи" required value="{% if profile.identity_document %}{{ profile.identity_document.issued_date|date:"d.m.Y" }}{% endif %}">
+                             </div>
+                         </div>
+
+                         <div class="form_box_offset">
+
+                            <label class="label1">
+                                Прикрепите документ, подтверждающий личность
+                            </label>
+
+                            <div class="select_file">
+                                 {% if profile.identity_document.document %}
+                                    <a href="{{ profile.identity_document.document.url }}" download>Скачать файл</a>
+                                 {% endif %}
+                                 <input type="file" value="Выберите файл">
+
+                                 <span class="file_notselected">Выберите файл</span>
+
+                            </div>
+
+                            <div class="wrapp_privacy_policy">
+
+                                <input type="checkbox" id="privacy_policy">
+                                <label for="privacy_policy">
+                                </label>
+
+                                <label for="privacy_policy" class="privacy_policy_txt">
+                                    Я даю
+                                    <a href="javascript:;">согласие на обработку персональных данных</a>
+                                </label>
+
+                            </div>
+
+                         </div>
+
+                     </div>
+                     <!-- col 6 -->
+
+                </div> <!-- box_form_row -->
+
+               <div class="wrapp_btn right">
+                   <button class="btn hight_orange">Сохранить</button>
+               </div>
+
+            </div> <!-- wrapp_form -->
+
+        </form>
+        <!-- end of absolutely everything -->
+    </div>
+{% endblock %}

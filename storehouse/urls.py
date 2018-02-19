@@ -17,6 +17,8 @@ import producer.views as producer_views
 import customer.views as customer_views
 import orders.views as orders_views
 import payments.views as payment_views
+import manager.views as manager_views
+
 import core.api as core_api
 
 #schema_view = get_swagger_view(title='The sklad API')
@@ -54,6 +56,10 @@ urlpatterns = [
     url(r'^profile/signer_info_and_identity/$', core_views.profile_signer_info_and_identity),
     url(r'^profile/account/add/$', core_views.profile_account_add),
     url(r'^profile/account/([0-9]+)/$', core_views.profile_account_edit),
+
+    # manager views
+    url(r'^my_personal_data/$', manager_views.my_personal_data),
+    url(r'^my_clients/$', manager_views.my_clients),
 
     # Producer views
     url(r'^depot/add/$', producer_views.depot_add),

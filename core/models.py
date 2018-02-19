@@ -53,7 +53,7 @@ class Address(models.Model):
         return self.full_address
 
     def __unicode__(self):
-        return self.full_address
+        return self.full_address or u''
 
     # Обрезать строку до n-ой запятой
     def castrate_nicely(self, trim_until_n_th_coma=3):
@@ -70,9 +70,16 @@ class SignerInfo(models.Model):
     name = models.CharField(max_length=40, verbose_name=u'Имя')
     patronymic = models.CharField(max_length=40, verbose_name=u'Отчество')
     birth_date = models.DateField(verbose_name=u'Дата рождения')
-    #inn = models.CharField(max_length=12, verbose_name=u'ИНН')
     position = models.CharField(max_length=60, verbose_name=u'Должность')
-    #code_field = models.CharField(max_length=30, verbose_name=u'Кодовое слово')
+
+    def __repr__(self):
+        return self.surname + ' ' + self.name + ' ' + self.patronymic
+
+    def __str__(self):
+        return self.surname + ' ' + self.name + ' ' + self.patronymic
+
+    def __unicode__(self):
+        return self.surname + ' ' + self.name + ' ' + self.patronymic
 
     class Meta:
         db_table = 'signer_info'
@@ -86,6 +93,15 @@ class IdentityDocument(models.Model):
     issued_by = models.CharField(max_length=256, verbose_name=u'Кем выдан')
     issued_date = models.DateField(verbose_name=u'Дата выдачи')
     document = models.FileField(upload_to='identity_documents', verbose_name=u'Документ, подтверждающий право подписи')
+
+    def __repr__(self):
+        return self.series + ' ' + self.number + ' ' + self.issued_by
+
+    def __str__(self):
+        return self.series + ' ' + self.number + ' ' + self.issued_by
+
+    def __unicode__(self):
+        return self.series + ' ' + self.number + ' ' + self.issued_by
 
     class Meta:
         db_table = 'identity_documents'
@@ -108,6 +124,15 @@ class UserProfile(models.Model):
     juridical_address = models.OneToOneField(Address, null=True, blank=True, related_name='juridical_profile', verbose_name=u'Юридический адрес')
     signer_info = models.OneToOneField(SignerInfo, null=True, blank=True, related_name='signer_info', verbose_name=u'Данные подписанта')
     identity_document = models.OneToOneField(IdentityDocument, null=True, blank=True, verbose_name=u'Документ')
+
+    def __repr__(self):
+        return self.user.username
+
+    def __str__(self):
+        return self.user.username
+
+    def __unicode__(self):
+        return self.user.username or u''
 
     # У нас две разные страницы для создания и редактирования профиля.
     # False = используем страницу создания профиля profile_create.html
@@ -149,7 +174,7 @@ class Territory(models.Model):
         return self.name
 
     def __unicode__(self):
-        return self.name
+        return self.name or u''
 
     class Meta:
         db_table = 'territory_simple'

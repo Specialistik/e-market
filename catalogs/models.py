@@ -15,7 +15,7 @@ class AbstractList(models.Model):
         return self.name
 
     def __unicode__(self):
-        return self.name
+        return self.name or u''
 
     class Meta:
         abstract = True
