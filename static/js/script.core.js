@@ -46,7 +46,8 @@
 			self.editInput = $('.setting_input');
 			self.settingBox = $('.setting_box');
 			self.editOkBtn = $('.ok_btn');
-			self.basketCount = $('.basket_count');
+			self.basket = $('#basket');
+			self.moneybox = $('#moneybox');
 
 			self.closestBtn = $('.closest_btn');
 			self.editTextarea = $('.setting_textarea');
@@ -98,8 +99,12 @@
 				}, 0);
 			});
 
-			self.basketCount.on('click', function(){
+			self.basket.on('click', function(){
 				location.href = '/basket';
+			});
+
+			self.moneybox.on('click', function(){
+				location.href = '/my_clients';
 			});
 
 

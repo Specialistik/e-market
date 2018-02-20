@@ -79,6 +79,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'customer.context_processors.basket',
+                'customer.context_processors.moneybox',
             ],
         },
     },

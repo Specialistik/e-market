@@ -110,12 +110,27 @@
                                 </a>
 
                                 <div class="basket_box_count">
-                                    <span class="basket_count">{{ basket_price }}</span> руб
+                                    <span class="basket_count" id="basket">{{ basket_price }}</span> руб
                                 </div>
 
                             </div> <!-- basket_wrapp -->
                         {% endif %}
 
+                        {% if user.profile.role == 'manager' %}
+                            <div class="basket_wrapp">
+
+                            <a href="/my_clients" class="basket_box piggy_bank">
+
+                                <img src="/static/images/icons/piggy-bank-and-coin.png" alt="">
+
+                            </a>
+
+                            <div class="basket_box_count">
+                                <span class="basket_count" id="moneybox">{{ moneybox_sum }} </span> руб
+                            </div>
+
+                        </div> <!-- basket_wrapp -->
+                        {% endif %}
 
                         <a href="/profile/" class="wrapp_company_logo clearfix">
 
@@ -151,6 +166,20 @@
             {% if user.is_authenticated and user.profile %}
                 <div class="user_navigation">
                     {% if user.profile.role == 'customer' %}
+                        <div class="basket_wrapp">
+                            <a href="/basket" class="basket_box">
+                                <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                                <span class="basket_item">{{ basket_items }}</span>
+                            </a>
+
+                            <div class="basket_box_count">
+                                <span class="basket_count">{{ basket_price }}</span> руб
+                            </div>
+
+                        </div> <!-- basket_wrapp -->
+                    {% endif %}
+
+                    {% if user.profile.role == 'manager' %}
                         <div class="basket_wrapp">
                             <a href="/basket" class="basket_box">
                                 <i class="fa fa-shopping-basket" aria-hidden="true"></i>
