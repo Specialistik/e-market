@@ -12,9 +12,22 @@ from payments.models import OrderPayment
 
 
 class TradePoint(models.Model):
-    customer = models.ForeignKey(User, verbose_name=u'Заказчик')
+    customer = models.ForeignKey(User, related_name='tradepoint_customer', verbose_name=u'Заказчик')
     name = models.CharField(max_length=256, verbose_name=u'Название')
     address = models.OneToOneField(Address, verbose_name=u'Адрес')
+    representative = models.ForeignKey(User, null=True, default=None, related_name='tradepoint_representative', verbose_name=u'Торговый представитель')
+
+    def composite_sum(self):
+        return sum(order.calculate_sum() for order in Order.objects.filter(trade_point=self.id))
+
+    def __repr__(self):
+        return self.customer.profile.company_name + ' ---> ' + self.address.castrate_nicely(4)
+
+    def __str__(self):
+        return self.customer.profile.company_name + ' ---> ' + self.address.castrate_nicely(4)
+
+    def __unicode__(self):
+        return self.customer.profile.company_name + ' ---> ' + self.address.castrate_nicely(4)
 
     class Meta:
         db_table = 'trade_points'

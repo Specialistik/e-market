@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.conf import settings
 from django.contrib.gis.db.models import PointField
 from catalogs.models import AbstractList
 
@@ -23,8 +22,8 @@ class OrganizationType(models.Model):
 
     class Meta:
         db_table = 'organization_types'
-        verbose_name = u'Организационно правовая форма'
-        verbose_name_plural = u'Слварь организационно правовых форм'
+        verbose_name = u'Организационно-правовая форма'
+        verbose_name_plural = u'Организационно-правовые формы'
 
 
 class LegalAct(AbstractList):
@@ -71,6 +70,9 @@ class SignerInfo(models.Model):
     patronymic = models.CharField(max_length=40, verbose_name=u'Отчество')
     birth_date = models.DateField(verbose_name=u'Дата рождения')
     position = models.CharField(max_length=60, verbose_name=u'Должность')
+
+    def fio(self):
+        return self.surname + ' ' + self.name + ' ' + self.patronymic
 
     def __repr__(self):
         return self.surname + ' ' + self.name + ' ' + self.patronymic

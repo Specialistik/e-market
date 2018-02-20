@@ -317,9 +317,7 @@ def profile_signer_info(request):
                 name=request.POST['name'],
                 patronymic=request.POST['patronymic'],
                 birth_date=datetime.datetime.strptime(request.POST['issued_date'], "%d.%m.%Y").date(),
-                #inn=request.POST['inn'],
                 position=request.POST['position'],
-                #code_field=request.POST['code_field']
             )
             u_p.save()
         else:
@@ -327,9 +325,7 @@ def profile_signer_info(request):
             u_p.signer_info.name = request.POST['name']
             u_p.signer_info.patronymic = request.POST['patronymic']
             u_p.signer_info.birth_date = datetime.datetime.strptime(request.POST['birth_date'], "%d.%m.%Y").date()
-            #u_p.signer_info.inn = request.POST['inn']
             u_p.signer_info.position = request.POST['position']
-            #u_p.signer_info.code_field = request.POST['code_field']
             u_p.signer_info.save()
 
         return redirect(profile)
@@ -338,7 +334,6 @@ def profile_signer_info(request):
 
 @login_required(login_url='/sign_in/')
 def profile_identity_document(request):
-    test = 233
     u_p = request.user.profile
     if u_p:
         if u_p.identity_document is None:
@@ -374,9 +369,7 @@ def profile_signer_info_and_identity(request):
                 name=request.POST['name'],
                 patronymic=request.POST['patronymic'],
                 birth_date=datetime.datetime.strptime(request.POST['birth_date'], "%d.%m.%Y").date(),
-                #inn=request.POST['inn'],
                 position=request.POST.get('position', ''),
-                #code_field=request.POST.get('code_field', '')
             )
             u_p.save()
         else:
@@ -401,6 +394,10 @@ def profile_signer_info_and_identity(request):
             u_p.identity_document.issued_by = request.POST['issued_by']
             u_p.identity_document.issued_date = datetime.datetime.strptime(request.POST['issued_date'], "%d.%m.%Y").date()
             u_p.identity_document.save()
+
+        if not u_p.created:
+            u_p.created = True
+            u_p.save()
         if 'document' in request.FILES:
             # todo: При изменении файла его было бы неплохо удалять
             u_p.identity_document.document.save(str(uuid.uuid4()) + request.FILES['document'].name, request.FILES['document'])
@@ -415,7 +412,6 @@ def profile_account_add(request):
     if hasattr(request.user, 'profile'):
         Account.objects.create(
             profile=request.user.profile,
-            #name=request.POST['name'],
             account_number=request.POST['account_number'],
             bik=request.POST['bik'],
             bank_name=request.POST['bank_name'],
@@ -430,7 +426,6 @@ def profile_account_edit(request, pk):
     if hasattr(request.user, 'profile'):
         my_account = Account.objects.get(pk=pk, profile_id=request.user.profile.id)
         if my_account:
-            #my_account.name = request.POST['name']
             my_account.account_number = request.POST['account_number']
             my_account.bik = request.POST['bik']
             my_account.bank_name = request.POST['bank_name']

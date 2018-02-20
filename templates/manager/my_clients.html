@@ -1,5 +1,318 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <div id="content" class="wrapp_content">
+
+        <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
+
+        <form action="" class="wrapp_filter">
+
+            <label class="label1 big">Сортировка:</label>
+
+            <div class="wrapp_castom_select sorting">
+
+                <select data-placeholder="По умолчанию">
+                    <option value=""></option>
+                    <option value="1">По умолчанию</option>
+                    <option value="2">По оборотам</option>
+                    <option value="4">По наименованию</option>
+                </select>
+
+            </div>
+
+            <!-- <div class="wrapp_search">
+                <input type="text">
+                <button class="search_btn">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+            </div> -->
+
+        </form>
+
+        <!-- - - - - - - - - - - - - - End of Form - - - - - - - - - - - - - - - - -->
+
+        <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+
+        <table class="table_order">
+
+            <thead>
+
+                <tr>
+                    <th class="table_col1">
+                        №
+                    </th>
+
+                    <th>
+                        Наименование
+                    </th>
+
+                    <th class="">
+                        Адрес
+                    </th>
+
+                    <th class="">
+                        Имя ответственного лица
+                    </th>
+
+                    <th class="">
+                        Телефон
+                    </th>
+
+                    <th class="">
+                        Общий оборот, руб
+                    </th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+                {% for trade_point in trade_points %}
+                    <tr>
+                        <td data-title="№">{{ forloop.counter }}</td>
+                        <td data-title="Наименование">{{ trade_point.customer.profile.company_name }}</td>
+                        <td data-title="Адрес">{{ trade_point.address.castrate_nicely }}</td>
+                        <td data-title="Имя ответственного лица">{{ trade_point.client.customer.profile.signer_info.fio }}</td>
+                        <td data-title="Телефон">{{ trade_point.client.customer.profile.phone }}</td>
+                        <td data-title="Общий оборот, руб">{{ trade_point.composite_sum }}</td>
+                    </tr>
+                {% endfor %}
+
+                {% comment %}
+                <tr>
+
+                    <td data-title="№">1</td>
+
+                    <td data-title="Наименование">ООО «Магазин у дома»</td>
+
+                    <td data-title="Адрес">г.Москва, ул. Константинопольская, 21б</td>
+
+                    <td data-title="Имя отвтственного лица">Миронов Андрей Владимирович</td>
+
+                    <td data-title="Телефон">8 (904) 567-12-31</td>
+
+                    <td data-title="Общий оборот, руб">12 000 234.00</td>
+
+                </tr>
+
+                <tr>
+
+                    <td data-title="№">2</td>
+
+                    <td data-title="Наименование">ООО «Магазин у дома»</td>
+
+                    <td data-title="Адрес">г.Москва, ул. Константинопольская, 21б</td>
+
+                    <td data-title="Имя отвтственного лица">Миронов Андрей Владимирович</td>
+
+                    <td data-title="Телефон">8 (904) 567-12-31</td>
+
+                    <td data-title="Общий оборот, руб">12 000 234.00</td>
+
+                </tr>
+
+                <tr>
+
+                    <td data-title="№">3</td>
+
+                    <td data-title="Наименование">ООО «Магазин у дома»</td>
+
+                    <td data-title="Адрес">г.Москва, ул. Константинопольская, 21б</td>
+
+                    <td data-title="Имя отвтственного лица">Миронов Андрей Владимирович</td>
+
+                    <td data-title="Телефон">8 (904) 567-12-31</td>
+
+                    <td data-title="Общий оборот, руб">12 000 234.00</td>
+
+                </tr>
+
+                <tr>
+
+                    <td data-title="№">4</td>
+
+                    <td data-title="Наименование">ООО «Магазин у дома»</td>
+
+                    <td data-title="Адрес">г.Москва, ул. Константинопольская, 21б</td>
+
+                    <td data-title="Имя отвтственного лица">Миронов Андрей Владимирович</td>
+
+                    <td data-title="Телефон">8 (904) 567-12-31</td>
+
+                    <td data-title="Общий оборот, руб">12 000 234.00</td>
+
+                </tr>
+
+                <tr>
+
+                    <td data-title="№">5</td>
+
+                    <td data-title="Наименование">ООО «Магазин у дома»</td>
+
+                    <td data-title="Адрес">г.Москва, ул. Константинопольская, 21б</td>
+
+                    <td data-title="Имя отвтственного лица">Миронов Андрей Владимирович</td>
+
+                    <td data-title="Телефон">8 (904) 567-12-31</td>
+
+                    <td data-title="Общий оборот, руб">12 000 234.00</td>
+
+                </tr>
+
+                <tr>
+
+                    <td data-title="№">6</td>
+
+                    <td data-title="Наименование">ООО «Магазин у дома»</td>
+
+                    <td data-title="Адрес">г.Москва, ул. Константинопольская, 21б</td>
+
+                    <td data-title="Имя отвтственного лица">Миронов Андрей Владимирович</td>
+
+                    <td data-title="Телефон">8 (904) 567-12-31</td>
+
+                    <td data-title="Общий оборот, руб">12 000 234.00</td>
+
+                </tr>
+
+                <tr>
+
+                    <td data-title="№">7</td>
+
+                    <td data-title="Наименование">ООО «Магазин у дома»</td>
+
+                    <td data-title="Адрес">г.Москва, ул. Константинопольская, 21б</td>
+
+                    <td data-title="Имя отвтственного лица">Миронов Андрей Владимирович</td>
+
+                    <td data-title="Телефон">8 (904) 567-12-31</td>
+
+                    <td data-title="Общий оборот, руб">12 000 234.00</td>
+
+                </tr>
+
+                <tr>
+
+                    <td data-title="№">8</td>
+
+                    <td data-title="Наименование">ООО «Магазин у дома»</td>
+
+                    <td data-title="Адрес">г.Москва, ул. Константинопольская, 21б</td>
+
+                    <td data-title="Имя отвтственного лица">Миронов Андрей Владимирович</td>
+
+                    <td data-title="Телефон">8 (904) 567-12-31</td>
+
+                    <td data-title="Общий оборот, руб">12 000 234.00</td>
+
+                </tr>
+
+                <tr>
+
+                    <td data-title="№">9</td>
+
+                    <td data-title="Наименование">ООО «Магазин у дома»</td>
+
+                    <td data-title="Адрес">г.Москва, ул. Константинопольская, 21б</td>
+
+                    <td data-title="Имя отвтственного лица">Миронов Андрей Владимирович</td>
+
+                    <td data-title="Телефон">8 (904) 567-12-31</td>
+
+                    <td data-title="Общий оборот, руб">12 000 234.00</td>
+
+                </tr>
+
+                <tr>
+
+                    <td data-title="№">10</td>
+
+                    <td data-title="Наименование">ООО «Магазин у дома»</td>
+
+                    <td data-title="Адрес">г.Москва, ул. Константинопольская, 21б</td>
+
+                    <td data-title="Имя отвтственного лица">Миронов Андрей Владимирович</td>
+
+                    <td data-title="Телефон">8 (904) 567-12-31</td>
+
+                    <td data-title="Общий оборот, руб">12 000 234.00</td>
+
+                </tr>
+
+                <tr>
+
+                    <td data-title="№">11</td>
+
+                    <td data-title="Наименование">ООО «Магазин у дома»</td>
+
+                    <td data-title="Адрес">г.Москва, ул. Константинопольская, 21б</td>
+
+                    <td data-title="Имя отвтственного лица">Миронов Андрей Владимирович</td>
+
+                    <td data-title="Телефон">8 (904) 567-12-31</td>
+
+                    <td data-title="Общий оборот, руб">12 000 234.00</td>
+
+                </tr>
+
+                <tr>
+
+                    <td data-title="№">12</td>
+
+                    <td data-title="Наименование">ООО «Магазин у дома»</td>
+
+                    <td data-title="Адрес">г.Москва, ул. Константинопольская, 21б</td>
+
+                    <td data-title="Имя отвтственного лица">Миронов Андрей Владимирович</td>
+
+                    <td data-title="Телефон">8 (904) 567-12-31</td>
+
+                    <td data-title="Общий оборот, руб">12 000 234.00</td>
+
+                </tr>
+                {% endcomment %}
+            </tbody>
+
+        </table>
+
+        <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
+        {% comment %}
+        <ul class="pagination">
+
+            <!-- angle -->
+            <li>
+                <a href="javascript:;">«</a>
+            </li>
+            <!-- angle -->
+
+            <li>
+                <a href="javascript:;" class="current">1</a>
+            </li>
+
+            <li>
+                <a href="javascript:;">2</a>
+            </li>
+
+            <li>
+                <a href="javascript:;">3</a>
+            </li>
+
+            <li>
+                <a href="javascript:;">4</a>
+            </li>
+
+            <li>
+                <a href="javascript:;">5</a>
+            </li>
+
+            <!-- angle -->
+            <li>
+                <a href="javascript:;">»</a>
+            </li>
+            <!-- angle -->
+
+        </ul>
+        {% endcomment %}
+    </div>
 
 {% endblock %}
