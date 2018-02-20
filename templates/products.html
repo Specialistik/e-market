@@ -63,14 +63,15 @@
                         <figcaption>
                             <h3 class="light_grey products_title">
                                 <span class="product_name">{{ product.name }}</span>
-                                {% comment %}Йогурт Danone Активиа творожная{% endcomment %}
                                 {% if product.weight %}<span class="products_subtitle">{{ product.weight }} кг</span>{% endif %}
                             </h3>
 
+                            {% if user.profile.role == 'customer' %}
                             <div class="wrapp_btn center">
                                 <span class="products_price">{{ product.producer_price }}р</span>
                                 <a href="javascript:;" class="btn btn_basket light_orange add_to_cart">В корзину</a>
                             </div>
+                            {% endif %}
                         </figcaption>
                     </figure>
                 {% endfor %}

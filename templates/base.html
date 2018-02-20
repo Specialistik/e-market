@@ -203,7 +203,7 @@
 
             <ul class="navigation_menu">
                 <li>
-                    {% if user.profile.role == 'customer' %}
+                    {% if user.profile.role == 'customer' or user.profile.role == 'manager' %}
                         <a href="/categories">Каталог товаров</a>
                     {% endif %}
                     {% if user.profile.role == 'producer' %}
@@ -211,36 +211,39 @@
                     {% endif %}
                 </li>
 
+                {% if user.profile.role == 'manager' %}
+                    <li><a href="/my_clients">Мои клиенты</a></li>
+                {% else %}
+                    <li{% comment %} class="current"{% endcomment %}>
+                        <a href="javascript:;">Мои заказы</a>
 
-                <li{% comment %} class="current"{% endcomment %}>
-                    <a href="javascript:;">Мои заказы</a>
+                        <ul class="sub_navigation_menu">
+                            {% if user.profile.role == 'customer' %}
+                            <li{% if request.path == '/basket' %} class="current"{% endif %}>
+                                <a href="/basket">
+                                    <img src="/static/images/icons/basket-icon.png">
+                                    Корзина
+                                </a>
+                            </li>
+                            {% endif %}
 
-                    <ul class="sub_navigation_menu">
-                        {% if user.profile.role == 'customer' %}
-                        <li{% if request.path == '/basket' %} class="current"{% endif %}>
-                            <a href="/basket">
-                                <img src="/static/images/icons/basket-icon.png">
-                                Корзина
-                            </a>
-                        </li>
-                        {% endif %}
+                            <li{% if request.path == '/current_orders' %} class="current"{% endif %}>
+                                <a href="/current_orders">
+                                    <img src="/static/images/icons/box-icon.png">
+                                    Текущие заказы
+                                </a>
+                            </li>
 
-                        <li{% if request.path == '/current_orders' %} class="current"{% endif %}>
-                            <a href="/current_orders">
-                                <img src="/static/images/icons/box-icon.png">
-                                Текущие заказы
-                            </a>
-                        </li>
-
-                        <li{% if request.path == '/order_history' %} class="current"{% endif %}>
-                            <a href="/order_history">
-                                <img src="/static/images/icons/history-icon.png">
-                                История
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
+                            <li{% if request.path == '/order_history' %} class="current"{% endif %}>
+                                <a href="/order_history">
+                                    <img src="/static/images/icons/history-icon.png">
+                                    История
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                {% endif %}
+                {% comment %}
                 <li>
                     <a href="javascript:;">Договоры</a>
                 </li>
@@ -248,6 +251,7 @@
                 <li>
                     <a href="javascript:;">Отчеты</a>
                 </li>
+                {% endcomment %}
 
                 <li {% if request.path == '/profile/' %}class="current"{% endif %}{% comment %}class="current"{% endcomment %}>
                     <a href="/profile/">Данные о компании</a>
@@ -268,14 +272,15 @@
                 </li>
 
                 <li>
-                    {% if user.profile.role == 'customer' %}
+                    {% if user.profile.role == 'customer' or user.profile.role == 'manager' %}
                         <a href="/categories"><i class="fa fa-list" aria-hidden="true"></i>Каталог</a>
                     {% endif %}
                     {% if user.profile.role == 'producer' %}
-                        <a href="/my_products"><i class="fa fa-home" aria-hidden="true"></i>Каталог</a>
+                        <a href="/my_products"><i class="fa fa-list" aria-hidden="true"></i>Каталог</a>
                     {% endif %}
                 </li>
 
+                {% if user.profile.role == 'customer' or user.profile.role == 'producer' %}
                 <li>
                     <a href="/current_orders">
                         <i class="fa fa-sort" aria-hidden="true"></i>
@@ -289,13 +294,25 @@
                         История заказов
                     </a>
                 </li>
+                {% endif %}
 
+                {% if user.profile.role == 'manager' %}
+                <li>
+                    <a href="/my_clients">
+                        <i class="fa fa-sort" aria-hidden="true"></i>
+                        Мои клиенты
+                    </a>
+                </li>
+                {% endif %}
+
+                {% if user.profile.role == 'customer' %}
                 <li>
                     <a href="/basket">
                         <i class="fa fa-shopping-basket" aria-hidden="true"></i>
                         Корзина
                     </a>
                 </li>
+                {% endif %}
 
             </ul>
 
