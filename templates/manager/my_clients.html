@@ -72,8 +72,8 @@
                         <td data-title="№">{{ forloop.counter }}</td>
                         <td data-title="Наименование">{{ trade_point.customer.profile.company_name }}</td>
                         <td data-title="Адрес">{{ trade_point.address.castrate_nicely }}</td>
-                        <td data-title="Имя ответственного лица">{{ trade_point.client.customer.profile.signer_info.fio }}</td>
-                        <td data-title="Телефон">{{ trade_point.client.customer.profile.phone }}</td>
+                        <td data-title="Имя ответственного лица">{{ trade_point.customer.profile.signer_info.fio }}</td>
+                        <td data-title="Телефон">{{ trade_point.customer.profile.nice_phone }}</td>
                         <td data-title="Общий оборот, руб">{{ trade_point.composite_sum }}</td>
                     </tr>
                 {% endfor %}

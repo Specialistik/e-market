@@ -127,14 +127,17 @@ class UserProfile(models.Model):
     signer_info = models.OneToOneField(SignerInfo, null=True, blank=True, related_name='signer_info', verbose_name=u'Данные подписанта')
     identity_document = models.OneToOneField(IdentityDocument, null=True, blank=True, verbose_name=u'Документ')
 
+    def nice_phone(self):
+        return '+7 ' + self.phone
+
     def __repr__(self):
-        return self.user.username
+        return self.role + ' ---> ' + self.user.username
 
     def __str__(self):
-        return self.user.username
+        return self.role + ' ---> ' + self.user.username
 
     def __unicode__(self):
-        return self.user.username or u''
+        return self.role + ' ---> ' + self.user.username
 
     # У нас две разные страницы для создания и редактирования профиля.
     # False = используем страницу создания профиля profile_create.html
