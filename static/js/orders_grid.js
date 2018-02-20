@@ -5,7 +5,7 @@ function place_markers() {
         });
 
         $.each(data, function (key, val) {
-            console.log(key, val);
+            //console.log(key, val);
             var marker = new google.maps.Marker({
                 position: val.location,
                 map: map,

@@ -112,7 +112,7 @@ def current_orders_json(request):
         return JsonResponse({'success': False, 'error_msg': u'Только поставщики могут просматривать заказы на карте'})
     return JsonResponse({cur_order.id: {'name': cur_order.trade_point.address.castrate_nicely(),
                                         'location': {
-                                            'lat': cur_order.trade_point.address.location.y,
-                                            'lng': cur_order.trade_point.address.location.x}
+                                            'lat': cur_order.trade_point.address.location.x,
+                                            'lng': cur_order.trade_point.address.location.y}
                                         } for cur_order in
                          Order.objects.filter(producer_id=request.user.id, order_status__in=(1, 2, 4, 6, 8))})
