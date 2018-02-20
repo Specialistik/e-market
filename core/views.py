@@ -128,8 +128,6 @@ def profile(request):
                 return render(request, 'profile_create_producer.html', data)
 
         if request.user.profile.role == 'manager':
-            if request.user.profile.created:
-                return redirect(my_clients)
             return redirect(my_personal_data)
         return render(request, '500.html', {'error_message': u'Только поставщики и заказчики имеют свой профиль'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
