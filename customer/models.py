@@ -15,7 +15,8 @@ class TradePoint(models.Model):
     customer = models.ForeignKey(User, related_name='tradepoint_customer', verbose_name=u'Заказчик')
     name = models.CharField(max_length=256, verbose_name=u'Название')
     address = models.OneToOneField(Address, verbose_name=u'Адрес')
-    representative = models.ForeignKey(User, null=True, default=None, related_name='tradepoint_representative', verbose_name=u'Торговый представитель')
+    representative = models.ForeignKey(User, null=True, default=None, related_name='tradepoint_representative',
+        limit_choices_to={'profile__role': 'manager'}, verbose_name=u'Торговый представитель')
 
     def composite_sum(self):
         return sum(order.calculate_sum() for order in Order.objects.filter(trade_point=self.id))
