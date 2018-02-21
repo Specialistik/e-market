@@ -10,6 +10,10 @@ class OrderAdmin(admin.ModelAdmin):
     exclude = ('payment',)
 
 
+class TradePointAdmin(admin.ModelAdmin):
+    readonly_fields = ('customer', 'address')
+
+
 admin.site.register(Order, OrderAdmin)
 admin.site.register(OrderUnit)
-admin.site.register(TradePoint)
+admin.site.register(TradePoint, TradePointAdmin)
