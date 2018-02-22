@@ -24,7 +24,7 @@ def current_orders(request):
             document = openpyxl.load_workbook(filename=os.path.join(settings.DOCS_ROOT, 'orders_export.xlsx'))
             ws = document.get_active_sheet()
 
-            for index, order_unit in enumerate(OrderUnit.objects.filter(producer_id=request.user.id)):
+            for index, order_unit in enumerate(OrderUnit.objects.filter(producer_id=request.user.id, order__trade_point__isnull=False)):
                 ws['A' + str(index + 2)] = order_unit.product.barcode
                 ws['B' + str(index + 2)] = order_unit.product.name
                 ws['C' + str(index + 2)] = order_unit.customer.profile.company_name
