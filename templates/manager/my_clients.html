@@ -97,7 +97,7 @@
                     </th>
 
                     <th class="">
-                        Имя отвтственного лица
+                        Имя ответственного лица
                     </th>
 
                     <th class="">
@@ -114,21 +114,21 @@
 
             <tbody>
                 {% for customer in customers %}
-                <tr class="toggle_btn_row">
+                    <tr class="toggle_btn_row">
 
-                    <td data-title="Наименование">
-                        <div class="toggle_btn">{{ customer.profile.company_name }}</div>
-                    </td>
+                        <td data-title="Наименование">
+                            <div class="toggle_btn">{{ customer.profile.company_name }}</div>
+                        </td>
 
-                    <!-- <td data-title="Адрес">г.Москва, ул. Константинопольская, 21б</td> -->
+                        <!-- <td data-title="Адрес">г.Москва, ул. Константинопольская, 21б</td> -->
 
-                    <td data-title="Имя отвтственного лица">{{ customer.profile.signer_info.fio }}</td>
+                        <td data-title="Имя отвтственного лица">{{ customer.profile.signer_info.fio }}</td>
 
-                    <td data-title="Телефон">{{ customer.profile.nice_phone }}</td>
+                        <td data-title="Телефон">{{ customer.profile.nice_phone }}</td>
 
-                    <td data-title="Общий оборот, руб">{{ customer.total }}</td>
+                        <td data-title="Общий оборот, руб">{{ customer.trade_point_total }}</td>
 
-                </tr>
+                    </tr>
                 {% endfor %}
                 {% comment %}
                 <tr class="toggle_row">
