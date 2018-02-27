@@ -3,6 +3,7 @@
 <div class="mw-wrap" id="{{ name }}-mw-wrap">
     {% block container %}
         <div class="mw-header">
+            {% comment %}
             {% block header %}
                 <div class="mw-coordinates-wrap">
                     <a  class="mw-btn mw-btn-primary mw-btn-coordinates">{% trans "Coordinates" %} <i class="icon-down-dir" ></i></a>
@@ -25,6 +26,7 @@
                     <input type="text" class="form-control pull-right" id="{{ name }}-mw-google-address-input" placeholder="{% trans 'Enter or update the address here' %}"/>
                 </div>
             {% endblock header %}
+            {% endcomment %}
         </div>
 
         <div class="mw-map-wrapper">

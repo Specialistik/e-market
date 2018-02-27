@@ -21,10 +21,10 @@ def moneybox(request):
         if hasattr(request.user, 'profile'):
             if request.user.profile.role == 'manager':
                 moneybox_sum = 0
-                for trade_point in TradePoint.objects.filter(representative=request.user.id):
+                for trade_point in TradePoint.objects.filter(territory__representative_id=request.user.id):
                     moneybox_sum += trade_point.composite_sum()
                 return {
                     'moneybox_sum': sum(trade_point.composite_sum() for trade_point in
-                                        TradePoint.objects.filter(representative=request.user.id))
+                                        TradePoint.objects.filter(territory__representative_id=request.user.id))
                 }
     return {'moneybox_sum': 0}

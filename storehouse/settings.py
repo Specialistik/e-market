@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'django.contrib.gis',
-    'mapwidgets',
     #'sslserver',
     'oauth2_provider',
     'rest_framework',
@@ -53,6 +52,7 @@ INSTALLED_APPS = [
     'orders',
     'payments',
     'manager',
+    'mapwidgets',
 ]
 
 MIDDLEWARE = [

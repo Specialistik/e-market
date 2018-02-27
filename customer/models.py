@@ -5,7 +5,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 
-from core.models import Address
+from core.models import Address, ComplexTerritory
 from producer.models import ProductCard
 from catalogs.models import AbstractList
 from payments.models import OrderPayment
@@ -15,8 +15,9 @@ class TradePoint(models.Model):
     customer = models.ForeignKey(User, related_name='tradepoint_customer', verbose_name=u'Заказчик')
     name = models.CharField(max_length=256, verbose_name=u'Название')
     address = models.OneToOneField(Address, verbose_name=u'Адрес')
-    representative = models.ForeignKey(User, null=True, default=None, related_name='tradepoint_representative',
-        limit_choices_to={'profile__role': 'manager'}, verbose_name=u'Торговый представитель')
+    territory = models.ForeignKey(ComplexTerritory, null=True, default=None, verbose_name=u'Территория')
+    #representative = models.ForeignKey(User, null=True, default=None, related_name='tradepoint_representative',
+    #    limit_choices_to={'profile__role': 'manager'}, verbose_name=u'Торговый представитель')
 
     def composite_sum(self):
         return sum(order.calculate_sum() for order in Order.objects.filter(trade_point=self.id))
