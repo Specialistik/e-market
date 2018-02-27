@@ -6,6 +6,17 @@ from django.contrib.auth.models import User
 from django.contrib.gis.db.models import PointField, PolygonField
 from catalogs.models import AbstractList
 
+#from customer.models import TradePoint
+
+
+class SophisticatedUser(User):
+
+    def trade_point_total(self):
+        return sum(self.tradepoint_set.composite_sum())
+
+    class Meta:
+        proxy = True
+
 
 class OrganizationType(models.Model):
     short_name = models.CharField(max_length=10, verbose_name=u'Короткое название')
@@ -174,13 +185,13 @@ class ComplexTerritory(models.Model):
                                           limit_choices_to={'profile__role': 'manager'})
 
     def __repr__(self):
-        return self.name
+        return self.role + ' ---> ' + self.user.username
 
     def __str__(self):
-        return self.name
+        return self.role + ' ---> ' + self.user.username
 
     def __unicode__(self):
-        return self.name
+        return self.role + ' ---> ' + self.user.username
 
     class Meta:
         db_table = 'territory_complex'

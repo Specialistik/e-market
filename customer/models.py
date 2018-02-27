@@ -3,16 +3,17 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.utils import timezone
-from django.contrib.auth.models import User
 
-from core.models import Address, ComplexTerritory
+#from django.contrib.auth.models import User
+
+from core.models import Address, ComplexTerritory, SophisticatedUser
 from producer.models import ProductCard
 from catalogs.models import AbstractList
 from payments.models import OrderPayment
 
 
 class TradePoint(models.Model):
-    customer = models.ForeignKey(User, related_name='tradepoint_customer', verbose_name=u'Заказчик')
+    customer = models.ForeignKey(SophisticatedUser, verbose_name=u'Заказчик')
     name = models.CharField(max_length=256, verbose_name=u'Название')
     address = models.OneToOneField(Address, verbose_name=u'Адрес')
     territory = models.ForeignKey(ComplexTerritory, null=True, default=None, verbose_name=u'Территория')
@@ -38,7 +39,7 @@ class TradePoint(models.Model):
 
 
 class Order(models.Model):
-    customer = models.ForeignKey(User, verbose_name=u'Заказчик', related_name="customer")
+    customer = models.ForeignKey(SophisticatedUser, verbose_name=u'Заказчик', related_name="customer")
     created = models.DateTimeField(default=timezone.now, verbose_name=u'Время создания')
 
     STATUSES = (
@@ -55,7 +56,7 @@ class Order(models.Model):
 
     # Новый концепт денормализации
     trade_point = models.ForeignKey(TradePoint, null=True, verbose_name=u'Торговая точка')
-    producer = models.ForeignKey(User, null=True, verbose_name=u'Поставщик', related_name="producer")
+    producer = models.ForeignKey(SophisticatedUser, null=True, verbose_name=u'Поставщик', related_name="producer")
     payment = models.ForeignKey(OrderPayment, verbose_name=u'Платёжная сущность')
 
     def calculate_sum(self):
@@ -89,8 +90,8 @@ class OrderUnit(models.Model):
     product = models.ForeignKey(ProductCard, verbose_name=u'Позиция заказа')
 
     # producer возможно излишняя денормализация, по факту можно будет за ненадобностью убрать
-    producer = models.ForeignKey(User, verbose_name=u'Поставщик', related_name="producer_unit")
-    customer = models.ForeignKey(User, verbose_name=u'Заказчик', related_name="customer_unit")
+    producer = models.ForeignKey(SophisticatedUser, verbose_name=u'Поставщик', related_name="producer_unit")
+    customer = models.ForeignKey(SophisticatedUser, verbose_name=u'Заказчик', related_name="customer_unit")
 
     amount = models.IntegerField(verbose_name=u'Количество')
     remark = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Примечание')
