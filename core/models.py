@@ -173,6 +173,15 @@ class ComplexTerritory(models.Model):
     representative = models.OneToOneField(User, verbose_name=u'Торговый представитель',
                                           limit_choices_to={'profile__role': 'manager'})
 
+    def __repr__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
+
+    def __unicode__(self):
+        return self.name
+
     class Meta:
         db_table = 'territory_complex'
         verbose_name = u'Многоугольные территории'
