@@ -508,6 +508,10 @@
         opacity: 0.8;
       }
 
+      .btn.small{
+        padding: 5px 10px;
+      }
+
       .btn.big{
         padding: 30px;
         font-size: 18px;
@@ -2077,7 +2081,7 @@
       vertical-align: middle;
     }
 
-    .table_order tr:nth-child(even){
+    .table_order:not(.table_toggle) tr:nth-child(even){
       background-color: #fafafa;
     }
 
@@ -2130,6 +2134,55 @@
 
     .table_order .sort_btn{
       margin-left: 5px;
+    }
+
+    /* Table Toogle */
+
+    .toggle_btn{
+      -webkit-cursor: pointer;
+      -moz-cursor: pointer;
+      -ms-cursor: pointer;
+      -o-cursor: pointer;
+      cursor: pointer;
+      -webkit-transition: all .3s ease-in-out;
+      -moz-transition:    all .3s ease-in-out;
+      transition:         all .3s ease-in-out;
+    }
+
+    .toggle_btn:hover{
+      color: #ffa800;
+    }
+
+    .table_order .toggle_row:nth-child(even){
+      background-color: transparent;
+    }
+
+    .toggle_row > td{
+      padding: 0;
+    }
+
+    .toggle_box {
+        display: none;
+    }
+
+    .dropdown_link{
+      display: inline-block;
+    }
+
+    .dropdown_item{
+      display: none;
+    }
+
+    .dropdown_item.active{
+      margin-top: 10px;
+    }
+
+    .dropdown_menu > li{
+      line-height: 1;
+    }
+
+    .dropdown_menu > li:not(:last-child){
+      margin-bottom: 20px;
     }
 
   /* ------------------------------------------------

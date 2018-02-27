@@ -203,7 +203,6 @@
 
 		.table_order td{
 			padding-top: 20px;
-			text-align: center;
 			width: 100%;
 			display: block;
 		}
@@ -220,9 +219,11 @@
 			content: attr(data-title);
 			position: absolute;
 			top: 0;
-			left: 50%;
-			-webkit-transform: translateX(-50%);
-			transform: translateX(-50%);
+			left: 5px;
+			white-space: nowrap;
+			-ms-text-overflow: ellipsis;
+			text-overflow: ellipsis;
+			overflow: hidden;
 			font-size: 14px;
 			font-weight: 400;
 			color: #3c3c3b;
@@ -290,8 +291,12 @@
 
 		.wrapp_products_item_forms > .form_products_col{
 			width: 100%;
-			padding: 10px;
+			padding: 10px 10px 0;
 			background: none;
+		}
+
+		.wrapp_products_item_forms > .form_products_col:not(:first-child){
+			padding-top: 0;
 		}
 
 		.form_products_col.gradient{
@@ -299,7 +304,7 @@
 		}
 
 		.box_form_products_item .setting_list li > .wrapp_settings_select .jq-selectbox{
-			font-size: 12px;
+			font-size: 14px;
 		}
 
 		.box_form_products_item .setting_list li > .setting_input:not([type="checkbox"]):not([type="radio"]){
@@ -999,6 +1004,10 @@
 
 		.gmap{
 			height: 300px !important;
+		}
+
+		.dropdown_link{
+			margin-bottom: 10px;
 		}
 
 	} /* (max-width: 767px) */
