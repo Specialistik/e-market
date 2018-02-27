@@ -17,3 +17,5 @@ class UserProfileModelForm(forms.ModelForm):
     )
 
     role = forms.ChoiceField(choices=ROLES)
+
+

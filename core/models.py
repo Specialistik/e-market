@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.gis.db.models import PointField
+from django.contrib.gis.db.models import PointField, PolygonField
 from catalogs.models import AbstractList
 
 
@@ -152,7 +152,6 @@ class UserProfile(models.Model):
 
 class Account(models.Model):
     profile = models.ForeignKey(UserProfile, verbose_name=u'Профиль')
-    #name = models.CharField(max_length=150, verbose_name=u'Наименование')
     account_number = models.CharField(max_length=20, verbose_name=u'Рассчётный счёт')
     bik = models.CharField(max_length=9, verbose_name=u'БИК')
     bank_name = models.CharField(max_length=256, verbose_name=u'Наименование банка')
@@ -168,6 +167,7 @@ class Territory(models.Model):
     """
     Упрощённая модель территорий, левая верхняя и правая нижняя gps-координаты прямоугольной площади
     """
+
     upper_left = PointField(verbose_name=u'Верхняя левая точка прямоугольника')
     lower_right = PointField(verbose_name=u'Правая нижняя точка прямоугольника')
     name = models.CharField(max_length=256, verbose_name=u'Название')
@@ -185,3 +185,19 @@ class Territory(models.Model):
         db_table = 'territory_simple'
         verbose_name = u'Прямоугольная территория'
         verbose_name_plural = u'Прямоугольные территории'
+
+
+class ComplexTerritory(models.Model):
+    """
+    Сложная модель территорий)
+    """
+
+    name = models.CharField(max_length=256, verbose_name=u'Название')
+    polygon = PolygonField(verbose_name=u'Многоугольная сущность')
+    representative = models.OneToOneField(User, null=True, default=None, verbose_name=u'Торговый представитель',
+        limit_choices_to={'profile__role': 'manager'})
+
+    class Meta:
+        db_table = 'territory_complex'
+        verbose_name = u'Многоугольные территории'
+        verbose_name_plural = u'Многоугольные территории'
