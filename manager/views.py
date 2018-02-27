@@ -22,7 +22,7 @@ def my_clients(request):
         if request.user.profile.role == 'manager':
             return render(request, 'manager/my_clients.html', {
                 'profile': request.user.profile,
-                'trade_points': (tp for tp in TradePoint.objects.filter(representative=request.user.id))
+                'trade_points': (tp for tp in TradePoint.objects.filter(territory__representative__id=request.user.id))
                                  #if tp.composite_sum() > 0),
             })
         return render(request, '500.html', {'error_message': u'Только торговый представитель имеет доступ к странице'})
