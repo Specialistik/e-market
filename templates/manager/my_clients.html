@@ -113,14 +113,9 @@
                             <div class="toggle_btn">{{ entity.customer.profile.company_name }}</div>
                         </td>
 
-                        <!-- <td data-title="Адрес">г.Москва, ул. Константинопольская, 21б</td> -->
-
-                        <td data-title="Имя отвтственного лица">{{ entity.customer.profile.signer_info.fio }}</td>
-
+                        <td data-title="Имя ответственного лица">{{ entity.customer.profile.signer_info.fio }}</td>
                         <td data-title="Телефон">{{ entity.customer.profile.nice_phone }}</td>
-
-                        <td data-title="Общий оборот, руб">{{ entity.customer.trade_point_total }}</td>
-
+                        <td data-title="Общий оборот, руб">{{ entity.customer.customer_total }}</td>
                     </tr>
                     {% endifchanged %}
 

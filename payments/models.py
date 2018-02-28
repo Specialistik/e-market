@@ -3,12 +3,14 @@ from __future__ import unicode_literals
 
 from django.utils import timezone
 from django.db import models
-from django.contrib.auth.models import User
+
+#from core.models import SophisticatedUser
+#from django.contrib.auth.models import User
 
 
 class OrderPayment(models.Model):
     # Краеугольный камень всея системы, количество денег за заказ
-    customer = models.ForeignKey(User, verbose_name=u'Заказчик')
+    customer = models.ForeignKey('core.SophisticatedUser', verbose_name=u'Заказчик')
     price = models.DecimalField(max_digits=12, decimal_places=2, verbose_name=u'Цена')
     created = models.DateTimeField(default=timezone.now, verbose_name=u'Время создания')
 
@@ -38,7 +40,7 @@ class DirectPayment(models.Model):
 
 class PaymentNotification(models.Model):
     response = models.TextField(verbose_name=u'Тело ответа')
-    customer = models.ForeignKey(User, null=True, blank=True, verbose_name=u'Заказчик')
+    customer = models.ForeignKey('core.SophisticatedUser', null=True, blank=True, verbose_name=u'Заказчик')
 
     class Meta:
         db_table = 'payment_notification'
@@ -48,7 +50,7 @@ class PaymentNotification(models.Model):
 
 class Success(models.Model):
     response = models.TextField(verbose_name=u'Тело ответа')
-    customer = models.ForeignKey(User, null=True, blank=True, verbose_name=u'Заказчик')
+    customer = models.ForeignKey('core.SophisticatedUser', null=True, blank=True, verbose_name=u'Заказчик')
 
     class Meta:
         db_table = 'success_redirect'
@@ -58,7 +60,7 @@ class Success(models.Model):
 
 class Failure(models.Model):
     response = models.TextField(verbose_name=u'Тело ответа')
-    customer = models.ForeignKey(User, null=True, blank=True, verbose_name=u'Заказчик')
+    customer = models.ForeignKey('core.SophisticatedUser', null=True, blank=True, verbose_name=u'Заказчик')
 
     class Meta:
         db_table = 'failure_redirect'

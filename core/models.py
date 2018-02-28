@@ -10,10 +10,14 @@ from customer.models import TradePoint
 
 
 class SophisticatedUser(User):
-    def trade_point_total(self):
+    def customer_total(self):
+        a = 1
         # TODO: here self.id is tradepoint_user.id for some reason
+        test = self.complexterritory
+        test2 = self.complexterritory.representative
+        test3 = self.complexterritory.representative.id
         return sum(trade_point.composite_sum() for trade_point in
-                   TradePoint.objects.filter(territory__representative_id=self.id))
+                   TradePoint.objects.filter(territory__representative_id=self.complexterritory.representative.id))
 
     class Meta:
         proxy = True
@@ -126,7 +130,7 @@ class IdentityDocument(models.Model):
 class UserProfile(models.Model):
     role = models.CharField(max_length=20, blank=True, null=True, verbose_name=u'Роль пользователя')
     company_name = models.CharField(max_length=150, null=True, blank=True, verbose_name=u'Название компании')
-    user = models.OneToOneField(User, related_name='profile', verbose_name=u'Пользователь', on_delete=models.CASCADE)
+    user = models.OneToOneField(SophisticatedUser, related_name='profile', verbose_name=u'Пользователь', on_delete=models.CASCADE)
     phone = models.CharField(max_length=15, verbose_name=u'Телефон')  # validators should be a list
     inn = models.CharField(max_length=12, null=True, blank=True, verbose_name=u'ИНН')
     ogrn = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'ОГРН')
@@ -182,7 +186,7 @@ class ComplexTerritory(models.Model):
 
     name = models.CharField(max_length=256, verbose_name=u'Название')
     polygon = PolygonField(null=True, default=None, verbose_name=u'Многоугольная сущность')
-    representative = models.OneToOneField(User, verbose_name=u'Торговый представитель',
+    representative = models.OneToOneField(SophisticatedUser, verbose_name=u'Торговый представитель',
                                           limit_choices_to={'profile__role': 'manager'})
 
     def __repr__(self):

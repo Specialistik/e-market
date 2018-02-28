@@ -20,8 +20,6 @@ def moneybox(request):
     if request.user.is_authenticated and not request.user.is_superuser:
         if hasattr(request.user, 'profile'):
             if request.user.profile.role == 'manager':
-                test = sum(trade_point.composite_sum() for trade_point in
-                                        TradePoint.objects.filter(territory__representative_id=request.user.id))
                 moneybox_sum = 0
                 for trade_point in TradePoint.objects.filter(territory__representative_id=request.user.id):
                     moneybox_sum += trade_point.composite_sum()

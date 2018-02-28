@@ -4,9 +4,6 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
 
-#from django.contrib.auth.models import User
-
-#from core.models import SophisticatedUser #Address, ComplexTerritory
 from producer.models import ProductCard
 from catalogs.models import AbstractList
 from payments.models import OrderPayment
