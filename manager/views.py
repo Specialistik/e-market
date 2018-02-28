@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.db.models import Sum
 
 from customer.models import TradePoint
+from core.models import SophisticatedUser
 
 
 @login_required(login_url='/sign_in/')
@@ -23,9 +24,7 @@ def my_clients(request):
         if request.user.profile.role == 'manager':
             return render(request, 'manager/my_clients.html', {
                 'profile': request.user.profile,
-                'customers': TradePoint.objects.filter(territory__representative__id=request.user.id)
-                #'trade_points': (tp for tp in TradePoint.objects.filter(territory__representative__id=request.user.id)).select_related('customer')
-                                 #if tp.composite_sum() > 0),
+                'entities': TradePoint.objects.filter(territory__representative__id=request.user.id).select_related('customer')
             })
         return render(request, '500.html', {'error_message': u'Только торговый представитель имеет доступ к странице'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})

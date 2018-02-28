@@ -7,14 +7,14 @@ from django.utils import timezone
 from django.db import models
 from django.contrib.auth.models import User
 
-from core.models import UserProfile, Address
+#from core.models import UserProfile, Address
 from catalogs.models import Category, Measure, ExpirationValue
 
 
 class ProducerDepot(models.Model):
     producer = models.ForeignKey(User, verbose_name=u'Производитель')
     name = models.CharField(max_length=256, verbose_name=u'Название')
-    address = models.OneToOneField(Address, verbose_name=u'Адрес')
+    address = models.OneToOneField('core.Address', verbose_name=u'Адрес')
 
     class Meta:
         db_table = 'producer_depots'
@@ -45,7 +45,7 @@ class ProductCard(models.Model):
     width = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'Ширина')
     height = models.CharField(max_length=15, null=True, blank=True, verbose_name=u'Высота')
     description = models.TextField(default="", blank=True, verbose_name=u'Описание товара')
-    seen = models.ManyToManyField(User, verbose_name=u'Товар просмотрен')
+    seen = models.ManyToManyField('core.SophisticatedUser', verbose_name=u'Товар просмотрен')
 
     def parent_category(self):
         return Category.objects.get(pk=self.category.pid_id)
