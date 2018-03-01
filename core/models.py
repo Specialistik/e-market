@@ -11,13 +11,9 @@ from customer.models import TradePoint
 
 class SophisticatedUser(User):
     def customer_total(self):
-        a = 1
-        # TODO: here self.id is tradepoint_user.id for some reason
-        test = self.complexterritory
-        test2 = self.complexterritory.representative
-        test3 = self.complexterritory.representative.id
+        trade_points = TradePoint.objects.filter(customer_id=self.id, territory__isnull=False)
         return sum(trade_point.composite_sum() for trade_point in
-                   TradePoint.objects.filter(territory__representative_id=self.complexterritory.representative.id))
+                   TradePoint.objects.filter(territory__isnull=False, territory__representative_id=trade_points[0].territory.representative.id, customer_id=self.id))
 
     class Meta:
         proxy = True
