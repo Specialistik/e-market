@@ -259,9 +259,9 @@ def perform_order(request):
                 for order_unit in OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id):
                     cost_of_basket += order_unit.amount * order_unit.price
 
-                payment_type = int(request.POST['payment_type'])
+                #payment_type = int(request.POST['payment_type'])
                 order_payment = OrderPayment.objects.create(
-                    price=cost_of_basket, customer_id=request.user.id, type=payment_type)
+                    price=cost_of_basket, customer_id=request.user.id)
 
                 # todo: Тут можно покрасивее переписать, group_by
                 order_unit_producer_id = 0
@@ -283,9 +283,9 @@ def perform_order(request):
                         order_unit.save()
                     order_unit_producer_id = order_unit.producer_id
 
-                if payment_type == 0:
-                    return redirect('/order_payment/{}/'.format(order_payment.id))
-                return redirect('/bank_payment/{}/'.format(order_payment.id))
+                #if payment_type == 0:
+                #    return redirect('/payment_type/{}/'.format(order_payment.id))
+                return redirect('/payment_type/{}/'.format(order_payment.id))
             except Order.DoesNotExist:
                 return render(request, '500.html', {'error_message': u'Не выбраны продукты для совершения заказа'})
             except TradePoint.DoesNotExist:

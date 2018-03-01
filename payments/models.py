@@ -15,10 +15,10 @@ class OrderPayment(models.Model):
     created = models.DateTimeField(default=timezone.now, verbose_name=u'Время создания')
 
     TYPES = (
-        (0, u"Оплата рассчётного счёта"),
+        (0, u"Оплата расчётного счёта"),
         (1, u"Оплата картой"),
     )
-    type = models.IntegerField(choices=TYPES, default=0, verbose_name=u'Тип оплаты')
+    type = models.IntegerField(choices=TYPES, null=True, default=None, verbose_name=u'Тип оплаты')
 
     class Meta:
         db_table = 'order_payments'
@@ -34,8 +34,8 @@ class DirectPayment(models.Model):
 
     class Meta:
         db_table = 'direct_payment'
-        verbose_name = u'Прямой перевод на рассчётный счёт'
-        verbose_name_plural = u'Прямые переводы на рассчётный счёт'
+        verbose_name = u'Прямой перевод на расчётный счёт'
+        verbose_name_plural = u'Прямые переводы на расчётный счёт'
 
 
 class PaymentNotification(models.Model):

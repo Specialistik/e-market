@@ -109,6 +109,11 @@ def bank_payment(request, pk):
     return render(request, 'bank_payment.html', {'payment': payment})
 
 
+@login_required(login_url='/sign_in/')
+def payment_type(request, pk):
+    return render(request, 'payment_type.html')
+
+
 @csrf_exempt
 def payment_notification(request):
     PaymentNotification.objects.create(response=json.dumps(request.body))
@@ -125,6 +130,8 @@ def success_redirect(request):
 def failure_redirect(request):
     Success.objects.create(response=json.dumps(request.body))
     return redirect('/')
+
+
 
 # TODO: Тут идея в том, чтобы ограничить загрузку счетов на оплату только для тех, кто формиовал заказ
 """

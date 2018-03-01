@@ -164,7 +164,7 @@ class UserProfile(models.Model):
 
 class Account(models.Model):
     profile = models.ForeignKey(UserProfile, verbose_name=u'Профиль')
-    account_number = models.CharField(max_length=20, verbose_name=u'Рассчётный счёт')
+    account_number = models.CharField(max_length=20, verbose_name=u'Расчётный счёт')
     bik = models.CharField(max_length=9, verbose_name=u'БИК')
     bank_name = models.CharField(max_length=256, verbose_name=u'Наименование банка')
     correspondent_account = models.CharField(max_length=20, verbose_name=u'Корреспондентский счет')

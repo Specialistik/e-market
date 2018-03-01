@@ -10,10 +10,16 @@ $(document).ready(function(){
         }
     });
 
+    $('#tradepoint_pick').click(function(e){
+        e.preventDefault();
+        $('#perform_order_form').submit();
+    });
+    /*
     $('#tradepoint_pick').magnificPopup({
         items: {
             src: '#payment_popup',
             type: 'inline'
         }
     });
+    */
 });

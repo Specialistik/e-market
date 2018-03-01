@@ -105,6 +105,7 @@ urlpatterns = [
     url(r'^order_payment/([0-9]+)/$', payment_views.order_payment),
     url(r'^direct_payment/([0-9]+)/$', payment_views.direct_payment),
     url(r'^bank_payment/([0-9]+)/$', payment_views.bank_payment),
+    url(r'^payment_type/([0-9]+)/$', payment_views.payment_type),
 
     url(r'^payment_notification', payment_views.payment_notification),
     url(r'^success_redirect', payment_views.success_redirect),

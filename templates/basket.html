@@ -137,7 +137,7 @@
         <div class="box-modal payment_popup" id="payment_popup">
             <div class="modal_container3">
 
-                <form action="/perform_order" method="POST">
+                <form action="/perform_order" method="POST" id="perform_order_form">
                     {% csrf_token %}
 
                     <input type="hidden" id="proxy_tradepoint" name="trade_point" value="{{ trade_points.0.id }}">
@@ -241,7 +241,7 @@
 
                 <div class="wrapp_btn between">
 
-                    <a href="#payment_popup" class="btn hight_orange btn_popup" id="tradepoint_pick">
+                    <a href="javascript:;" class="btn hight_orange" id="tradepoint_pick">
                         Заказать
                     </a>
 
