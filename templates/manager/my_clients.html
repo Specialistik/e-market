@@ -26,56 +26,6 @@
         </form>
 
         <!-- - - - - - - - - - - - - - End of Form - - - - - - - - - - - - - - - - -->
-        {% comment %}
-        <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
-
-        <table class="table_order">
-
-            <thead>
-
-                <tr>
-
-                    <th>
-                        Наименование
-                    </th>
-
-                    <th class="">
-                        Адрес
-                    </th>
-
-                    <th class="">
-                        Имя ответственного лица
-                    </th>
-
-                    <th class="">
-                        Телефон
-                    </th>
-
-                    <th class="">
-                        Общий оборот, руб
-                    </th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-                {% for trade_point in trade_points %}
-                    <tr>
-                        <td data-title="№">{{ forloop.counter }}</td>
-                        <td data-title="Наименование">{{ trade_point.customer.profile.company_name }}</td>
-                        <td data-title="Адрес">{{ trade_point.address.castrate_nicely }}</td>
-                        <td data-title="Имя ответственного лица">{{ trade_point.customer.profile.signer_info.fio }}</td>
-                        <td data-title="Телефон">{{ trade_point.customer.profile.nice_phone }}</td>
-                        <td data-title="Общий оборот, руб">{{ trade_point.composite_sum }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-
-        </table>
-
-        <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
-        {% endcomment %}
 
         <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
 
@@ -125,7 +75,7 @@
                                 <ul class="dropdown_menu">
                                     <li class="clearfix">
                                         <a href="javascript:;" class="dropdown_link">{{ entity.address.castrate_nicely }}</a>
-                                        {% comment %}<a href="javascript:;" class="btn small light_orange f_right">Добавить заказ</a>{% endcomment %}
+
                                         <div class="clear"></div>
                                         <div class="dropdown_item">
                                             {% for order_unit in entity.sold_products %}
@@ -184,17 +134,6 @@
                                                                     </ul>
 
                                                                 </div>
-                                                                {% comment %}
-                                                                <div class="form_products_settings_col">
-
-                                                                    <ul class="setting_list">
-
-
-                                                                   </ul>
-
-                                                               </div>
-                                                               {% endcomment %}
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -202,251 +141,19 @@
                                                 <!-- product 2 -->
                                             {% endfor %}
                                         </div>
+
                                     </li>
                                 </ul>
                             </div>
+
                         </td>
                     </tr>
                 {% endfor %}
-                {% comment %}
-                <tr class="toggle_row">
 
-                    <td colspan="4">
-
-                        <div class="toggle_box">
-
-                            <ul class="dropdown_menu">
-
-                                <li class="clearfix">
-
-                                    <a href="javascript:;" class="dropdown_link">Республика Татарстан, г.Казань, ул.Волкова,59</a>
-
-                                    <a href="javascript:;" class="btn small light_orange f_right">Добавить заказ</a>
-
-                                    <div class="clear"></div>
-
-                                    <div class="dropdown_item">
-
-                                        <!-- product 2 -->
-                                        <div class="box_form_products_item block_closest clearfix">
-
-                                            <div class="box_form_products_item_img hide hide_xs count_products" data-mh="height-products">
-                                                <a href="#form_product1" class="btn_popup">
-                                                    <img src="static/images/catalog-img/product-img5.png" alt="">
-                                                </a>
-                                            </div>
-
-                                            <div class="wrapp_products_item_forms setting_box" data-mh="height-products">
-
-                                                <div class="form_products_col gradient">
-
-                                                    <ul class="setting_list">
-
-                                                        <li>
-
-                                                            <label>Наименование</label>
-
-                                                            <div class="wrapp_settings_select right_angle">
-                                                                <select data-placeholder="выбрать" disabled>
-                                                                    <option value="">Сметана</option>
-                                                                    <option value="">Тип 2</option>
-                                                                    <option value="">Тип 3</option>
-                                                                </select>
-                                                            </div>
-
-                                                        </li>
-
-                                                        <!--li>
-
-                                                            <label>Производитель</label>
-
-                                                            <div class="wrapp_settings_select right_angle">
-                                                                <select data-placeholder="выбрать" disabled>
-                                                                    <option value="">Valio</option>
-                                                                    <option value="">Другой</option>
-                                                                    <option value="">Другой</option>
-                                                                </select>
-                                                            </div>
-
-                                                        </li-->
-
-                                                    </ul>
-
-                                                </div>
-
-                                                <div class="form_products_col">
-
-                                                    <div class="form_products_settings">
-
-                                                        <div class="form_products_settings_col fix">
-
-                                                            <ul class="setting_list">
-
-                                                                <li>
-                                                                    <label>Количество</label>
-                                                                    <input type="number" class="setting_input number_type_clear" value="6" disabled pattern="[0-9]*">
-                                                                </li>
-
-                                                                <li>
-                                                                    <label>Цена</label>
-                                                                    <input type="number" class="setting_input number_type_clear" value="139.02" disabled pattern="[0-9]*">
-                                                                </li>
-
-                                                                <li>
-                                                                    <label>Сумма</label>
-                                                                    <input type="number" class="setting_input number_type_clear" value="834.12" disabled pattern="[0-9]*">
-                                                                </li>
-
-                                                            </ul>
-
-                                                        </div>
-
-                                                        <div class="form_products_settings_col">
-
-                                                            <ul class="setting_list">
-
-                                                               <!--li>
-                                                                   <label>Доставить до:</label>
-                                                                   <input type="text" class="setting_input" value="Республика Татарстан, г.Казань, ул.Волкова,59" disabled>
-                                                               </li-->
-
-                                                           </ul>
-
-                                                       </div>
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                        <!-- product 2 -->
-
-                                    </div>
-
-                                </li>
-
-                                <li class="clearfix">
-
-                                    <a href="javascript:;" class="dropdown_link">Республика Татарстан, г.Казань, ул.Волкова,59</a>
-
-                                    <a href="javascript:;" class="btn light_orange small f_right">Добавить заказ</a>
-
-                                    <div class="clear"></div>
-
-                                    <div class="dropdown_item">
-
-                                        <div class="box_form_products_item block_closest clearfix">
-
-                                            <div class="box_form_products_item_img hide hide_xs count_products" data-mh="height-products">
-                                                <a href="#form_product1" class="btn_popup">
-                                                    <img src="static/images/catalog-img/product-img4.png" alt="">
-                                                </a>
-                                            </div>
-
-                                            <div class="wrapp_products_item_forms setting_box" data-mh="height-products">
-
-                                                <div class="form_products_col gradient">
-
-                                                    <ul class="setting_list">
-
-                                                        <li>
-
-                                                            <label>Наименование</label>
-
-                                                            <div class="wrapp_settings_select right_angle">
-                                                                <select data-placeholder="выбрать" disabled>
-                                                                    <option value="">Сметана</option>
-                                                                    <option value="">Тип 2</option>
-                                                                    <option value="">Тип 3</option>
-                                                                </select>
-                                                            </div>
-
-                                                        </li>
-
-                                                        <!--li>
-
-                                                            <label>Производитель</label>
-
-                                                            <div class="wrapp_settings_select right_angle">
-                                                                <select data-placeholder="выбрать" disabled>
-                                                                    <option value="">Valio</option>
-                                                                    <option value="">Другой</option>
-                                                                    <option value="">Другой</option>
-                                                                </select>
-                                                            </div>
-
-                                                        </li-->
-
-                                                    </ul>
-
-                                                </div>
-
-                                                <div class="form_products_col">
-
-                                                    <div class="form_products_settings">
-
-                                                        <div class="form_products_settings_col fix">
-
-                                                            <ul class="setting_list">
-
-                                                                <li>
-                                                                    <label>Количество</label>
-                                                                    <input type="number" class="setting_input number_type_clear" value="6" disabled pattern="[0-9]*">
-                                                                </li>
-
-                                                                <li>
-                                                                    <label>Цена</label>
-                                                                    <input type="number" class="setting_input number_type_clear" value="139.02" disabled pattern="[0-9]*">
-                                                                </li>
-
-                                                                <li>
-                                                                    <label>Сумма</label>
-                                                                    <input type="number" class="setting_input number_type_clear" value="834.12" disabled pattern="[0-9]*">
-                                                                </li>
-
-                                                            </ul>
-
-                                                        </div>
-
-                                                        <div class="form_products_settings_col">
-
-                                                            <ul class="setting_list">
-
-                                                               <!--li>
-                                                                   <label>Доставить до:</label>
-                                                                   <input type="text" class="setting_input" value="Республика Татарстан, г.Казань, ул.Волкова,59" disabled>
-                                                               </li-->
-
-                                                           </ul>
-
-                                                       </div>
-
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-
-                                </li>
-
-                            </ul>
-
-                        </div>
-
-                    </td>
-
-                </tr>
-                {% endcomment %}
             </tbody>
 
         </table>
-
+        <a href="/categories" class="btn small light_orange f_right">Добавить заказ</a>
         <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
 
 

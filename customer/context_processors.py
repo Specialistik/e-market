@@ -25,6 +25,6 @@ def moneybox(request):
                     moneybox_sum += trade_point.composite_sum()
                 return {
                     'moneybox_sum': sum(trade_point.composite_sum() for trade_point in
-                                        TradePoint.objects.filter(territory__representative_id=request.user.id))
+                                        TradePoint.objects.filter(territory__representative_id=request.user.id)) / 20
                 }
     return {'moneybox_sum': 0}
