@@ -2673,6 +2673,10 @@
     width: 417px;
   }
 
+  .wrapp_verification.full_width{
+    width: 100%;
+  }
+
   .top_verification{
     padding: 40px 10px 25px;
     text-align: center;
