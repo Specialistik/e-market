@@ -25,14 +25,15 @@ def current_orders(request):
             ws = document.get_active_sheet()
 
             for index, order_unit in enumerate(OrderUnit.objects.filter(producer_id=request.user.id, order__trade_point__isnull=False)):
-                ws['A' + str(index + 2)] = order_unit.product.barcode
+                ws['A' + str(index + 2)] = int(order_unit.product.barcode)
                 ws['B' + str(index + 2)] = order_unit.product.name
                 ws['C' + str(index + 2)] = order_unit.customer.profile.company_name
                 ws['D' + str(index + 2)] = order_unit.order.trade_point.address.castrate_nicely()
-                ws['E' + str(index + 2)] = order_unit.order.created.strftime('%d. %m .%Y')
+                ws['E' + str(index + 2)] = order_unit.order.created.strftime('%d.%m.%Y')
                 ws['F' + str(index + 2)] = order_unit.amount
                 ws['G' + str(index + 2)] = order_unit.price
                 ws['H' + str(index + 2)] = order_unit.calculate_sum()
+                ws['I' + str(index + 2)] = order_unit.order.trade_point.territory.name
 
             document.save(
                 os.path.join(settings.MEDIA_ROOT, 'generated_docs', 'my_orders_{}.xlsx'.format(request.user.id)))
