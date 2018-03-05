@@ -169,32 +169,34 @@ def products(request, cat_id):
 @login_required(login_url='/sign_in/')
 def basket(request):
     if hasattr(request.user, 'profile'):
-        if request.user.profile.role == 'customer':
-            try:
-                order_units = OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id).order_by('pk')
-            except Order.DoesNotExist:
-                order_units = []
+        if request.user.profile.role == 'customer' or request.user.profile.role == 'manager':
+            order_units = OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id).order_by('pk')
+            if request.user.profile.role == 'customer':
+                trade_points = TradePoint.objects.filter(customer_id=request.user.id).order_by('pk')
+            if request.user.profile.role == 'manager':
+                trade_points = TradePoint.objects.filter(territory__representative_id=request.user.id).order_by('pk')
 
             return render(request, 'basket.html', {
                 'order_units': order_units, 
-                'trade_points': TradePoint.objects.filter(customer_id=request.user.id).order_by('pk')
+                'trade_points': trade_points
             })
-        return render(request, '500.html', {'error_message': u'Только заказчик может просматривать корзину'})
+        return render(request, '500.html', {'error_message': u'Только заказчики и торговые представители могут просматривать корзину'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
 
 
 @login_required(login_url='/sign_in/')
 def order_unit_add(request):
     if hasattr(request.user, 'profile'):
-        if request.user.profile.role == 'customer':
+        if request.user.profile.role == 'customer' or request.user.profile.role == 'manager':
             try:
                 product = ProductCard.objects.get(pk=request.POST['product'])
                 endpoint = '/products/{}/'.format(product.category_id)
             except ProductCard.DoesNotExist:
                 return render(request, '500.html', {'error_message': u'Не найден добавляемый продукт'})
 
+
             """Если в корзине уже есть товар - меняем цену"""
-            if OrderUnit.objects.filter(order__isnull=True, product=product, customer_id=request.user.id).count() > 0:
+            if OrderUnit.objects.filter(order__isnull=True, product=product).count() > 0:
                 order_unit = OrderUnit.objects.get(order__isnull=True, product_id=request.POST['product'], customer_id=request.user.id)
                 order_unit.amount = int(request.POST['amount'])
                 order_unit.save()
@@ -209,14 +211,14 @@ def order_unit_add(request):
             )
             order_unit.save()
             return redirect(endpoint)
-        return render(request, '500.html', {'error_message': u'Только заказчик может добавлять позиции заказа'})
+        return render(request, '500.html', {'error_message': u'Только заказчики или торговые представители могут добавлять позиции заказа'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
 
 
 @login_required(login_url='/sign_in/')
 def order_unit_edit(request, pk):
     if hasattr(request.user, 'profile'):
-        if request.user.profile.role == 'customer':
+        if request.user.profile.role == 'customer' or request.user.profile.role == 'manager':
             try:
                 order_unit = OrderUnit.objects.get(pk=pk)
                 if order_unit.customer_id != request.user.id:
@@ -229,14 +231,14 @@ def order_unit_edit(request, pk):
                 return render(request, '500.html', {'error_message': u'Позиция заказа не существует'})
 
             return redirect(basket)
-        return render(request, '500.html', {'error_message': u'Только заказчик может редактировать позиции заказа'})
+        return render(request, '500.html', {'error_message': u'Только заказчики и торговые представители могут редактировать позиции заказа'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
 
 
 @login_required(login_url='/sign_in/')
 def order_unit_del(request, pk):
     if hasattr(request.user, 'profile'):
-        if request.user.profile.role == 'customer':
+        if request.user.profile.role == 'customer' or request.user.profile.role == 'manager':
             try:
                 order_unit = OrderUnit.objects.get(pk=pk)
                 if order_unit.customer_id != request.user.id:
@@ -246,49 +248,47 @@ def order_unit_del(request, pk):
                 return render(request, '500.html', {'error_message': u'Позиция заказа не существует'})
 
             return redirect(basket)
-        return render(request, '500.html', {'error_message': u'Только заказчик может редактировать позиции заказа'})
+        return render(request, '500.html', {'error_message': u'Только заказчики или торговые представители могут удалять позиции заказа'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
 
 
 @login_required(login_url='/sign_in/')
 def perform_order(request):
     if hasattr(request.user, 'profile'):
-        if request.user.profile.role == 'customer':
+        if request.user.profile.role == 'customer' or request.user.profile.role == 'manager':
             try:
-                cost_of_basket = 0
-                for order_unit in OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id):
-                    cost_of_basket += order_unit.amount * order_unit.price
-
-                #payment_type = int(request.POST['payment_type'])
-                order_payment = OrderPayment.objects.create(
-                    price=cost_of_basket, customer_id=request.user.id)
-
-                # todo: Тут можно покрасивее переписать, group_by
-                order_unit_producer_id = 0
-                for order_unit in (OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id).order_by('producer_id')):
-                    if order_unit.producer_id != order_unit_producer_id:
-                        order = Order.objects.create(
-                            customer_id=request.user.id,
-                            trade_point_id=request.POST['trade_point'],
-                            producer_id=order_unit.producer_id,
-                            payment=order_payment)
-                        order_unit.order_id = order.id
-                        order_unit.save()
-                    else:
-                        order = Order.objects.filter(
-                            customer_id=request.user.id,
-                            trade_point_id=request.POST['trade_point'],
-                            producer_id=order_unit.producer_id).order_by('id').reverse()[0]
-                        order_unit.order_id = order.id
-                        order_unit.save()
-                    order_unit_producer_id = order_unit.producer_id
-
-                #if payment_type == 0:
-                #    return redirect('/payment_type/{}/'.format(order_payment.id))
-                return redirect('/payment_type/{}/'.format(order_payment.id))
-            except Order.DoesNotExist:
-                return render(request, '500.html', {'error_message': u'Не выбраны продукты для совершения заказа'})
+                tp = TradePoint.objects.get(pk=request.POST['trade_point'])
             except TradePoint.DoesNotExist:
-                return render(request, '500.html', {'error_message': u'Выбранная торговая точка не пренадлежит вам'})
+                return render(request, '500.html', {'error_message': u'Не найдена торговая точка'})
+
+            cost_of_basket = 0
+            for order_unit in OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id):
+                cost_of_basket += order_unit.amount * order_unit.price
+
+            order_payment = OrderPayment.objects.create(price=cost_of_basket, customer_id=tp.customer_id)
+
+            # todo: Тут можно покрасивее переписать, group_by
+            order_unit_producer_id = 0
+            for order_unit in (OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id).order_by('producer_id')):
+                if order_unit.producer_id != order_unit_producer_id:
+                    order = Order.objects.create(
+                        customer_id=tp.customer_id,
+                        trade_point_id=tp.id,
+                        producer_id=order_unit.producer_id,
+                        payment=order_payment)
+                    order_unit.order_id = order.id
+                    order_unit.save()
+                else:
+                    order = Order.objects.filter(
+                        customer_id=tp.customer_id,
+                        trade_point_id=tp.id,
+                        producer_id=order_unit.producer_id).order_by('id').reverse()[0]
+                    order_unit.order_id = order.id
+                    order_unit.save()
+                order_unit_producer_id = order_unit.producer_id
+
+            if request.user.profile.role == 'customer':
+                return redirect('/payment_type/{}/'.format(order_payment.id))
+            return redirect('/my_clients')
         return render(request, '500.html', {'error_message': u'Только заказчик может просматривать свои заказы'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})

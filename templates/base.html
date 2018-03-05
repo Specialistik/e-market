@@ -102,7 +102,7 @@
             {% if user.is_authenticated %}
                 <div class="header_right_box">
                     {% if user.profile %}
-                        {% if user.profile.role == 'customer' %}
+                        {% if user.profile.role == 'customer' or user.profile.role == 'manager' %}
                             <div class="basket_wrapp">
                                 <a href="/basket" class="basket_box">
                                     <i class="fa fa-shopping-basket" aria-hidden="true"></i>

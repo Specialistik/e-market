@@ -4,5 +4,59 @@
 {% endblock %}
 
 {% block content %}
+    <div id="content" class="wrapp_content content_bg verification_content" style="background-image: url('/static/images/bg-image/bg-type1.png');">
 
+		<div class="container">
+
+			<div class="wrapp_verification full_width">
+
+			    <div class="top_verification">
+
+			        <h3 class="title_verification">Способ оплаты:</h3>
+
+			    </div>
+
+			    <div class="content_verification">
+
+				    <form action="/payment_type_pick" method="POST">
+				        {% csrf_token %}
+                        <input type="hidden" name="order_payment" value="{{ order_payment.id }}">
+
+				        <div class="wrapp_attention_txt center">
+				            <p class="attention_txt left big">
+				                <i class="fa fa-exclamation" aria-hidden="true"></i>
+				                К оплате {{ order_payment.price }} руб
+				            </p>
+				        </div>
+
+				        <p class="label1 big">Укажите способ оплаты:</p>
+
+                        <label for="radio_item1" class="radio_box_rectangel">
+                            <input type="radio" id="radio_item1" name="payment_type" value="1">
+                            <span class="radio-custom"></span>
+                            <span>Оплата банковской картой (VISA, MasterCard, Мир и др.)</span>
+                        </label>
+
+                        <label for="radio_item2" class="radio_box_rectangel">
+                            <input type="radio" id="radio_item2" name="payment_type" checked value="0">
+                            <span class="radio-custom"></span>
+
+                            <span>Оплата с расчетного счета</span>
+
+                        </label>
+
+
+
+				       <div class="wrapp_btn center">
+				            <button class="btn hight_orange">Оплатить</button>
+				       </div>
+				    </form>
+
+			    </div>
+
+			</div>
+
+		</div>
+
+	</div>
 {% endblock %}

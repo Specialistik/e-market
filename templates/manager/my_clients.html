@@ -55,101 +55,100 @@
             </thead>
 
             <tbody>
-                {% for entity in entities %}
-                    {% ifchanged entity.customer %}
+                {% for customer_id, customer in customers.items %}
                     <tr class="toggle_btn_row">
 
                         <td data-title="Наименование">
-                            <div class="toggle_btn">{{ entity.customer.profile.company_name }}</div>
+                            <div class="toggle_btn">{{ customer.company_name }}</div>
                         </td>
 
-                        <td data-title="Имя ответственного лица">{{ entity.customer.profile.signer_info.fio }}</td>
-                        <td data-title="Телефон">{{ entity.customer.profile.nice_phone }}</td>
-                        <td data-title="Общий оборот, руб">{{ entity.customer.customer_total }}</td>
+                        <td data-title="Имя ответственного лица">{{ customer.signer_fio }}</td>
+                        <td data-title="Телефон">{{ customer.phone }}</td>
+                        <td data-title="Общий оборот, руб">{{ customer.customer_total }}</td>
                     </tr>
-                    {% endifchanged %}
 
-                     <tr class="toggle_row">
+
+                    <tr class="toggle_row">
                         <td colspan="4">
                             <div class="toggle_box">
                                 <ul class="dropdown_menu">
-                                    <li class="clearfix">
-                                        <a href="javascript:;" class="dropdown_link">{{ entity.address.castrate_nicely }}</a>
+                                    {% for tp in customer.trade_points %}
+                                        <li class="clearfix">
 
-                                        <div class="clear"></div>
-                                        <div class="dropdown_item">
-                                            {% for order_unit in entity.sold_products %}
-                                                <!-- product 2 -->
-                                                <div class="box_form_products_item block_closest clearfix">
+                                            <a href="javascript:;" class="dropdown_link">{{ tp.address.castrate_nicely }}</a>
 
-                                                    <div class="box_form_products_item_img hide hide_xs count_products" data-mh="height-products">
-                                                        <a href="#form_product1" class="btn_popup">
-                                                            <img src="{{ order_unit.product.get_image_url }}" alt="">
-                                                        </a>
-                                                    </div>
+                                            <div class="clear"></div>
+                                            <div class="dropdown_item">
+                                                {% for order_unit in tp.sold_products %}
+                                                    <!-- product 2 -->
+                                                    <div class="box_form_products_item block_closest clearfix">
 
-                                                    <div class="wrapp_products_item_forms setting_box" data-mh="height-products">
-
-                                                        <div class="form_products_col gradient">
-
-                                                            <ul class="setting_list">
-
-                                                                <li>
-                                                                    <label>Наименование</label>
-
-                                                                    <div class="wrapp_settings_select right_angle">
-                                                                        <select data-placeholder="выбрать" disabled>
-                                                                            <option value="">{{ order_unit.product.name }}</option>
-                                                                        </select>
-                                                                    </div>
-
-                                                                </li>
-                                                            </ul>
-
+                                                        <div class="box_form_products_item_img hide hide_xs count_products" data-mh="height-products">
+                                                            <a href="#form_product1" class="btn_popup">
+                                                                <img src="{{ order_unit.product.get_image_url }}" alt="">
+                                                            </a>
                                                         </div>
 
-                                                        <div class="form_products_col">
+                                                        <div class="wrapp_products_item_forms setting_box" data-mh="height-products">
 
-                                                            <div class="form_products_settings">
+                                                            <div class="form_products_col gradient">
 
-                                                                <div class="form_products_settings_col fix">
+                                                                <ul class="setting_list">
 
-                                                                    <ul class="setting_list">
+                                                                    <li>
+                                                                        <label>Наименование</label>
 
-                                                                        <li>
-                                                                            <label>Количество</label>
-                                                                            <input type="number" class="setting_input number_type_clear" value="{{ order_unit.amount }}" disabled>
-                                                                        </li>
+                                                                        <div class="wrapp_settings_select right_angle">
+                                                                            <select data-placeholder="выбрать" disabled>
+                                                                                <option value="">{{ order_unit.product.name }}</option>
+                                                                            </select>
+                                                                        </div>
 
-                                                                        <li>
-                                                                            <label>Цена</label>
-                                                                            <input type="text" class="setting_input number_type_clear" value="{{ order_unit.price }}" disabled >
-                                                                        </li>
+                                                                    </li>
+                                                                </ul>
 
-                                                                        <li>
-                                                                            <label>Сумма</label>
-                                                                            <input type="text" class="setting_input number_type_clear" value="{{ order_unit.calculate_sum }}" disabled >
-                                                                        </li>
+                                                            </div>
 
-                                                                    </ul>
+                                                            <div class="form_products_col">
 
+                                                                <div class="form_products_settings">
+
+                                                                    <div class="form_products_settings_col fix">
+
+                                                                        <ul class="setting_list">
+
+                                                                            <li>
+                                                                                <label>Количество</label>
+                                                                                <input type="number" class="setting_input number_type_clear" value="{{ order_unit.amount }}" disabled>
+                                                                            </li>
+
+                                                                            <li>
+                                                                                <label>Цена</label>
+                                                                                <input type="text" class="setting_input number_type_clear" value="{{ order_unit.price }}" disabled >
+                                                                            </li>
+
+                                                                            <li>
+                                                                                <label>Сумма</label>
+                                                                                <input type="text" class="setting_input number_type_clear" value="{{ order_unit.calculate_sum }}" disabled >
+                                                                            </li>
+
+                                                                        </ul>
+
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <!-- product 2 -->
-                                            {% endfor %}
-                                        </div>
-
-                                    </li>
+                                                    <!-- product 2 -->
+                                                {% endfor %}
+                                            </div>
+                                        </li>
+                                    {% endfor %}
                                 </ul>
                             </div>
-
                         </td>
                     </tr>
                 {% endfor %}
-
             </tbody>
 
         </table>

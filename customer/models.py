@@ -89,7 +89,8 @@ class OrderUnit(models.Model):
 
     # producer возможно излишняя денормализация, по факту можно будет за ненадобностью убрать
     producer = models.ForeignKey('core.SophisticatedUser', verbose_name=u'Поставщик', related_name="producer_unit")
-    customer = models.ForeignKey('core.SophisticatedUser', verbose_name=u'Заказчик', related_name="customer_unit")
+    customer = models.ForeignKey('core.SophisticatedUser', null=True, default=None, verbose_name=u'Заказчик', related_name="customer_unit")
+    #manager = models.ForeignKey('core.SophisticatedUser', null=True, default=None, verbose_name=u'Торговый представитель', related_name="manager_unit")
 
     amount = models.IntegerField(verbose_name=u'Количество')
     remark = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Примечание')
