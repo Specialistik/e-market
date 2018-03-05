@@ -189,13 +189,13 @@ class ComplexTerritory(models.Model):
                                           limit_choices_to={'profile__role': 'manager'})
 
     def __repr__(self):
-        return self.name + ' ' + self.representative.fio()
+        return self.name + ' ---> ' + self.representative.fio()
 
     def __str__(self):
-        return self.name + ' ' + self.representative.fio()
+        return self.name + ' ---> ' + self.representative.fio()
 
     def __unicode__(self):
-        return self.name + ' ' + self.representative.fio()
+        return self.name + ' ---> ' + self.representative.fio()
 
     class Meta:
         db_table = 'territory_complex'
