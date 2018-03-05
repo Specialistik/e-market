@@ -11,7 +11,7 @@ from payments.models import OrderPayment
 
 class TradePoint(models.Model):
     customer = models.ForeignKey('core.SophisticatedUser', related_name='tradepoint', verbose_name=u'Заказчик')
-    name = models.CharField(max_length=256, verbose_name=u'Название')
+    name = models.CharField(max_length=256, null=True, default=None, verbose_name=u'Название')
     address = models.OneToOneField('core.Address', verbose_name=u'Адрес')
     territory = models.ForeignKey('core.ComplexTerritory', null=True, default=None, verbose_name=u'Территория')
 
