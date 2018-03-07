@@ -7,7 +7,6 @@ from django.contrib import admin
 from core.models import OrganizationType, LegalAct, Address, UserProfile, ComplexTerritory
 from .forms import UserProfileModelForm
 from mapwidgets.widgets import GooglePointFieldWidget
-from widgets import PolygonFieldWidget
 
 
 class UserProfileAdmin(admin.ModelAdmin):
@@ -22,9 +21,6 @@ class AddressAdmin(admin.ModelAdmin):
 
 class ComplexTerritoryAdmin(admin.ModelAdmin):
     exclude = ('polygon', )
-    formfield_overrides = {
-        models.PolygonField: {"widget": PolygonFieldWidget}
-    }
 
 
 admin.site.register(Address, AddressAdmin)

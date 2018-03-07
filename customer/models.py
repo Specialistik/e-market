@@ -41,7 +41,7 @@ class Order(models.Model):
     created = models.DateTimeField(default=timezone.now, verbose_name=u'Время создания')
 
     STATUSES = (
-        (1, u"На согласовании"),
+        (1, u"Не оплачен"),
         (2, u"Согласован"),
         (3, u"Не согласован"),
         (4, u"Отправлен"),
@@ -50,6 +50,18 @@ class Order(models.Model):
         (7, u"Доставлен"),
         (8, u"Исполнен"),
     )
+    """
+    STATUSES = (
+        (1, u"Не оплачен"),
+        (2, u"Согласован"),
+        (3, u"Не согласован"),
+        (4, u"Отправлен"),
+        (5, u"Отменён"),
+        (6, u"В пути"),
+        (7, u"Доставлен"),
+        (8, u"Исполнен"),
+    )
+    """
     order_status = models.IntegerField(choices=STATUSES, default=1, verbose_name=u'Статус заявки')
 
     # Новый концепт денормализации
