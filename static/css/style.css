@@ -2185,6 +2185,18 @@
       margin-bottom: 20px;
     }
 
+    .table_order .setting_input:not(:disabled):not([type="checkbox"]):not([type="radio"]):not(.number_type_btn){
+      border-bottom: none;
+    }
+
+    .table_order .box_form_products_item:not(:last-child){
+      margin-bottom: 0;
+    }
+
+    .table_order .box_form_products_item .setting_list li > label{
+      font-size: 14px;
+    }
+
   /* ------------------------------------------------
       5.?. Validate (error styles)
   -------------------------------------------------*/

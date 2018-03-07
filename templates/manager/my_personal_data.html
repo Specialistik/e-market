@@ -16,7 +16,11 @@
         <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
 
         <form action="/profile/signer_info_and_identity/" class="wrapp_company_form validate" method="POST" novalidate>
+
             {% csrf_token %}
+
+            <h3 class="title_edit angle_right">Адрес доставки № {{ forloop.counter }}</h3>
+
             <div class="wrapp_form_box clearfix">
 
                 <div class="box_form_row clearfix">

@@ -1010,6 +1010,20 @@
 			margin-bottom: 10px;
 		}
 
+		.table_order .box_form_products_item .setting_list{
+			overflow: hidden;
+		}
+
+		.table_order .box_form_products_item .setting_list li:not(:last-child){
+			padding-right: 5px;
+		}
+
+		.table_order .box_form_products_item .setting_list li{
+			width: 33.333%;
+			float: left;
+			margin-bottom: 10px;
+		}
+
 	} /* (max-width: 767px) */
 
 	@media only screen and (max-width: 469px) {
