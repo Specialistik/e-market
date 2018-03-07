@@ -66,7 +66,7 @@
                                 {% if product.weight %}<span class="products_subtitle">{{ product.weight }} кг</span>{% endif %}
                             </h3>
 
-                            {% if user.profile.role == 'customer' %}
+                            {% if user.profile.role == 'customer' or user.profile.role == 'manager' %}
                             <div class="wrapp_btn center">
                                 <span class="products_price">{{ product.producer_price }}р</span>
                                 <a href="javascript:;" class="btn btn_basket light_orange add_to_cart">В корзину</a>

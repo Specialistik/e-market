@@ -15,6 +15,9 @@ class SophisticatedUser(User):
         return sum(trade_point.composite_sum() for trade_point in
                    TradePoint.objects.filter(territory__isnull=False, territory__representative_id=trade_points[0].territory.representative.id, customer_id=self.id))
 
+    def fio(self):
+        return self.last_name + ' ' + self.first_name
+
     class Meta:
         proxy = True
 
@@ -182,17 +185,17 @@ class ComplexTerritory(models.Model):
 
     name = models.CharField(max_length=256, verbose_name=u'Название')
     polygon = PolygonField(null=True, default=None, verbose_name=u'Многоугольная сущность')
-    representative = models.OneToOneField(SophisticatedUser, verbose_name=u'Торговый представитель',
+    representative = models.ForeignKey(SophisticatedUser, verbose_name=u'Торговый представитель',
                                           limit_choices_to={'profile__role': 'manager'})
 
     def __repr__(self):
-        return self.name
+        return self.name + ' ---> ' + self.representative.fio()
 
     def __str__(self):
-        return self.name
+        return self.name + ' ---> ' + self.representative.fio()
 
     def __unicode__(self):
-        return self.name
+        return self.name + ' ---> ' + self.representative.fio()
 
     class Meta:
         db_table = 'territory_complex'

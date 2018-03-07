@@ -111,7 +111,24 @@ def bank_payment(request, pk):
 
 @login_required(login_url='/sign_in/')
 def payment_type(request, pk):
-    return render(request, 'payment_type.html')
+    try:
+        op = OrderPayment.objects.get(pk=pk)
+    except OrderPayment.DoesNotExist:
+        return render(request, '500.html', {'error_message': u'Не найден счёт на оплату'})
+    return render(request, 'payment_type.html', {'order_payment': op})
+
+
+@login_required(login_url='/sign_in/')
+def payment_type_pick(request):
+    try:
+        op = OrderPayment.objects.get(pk=request.POST['order_payment'])
+    except OrderPayment.DoesNotExist:
+        return render(request, '500.html', {'error_message': u'Не найден счёт на оплату'})
+    if payment_type == 0:
+        return redirect('/order_payment/{}/'.format(op.id))
+    return redirect('/bank_payment/{}/'.format(op.id))
+
+    #return render(request, 'payment_type.html', {'order_payment': op})
 
 
 @csrf_exempt

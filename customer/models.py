@@ -11,7 +11,7 @@ from payments.models import OrderPayment
 
 class TradePoint(models.Model):
     customer = models.ForeignKey('core.SophisticatedUser', related_name='tradepoint', verbose_name=u'Заказчик')
-    name = models.CharField(max_length=256, verbose_name=u'Название')
+    name = models.CharField(max_length=256, blank=True, null=True, default=None, verbose_name=u'Название')
     address = models.OneToOneField('core.Address', verbose_name=u'Адрес')
     territory = models.ForeignKey('core.ComplexTerritory', null=True, default=None, verbose_name=u'Территория')
 
@@ -89,7 +89,8 @@ class OrderUnit(models.Model):
 
     # producer возможно излишняя денормализация, по факту можно будет за ненадобностью убрать
     producer = models.ForeignKey('core.SophisticatedUser', verbose_name=u'Поставщик', related_name="producer_unit")
-    customer = models.ForeignKey('core.SophisticatedUser', verbose_name=u'Заказчик', related_name="customer_unit")
+    customer = models.ForeignKey('core.SophisticatedUser', null=True, default=None, verbose_name=u'Заказчик', related_name="customer_unit")
+    #manager = models.ForeignKey('core.SophisticatedUser', null=True, default=None, verbose_name=u'Торговый представитель', related_name="manager_unit")
 
     amount = models.IntegerField(verbose_name=u'Количество')
     remark = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Примечание')

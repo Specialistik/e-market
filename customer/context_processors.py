@@ -5,7 +5,7 @@ from customer.models import OrderUnit, TradePoint
 def basket(request):
     if request.user.is_authenticated and not request.user.is_superuser:
         if hasattr(request.user, 'profile'):
-            if request.user.profile.role == 'customer':
+            if request.user.profile.role == 'customer' or request.user.profile.role == 'manager':
                 cost_of_basket = 0
                 for order_unit in OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id):
                     cost_of_basket += order_unit.amount * order_unit.price

@@ -5,73 +5,59 @@
 
 {% block content %}
 
-<div id="content" class="wrapp_content content_bg verification_content" style="background-image: url('static/images/bg-image/bg-type1.png');">
+    <div id="content" class="wrapp_content content_bg verification_content" style="background-image: url('/static/images/bg-image/bg-type1.png');">
 
-	<div class="container">
+		<div class="container">
 
-		<div class="wrapp_verification full_width">
+			<div class="wrapp_verification full_width">
 
-		    <div class="top_verification">
+			    <div class="top_verification">
 
-		        <h3 class="title_verification">Способ оплаты:</h3>
+			        <h3 class="title_verification">Способ оплаты:</h3>
 
-		    </div>
+			    </div>
 
-		    <div class="content_verification">
+			    <div class="content_verification">
 
-                <form action="/perform_order" method="POST" id="perform_order_form">
-                    {% csrf_token %}
+				    <form action="/payment_type_pick" method="POST">
+				        {% csrf_token %}
+                        <input type="hidden" name="order_payment" value="{{ order_payment.id }}">
 
-                    <input type="hidden" id="proxy_tradepoint" name="trade_point" value="{{ trade_points.0.id }}">
+				        <div class="wrapp_attention_txt center">
+				            <p class="attention_txt left big">
+				                <i class="fa fa-exclamation" aria-hidden="true"></i>
+				                К оплате {{ order_payment.price }} руб
+				            </p>
+				        </div>
 
-                    <div class="wrapp_attention_txt center">
-                        <p class="attention_txt left big">
-                            <i class="fa fa-exclamation" aria-hidden="true"></i>
-                            К оплате {{ basket_price }} руб
-                        </p>
-                    </div>
+				        <p class="label1 big">Укажите способ оплаты:</p>
 
-                    <p class="label1 big">Укажите способ оплаты:</p>
-
-                    <label for="radio_item1" class="radio_box_rectangel">
-                        <input type="radio" id="radio_item1" name="payment_type" value="1">
-                        <span class="radio-custom"></span>
-                        <span>Оплата банковской картой (VISA, MasterCard, Мир и др.)</span>
-                    </label>
-
-                    <label for="radio_item2" class="radio_box_rectangel">
-                        <input type="radio" id="radio_item2" name="payment_type" checked value="0">
-                        <span class="radio-custom"></span>
-
-                        <span>Оплата с расчетного счета</span>
-
-                    </label>
-
-                    {% comment %}
-                    <div class="wrapp_privacy_policy">
-                        <input type="checkbox" id="privacy_policy">
-
-                        <label for="privacy_policy">
+                        <label for="radio_item1" class="radio_box_rectangel">
+                            <input type="radio" id="radio_item1" name="payment_type" value="1">
+                            <span class="radio-custom"></span>
+                            <span>Оплата банковской картой (VISA, MasterCard, Мир и др.)</span>
                         </label>
 
-                        <label for="privacy_policy" class="privacy_policy_txt">
-                            Требуются
-                            <a href="javascript:;" class="hight_orange">документы по НДС от поставщика</a>
+                        <label for="radio_item2" class="radio_box_rectangel">
+                            <input type="radio" id="radio_item2" name="payment_type" checked value="0">
+                            <span class="radio-custom"></span>
+
+                            <span>Оплата с расчетного счета</span>
+
                         </label>
-                    </div>
-                    {% endcomment %}
 
-                   <div class="wrapp_btn center">
-                        <button class="btn hight_orange">Оплатить</button>
-                   </div>
-                </form>
+				       <div class="wrapp_btn center">
+				            <button class="btn hight_orange">Оплатить</button>
+				       </div>
 
-		    </div>
+				    </form>
+
+			    </div>
+
+			</div>
 
 		</div>
 
 	</div>
-
-</div>
 
 {% endblock %}
