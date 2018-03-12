@@ -9,7 +9,7 @@
 
         <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
 
-        <form action="" class="wrapp_filter">
+        <form action="/my_clients" method="get" class="wrapp_filter">
 
             <label class="label1 big">Сортировка:</label>
 
@@ -22,6 +22,13 @@
                     <option value="4">По наименованию</option>
                 </select>
 
+            </div>
+
+            <div class="wrapp_search">
+                <input type="text" name="search_string">
+                <button class="search_btn">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
             </div>
         </form>
 
@@ -79,67 +86,74 @@
 
                                             <div class="clear"></div>
                                             <div class="dropdown_item">
-                                                {% for order_unit in tp.sold_products %}
-                                                    <!-- product 2 -->
-                                                    <div class="box_form_products_item block_closest clearfix">
+                                                {% for order in tp.related_orders %}
+                                                    <p>
+                                                        <span> Заказ №{{ order.id }} </span>
+                                                        <time datetime="2018-09-03"> {{ order.created|date:'d.m.Y' }}</time>
+                                                        <span> {{ order.calculate_sum }}р</span>
+                                                    </p>
+                                                    {% for order_unit in order.related_units %}
+                                                        <!-- product 2 -->
+                                                        <div class="box_form_products_item block_closest clearfix">
 
-                                                        <div class="box_form_products_item_img hide hide_xs count_products" data-mh="height-products">
-                                                            <a href="#form_product1" class="btn_popup">
-                                                                <img src="{{ order_unit.product.get_image_url }}" alt="">
-                                                            </a>
-                                                        </div>
-
-                                                        <div class="wrapp_products_item_forms setting_box" data-mh="height-products">
-
-                                                            <div class="form_products_col gradient">
-
-                                                                <ul class="setting_list">
-
-                                                                    <li>
-                                                                        <label>Наименование</label>
-
-                                                                        <div class="wrapp_settings_select right_angle">
-                                                                            <select data-placeholder="выбрать" disabled>
-                                                                                <option value="">{{ order_unit.product.name }}</option>
-                                                                            </select>
-                                                                        </div>
-
-                                                                    </li>
-                                                                </ul>
-
+                                                            <div class="box_form_products_item_img hide hide_xs count_products" data-mh="height-products">
+                                                                <a href="#form_product1" class="btn_popup">
+                                                                    <img src="{{ order_unit.product.get_image_url }}" alt="">
+                                                                </a>
                                                             </div>
 
-                                                            <div class="form_products_col">
+                                                            <div class="wrapp_products_item_forms setting_box" data-mh="height-products">
 
-                                                                <div class="form_products_settings">
+                                                                <div class="form_products_col gradient">
 
-                                                                    <div class="form_products_settings_col fix">
+                                                                    <ul class="setting_list">
 
-                                                                        <ul class="setting_list">
+                                                                        <li>
+                                                                            <label>Наименование</label>
 
-                                                                            <li>
-                                                                                <label>Количество</label>
-                                                                                <input type="number" class="setting_input number_type_clear" value="{{ order_unit.amount }}" disabled>
-                                                                            </li>
+                                                                            <div class="wrapp_settings_select right_angle">
+                                                                                <select data-placeholder="выбрать" disabled>
+                                                                                    <option value="">{{ order_unit.product.name }}</option>
+                                                                                </select>
+                                                                            </div>
 
-                                                                            <li>
-                                                                                <label>Цена</label>
-                                                                                <input type="text" class="setting_input number_type_clear" value="{{ order_unit.price }}" disabled >
-                                                                            </li>
+                                                                        </li>
+                                                                    </ul>
 
-                                                                            <li>
-                                                                                <label>Сумма</label>
-                                                                                <input type="text" class="setting_input number_type_clear" value="{{ order_unit.calculate_sum }}" disabled >
-                                                                            </li>
+                                                                </div>
 
-                                                                        </ul>
+                                                                <div class="form_products_col">
 
+                                                                    <div class="form_products_settings">
+
+                                                                        <div class="form_products_settings_col fix">
+
+                                                                            <ul class="setting_list">
+
+                                                                                <li>
+                                                                                    <label>Количество</label>
+                                                                                    <input type="number" class="setting_input number_type_clear" value="{{ order_unit.amount }}" disabled>
+                                                                                </li>
+
+                                                                                <li>
+                                                                                    <label>Цена</label>
+                                                                                    <input type="text" class="setting_input number_type_clear" value="{{ order_unit.price }}" disabled >
+                                                                                </li>
+
+                                                                                <li>
+                                                                                    <label>Сумма</label>
+                                                                                    <input type="text" class="setting_input number_type_clear" value="{{ order_unit.calculate_sum }}" disabled >
+                                                                                </li>
+
+                                                                            </ul>
+
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <!-- product 2 -->
+                                                        <!-- product 2 -->
+                                                    {% endfor %}
                                                 {% endfor %}
                                             </div>
                                         </li>

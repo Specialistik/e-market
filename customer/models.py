@@ -18,6 +18,9 @@ class TradePoint(models.Model):
     def sold_products(self):
         return OrderUnit.objects.filter(order__trade_point_id=self.id)
 
+    def related_orders(self):
+        return Order.objects.filter(trade_point_id=self.id)
+
     def composite_sum(self):
         return sum(order.calculate_sum() for order in Order.objects.filter(trade_point=self.id))
 
@@ -74,6 +77,9 @@ class Order(models.Model):
         for order_unit in OrderUnit.objects.filter(order_id=self.id):
             cost_of_basket += order_unit.amount * order_unit.product.producer_price
         return cost_of_basket
+
+    def related_units(self):
+        return OrderUnit.objects.filter(order_id=self.id)
 
     def status_new(self):
         return self.order_status == 1

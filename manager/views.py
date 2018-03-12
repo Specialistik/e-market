@@ -21,7 +21,10 @@ def my_clients(request):
     if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'manager':
             customers = {}
-            for tp in TradePoint.objects.filter(territory__representative__id=request.user.id):
+            trade_point_queryset = TradePoint.objects.filter(territory__representative__id=request.user.id)
+            if 'search_string' in request.GET:
+                trade_point_queryset = trade_point_queryset.filter(address__full_address__icontains=request.GET['search_string'])
+            for tp in trade_point_queryset:
                 if tp.customer_id in customers.keys():
                     customers[tp.customer_id]['trade_points'].append(tp)
                 else:

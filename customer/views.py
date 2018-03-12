@@ -196,8 +196,8 @@ def order_unit_add(request):
 
 
             """Если в корзине уже есть товар - меняем цену"""
-            if OrderUnit.objects.filter(order__isnull=True, product=product).count() > 0:
-                order_unit = OrderUnit.objects.get(order__isnull=True, product_id=request.POST['product'], customer_id=request.user.id)
+            if OrderUnit.objects.filter(order__isnull=True, product_id=product.id, customer_id=request.user.id).count() > 0:
+                order_unit = OrderUnit.objects.get(order__isnull=True, product_id=product.id, customer_id=request.user.id)
                 order_unit.amount = int(request.POST['amount'])
                 order_unit.save()
                 return redirect(endpoint)
