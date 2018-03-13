@@ -19,7 +19,7 @@
 
             {% csrf_token %}
 
-            <h3 class="title_edit angle_right">Адрес доставки № {{ forloop.counter }}</h3>
+            {% comment %}<h3 class="title_edit angle_right">Адрес доставки № {{ forloop.counter }}</h3>{% endcomment %}
 
             <div class="wrapp_form_box clearfix">
 
@@ -158,6 +158,106 @@
             </div> <!-- wrapp_form -->
 
         </form>
+
+         {% for trade_point in trade_points %}
+            <form action="/trade_point/{{ trade_point.id }}/" class="wrapp_company_form subjoin_address validate" method="POST" novalidate>
+                {% csrf_token %}
+
+                <h3 class="title_edit angle_right">Адрес доставки № {{ forloop.counter }}</h3>
+
+                <div class="wrapp_form_box clearfix">
+
+                   <div class="box_form_row clearfix">
+
+                        <!-- col 6 -->
+                        <div class="box_form_half">
+
+                            <div class="form_box_offset">
+                                <input name="full_address" id="autocomplete" disabled placeholder="Город, улица, дом" value="{{ trade_point.address.full_address }}">
+                            </div>
+
+                            <div class="form_box_offset">
+
+                                <div class="form_row clearfix">
+
+                                    <div class="form_col half">
+                                        <div class="error_form_container">
+                                            <input name="index" readonly placeholder="Индекс" id="postal_code_bottom_{{ forloop.counter }}" minlength="6" data-mask="000000" required value="{{ trade_point.address.index }}">
+                                        </div>
+                                    </div>
+
+                                    <div class="form_col half">
+                                        <input name="region" readonly placeholder="Регион" id="administrative_area_level_1_bottom_{{ forloop.counter }}" value="{{ trade_point.address.region }}">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- col 6 -->
+
+                        <!-- col 6 -->
+                        <div class="box_form_half">
+
+                            <div class="form_box_offset">
+
+                                <div class="form_row clearfix">
+
+                                    <div class="form_col half">
+                                        <input name="city" id="locality_bottom_{{ forloop.counter }}" readonly placeholder="Город / Населенный пункт" required value="{{ trade_point.address.city }}">
+                                    </div>
+
+                                    <div class="form_col half">
+                                        <div class="error_form_container">
+                                            <input name="street" id="route_bottom_{{ forloop.counter }}" readonly placeholder="Улица" required value="{{ trade_point.address.street }}">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="form_box_offset">
+
+                                <div class="form_row clearfix">
+
+                                    <div class="form_col quarter">
+                                        <input name="house" placeholder="Дом" id="street_number_bottom_{{ forloop.counter }}" readonly required value="{{ trade_point.address.house }}">
+                                    </div>
+
+                                    <div class="form_col quarter">
+                                        <input name="block" placeholder="Корпус" value="{{ trade_point.address.block }}">
+                                    </div>
+
+                                    <div class="form_col quarter">
+                                        <input name="structure" placeholder="Строение" value="{{ trade_point.address.structure }}">
+                                    </div>
+
+                                    <div class="form_col quarter">
+                                        <input name="flat" placeholder="Кв. / Офис" value="{{ trade_point.address.flat }}">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- col 6 -->
+
+                   </div> <!-- box_form_row -->
+
+                    {% comment %}
+                    <div class="align_right clearfix">
+                       <button class="btn hight_orange delete_button" type="submit">Удалить</button>
+                    </div>
+                    {% endcomment %}
+
+                </div> <!-- wrapp_form -->
+
+            </form>
+        {% endfor %}
+
         <!-- end of absolutely everything -->
     </div>
 {% endblock %}

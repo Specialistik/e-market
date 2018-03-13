@@ -39,7 +39,7 @@
                 <div class="box_form_products_item block_closest clearfix">
                     <form action="/my_products/edit/{{ product.id }}/" method="POST" enctype="multipart/form-data" class="adjusted_form">
                         {% csrf_token %}
-                        <div class="box_form_products_item_img count_products hide" data-mh="height-products">
+                        <div class="box_form_products_item_img count_products" data-mh="height-products">
                             <a href="javascript:;">
                                 <img src="{{ product.get_image_url }}" alt="">
                             </a>

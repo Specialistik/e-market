@@ -11,7 +11,10 @@ from customer.models import TradePoint
 def my_personal_data(request):
     if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'manager':
-            return render(request, 'manager/my_personal_data.html', {'profile': request.user.profile})
+            return render(request, 'manager/my_personal_data.html', {
+                'profile': request.user.profile,
+                'trade_points': TradePoint.objects.filter(territory__representative__id=request.user.id)
+            })
         return render(request, '500.html', {'error_message': u'Только торговый представитель имеет доступ к странице'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
 
