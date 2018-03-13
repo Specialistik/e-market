@@ -82,6 +82,7 @@ def index(request):
     return redirect(profile)
 
 
+@csrf_exempt
 def sign_in(request):
     if request.method == 'POST':
         if 'email' in request.POST and 'password' in request.POST:
