@@ -16,43 +16,36 @@ $(document).ready(function(){
         $('#perform_order_form').submit();
     });
 
-    /*
-    $('#tradepoint_pick').magnificPopup({
-        items: {
-            src: '#payment_popup',
-            type: 'inline'
-        }
-    });
-    */
-
     /* ------------------------------------------------
         multisearch
     ------------------------------------------------ */
 
         if($("#myMultiSearch").length){
-
+/*
             var deliveryAddress = [
                { name: 'ул. А. Варакина, 21, Нефтеюганск, Ханты-Мансийский автономный округ, Россия'},
                { name: 'ул. А. Варакина, 114, Россия'}
             ];
-
+*/
             $("#myMultiSearch").multisearch({
                 inputPosition: 'start',
                 maxShowOptions: 5,
                 minSearchChars: 1,
-                source: deliveryAddress,
-
+                source: "/basket/trade_points", //deliveryAddress,
                 keyAttrs: ["name"],
 
                 formatPickerItem: function( data ) {
-                    return '<li><a href="javascript:;">'+data.name+'</a></li>';
+                    return '<li><a href="javascript:;">'+ data.name +'</a></li>';
                 },
                 formatSelectedItem: function( data ) {
-                    return '<a href="javascript:;" class="selected_item"><span>'+data.name+
+                    $("input[name='trade_point']").val(data.id);
+                    return '<a href="javascript:;" class="selected_item"><span>'+ data.name +
                     '</span><i class="fa fa-times-circle multisearch_clear"></i></a>';
                 },
 
+
             });
+
 
             // close item
             $(document).on('click', '.multisearch_clear', function(){
@@ -70,8 +63,6 @@ $(document).ready(function(){
                 $('#myMultiSearch').multisearch('remove', el);
 
             });
-            // close item
-
         }
 
     /* ------------------------------------------------

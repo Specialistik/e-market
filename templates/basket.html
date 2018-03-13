@@ -15,11 +15,13 @@
                     <form action="/order_unit/edit/{{ order_unit.id }}/" method="POST" class="adjusted_form">
                         {% csrf_token %}
 
+                        {% comment %}
                         <!--div class="box_form_products_item_img count_products" data-mh="height-products">
                             <a href="#form_product1" class="btn_popup">
                                 <img src="{{ order_unit.product.get_image_url }}">
                             </a>
                         </div-->
+                        {% endcomment %}
 
                         <div class="wrapp_products_item_forms setting_box" data-mh="height-products">
                             <span class="js_edit">
@@ -226,7 +228,20 @@
             <div class="modal_container3">
                 <h3 class="align_center">Выберите адрес доставки:</h3>
 
-                 <div class="wrapp_filter">
+                <div id="myMultiSearch">
+
+                    <div data-role="selected-list" class="clearfix">
+                        <input data-role="input" type="text" placeholder="Фильтр адресов доставки" name="trade_point">
+                    </div>
+
+                    <div data-role="picker" class="picker">
+                        <ul class="list-group" data-role="picker-list">
+                        </ul>
+                    </div>
+
+                </div>
+                {% comment %}
+                <div class="wrapp_filter">
 
                     <div class="wrapp_castom_select sorting full_width">
 
@@ -239,21 +254,8 @@
                     </div>
 
                 </div>
-
-                {% comment %}
-                <div id="myMultiSearch">
-
-                    <div data-role="selected-list" class="clearfix">
-                        <input data-role="input" type="text" placeholder="Выберите">
-                    </div>
-
-                    <div data-role="picker" class="picker">
-                        <ul class="list-group" data-role="picker-list">
-                        </ul>
-                    </div>
-
-                </div>
                 {% endcomment %}
+
 
                 <div class="wrapp_btn between">
 

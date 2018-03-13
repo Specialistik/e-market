@@ -171,14 +171,15 @@ def basket(request):
     if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'customer' or request.user.profile.role == 'manager':
             order_units = OrderUnit.objects.filter(order__isnull=True, customer_id=request.user.id).order_by('pk')
+            """
             if request.user.profile.role == 'customer':
                 trade_points = TradePoint.objects.filter(customer_id=request.user.id).order_by('pk')
             if request.user.profile.role == 'manager':
                 trade_points = TradePoint.objects.filter(territory__representative_id=request.user.id).order_by('pk')
-
+            """
             return render(request, 'basket.html', {
                 'order_units': order_units, 
-                'trade_points': trade_points
+                #'trade_points': trade_points
             })
         return render(request, '500.html', {'error_message': u'Только заказчики и торговые представители могут просматривать корзину'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
@@ -291,4 +292,17 @@ def perform_order(request):
                 return redirect('/payment_type/{}/'.format(order_payment.id))
             return redirect('/my_clients')
         return render(request, '500.html', {'error_message': u'Только заказчик может просматривать свои заказы'})
+    return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
+
+
+def basket_trade_points(request):
+    if hasattr(request.user, 'profile'):
+        if request.user.profile.role == 'customer' or request.user.profile.role == 'manager':
+            if request.user.profile.role == 'customer':
+                trade_points = TradePoint.objects.filter(customer_id=request.user.id).order_by('pk')
+            if request.user.profile.role == 'manager':
+                trade_points = TradePoint.objects.filter(territory__representative_id=request.user.id).order_by('pk')
+            return JsonResponse([{'id': tp.id, 'name': tp.address.castrate_nicely(), 's_name': tp.address.full_address}
+                                 for tp in trade_points], safe=False)
+        return render(request, '500.html', {'error_message': u'Только заказчики и торговые представители могут просматривать корзину'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
