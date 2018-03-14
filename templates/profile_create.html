@@ -50,7 +50,7 @@
 
                                     <div class="form_col half">
                                         <div class="error_form_container">
-                                            <input id="postal_code" name="index" placeholder="Индекс" readonly minlength="6" data-mask="000000" required value="{% if profile.juridical_address.index %}{{ profile.juridical_address.index }}{% endif %}">
+                                            <input id="postal_code" name="index" placeholder="Индекс" readonly minlength="6" data-mask="000000" value="{% if profile.juridical_address.index %}{{ profile.juridical_address.index }}{% endif %}">
                                         </div>
                                     </div>
 

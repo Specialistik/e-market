@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.gis.db.models import PointField, PolygonField
+from django.contrib.gis.db.models import PointField
 from catalogs.models import AbstractList
 
 from customer.models import TradePoint
