@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+
+{% block js_css %}
+    <script src="/static/js/my_personal_data.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo4M1eTyWA-HOp51b88dUln62wdg8pg9M&libraries=places&language=ru&callback=initAutocomplete" async defer></script>
+{% endblock %}
+
 {% block content %}
     <div id="content" class="wrapp_content">
 
@@ -7,11 +13,12 @@
             <h3 class="title_line"><span>Данные обо мне</span></h3>
 
         </div>
-
+        {% comment %}
         <p class="attention_txt orange_line left">
             <i class="fa fa-exclamation" aria-hidden="true"></i>
             Для получения доступа к системе необходимо заполнить форму
         </p>
+        {% endcomment %}
 
         <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
 
@@ -163,7 +170,7 @@
             <form action="/trade_point/{{ trade_point.id }}/" class="wrapp_company_form subjoin_address validate" method="POST" novalidate>
                 {% csrf_token %}
 
-                <h3 class="title_edit angle_right">Адрес доставки № {{ forloop.counter }}</h3>
+                <h3 class="title_edit angle_right">{{ trade_point.customer.profile.company_info }}  Адрес доставки № {{ forloop.counter }}</h3>
 
                 <div class="wrapp_form_box clearfix">
 
@@ -247,11 +254,9 @@
 
                    </div> <!-- box_form_row -->
 
-                    {% comment %}
-                    <div class="align_right clearfix">
-                       <button class="btn hight_orange delete_button" type="submit">Удалить</button>
+                    <div class="align_right clearfix tp-change">
+                       <button class="btn hight_orange delete_button" type="submit">Изменить</button>
                     </div>
-                    {% endcomment %}
 
                 </div> <!-- wrapp_form -->
 

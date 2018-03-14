@@ -15,14 +15,6 @@
                     <form action="/order_unit/edit/{{ order_unit.id }}/" method="POST" class="adjusted_form">
                         {% csrf_token %}
 
-                        {% comment %}
-                        <!--div class="box_form_products_item_img count_products" data-mh="height-products">
-                            <a href="#form_product1" class="btn_popup">
-                                <img src="{{ order_unit.product.get_image_url }}">
-                            </a>
-                        </div-->
-                        {% endcomment %}
-
                         <div class="wrapp_products_item_forms setting_box" data-mh="height-products">
                             <span class="js_edit">
                                 <i class="fa fa-pencil" aria-hidden="true"></i>
@@ -87,13 +79,6 @@
 
                                     <div class="form_products_settings_col">
                                         <ul class="setting_list">
-                                            {% comment %}
-                                            <li>
-                                                <label>Доставить до:</label>
-                                                <input type="text" class="setting_input" value="{{ order_unit.trade_point.address.full_address }}" disabled>
-                                            </li>
-                                            {% endcomment %}
-
                                             <li>
                                                 <label>Примечание:</label>
                                                 <input type="text" name="remark" class="setting_input" value="{% if order_unit.remark %}{{ order_unit.remark }}{% endif %}" disabled>
@@ -168,20 +153,6 @@
 
                     </label>
 
-                    {% comment %}
-                    <div class="wrapp_privacy_policy">
-                        <input type="checkbox" id="privacy_policy">
-
-                        <label for="privacy_policy">
-                        </label>
-
-                        <label for="privacy_policy" class="privacy_policy_txt">
-                            Требуются
-                            <a href="javascript:;" class="hight_orange">документы по НДС от поставщика</a>
-                        </label>
-                    </div>
-                    {% endcomment %}
-
                    <div class="wrapp_btn center">
                         <button class="btn hight_orange">Оплатить</button>
                    </div>
@@ -240,22 +211,6 @@
                     </div>
 
                 </div>
-                {% comment %}
-                <div class="wrapp_filter">
-
-                    <div class="wrapp_castom_select sorting full_width">
-
-                        <select data-placeholder="Выберите" name="trade_point" required id="popup_tradepoint">
-                            {% for trade_point in trade_points %}
-                                <option value="{{ trade_point.id }}" {% if forloop.first %}selected{% endif %}>{{ trade_point.address.castrate_nicely }}</option>
-                            {% endfor %}
-                        </select>
-
-                    </div>
-
-                </div>
-                {% endcomment %}
-
 
                 <div class="wrapp_btn between">
 
