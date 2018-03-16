@@ -16,9 +16,16 @@
 			self.SelectFile();
 			self.CustomScroll();
 			self.tabs();
+
 			if($('.gmap').length){
 
 				self.Gmap.init();
+
+			}
+
+			if($('#ymap').length){
+
+				self.yMap.init();
 
 			}
 
@@ -406,6 +413,62 @@
 	 			self.map.refresh();
 
  			}
+
+ 		},
+
+
+ 		/*
+ 		*
+ 		*
+ 		*  Ymap
+ 		*
+ 		*/
+
+ 		yMap:{
+
+ 			init: function(){
+
+ 		    	ymaps.ready(init);
+
+ 				var myMap,
+ 					dataCoords,
+           			myPlacemark;
+
+               	function init(){
+
+               		dataCoords = $("#ymap").data("coords");
+
+                   	myMap = new ymaps.Map ("ymap", {
+                       center: dataCoords[0].coord,
+                       zoom: 7
+                   	});
+
+                   	for (var i = dataCoords.length - 1; i >= 0; i--) {
+
+
+	                   	myPlacemark = new ymaps.Placemark(dataCoords[i].coord, {
+	           	            // hintContent: 'Собственный значок метки',
+	           	            // balloonContent: 'Это красивая метка'
+	           	        }, {
+	           	            // Опции.
+	           	            // Необходимо указать данный тип макета.
+	           	            // iconLayout: 'default#image',
+	           	            // Своё изображение иконки метки.
+	           	            // iconImageHref: 'images/myIcon.gif'
+	           	            // Размеры метки.
+	           	            // iconImageSize: [30, 42],
+	           	            // Смещение левого верхнего угла иконки относительно
+	           	            // её "ножки" (точки привязки).
+	           	            // iconImageOffset: [-5, -38]
+	           	        });
+
+	                   	myMap.geoObjects.add(myPlacemark);
+                   	}
+
+
+				} /* End init */
+
+ 			} /* End of yMap */
 
  		},
 

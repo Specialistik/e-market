@@ -175,6 +175,7 @@
 			font-size: 12px;
 		}
 
+		#ymap,
 		.gmap{
 			height: 500px !important;
 		}
@@ -342,6 +343,7 @@
 			margin-right: 10px;
 		}
 
+		#ymap,
 		.gmap{
 			height: 400px !important;
 		}
@@ -1002,6 +1004,7 @@
 		    margin-bottom: 30px;
 		}
 
+		#ymap,
 		.gmap{
 			height: 300px !important;
 		}
