@@ -40,12 +40,16 @@ def current_orders(request):
                 ws['H' + str(index + 2)] = order_unit.calculate_sum()
                 ws['I' + str(index + 2)] = order_unit.order.trade_point.territory.name
 
-
-
             document.save(
                 os.path.join(settings.MEDIA_ROOT, 'generated_docs', 'my_orders_{}.xlsx'.format(request.user.id)))
 
-        final_data = {'current_orders': cur_orders}
+        final_data = {'current_orders': cur_orders,
+                      'gps_coordinates': [{
+                            'lat': cur_order.trade_point.address.location.y,
+                            'lng': cur_order.trade_point.address.location.x
+                          } for cur_order in Order.objects.filter(producer_id=request.user.id,
+                              order_status__in=(1, 2, 4, 6, 8), trade_point__address__location__isnull=False)]}
+
         if document is not None:
             final_data['link_to_excel'] = os.path.join('media', 'generated_docs',
                                                        'my_orders_{}.xlsx'.format(request.user.id))
