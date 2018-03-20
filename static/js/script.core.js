@@ -76,20 +76,6 @@
 				}
 
 			});
-			/*
-			self.editOkBtn.on('click', function(){
-				$(this)
-				.removeClass('active')
-				.closest(self.settingBox)
-				.removeClass('active')
-				.find('.setting_input')
-				.attr('disabled' , 'disabled');
-
-				$(this).closest('.setting_box').find('.wrapp_settings_select select').attr('disabled', true)
-			    .trigger('refresh');
-
-			});
-			*/
 
 			self.closestBtn.on('click',function(e){
 				e.preventDefault();
@@ -97,7 +83,6 @@
 
 				self.closestBox = $this.closest('.block_closest');
 				$('.removeProduct_l').attr('href', $this.attr('href'));
-				//$('#remove_product').arcticmodal();
 				$.magnificPopup.open({
 				  	items: {
 				    	src: '#remove_product'
@@ -114,25 +99,6 @@
 			self.moneybox.on('click', function(){
 				location.href = '/my_clients';
 			});
-
-
-			/*
-			$('.removeProduct_l').on('click', function(){
-
-				$('#remove_product').arcticmodal('close');
-
-				self.closestBox.animate({
-					'opacity': 0
-				},500, function(){
-					self.closestBox.slideUp(300,function(){
-						self.closestBox.remove();
-					});
-				});
-
-			});
-			*/
-
-
 		},
 
 
@@ -193,14 +159,7 @@
  		ToggleForm: function() {
 
  			$(".title_edit.angle_right").on("click", function () {
- 				/*
-				if (!$(this).hasClass('active')) {
-					$(this).addClass('active').next().stop().hide();
-				} else {
-					$(".title_edit.angle_right").addClass('active').next().stop().hide();
-				*/
-					$(this).toggleClass("active").next().stop().slideToggle();
-				//}
+				$(this).toggleClass("active").next().stop().slideToggle();
  			});
 
  		},
@@ -330,93 +289,6 @@
 
  		},
 
- 		/**
- 		**  G-Map
- 		**/
-
- 		Gmap: {
-
- 			init: function(){
-
- 				var self = this;
-
-                self.map = new GMaps({
-                    el: '.gmap',
-                    lat: -12.037,
-                    lng: -77.041,
-                    zoom: 16,
-                    scrollwheel: false,
-                });
-
-                var blue_styles = [{"featureType": "administrative", "elementType": "labels.text.fill", "stylers": [{"color": "#444444"} ] }, {"featureType": "landscape", "elementType": "all", "stylers": [{"color": "#f2f2f2"} ] }, {"featureType": "poi", "elementType": "all", "stylers": [{"visibility": "off"} ] }, {"featureType": "road", "elementType": "all", "stylers": [{"saturation": -100 }, {"lightness": 45 } ] }, {"featureType": "road.highway", "elementType": "all", "stylers": [{"visibility": "simplified"} ] }, {"featureType": "road.arterial", "elementType": "labels.icon", "stylers": [{"visibility": "off"} ] }, {"featureType": "transit", "elementType": "all", "stylers": [{"visibility": "off"} ] }, {"featureType": "water", "elementType": "all", "stylers": [{"color": "#46bcec"}, {"visibility": "on"} ] } ];
-
-                self.map.addStyle({
-                    styledMapName:"Blue Map",
-                    styles: blue_styles,
-                    mapTypeId: "blue_styles"
-                });
-
-                self.map.setStyle("blue_styles");
-
-                // addMarker
-                var dryLiningMarkers = [
-
-	                self.map.addMarker({
-		                lat: -12.042,
-		                lng: -77.028333,
-		                title: 'Marker with InfoWindow 1',
-		                infoWindow: {
-		                	content: '<p>HTML Content 1</p>'
-		                }
-	                }),
-
-	                self.map.addMarker({
-		                lat: -12.040,
-		                lng: -77.029,
-		                title: 'Marker with InfoWindow 2',
-		                infoWindow: {
-		                	content: '<p>HTML Content 2</p>'
-		                }
-	                }),
-
-	                self.map.addMarker({
-		                lat: -12.044,
-		                lng: -77.027,
-		                title: 'Marker with InfoWindow 3',
-		                infoWindow: {
-		                	content: '<p>HTML Content 3</p>'
-		                }
-	                }),
-
-	                self.map.addMarker({
-	                	lat: -12.047,
-	                	lng: -77.030,
-		                title: 'Marker with InfoWindow 4',
-		                infoWindow: {
-		                	content: '<p>HTML Content 4</p>'
-		                }
-	                }),
-
-                ];
-                // addMarker
-
- 			},
-
- 			refreshMap: function(){
-
- 				var self = this;
-
-	 		    /**
-		         * Trigger a `resize` event, useful if you need to repaint the current map (for changes in the viewport or display / hide actions).
-		        */
-
-	 			self.map.refresh();
-
- 			}
-
- 		},
-
-
  		/*
  		*
  		*
@@ -440,7 +312,7 @@
 
                    	myMap = new ymaps.Map ("ymap", {
                        center: dataCoords[0].coord,
-                       zoom: 7
+                       zoom: 5
                    	});
 
                    	for (var i = dataCoords.length - 1; i >= 0; i--) {
@@ -466,9 +338,9 @@
                    	}
 
 
-				} /* End init */
+				}
 
- 			} /* End of yMap */
+ 			}
 
  		},
 
@@ -484,7 +356,7 @@
  		            active = $this.find('.tabs_list').find(".tabs_item.active"),
  		            index = active.index();
 
- 		        $this.find('.wrapp_tabs_content').children(".tabs_content").eq(index).show().siblings().hide();;
+ 		        $this.find('.wrapp_tabs_content').children(".tabs_content").eq(index).show().siblings().hide();
 
  		    });
 
@@ -506,11 +378,6 @@
  		        .hide();
 
 	 		    if(tabActive.find(".gmap").length){
-
-		 		    /**
-			         * Trigger a `resize` event, useful if you need to repaint the current map (for changes in the viewport or display / hide actions).
-			        */
-
 			        Core.Gmap.refreshMap();
 
 	 		    }
@@ -519,7 +386,7 @@
 
  		},
 
-	} /* End add CORE function */
+	}; /* End add CORE function */
 
 	$(document).ready(function(){
 

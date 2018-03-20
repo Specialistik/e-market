@@ -1,15 +1,8 @@
 {% extends 'base.html' %}
 
 {% block js_css %}
-    <!-- Key! -->
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
     <script src="/static/js/orders_grid.js"></script>
-
-    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUCun4zAzRJ7No2n6qs1ifIVGxeh9qqpc&callback=place_markers"></script>
-    <script type="text/javascript" src="/static/plugins/gmaps.js"></script> -->
-
-    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript">
-    </script>
-
 {% endblock %}
 
 {% block content %}
@@ -155,9 +148,7 @@
             </div> <!-- tabs_content -->
 
             <div class="tabs_content">
-
-                <div id="ymap" data-coords='[{"coord":[55.775723, 49.196191], "title":""}, {"coord":[55.775788, 49.196898], "title":""}]'></div>
-
+                <div id="ymap" data-coords='[{% for gps in gps_coordinates %}{"coord":[{{ gps.lat|safe }}, {{ gps.lng|safe }}], "title":""}{% if not forloop.last %},{% endif %}{% endfor %}]'></div>
 
             </div> <!-- tabs_content -->
 
