@@ -3,8 +3,6 @@ $(document).ready(function(){
         var product = $(this).closest('.col_products');
         var minimal_price = product.find('.product_minimum_amount').html();
 
-        //var product_name = product.find('.product_name').html();
-
         $('#popup_product_id').val(product.find('.product_id').html());
         $('#popup_product_name').html(product.find('.product_name').html());
         $('#popup_product_url').attr('src', product.find('.img_url').attr('src'));

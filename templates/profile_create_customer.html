@@ -3,8 +3,10 @@
 {% block role_specific %}
     {% if trade_points %}
         {% for trade_point in trade_points %}
-            <form action="/trade_point/{{ trade_point.id }}/" class="wrapp_company_form subjoin_address validate" method="POST" novalidate>
+            <form action="/trade_point/{{ trade_point.id }}/" class="wrapp_company_form subjoin_address validate autocomplete_overlord" method="POST" novalidate>
                 {% csrf_token %}
+                <input type="hidden" name="lat" class="autocomplete_lat">
+                <input type="hidden" name="lng" class="autocomplete_lng">
 
                 <h3 class="title_edit angle_right">Адрес доставки № {{ forloop.counter }}</h3>
 
@@ -16,7 +18,7 @@
                         <div class="box_form_half">
 
                             <div class="form_box_offset">
-                                <input name="full_address" id="autocomplete_bottom_{{ forloop.counter }}" disabled placeholder="Город, улица, дом" value="{{ trade_point.address.full_address }}">
+                                <input name="full_address" class="autocomplete" id="autocomplete_bottom_{{ forloop.counter }}" disabled placeholder="Город, улица, дом" value="{{ trade_point.address.full_address }}">
                             </div>
 
                             <div class="form_box_offset">
@@ -25,12 +27,12 @@
 
                                     <div class="form_col half">
                                         <div class="error_form_container">
-                                            <input name="index" readonly placeholder="Индекс" id="postal_code_bottom_{{ forloop.counter }}" minlength="6" data-mask="000000" value="{{ trade_point.address.index }}">
+                                            <input name="index" readonly class="autocomplete_index" placeholder="Индекс" id="postal_code_bottom_{{ forloop.counter }}" minlength="6" data-mask="000000" value="{{ trade_point.address.index }}">
                                         </div>
                                     </div>
 
                                     <div class="form_col half">
-                                        <input name="region" readonly placeholder="Регион" id="administrative_area_level_1_bottom_{{ forloop.counter }}" value="{{ trade_point.address.region }}">
+                                        <input name="region" readonly class="autocomplete_region" placeholder="Регион" id="administrative_area_level_1_bottom_{{ forloop.counter }}" value="{{ trade_point.address.region }}">
                                     </div>
 
                                 </div>
@@ -48,12 +50,12 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col half">
-                                        <input name="city" id="locality_bottom_{{ forloop.counter }}" readonly placeholder="Город / Населенный пункт" required value="{{ trade_point.address.city }}">
+                                        <input name="city" class="autocomplete_city" id="locality_bottom_{{ forloop.counter }}" readonly placeholder="Город / Населенный пункт" required value="{{ trade_point.address.city }}">
                                     </div>
 
                                     <div class="form_col half">
                                         <div class="error_form_container">
-                                            <input name="street" id="route_bottom_{{ forloop.counter }}" readonly placeholder="Улица" required value="{{ trade_point.address.street }}">
+                                            <input name="street" class="autocomplete_street" id="route_bottom_{{ forloop.counter }}" readonly placeholder="Улица" required value="{{ trade_point.address.street }}">
                                         </div>
                                     </div>
 
@@ -66,19 +68,19 @@
                                 <div class="form_row clearfix">
 
                                     <div class="form_col quarter">
-                                        <input name="house" placeholder="Дом" id="street_number_bottom_{{ forloop.counter }}" readonly required value="{{ trade_point.address.house }}">
+                                        <input name="house" class="autocomplete_house" placeholder="Дом" id="street_number_bottom_{{ forloop.counter }}" readonly required value="{{ trade_point.address.house }}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="block" placeholder="Корпус" value="{{ trade_point.address.block }}">
+                                        <input name="block" class="autocomplete_block" placeholder="Корпус" value="{{ trade_point.address.block }}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="structure" placeholder="Строение" value="{{ trade_point.address.structure }}">
+                                        <input name="structure" class="autocomplete_structure" placeholder="Строение" value="{{ trade_point.address.structure }}">
                                     </div>
 
                                     <div class="form_col quarter">
-                                        <input name="flat" placeholder="Кв. / Офис" value="{{ trade_point.address.flat }}">
+                                        <input name="flat" class="autocomplete_flat" placeholder="Кв. / Офис" value="{{ trade_point.address.flat }}">
                                     </div>
 
                                 </div>
@@ -117,8 +119,8 @@
     {% endif %}
         <form action="/trade_point/add/" class="wrapp_company_form validate" method="POST" novalidate>
             {% csrf_token %}
-            <input type="hidden" id="lat_bottom" name="lat">
-            <input type="hidden" id="lng_bottom" name="lng">
+            <input type="hidden" name="lat" class="autocomplete_lat">
+            <input type="hidden" name="lng" class="autocomplete_lng">
 
             <h3 class="title_edit angle_right">Добавить адрес доставки</h3>
 
@@ -130,7 +132,7 @@
                     <div class="box_form_half">
 
                         <div class="form_box_offset">
-                            <input name="full_address" id="autocomplete_bottom" placeholder="Город, улица, дом" value="">
+                            <input name="full_address" class="autocomplete" id="autocomplete_bottom" placeholder="Город, улица, дом" value="">
                         </div>
 
                         <div class="form_box_offset">
@@ -139,13 +141,13 @@
 
                                 <div class="form_col half">
                                     <div class="error_form_container">
-                                        <input name="index" readonly placeholder="Индекс" id="postal_code_bottom" data-mask="000000" value="">
+                                        <input name="index" class="autocomplete_index" readonly placeholder="Индекс" id="postal_code_bottom" data-mask="000000" value="">
                                     </div>
                                 </div>
 
                                 <div class="form_col half">
                                     <div class="error_form_container">
-                                        <input name="region" readonly placeholder="Регион" id="administrative_area_level_1_bottom" value="">
+                                        <input name="region" class="autocomplete_region" readonly placeholder="Регион" id="administrative_area_level_1_bottom" value="">
                                     </div>
                                 </div>
 
@@ -165,13 +167,13 @@
 
                                 <div class="form_col half">
                                     <div class="error_form_container">
-                                        <input name="city" readonly id="locality_bottom" placeholder="Город / Населенный пункт" required value="">
+                                        <input name="city" class="autocomplete_city" readonly id="locality_bottom" placeholder="Город / Населенный пункт" required value="">
                                     </div>
                                 </div>
 
                                 <div class="form_col half">
                                     <div class="error_form_container">
-                                        <input name="street" id="route_bottom" readonly placeholder="Улица" required value="">
+                                        <input name="street" class="autocomplete_street" id="route_bottom" readonly placeholder="Улица" required value="">
                                     </div>
                                 </div>
 
@@ -185,20 +187,20 @@
 
                                 <div class="form_col quarter">
                                     <div class="error_form_container">
-                                        <input name="house" id="street_number_bottom" placeholder="Дом" readonly required value="">
+                                        <input name="house" class="autocomplete_house" id="street_number_bottom" placeholder="Дом" readonly required value="">
                                     </div>
                                 </div>
 
                                 <div class="form_col quarter">
-                                    <input name="block" placeholder="Корпус" value="">
+                                    <input name="block" class="autocomplete_block" placeholder="Корпус" value="">
                                 </div>
 
                                 <div class="form_col quarter">
-                                    <input name="structure" placeholder="Строение" value="">
+                                    <input name="structure" class="autocomplete_structure" placeholder="Строение" value="">
                                 </div>
 
                                 <div class="form_col quarter">
-                                    <input name="flat" placeholder="Кв. / Офис" value="">
+                                    <input name="flat" class="autocomplete_flat" placeholder="Кв. / Офис" value="">
                                 </div>
 
                             </div>

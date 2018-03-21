@@ -1,0 +1,38 @@
+.ui-menu-item {
+    cursor: pointer;
+    /*border: 5px solid rgba(255, 255, 255, .5);*/
+    font-size: 14px;
+}
+
+.ui-autocomplete-input {
+    color: rgb(51, 51, 51);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font-family: "Yandex Sans Text", Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-stretch: 100%;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-weight: 400;
+    height: 48px;
+    left: 0px;
+    line-height: 16.003px;
+    list-style-type: none;
+    margin-top: 4px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    padding-bottom: 3px;
+    padding-left: 48px;
+    padding-right: 16px;
+    padding-top: 5px;
+    position: relative;
+    text-align: left;
+    visibility: visible;
+    width: 320px;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+}
