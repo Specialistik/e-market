@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $("#Address").keyup(function(){
+    $(".autocomplete").keyup(function(){
         //по мере ввода фразы, событие будет срабатывать всякий раз
         var search_query = $(this).val();
         //массив, в который будем записывать результаты поиска
@@ -17,7 +17,7 @@ $(document).ready(function(){
                     longlat:data.response.GeoObjectCollection.featureMember[i].GeoObject.Point.pos});
             }
             //подключаем к текстовому полю виджет autocomplete
-            $("#Address").autocomplete({
+            $(".autocomplete").autocomplete({
                 //в качестве источника результатов указываем массив search_result
                 source: search_result,
                 select: function(event, ui){

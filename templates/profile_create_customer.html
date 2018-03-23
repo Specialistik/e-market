@@ -1,4 +1,4 @@
-{% extends 'profile_create_react.html' %}
+{% extends 'profile_create.html' %}
 
 {% block role_specific %}
     {% if trade_points %}
@@ -18,7 +18,7 @@
                         <div class="box_form_half">
 
                             <div class="form_box_offset">
-                                <input name="full_address" class="autocomplete" id="autocomplete_bottom_{{ forloop.counter }}" disabled placeholder="Город, улица, дом" value="{{ trade_point.address.full_address }}">
+                                <input name="full_address" class="autocomplete" id="autocomplete_bottom_{{ forloop.counter }}" placeholder="Город, улица, дом" value="{{ trade_point.address.full_address }}">
                             </div>
 
                             <div class="form_box_offset">
@@ -94,9 +94,8 @@
 
 
                    <div class="align_right clearfix">
-                       {% comment %}
                        <button class="btn hight_orange submit_button" type="submit">Сохранить</button>
-                       {% endcomment %}
+
                        <button class="btn hight_orange delete_button" type="submit">Удалить</button>
                    </div>
                     {% if forloop.last %}

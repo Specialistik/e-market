@@ -2,8 +2,10 @@
 
 {% block js_css %}
     <script src="/static/js/profile_create.js"></script>
-    <script src="/static/js/geolocation.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBo4M1eTyWA-HOp51b88dUln62wdg8pg9M&libraries=places&language=ru&callback=initAutocomplete" async defer></script>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script src="/static/js/yandex_geolocation.js" type="text/javascript"></script>
+
+    <link rel="stylesheet" href="/static/css/autocomplete.css">
 {% endblock %}
 
 {% block content %}
@@ -119,14 +121,6 @@
 
                    </div> <!-- box_form_row -->
 
-                    {% comment %}
-                    <div class="wrapp_btn_add_plus">
-                        <a href="javascript:;" class="btn_add_plus" id="tradepoint_add">
-                            Добавить еще торговую точку
-                        </a>
-                    </div>
-                    {% endcomment %}
-
                    <div class="align_right">
                        <button class="btn hight_orange submit_button" type="submit">Сохранить</button>
                    </div>
@@ -185,10 +179,6 @@
                                         {% for legal_act in legal_acts %}
                                             <option value="{{ legal_act.id }}">{{ legal_act.name }}</option>
                                         {% endfor %}
-                                        {% comment %}
-                                        <option value="">Устав</option>
-                                        <option value="">Учредительный договор</option>
-                                        {% endcomment %}
                                     </select>
                                 </div>
 
@@ -262,15 +252,6 @@
                                             <input required name="birth_date" class="datepicker-here" placeholder="Дата рождения" value="{% if profile.signer_info %}{{ profile.signer_info.birth_date|date:"d.m.Y" }}{% endif %}">
                                         </div>
                                     </div>
-
-                                    {% comment %}
-                                    <div class="form_col half">
-                                        <div class="error_form_container">
-                                            <input required name="inn" placeholder="ИНН" data-mask="0000000000000000" value="{{ profile.inn }}">
-                                        </div>
-                                    </div>
-                                    {% endcomment %}
-
                                 </div>
 
                             </div>
@@ -278,12 +259,6 @@
                             <div class="form_box_offset">
                                 <input name="position" placeholder="Должность" value="{% if profile.signer_info %}{{ profile.signer_info.position }}{% endif %}">
                             </div>
-
-                            {% comment %}
-                            <div class="form_box_offset">
-                                <input name="code_field" placeholder="Кодовое слово" value="{% if profile.signer_info %}{{ profile.signer_info.code_field }}{% endif %}">
-                            </div>
-                            {% endcomment %}
                         </div>
                         <!-- col 6 -->
 
@@ -462,7 +437,6 @@
                                 <div class="form_box_offset">
 
                                     <div class="form_row clearfix">
-
                                         <div class="form_col half">
                                             <div class="error_form_container">
                                                 <input name="account_number" placeholder="Номер расcчетного счета" required value="" data-mask="0000000000000000">
@@ -474,11 +448,8 @@
                                                 <input name="bik" placeholder="БИК" required value="" data-mask="00000000">
                                             </div>
                                         </div>
-
                                     </div>
-
                                 </div>
-
                             </div>
                             <!-- col 6 -->
 
@@ -502,12 +473,6 @@
 
                         </div> <!-- box_form_row -->
 
-                        {% comment %}
-                        <div class="wrapp_btn_add_plus profile_account_add">
-                            <a href="javascript:;" class="btn_add_plus">Добавить счет</a>
-                        </div>
-                        {% endcomment %}
-
                         <div class="align_right">
                            <button type="submit" class="btn hight_orange submit_button">Сохранить</button>
                         </div>
@@ -529,13 +494,6 @@
 
         </section>
 
-        <!-- - - - - - - - - - - - - - End of ? - - - - - - - - - - - - - - - - -->
-
-
-        <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
-
-
-        <!-- - - - - - - - - - - - - - End of Name Block - - - - - - - - - - - - - - - - -->
-
+        <!-- - - - - - - - - - - - - - End of everything in the world - - - - - - - - - - - - - - - - -->
     </div>
 {% endblock %}

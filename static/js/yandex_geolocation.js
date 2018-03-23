@@ -16,7 +16,7 @@ $(document).ready(function(){
         overlord.find('.autocomplete_lat').val(lat);
     }
 
-    $("#autocomplete_bottom").keyup(function(){
+    $(".autocomplete").keyup(function(){
         //по мере ввода фразы, событие будет срабатывать всякий раз
         var search_query = $(this).val();
         //var overlord_el = $(this).closest('form');
@@ -32,8 +32,9 @@ $(document).ready(function(){
                 });
             });
 
+            console.log($(this));
             //подключаем к текстовому полю виджет autocomplete
-            $("#autocomplete_bottom").autocomplete({
+            $(".autocomplete").autocomplete({
                 //в качестве источника результатов указываем массив search_result
                 source: search_result,
                 select: function(event, ui){
