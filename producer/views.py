@@ -215,6 +215,29 @@ def depot_edit(request, pk):
 
 
 @login_required(login_url='/sign_in/')
+def depot_del(request, pk):
+    if hasattr(request.user, 'profile'):
+        if request.user.profile.role == 'producer':
+            try:
+                depot = ProducerDepot.objects.get(pk=pk)
+            except ProducerDepot.DoesNotExist:
+                return render(request, '500.html', {'error_message': u'Склад не существует'})
+
+            if depot.producer_id != request.user.id:
+                return render(request, '500.html', {'error_message': u'Склад вам не пренадлежит'})
+            """
+            trade_point_orders = Order.objects.filter(trade_point_id=pk).count()
+            if trade_point_orders > 0:
+                return render(request, '500.html', {'error_message': u'У торговой точки есть заказы'})
+            """
+            depot.delete()
+
+            return redirect(profile)
+        return render(request, '500.html', {'error_message': u'Только производитель может удалять склады'})
+    return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
+
+
+@login_required(login_url='/sign_in/')
 def my_previous_deals(request):
     if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'producer':
