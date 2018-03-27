@@ -8,7 +8,7 @@ class IdentityDocumentForm(forms.ModelForm):
         model = IdentityDocument
         fields = ['series', 'number', 'issued_by', 'issued_date', 'document']
 
-
+"""
 class UserProfileModelForm(forms.ModelForm):
     ROLES = (
         ('customer', 'Торговая точка'),
@@ -17,5 +17,5 @@ class UserProfileModelForm(forms.ModelForm):
     )
 
     role = forms.ChoiceField(choices=ROLES)
-
+"""
 

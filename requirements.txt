@@ -19,3 +19,10 @@ six==1.10.0
 sorl-thumbnail==12.3
 urllib3==1.22
 Werkzeug==0.12.2
+
+
+usr/local/bin
+/usr/bin
+/bin
+/usr/sbin
+/sbin

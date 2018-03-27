@@ -8,6 +8,12 @@ from catalogs.models import AbstractList
 
 from customer.models import TradePoint
 
+ROLES = (
+    ('customer', u"Заказчик"),
+    ('producer', u"Поставщик"),
+    ('manager', u" Торговый представитель"),
+)
+
 
 class SophisticatedUser(User):
     def customer_total(self):
@@ -127,7 +133,7 @@ class IdentityDocument(models.Model):
 
 
 class UserProfile(models.Model):
-    role = models.CharField(max_length=20, blank=True, null=True, verbose_name=u'Роль пользователя')
+    role = models.CharField(choices=ROLES, max_length=20, verbose_name=u'Роль пользователя')
     company_name = models.CharField(max_length=150, null=True, blank=True, verbose_name=u'Название компании')
     user = models.OneToOneField(SophisticatedUser, related_name='profile', verbose_name=u'Пользователь', on_delete=models.CASCADE)
     phone = models.CharField(max_length=15, verbose_name=u'Телефон')  # validators should be a list
