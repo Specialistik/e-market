@@ -224,14 +224,9 @@ def depot_del(request, pk):
                 return render(request, '500.html', {'error_message': u'Склад не существует'})
 
             if depot.producer_id != request.user.id:
-                return render(request, '500.html', {'error_message': u'Склад вам не пренадлежит'})
-            """
-            trade_point_orders = Order.objects.filter(trade_point_id=pk).count()
-            if trade_point_orders > 0:
-                return render(request, '500.html', {'error_message': u'У торговой точки есть заказы'})
-            """
-            depot.delete()
+                return render(request, '500.html', {'error_message': u'Склад вам не принадлежит'})
 
+            depot.delete()
             return redirect(profile)
         return render(request, '500.html', {'error_message': u'Только производитель может удалять склады'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})

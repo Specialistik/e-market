@@ -5,7 +5,6 @@ from django.contrib import admin
 
 from .models import PaymentNotification, Success, Failure
 
-# Register your models here.
 
 admin.site.register(PaymentNotification)
 admin.site.register(Success)

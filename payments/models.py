@@ -4,9 +4,6 @@ from __future__ import unicode_literals
 from django.utils import timezone
 from django.db import models
 
-#from core.models import SophisticatedUser
-#from django.contrib.auth.models import User
-
 
 class OrderPayment(models.Model):
     # Краеугольный камень всея системы, количество денег за заказ
@@ -20,6 +17,15 @@ class OrderPayment(models.Model):
     )
     type = models.IntegerField(choices=TYPES, null=True, default=None, verbose_name=u'Тип оплаты')
 
+    def __repr__(self):
+        return self.customer.fio() + '  ' + str(self.price) + ' ' + self.created
+
+    def __str__(self):
+        return self.customer.fio() + '  ' + str(self.price) + ' ' + self.created
+
+    def __unicode__(self):
+        return self.customer.fio() + '  ' + str(self.price) + ' ' + self.created
+
     class Meta:
         db_table = 'order_payments'
         verbose_name = u'Платёж по заказу'
@@ -31,6 +37,15 @@ class DirectPayment(models.Model):
     document = models.FileField(upload_to='order_payments', verbose_name=u'Платёжное поручение')
     document_id = models.DecimalField(max_digits=20, decimal_places=0, default=None, verbose_name=u'Номер платёжного поручения')
     date = models.DateField(verbose_name=u'Дата поручения')
+
+    def __repr__(self):
+        return self.payment
+
+    def __str__(self):
+        return self.payment
+
+    def __unicode__(self):
+        return self.payment
 
     class Meta:
         db_table = 'direct_payment'
