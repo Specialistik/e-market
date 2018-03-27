@@ -113,8 +113,11 @@ def logout(request):
 
 @login_required(login_url='/sign_in/')
 def profile(request):
+    if not hasattr(request.user, 'profile'):
+        return render(request, '500.html', {'error_message': u'У вас нет профиля пользователя'})
+
     data = {
-        'profile': request.user.profile if hasattr('profile', request.user) else None,
+        'profile': request.user.profile,
         'organization_types': OrganizationType.objects.all(),
         'legal_acts': LegalAct.objects.all(),
         'accounts': Account.objects.filter(profile_id=request.user.profile.id),
