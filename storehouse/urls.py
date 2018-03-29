@@ -18,7 +18,7 @@ import customer.views as customer_views
 import orders.views as orders_views
 import payments.views as payment_views
 import manager.views as manager_views
-import supervisor.views as supervisor_views
+import system_supervisor.views as supervisor_views
 
 import core.api as core_api
 

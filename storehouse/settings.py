@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'orders',
     'payments',
     'manager',
-    'supervisor',
+    'system_supervisor',
     'mapwidgets',
 ]
 
