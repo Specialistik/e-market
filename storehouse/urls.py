@@ -18,6 +18,7 @@ import customer.views as customer_views
 import orders.views as orders_views
 import payments.views as payment_views
 import manager.views as manager_views
+import supervisor.views as supervisor_views
 
 import core.api as core_api
 
@@ -60,6 +61,9 @@ urlpatterns = [
     # manager views
     url(r'^my_personal_data/$', manager_views.my_personal_data),
     url(r'^my_clients/$', manager_views.my_clients),
+
+    # supervisor viewsmy_tradepoints
+    url(r'^my_trade_points/$', supervisor_views.my_trade_points),
 
     # Producer views
     url(r'^depot/add/$', producer_views.depot_add),

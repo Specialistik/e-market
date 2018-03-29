@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block js_css %}
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+    <div id="content" class="wrapp_content">
+
+    <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
+
+    <div id="ymap" data-coords='[{% for gps in gps_coordinates %}{"coord":[{{ gps.lat|safe }}, {{ gps.lng|safe }}], "title":""}{% if not forloop.last %},{% endif %}{% endfor %}]'></div>
+
+</div>
+
+{% endblock %}

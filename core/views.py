@@ -76,6 +76,8 @@ def index(request):
                 return redirect('/categories')
             if request.user.profile.role == 'producer':
                 return redirect('/my_products')
+            if request.user.profile.role == 'supervisor':
+                return redirect('/my_trade_points')
             if request.user.profile.role == 'manager':
                 if request.user.profile.created:
                     return redirect(my_clients)
