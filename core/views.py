@@ -446,3 +446,7 @@ def profile_skip_creation(request):
         my_profile.save()
         return redirect(profile)
     return render(request, '500.html', {'error_message': u'Не найден профиль пользователя'})
+
+
+def react_index(request):
+    return render(request, 'react_index.html')

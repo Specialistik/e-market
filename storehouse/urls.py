@@ -58,6 +58,9 @@ urlpatterns = [
     url(r'^profile/account/add/$', core_views.profile_account_add),
     url(r'^profile/account/([0-9]+)/$', core_views.profile_account_edit),
 
+    #react views
+    url(r'^react_index', core_views.react_index),
+
     # manager views
     url(r'^my_personal_data/$', manager_views.my_personal_data),
     url(r'^my_clients/$', manager_views.my_clients),
