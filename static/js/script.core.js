@@ -312,14 +312,14 @@
 
                    	myMap = new ymaps.Map ("ymap", {
                        center: dataCoords[0].coord,
-                       zoom: 5
+                       zoom: 9
                    	});
 
                    	for (var i = dataCoords.length - 1; i >= 0; i--) {
 
 
 	                   	myPlacemark = new ymaps.Placemark(dataCoords[i].coord, {
-	           	            // hintContent: 'Собственный значок метки',
+	           	            hintContent: dataCoords[i].title,
 	           	            // balloonContent: 'Это красивая метка'
 	           	        }, {
 	           	            // Опции.

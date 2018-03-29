@@ -9,7 +9,7 @@
 
     <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
 
-    <div id="ymap" data-coords='[{% for gps in gps_coordinates %}{"coord":[{{ gps.lat|safe }}, {{ gps.lng|safe }}], "title":""}{% if not forloop.last %},{% endif %}{% endfor %}]'></div>
+    <div id="ymap" data-coords='[{% for gps in gps_coordinates %}{"coord":[{{ gps.lat|safe }}, {{ gps.lng|safe }}], "title":"{{ gps.title }}"}{% if not forloop.last %},{% endif %}{% endfor %}]'></div>
 
 </div>
 
