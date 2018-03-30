@@ -43,26 +43,27 @@ $(document).ready(function(){
                     '</span><i class="fa fa-times-circle multisearch_clear"></i></a>';
                 },
 
-
             });
 
 
-            // close item
-            $(document).on('click', '.multisearch_clear', function(){
+			// close item
+			$(document).on('click', '.multisearch_clear', function(){
+/*
+			    var text = $(this).parent().find('span').text(),
+			        id;
 
-                var text = $(this).parent().find('span').text(),
-                    id;
+			    var el = deliveryAddress.find(function arrFind(element, index, array){
+			        console.log(text)
+			        if (element.name == text) {
+			          return element;
+			        }
+			    });
+*/
+                $(this).parent().remove();
+			    //$('#myMultiSearch').multisearch('remove', $(this).parent().parent());
 
-                var el = deliveryAddress.find(function arrFind(element, index, array){
-                    console.log(text)
-                    if (element.name == text) {
-                      return element;
-                    }
-                });
-
-                $('#myMultiSearch').multisearch('remove', el);
-
-            });
+			});
+			// close item
         }
 
     /* ------------------------------------------------
