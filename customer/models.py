@@ -24,6 +24,9 @@ class TradePoint(models.Model):
     def composite_sum(self):
         return sum(order.calculate_sum() for order in Order.objects.filter(trade_point=self.id))
 
+    def customer_and_address(self):
+        return self.customer.profile.company_name + ' ---> ' + self.address.castrate_nicely()
+
     def __repr__(self):
         return self.customer.profile.company_name + ' ---> ' + self.address.castrate_nicely(4)
 

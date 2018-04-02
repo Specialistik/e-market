@@ -305,7 +305,7 @@ def basket_trade_points(request):
 
             if 'term' in request.GET:
                 trade_points = trade_points.filter(address__full_address__icontains=request.GET['term'])
-            return JsonResponse([{'id': tp.id, 'name': tp.address.castrate_nicely(), 's_name': tp.address.full_address}
+            return JsonResponse([{'id': tp.id, 'name': tp.customer_and_address(), 's_name': tp.address.full_address}
                                  for tp in trade_points], safe=False)
         return render(request, '500.html', {'error_message': u'Только заказчики и торговые представители могут просматривать корзину'})
     return render(request, '500.html', {'error_message': u'Недостаточно прав для совершения операции'})
