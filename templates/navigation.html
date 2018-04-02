@@ -101,6 +101,64 @@
                 <a href="/profile/">Профиль</a>
             </li>
         </ul>
+    </nav>
+
+
+    <!-- navigation_mobi -->
+    <nav class="navigation_mobi">
+
+        <ul class="navigation_mobi_menu">
+            <li>
+                <a href="/">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                    Главное меню
+                </a>
+            </li>
+
+            <li>
+                {% if user.profile.role == 'customer' or user.profile.role == 'manager' %}
+                    <a href="/categories"><i class="fa fa-list" aria-hidden="true"></i>Каталог</a>
+                {% endif %}
+                {% if user.profile.role == 'producer' %}
+                    <a href="/my_products"><i class="fa fa-list" aria-hidden="true"></i>Каталог</a>
+                {% endif %}
+            </li>
+
+            {% if user.profile.role == 'customer' or user.profile.role == 'producer' %}
+            <li>
+                <a href="/current_orders">
+                    <i class="fa fa-sort" aria-hidden="true"></i>
+                    Текущие заказы
+                </a>
+            </li>
+
+            <li>
+                <a href="/order_history">
+                    <i class="fa fa-history" aria-hidden="true"></i>
+                    История заказов
+                </a>
+            </li>
+            {% endif %}
+
+            {% if user.profile.role == 'manager' %}
+            <li>
+                <a href="/my_clients">
+                    <i class="fa fa-sort" aria-hidden="true"></i>
+                    Мои клиенты
+                </a>
+            </li>
+            {% endif %}
+
+            {% if user.profile.role == 'customer' %}
+            <li>
+                <a href="/basket">
+                    <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                    Корзина
+                </a>
+            </li>
+            {% endif %}
+
+        </ul>
 
     </nav>
 {% endif %}
