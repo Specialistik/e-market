@@ -302,6 +302,9 @@ def basket_trade_points(request):
                 trade_points = TradePoint.objects.filter(customer_id=request.user.id).order_by('pk')
             if request.user.profile.role == 'manager':
                 trade_points = TradePoint.objects.filter(territory__representative_id=request.user.id).order_by('pk')
+
+            if 'term' in request.GET:
+                trade_points = trade_points.filter(address__full_address__icontains=request.GET['term'])
             return JsonResponse([{'id': tp.id, 'name': tp.address.castrate_nicely(), 's_name': tp.address.full_address}
                                  for tp in trade_points], safe=False)
         return render(request, '500.html', {'error_message': u'Только заказчики и торговые представители могут просматривать корзину'})
