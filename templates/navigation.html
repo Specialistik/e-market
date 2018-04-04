@@ -141,12 +141,20 @@
             {% endif %}
 
             {% if user.profile.role == 'manager' %}
-            <li>
-                <a href="/my_clients">
-                    <i class="fa fa-sort" aria-hidden="true"></i>
-                    Мои клиенты
-                </a>
-            </li>
+                <li>
+                    <a href="/my_clients">
+                        <i class="fa fa-sort" aria-hidden="true"></i>
+                        Копилка
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/basket">
+                        <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                        Корзина
+                    </a>
+                </li>
+
             {% endif %}
 
             {% if user.profile.role == 'customer' %}

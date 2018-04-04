@@ -17,10 +17,11 @@
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.9.1",
-    "webpack": "^4.3.0",
+    "webpack": "^4.3.0"
+  },
+  "devDependencies": {
     "webpack-cli": "^2.0.13"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
