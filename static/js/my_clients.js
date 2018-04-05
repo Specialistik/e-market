@@ -7,4 +7,10 @@ $(document).ready(function(){
     $('.dropdown_link').on('click', function(){
         $(this).parent().find('.dropdown_item').toggleClass("active").slideToggle("fast");
     });
+
+    $('#sort').change(function(){
+        var base_url = '/my_clients';
+        location.href = base_url + '?sort=' + $(this).val();
+        //console.log($(this).val());
+    });
 });

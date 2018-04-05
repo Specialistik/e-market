@@ -15,6 +15,9 @@ class TradePoint(models.Model):
     address = models.OneToOneField('core.Address', verbose_name=u'Адрес')
     territory = models.ForeignKey('core.ComplexTerritory', null=True, default=None, verbose_name=u'Территория')
 
+    # if issues with the ineffective ordering arise - denormalize like that
+    #composed_sum = models.Integer(verbose_name=u'Оборот')
+
     def sold_products(self):
         return OrderUnit.objects.filter(order__trade_point_id=self.id)
 

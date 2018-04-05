@@ -163,6 +163,7 @@ def create_profile(request):
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
 
 
+@login_required(login_url='/sign_in/')
 def profile_fiz_and_jur_address(request):
     u_p = request.user.profile
     if u_p:

@@ -15,11 +15,9 @@
 
             <div class="wrapp_castom_select sorting">
 
-                <select data-placeholder="По умолчанию">
-                    <option value=""></option>
-                    <option value="1">По умолчанию</option>
-                    <option value="2">По оборотам</option>
-                    <option value="4">По наименованию</option>
+                <select data-placeholder="По обороту" name="sort" id="sort">
+                    <option value="income" {% if sort == 'income' %}selected{% endif %}>По обороту</option>
+                    <option value="name" {% if sort == 'name' %}selected{% endif %}>По наименованию</option>
                 </select>
 
             </div>

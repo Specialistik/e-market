@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from rest_framework import routers
+from rest_framework.authtoken import views as drf_views
 #from rest_framework_nested.routers import NestedSimpleRouter, NestedDefaultRouter
 #from rest_framework_swagger.views import get_swagger_view
 
@@ -36,9 +37,12 @@ router.register(r'profile', core_api.ProfileViewSet)
 #profile_router.register(r'juridical_address', core_api.JuridicalAddressViewSet)
 
 urlpatterns = [
+    # drf views
     url(r'^api/signup/$', core_views.signup),
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     url(r'^api/', include(router.urls)),
+    url(r'^auth$', drf_views.obtain_auth_token, name='auth'),
+
     url(r'^admin/', admin.site.urls),
 
     url(r'^$', core_views.index),

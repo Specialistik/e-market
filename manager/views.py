@@ -21,12 +21,38 @@ def my_personal_data(request):
 
 @login_required(login_url='/sign_in/')
 def my_clients(request):
+    def sort_by_income(tp_set):
+        def compose_sum(trade_point):
+            return trade_point.composite_sum()
+
+        sorted_tps = list(tp_set)
+        return sorted_tps.sort(key=compose_sum)
+
     if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'manager':
             customers = {}
             trade_point_queryset = TradePoint.objects.filter(territory__representative__id=request.user.id)
             if 'search_string' in request.GET:
                 trade_point_queryset = trade_point_queryset.filter(address__full_address__icontains=request.GET['search_string'])
+
+            if 'sort' in request.GET:
+                sort = request.GET['sort']
+                if request.GET['sort'] == 'income':
+                    sort_by_income(trade_point_queryset)
+                    """
+                    def compose_sum(trade_point):
+                        return trade_point.composite_sum()
+
+                    sorted_tps = list(trade_point_queryset)
+                    trade_point_queryset = sorted_tps.sort(key=compose_sum)
+                    """
+
+                if request.GET['sort'] == 'name':
+                    trade_point_queryset = trade_point_queryset.order_by('customer__profile__company_name')
+            else:
+                sort = 'income'
+                sort_by_income(trade_point_queryset)
+
             for tp in trade_point_queryset:
                 if tp.customer_id in customers.keys():
                     customers[tp.customer_id]['trade_points'].append(tp)
@@ -40,7 +66,8 @@ def my_clients(request):
                     }
             return render(request, 'manager/my_clients.html', {
                 'profile': request.user.profile,
-                'customers': customers
+                'customers': customers,
+                'sort': sort,
             })
         return render(request, '500.html', {'error_message': u'Только торговый представитель имеет доступ к странице'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
