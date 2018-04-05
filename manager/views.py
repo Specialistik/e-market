@@ -26,7 +26,8 @@ def my_clients(request):
             return trade_point.composite_sum()
 
         sorted_tps = list(tp_set)
-        return sorted_tps.sort(key=compose_sum)
+        sorted_tps.sort(key=compose_sum)
+        return sorted_tps
 
     if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'manager':
@@ -37,8 +38,8 @@ def my_clients(request):
 
             if 'sort' in request.GET:
                 sort = request.GET['sort']
-                if request.GET['sort'] == 'income':
-                    sort_by_income(trade_point_queryset)
+                if sort == 'income':
+                    trade_point_queryset = sort_by_income(trade_point_queryset)
                     """
                     def compose_sum(trade_point):
                         return trade_point.composite_sum()
@@ -51,7 +52,7 @@ def my_clients(request):
                     trade_point_queryset = trade_point_queryset.order_by('customer__profile__company_name')
             else:
                 sort = 'income'
-                sort_by_income(trade_point_queryset)
+                trade_point_queryset = sort_by_income(trade_point_queryset)
 
             for tp in trade_point_queryset:
                 if tp.customer_id in customers.keys():
