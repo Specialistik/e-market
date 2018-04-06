@@ -2,7 +2,6 @@
 from __future__ import unicode_literals
 
 import datetime
-#from datetime import datetime
 from django.db import models
 from django.utils import timezone
 
@@ -27,20 +26,16 @@ class TradePoint(models.Model):
     def related_orders(self):
         return Order.objects.filter(trade_point_id=self.id)
 
-    def composite_sum(self, period='all'):
-        orders = Order.objects.filter(trade_point=self.id)
-        if period == 'today':
-            yesterday = datetime.date.today() - datetime.timedelta(days=1)
-            orders = orders.filter(created__gt=yesterday)
-        if period == 'month':
-            our_date = datetime.date.today()
-            orders = orders.filter(created__month__gte=our_date.month, created__year__gte=our_date.year)
-        return sum(order.calculate_sum() for order in orders)
+    # Общий оборот
+    def composite_sum(self):
+        return sum(order.calculate_sum() for order in Order.objects.filter(trade_point=self.id))
 
+    # Оборот сегодня
     def composite_sum_today(self):
         yesterday = datetime.date.today() - datetime.timedelta(days=1)
         return sum(order.calculate_sum() for order in Order.objects.filter(trade_point=self.id, created__gt=yesterday))
 
+    # Оборот за этот месяц
     def composite_sum_this_month(self):
         our_date = datetime.date.today()
         return sum(order.calculate_sum() for order in Order.objects.filter(

@@ -19,7 +19,7 @@ def my_trade_points(request):
                     'title': tp.address.castrate_nicely()
                 } for tp in TradePoint.objects.filter(address__location__isnull=False, address__isnull=False)],
                 'representatives': [
-                    SophisticatedUser.objects.filter(profile__role='manager')
+                    UserProfile.objects.filter(role='manager')
                 ]
             }
             return render(request, 'supervisor/my_trade_points.html', final_data)

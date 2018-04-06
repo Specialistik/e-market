@@ -77,11 +77,11 @@
                                 <tr class="clickable_order">
                                     <td data-title="№">{{ forloop.counter }}</td>
                                     <td data-title="Торговый представитель">
-                                        {{ representative.fio }}
+                                        {{ representative.user.fio }}
                                     </td>
-                                    <td data-title="Оборот сегодня">{{ representative.daily_income }}</td>
-                                    <td data-title="Оборот за месяц">{{ representative.income_this_month }}</td>
-                                    <td data-title="Оборот всего">{{ representative.income_total }}</td>
+                                    <td data-title="Оборот сегодня">{{ representative.user.daily_income }}</td>
+                                    <td data-title="Оборот за месяц">{{ representative.user.income_this_month }}</td>
+                                    <td data-title="Оборот всего">{{ representative.user.income_total }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
