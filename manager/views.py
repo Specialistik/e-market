@@ -23,15 +23,6 @@ def my_personal_data(request):
 
 @login_required(login_url='/sign_in/')
 def my_clients(request):
-
-    def sort_by_income(tp_set):
-        def compose_sum(trade_point):
-            return trade_point.customer.customer_total()
-
-        sorted_tps = list(tp_set)
-        sorted_tps.sort(key=compose_sum)
-        return sorted_tps
-
     if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'manager':
             customers = {}
@@ -46,7 +37,8 @@ def my_clients(request):
                 if sort_type == 'name':
                     sorted_key = tp.customer.profile.company_name
                 else:
-                    sorted_key = tp.customer.customer_total()
+                    customer_total = tp.customer.customer_total()
+                    sorted_key = customer_total if customer_total != 0 else 0 - tp.customer.id
 
                 if sorted_key in customers.keys():
                     customers[sorted_key]['trade_points'].append(tp)
@@ -60,10 +52,6 @@ def my_clients(request):
                     }
 
                 customers = OrderedDict(sorted(customers.items()))
-            #if sort_type == 'name':
-                #customers = sorted(customers, key=lambda customer: customer['company_name'])
-                #customers.sort(key=lambda d: d.values()['company_name'], reversed=True)
-                #OrderedDict(sorted(customers.items(), key='company_name'))
             return render(request, 'manager/my_clients.html', {
                 'profile': request.user.profile,
                 'customers': customers,
