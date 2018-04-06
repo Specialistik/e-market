@@ -1,14 +1,15 @@
 $(document).ready(function(){
+    $('#sort').styler('destroy');
+
     var base_url = '/my_products/?';
     var params = {
-        sort: $('#sort:selected').val(),
-        //page: $('.page_entity.current').html()
+        sort: $('#sort:selected').val()
     };
 
     if ($('.page_entity.current').html()) {
         params['page'] = $('.page_entity.current').html()
     }
-
+    $('#sort').styler();
 
     $('.category_parent').change(function(){
         var related_subcat = $(this).parent().parent().parent().parent().find('.category_child');
