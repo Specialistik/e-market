@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import datetime
+#from datetime import datetime
 from django.db import models
 from django.utils import timezone
+
 
 from producer.models import ProductCard
 from catalogs.models import AbstractList
@@ -24,8 +27,15 @@ class TradePoint(models.Model):
     def related_orders(self):
         return Order.objects.filter(trade_point_id=self.id)
 
-    def composite_sum(self):
-        return sum(order.calculate_sum() for order in Order.objects.filter(trade_point=self.id))
+    def composite_sum(self, period='all'):
+        orders = Order.objects.filter(trade_point=self.id)
+        if period == 'today':
+            yesterday = datetime.date.today() - datetime.timedelta(days=1)
+            orders = orders.filter(created__gt=yesterday)
+        if period == 'month':
+            our_date = datetime.date.today()
+            orders = orders.filter(created__month__gte=our_date.month, created__year__gte=our_date.year)
+        return sum(order.calculate_sum() for order in orders)
 
     def customer_and_address(self):
         return self.customer.profile.company_name + ' ---> ' + self.address.castrate_nicely()
@@ -59,20 +69,7 @@ class Order(models.Model):
         (7, u"Доставлен"),
         (8, u"Исполнен"),
     )
-    """
-    STATUSES = (
-        (1, u"Не оплачен"),
-        (2, u"Согласован"),
-        (3, u"Не согласован"),
-        (4, u"Отправлен"),
-        (5, u"Отменён"),
-        (6, u"В пути"),
-        (7, u"Доставлен"),
-        (8, u"Исполнен"),
-    )
-    """
     order_status = models.IntegerField(choices=STATUSES, default=1, verbose_name=u'Статус заявки')
-
     # Новый концепт денормализации
     trade_point = models.ForeignKey(TradePoint, null=True, verbose_name=u'Торговая точка')
     producer = models.ForeignKey('core.SophisticatedUser', null=True, verbose_name=u'Поставщик', related_name="producer")

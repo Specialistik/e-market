@@ -17,14 +17,24 @@ def basket(request):
 
 
 def moneybox(request):
+    MANAGER_INCOME_DIVIDER = 20
     if request.user.is_authenticated and not request.user.is_superuser:
         if hasattr(request.user, 'profile'):
             if request.user.profile.role == 'manager':
-                moneybox_sum = 0
+                moneybox_sum = moneybox_today = moneybox_month = 0
                 for trade_point in TradePoint.objects.filter(territory__representative_id=request.user.id):
                     moneybox_sum += trade_point.composite_sum()
+                    moneybox_today += trade_point.composite_sum('today')
+                    moneybox_month += trade_point.composite_sum('month')
+                return {
+                    'moneybox_sum': moneybox_sum / MANAGER_INCOME_DIVIDER,
+                    'moneybox_today': moneybox_today / MANAGER_INCOME_DIVIDER,
+                    'moneybox_month': moneybox_month / MANAGER_INCOME_DIVIDER
+                }
+                """
                 return {
                     'moneybox_sum': sum(trade_point.composite_sum() for trade_point in
                                         TradePoint.objects.filter(territory__representative_id=request.user.id)) / 20
                 }
-    return {'moneybox_sum': 0}
+                """
+    return {'moneybox_sum': 0, 'moneybox_today': 0, 'moneybox_month': 0}

@@ -28,16 +28,15 @@ class App extends React.Component {
 
   render() {
     return 
-
-          <header id="header" className="header_wrapp clearfix">
-              <div className="header_inner claerfix">
-                  <div className="logo">
-                      <a href="/">
-                          <img src="/static/images/small-logo.png" alt=""/>
-                      </a>
-                  </div>
+      <header id="header" className="header_wrapp clearfix">
+          <div className="header_inner claerfix">
+              <div className="logo">
+                  <a href="/">
+                      <img src="/static/images/small-logo.png" alt=""/>
+                  </a>
               </div>
-          </header>
+          </div>
+      </header>
   }
 }
 

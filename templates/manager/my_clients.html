@@ -16,8 +16,8 @@
             <div class="wrapp_castom_select sorting">
 
                 <select data-placeholder="По обороту" name="sort" id="sort">
-                    <option value="income" {% if sort == 'income' %}selected{% endif %}>По обороту</option>
-                    <option value="name" {% if sort == 'name' %}selected{% endif %}>По наименованию</option>
+                    <option value="income" {% if sort_type == 'income' %}selected{% endif %}>По обороту</option>
+                    <option value="name" {% if sort_type == 'name' %}selected{% endif %}>По наименованию</option>
                 </select>
 
             </div>
@@ -60,7 +60,7 @@
             </thead>
 
             <tbody>
-                {% for customer_id, customer in customers.items %}
+                {% for customer_id, customer in customers.iteritems %}
                     <tr class="toggle_btn_row">
 
                         <td data-title="Наименование">
