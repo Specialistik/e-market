@@ -24,17 +24,11 @@ def moneybox(request):
                 moneybox_sum = moneybox_today = moneybox_month = 0
                 for trade_point in TradePoint.objects.filter(territory__representative_id=request.user.id):
                     moneybox_sum += trade_point.composite_sum()
-                    moneybox_today += trade_point.composite_sum('today')
-                    moneybox_month += trade_point.composite_sum('month')
+                    moneybox_today += trade_point.composite_sum_today()
+                    moneybox_month += trade_point.composite_sum_this_month()
                 return {
                     'moneybox_sum': moneybox_sum / MANAGER_INCOME_DIVIDER,
-                    'moneybox_today': moneybox_today / MANAGER_INCOME_DIVIDER,
-                    'moneybox_month': moneybox_month / MANAGER_INCOME_DIVIDER
+                    'moneybox_today': moneybox_today,
+                    'moneybox_month': moneybox_month
                 }
-                """
-                return {
-                    'moneybox_sum': sum(trade_point.composite_sum() for trade_point in
-                                        TradePoint.objects.filter(territory__representative_id=request.user.id)) / 20
-                }
-                """
     return {'moneybox_sum': 0, 'moneybox_today': 0, 'moneybox_month': 0}

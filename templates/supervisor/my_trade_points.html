@@ -6,11 +6,94 @@
 
 {% block content %}
     <div id="content" class="wrapp_content">
+        <div class="wrapp_tabs">
 
-    <!-- - - - - - - - - - - - - - Form - - - - - - - - - - - - - - - - -->
+            <ul class="tabs_list blue">
+                <li class="tabs_item active">
+                    Торговые представители
+                </li>
 
-    <div id="ymap" data-coords='[{% for gps in gps_coordinates %}{"coord":[{{ gps.lat|safe }}, {{ gps.lng|safe }}], "title":"{{ gps.title }}"}{% if not forloop.last %},{% endif %}{% endfor %}]'></div>
+                <li class="tabs_item">
+                    Карта
+                </li>
+            </ul> <!-- tabs_list -->
 
-</div>
+            <div class="wrapp_tabs_content">
 
+                <div class="tabs_content">
+
+
+                    <form action="" class="wrapp_filter">
+                        <label class="label1 big">Сортировка:</label>
+
+                        <div class="wrapp_castom_select sorting">
+                            <select data-placeholder="По умолчанию" name="sorting">
+                                <option value=""></option>
+                                <option value="1">По умолчанию</option>
+                                <option value="2">Подтвержденные</option>
+                                <option value="3">Завершенные</option>
+                            </select>
+                        </div>
+                    </form>
+
+                    <!-- - - - - - - - - - - - - - End of Form - - - - - - - - - - - - - - - - -->
+
+                    <!-- - - - - - - - - - - - - - Name Block - - - - - - - - - - - - - - - - -->
+                    <table class="table_order">
+
+                        <thead>
+
+                            <tr>
+                                <th class="table_col1">
+                                    №
+                                </th>
+
+                                <th>
+                                    Торговый представитель
+                                    <a href="javascript:;" class="sort_btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
+                                </th>
+
+                                <th class="table_col4">
+                                    Оборот сегодня
+                                    <a href="javascript:;" class="sort_btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
+                                </th>
+
+                                <th class="table_col4">
+                                    Оборот за месяц
+                                    <a href="javascript:;" class="sort_btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
+                                </th>
+
+                                <th class="table_col4">
+                                    Оборот всего
+                                    <a href="javascript:;" class="sort_btn"><i class="fa fa-sort-amount-asc" aria-hidden="true"></i></a>
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+                            {% for representative in representatives %}
+                                <tr class="clickable_order">
+                                    <td data-title="№">{{ forloop.counter }}</td>
+                                    <td data-title="Торговый представитель">
+                                        {{ representative.fio }}
+                                    </td>
+                                    <td data-title="Оборот сегодня">{{ representative.daily_income }}</td>
+                                    <td data-title="Оборот за месяц">{{ representative.income_this_month }}</td>
+                                    <td data-title="Оборот всего">{{ representative.income_total }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+
+                </div> <!-- tabs_content -->
+
+                <div class="tabs_content">
+                    <div id="ymap" data-coords='[{% for gps in gps_coordinates %}{"coord":[{{ gps.lat|safe }}, {{ gps.lng|safe }}], "title":"{{ gps.title }}"}{% if not forloop.last %},{% endif %}{% endfor %}]'></div>
+                </div> <!-- tabs_content -->
+            </div>
+        </div>
+    </div>
 {% endblock %}

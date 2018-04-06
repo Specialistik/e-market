@@ -37,6 +37,15 @@ class TradePoint(models.Model):
             orders = orders.filter(created__month__gte=our_date.month, created__year__gte=our_date.year)
         return sum(order.calculate_sum() for order in orders)
 
+    def composite_sum_today(self):
+        yesterday = datetime.date.today() - datetime.timedelta(days=1)
+        return sum(order.calculate_sum() for order in Order.objects.filter(trade_point=self.id, created__gt=yesterday))
+
+    def composite_sum_this_month(self):
+        our_date = datetime.date.today()
+        return sum(order.calculate_sum() for order in Order.objects.filter(
+            trade_point=self.id, created__month__gte=our_date.month, created__year__gte=our_date.year))
+
     def customer_and_address(self):
         return self.customer.profile.company_name + ' ---> ' + self.address.castrate_nicely()
 

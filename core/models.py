@@ -17,10 +17,23 @@ ROLES = (
 
 
 class SophisticatedUser(User):
+
+    # For customer users only
     def customer_total(self):
         trade_points = TradePoint.objects.filter(customer_id=self.id, territory__isnull=False)
         return sum(trade_point.composite_sum() for trade_point in
                    TradePoint.objects.filter(territory__isnull=False, territory__representative_id=trade_points[0].territory.representative.id, customer_id=self.id))
+
+    # Next three methods for representative users only
+    def daily_income(self):
+        return sum([trade_point.composite_sum_today() for trade_point in
+                    TradePoint.objects.filter(territory__representative_id=self.id)])
+
+    def income_this_month(self):
+        return sum([trade_point.composite_sum_this_month() for trade_point in TradePoint.objects.filter(territory__representative_id=self.id)])
+
+    def income_total(self):
+        return sum([trade_point.composite_sum() for trade_point in TradePoint.objects.filter(territory__representative_id=self.id)])
 
     def fio(self):
         return self.last_name + ' ' + self.first_name

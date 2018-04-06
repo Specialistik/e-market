@@ -14,7 +14,7 @@
             <label class="label1 big">Сортировка:</label>
 
             <div class="wrapp_castom_select sorting">
-                <select data-placeholder="По умолчанию" id="sort">
+                <select data-placeholder="По умолчанию" id="sort" name="sort">
                     <option value="default" {% if sort_type == 'default' %}selected{% endif %}>По умолчанию</option>
                     <option value="category" {% if sort_type == 'category' %}selected{% endif %}>По категории</option>
                     <option value="subcategory" {% if sort_type == 'subcategory' %}selected{% endif %}>По подкатегории</option>
