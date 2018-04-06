@@ -21,4 +21,9 @@ $(document).ready(function(){
             related_exp_value.attr('required', 'required').removeAttr('disabled');
         }
     });
+
+    $('#sort').change(function(){
+        var base_url = '/my_products';
+        location.href = base_url + '?sort=' + $(this).val();
+    });
 });

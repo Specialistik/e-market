@@ -51,7 +51,7 @@ def my_clients(request):
                         "trade_points": [tp, ]
                     }
 
-                customers = OrderedDict(sorted(customers.items()))
+                customers = OrderedDict(sorted(customers.items(), reverse=True))
             return render(request, 'manager/my_clients.html', {
                 'profile': request.user.profile,
                 'customers': customers,

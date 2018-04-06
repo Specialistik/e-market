@@ -11,6 +11,5 @@ $(document).ready(function(){
     $('#sort').change(function(){
         var base_url = '/my_clients';
         location.href = base_url + '?sort=' + $(this).val();
-        //console.log($(this).val());
     });
 });

@@ -23,11 +23,20 @@ from customer.models import Order, OrderUnit
 def my_products(request):
     if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'producer':
+            products = ProductCard.objects.filter(product_depot__producer_id=request.user.id)
+            sort_type = request.GET['sort'] if 'sort' in request.GET else 'default'
+            if 'sort' in request.GET:
+                if request.GET['sort'] == 'category':
+                    products = products.order_by('category__pid__name')
+                if request.GET['sort'] == 'subcategory':
+                    products = products.order_by('category__name')
+
             return render(request, 'my_products.html', {
-                'products': ProductCard.objects.filter(product_depot__producer_id=request.user.id).order_by('pk'),
+                'products': products,
                 'categories': Category.objects.filter(pid__isnull=True),
                 'depots': ProducerDepot.objects.filter(producer_id=request.user.id),
                 'expiration_values': ExpirationValue.objects.all(),
+                'sort_type': sort_type,
             })
         return render(request, '500.html', {'error_message': u'Только производитель может просматривать свои товары'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
