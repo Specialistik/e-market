@@ -1,4 +1,15 @@
 $(document).ready(function(){
+    var base_url = '/my_products/?';
+    var params = {
+        sort: $('#sort:selected').val(),
+        //page: $('.page_entity.current').html()
+    };
+
+    if ($('.page_entity.current').html()) {
+        params['page'] = $('.page_entity.current').html()
+    }
+
+
     $('.category_parent').change(function(){
         var related_subcat = $(this).parent().parent().parent().parent().find('.category_child');
         $.getJSON('/subcategory_list/' + $(this).val(), function( data ) {
@@ -23,7 +34,12 @@ $(document).ready(function(){
     });
 
     $('#sort').change(function(){
-        var base_url = '/my_products';
-        location.href = base_url + '?sort=' + $(this).val();
+        params['sort'] = $(this).val();
+        location.href = base_url + $.param( params );
+    });
+
+    $('.page_entity').click(function(){
+        params['page'] = $(this).attr('page_num');
+        location.href = base_url + $.param( params );
     });
 });

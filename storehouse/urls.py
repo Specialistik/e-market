@@ -85,7 +85,7 @@ urlpatterns = [
     url(r'^my_products/del/([0-9]+)/$', producer_views.product_del),
     url(r'^my_products/add/$', producer_views.product_add),
     url(r'^my_products/import/$', producer_views.my_products_import),
-    url(r'^my_products/$', producer_views.my_products),
+    url(r'^my_products/', producer_views.my_products),
 
     url(r'^my_previous_deals$', producer_views.my_previous_deals),
 

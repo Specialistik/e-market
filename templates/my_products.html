@@ -185,6 +185,32 @@
                 </div>
             {% endfor %}
 
+        {% if products.has_other_pages %}
+            <ul class="pagination">
+                {% if products.has_previous %}
+                    <!-- angle -->
+                    <li>
+                        <a href="javascript:;" page_num="{{ current_page|add:"-1" }}" class="page_entity">«</a>
+                    </li>
+                    <!-- angle -->
+                {% endif %}
+
+                {% for i in products.paginator.page_range %}
+                    <li>
+                        <a href="javascript:;" page_num="{{ i }}" class="page_entity {% if products.number == i %}current{% endif %}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+
+                {% if products.has_next %}
+                    <!-- angle -->
+                    <li>
+                        <a href="javascript:;" page_num="{{ current_page|add:"1" }}" class="page_entity">»</a>
+                    </li>
+                    <!-- angle -->
+                {% endif %}
+            </ul>
+        {% endif %}
+
             <div class="wrapp_btn_add_plus">
                <a href="/my_products/add/" class="btn_add_plus">
                    Добавить еще продукт

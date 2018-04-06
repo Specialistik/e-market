@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.gis.geos import Point
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from core.views import profile
 from core.models import Address
@@ -24,12 +25,22 @@ def my_products(request):
     if hasattr(request.user, 'profile'):
         if request.user.profile.role == 'producer':
             products = ProductCard.objects.filter(product_depot__producer_id=request.user.id)
-            sort_type = request.GET['sort'] if 'sort' in request.GET else 'default'
+            sort_type = request.GET.get('sort', 'default') #' if 'sort' in request.GET else 'default'
             if 'sort' in request.GET:
                 if request.GET['sort'] == 'category':
                     products = products.order_by('category__pid__name')
                 if request.GET['sort'] == 'subcategory':
                     products = products.order_by('category__name')
+
+            page = request.GET.get('page', 1)
+            paginator = Paginator(products, 10)
+
+            try:
+                products = paginator.page(page)
+            except PageNotAnInteger:
+                products = paginator.page(1)
+            except EmptyPage:
+                products = paginator.page(paginator.num_pages)
 
             return render(request, 'my_products.html', {
                 'products': products,
@@ -37,6 +48,7 @@ def my_products(request):
                 'depots': ProducerDepot.objects.filter(producer_id=request.user.id),
                 'expiration_values': ExpirationValue.objects.all(),
                 'sort_type': sort_type,
+                'current_page': page
             })
         return render(request, '500.html', {'error_message': u'Только производитель может просматривать свои товары'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
