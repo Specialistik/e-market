@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from customer.models import TradePoint
-from core.models import SophisticatedUser, UserProfile, ROLES
+from core.models import UserProfile
 
 
 @login_required(login_url='/sign_in/')

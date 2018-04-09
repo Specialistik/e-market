@@ -6,8 +6,9 @@ from .models import Order, OrderUnit, TradePoint
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'customer', 'order_status')
+    list_display = ('pk', 'customer', 'order_status', 'created')
     exclude = ('payment',)
+    ordering = ('-created',)
 
 
 class TradePointAdmin(admin.ModelAdmin):
