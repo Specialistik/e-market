@@ -48,7 +48,7 @@ def current_orders(request):
                             'lat': cur_order.trade_point.address.location.y,
                             'lng': cur_order.trade_point.address.location.x
                           } for cur_order in Order.objects.filter(producer_id=request.user.id,
-                              order_status__in=(1, 2, 4, 6, 8), trade_point__address__location__isnull=False)]}
+                              order_status__in=(1, 2, 4, 6, 8), trade_point__address__location__isnull=False).order_by('created')]}
 
         if document is not None:
             final_data['link_to_excel'] = os.path.join('media', 'generated_docs',
@@ -128,4 +128,4 @@ def current_orders_json(request):
                                             'lng': cur_order.trade_point.address.location.x}
                                         } for cur_order in
                          Order.objects.filter(producer_id=request.user.id, order_status__in=(1, 2, 4, 6, 8),
-                                              trade_point__address__location__isnull=False)})
+                                              trade_point__address__location__isnull=False).order_by('created')})
