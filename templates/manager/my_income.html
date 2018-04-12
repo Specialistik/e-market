@@ -14,7 +14,19 @@
                     </th>
 
                     <th class="">
-                        Общий оборот, руб
+                        Общий оборот
+                    </th>
+
+                    <th>
+                        Доход за сегодня
+                    </th>
+
+                    <th class="">
+                        Доход за месяц
+                    </th>
+
+                    <th class="">
+                        Общий доход, руб
                     </th>
                 </tr>
             </thead>
@@ -24,6 +36,10 @@
                     <td data-title="Оборот за сегодня">{{ moneybox_today }}</td>
                     <td data-title="Оборот за месяц">{{ moneybox_month }}</td>
                     <td data-title="Общий оборот, руб">{{ moneybox_sum }}</td>
+
+                    <td data-title="Доход за сегодня">{{ income_today }}</td>
+                    <td data-title="Доход за месяц">{{ income_month }}</td>
+                    <td data-title="Общий доход, руб">{{ income_sum }}</td>
                 </tr>
             </tbody>
         </table>

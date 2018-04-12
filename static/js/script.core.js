@@ -97,7 +97,7 @@
 			});
 
 			self.moneybox.on('click', function(){
-				location.href = '/my_clients';
+				location.href = '/my_income';
 			});
 		},
 
