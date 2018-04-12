@@ -19,7 +19,6 @@ $(document).ready(function(){
     $(".autocomplete").keyup(function(){
         //по мере ввода фразы, событие будет срабатывать всякий раз
         var search_query = $(this).val();
-        //var overlord_el = $(this).closest('form');
         //массив, в который будем записывать результаты поиска
         search_result = [];
         $.getJSON('https://geocode-maps.yandex.ru/1.x/?format=json&geocode='+search_query, function(data) {
@@ -32,7 +31,6 @@ $(document).ready(function(){
                 });
             });
 
-            console.log($(this));
             //подключаем к текстовому полю виджет autocomplete
             $(".autocomplete").autocomplete({
                 //в качестве источника результатов указываем массив search_result
