@@ -59,3 +59,12 @@ def my_clients(request):
             })
         return render(request, '500.html', {'error_message': u'Только торговый представитель имеет доступ к странице'})
     return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})
+
+
+@login_required(login_url='/sign_in/')
+def my_income(request):
+    if hasattr(request.user, 'profile'):
+        if request.user.profile.role == 'manager':
+            return render(request, 'manager/my_income.html')
+        return render(request, '500.html', {'error_message': u'Только торговый представитель имеет доступ к странице'})
+    return render(request, '500.html', {'error_message': u'Ошибка при просмотре профиля пользователя'})

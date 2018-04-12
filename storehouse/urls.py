@@ -68,6 +68,7 @@ urlpatterns = [
     # manager views
     url(r'^my_personal_data/$', manager_views.my_personal_data),
     url(r'^my_clients/$', manager_views.my_clients),
+    url(r'^my_income/$', manager_views.my_income),
 
     # supervisor viewsmy_tradepoints
     url(r'^my_trade_points/$', supervisor_views.my_trade_points),

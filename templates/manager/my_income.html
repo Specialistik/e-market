@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="content" class="wrapp_content">
+        <table class="table_order table_toggle">
+            <thead>
+                <tr>
+                    <th>
+                        Оборот за сегодня
+                    </th>
+
+                    <th class="">
+                        Оборот за месяц
+                    </th>
+
+                    <th class="">
+                        Общий оборот, руб
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr class="toggle_btn_row">
+                    <td data-title="Оборот за сегодня">{{ moneybox_today }}</td>
+                    <td data-title="Оборот за месяц">{{ moneybox_month }}</td>
+                    <td data-title="Общий оборот, руб">{{ moneybox_sum }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
