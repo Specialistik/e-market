@@ -2,7 +2,7 @@
 
 import datetime
 import uuid
-import os
+#import signals
 
 
 from django.views.decorators.csrf import csrf_exempt
@@ -23,11 +23,9 @@ from customer.models import TradePoint
 from producer.models import ProducerDepot
 from .serializers import SignupSerializer
 from manager.views import my_clients, my_personal_data
-from core.decorators import roles_required
 
 
 @api_view(['POST'])
-@permission_classes((permissions.AllowAny,))
 @csrf_exempt
 def signup(request):
     serialized_user = SignupSerializer(data=request.data)

@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
 import openpyxl
-from openpyxl.styles import numbers
 
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse

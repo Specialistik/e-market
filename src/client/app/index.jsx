@@ -2,19 +2,6 @@ import React from 'react';
 import {render} from 'react-dom';
 //import App from header
 
-class Header extends React.Component {
-  render() {
-      return (
-          <div className="logo">
-              <a href="/">
-                  <img src="/static/images/small-logo.png" alt=""/>
-              </a>
-          </div>
-      );
-  }
-}
-
-
 class App extends React.Component {
   constructor(props) {
       super(props);

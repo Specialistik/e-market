@@ -39,9 +39,9 @@ router.register(r'profile', core_api.ProfileViewSet)
 urlpatterns = [
     # drf views
     url(r'^api/signup/$', core_views.signup),
-    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-    url(r'^api/', include(router.urls)),
-    url(r'^auth$', drf_views.obtain_auth_token, name='auth'),
+    #url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    #url(r'^api/', include(router.urls)),
+    url(r'^api-token-auth/$', drf_views.obtain_auth_token, name='auth'),
 
     url(r'^admin/', admin.site.urls),
 

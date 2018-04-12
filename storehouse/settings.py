@@ -41,8 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'django.contrib.gis',
     #'sslserver',
-    'oauth2_provider',
+    #'oauth2_provider',
     'rest_framework',
+    'rest_framework.authtoken',
     'rest_framework_swagger',
     'sorl.thumbnail',
     'catalogs',
@@ -163,10 +164,10 @@ REST_FRAMEWORK = {
     # or allow read-only access for unauthenticated users.
     # or allow read-only access for unauthenticated users.    'DEFAULT_PERMISSION_CLASSES': [
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissions'
+        'rest_framework.permissions.IsAuthenticated',
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',

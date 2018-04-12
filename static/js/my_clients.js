@@ -1,7 +1,13 @@
 $(document).ready(function(){
+    /*
     $('.toggle_btn').on('click', function(){
         $(this).toggleClass('opened').closest('.toggle_btn_row').toggleClass("opened_box");
         $(this).closest('.toggle_btn_row').next('.toggle_row').children('td').children('.toggle_box').slideToggle("fast");
+    });
+    */
+    $('.toggle_btn_row').click(function(){
+        $(this).toggleClass("opened_box").find('.toggle_btn').toggleClass('opened').closest('.toggle_btn_row');
+        $(this).next('.toggle_row').children('td').children('.toggle_box').slideToggle("fast");
     });
 
     $('.dropdown_link').on('click', function(){
