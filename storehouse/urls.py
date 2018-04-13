@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 
-from django.conf.urls import url, include
+from django.conf.urls import url
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from rest_framework.authtoken import views as auth_views
+from core import api as core_api
+
 from rest_framework import routers
-from rest_framework.authtoken import views as drf_views
-#from rest_framework_nested.routers import NestedSimpleRouter, NestedDefaultRouter
-#from rest_framework_swagger.views import get_swagger_view
 
 
 import core.views as core_views
@@ -21,7 +21,7 @@ import payments.views as payment_views
 import manager.views as manager_views
 import system_supervisor.views as supervisor_views
 
-import core.api as core_api
+#import core.api as core_api
 
 #schema_view = get_swagger_view(title='The sklad API')
 
@@ -29,7 +29,7 @@ import core.api as core_api
 #router = routers.DefaultRouter(trailing_slash=False)
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'category', catalog_views.CategoryViewSet)
-router.register(r'profile', core_api.ProfileViewSet)
+#router.register(r'profile', core_api.ProfileViewSet)
 
 
 #profile_router = NestedDefaultRouter(router, r'profile', lookup='profile')
@@ -37,19 +37,22 @@ router.register(r'profile', core_api.ProfileViewSet)
 #profile_router.register(r'juridical_address', core_api.JuridicalAddressViewSet)
 
 urlpatterns = [
-    # drf views
-    url(r'^api/signup/$', core_views.signup),
-    #url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
-    #url(r'^api/', include(router.urls)),
-    url(r'^api-token-auth/$', drf_views.obtain_auth_token, name='auth'),
+    # React views
+    url(r'^react_index', core_views.react_index),
 
+    # Rest framework API views,
+    url(r'^api/sign_up/$', core_api.sign_up),
+    url(r'^api/sign_in/$', auth_views.obtain_auth_token),
+    #url(r'^api/()$', core_api.api_endpoint),
+
+    #url(r'^api-token-auth/$', drf_views.obtain_auth_token, name='auth'),
+    # Old school views, not to break the app in the process
     url(r'^admin/', admin.site.urls),
 
     url(r'^$', core_views.index),
     url(r'^sign_in', core_views.sign_in),
     url(r'^logout', core_views.logout),
     url(r'^register', core_views.register),
-
     url(r'^profile/$', core_views.profile),
     url(r'^profile/skip_creation/$', core_views.profile_skip_creation),
     url(r'^profile/fiz_and_jur_address/$', core_views.profile_fiz_and_jur_address),
@@ -62,15 +65,12 @@ urlpatterns = [
     url(r'^profile/account/add/$', core_views.profile_account_add),
     url(r'^profile/account/([0-9]+)/$', core_views.profile_account_edit),
 
-    #react views
-    url(r'^react_index', core_views.react_index),
-
     # manager views
     url(r'^my_personal_data/$', manager_views.my_personal_data),
     url(r'^my_clients/$', manager_views.my_clients),
     url(r'^my_income/$', manager_views.my_income),
 
-    # supervisor viewsmy_tradepoints
+    # supervisor views
     url(r'^my_trade_points/$', supervisor_views.my_trade_points),
 
     # Producer views
@@ -78,10 +78,8 @@ urlpatterns = [
     url(r'^depot/del/$', producer_views.depot_del),
     url(r'^depot/([0-9]+)/$', producer_views.depot_edit),
 
-
     url(r'^products/([0-9]+)/$', customer_views.products),
     url(r'^products/search/', customer_views.product_search),
-
     url(r'^my_products/edit/([0-9]+)/$', producer_views.product_edit),
     url(r'^my_products/del/([0-9]+)/$', producer_views.product_del),
     url(r'^my_products/add/$', producer_views.product_add),
@@ -115,7 +113,6 @@ urlpatterns = [
     url(r'^order/([0-9]+)/$', orders_views.order),
     url(r'^order/set_status_sent/([0-9]+)/$', orders_views.set_status_sent),
     url(r'^order/set_status_delivered/([0-9]+)/$', orders_views.set_status_delivered),
-
 
     # Payment views
     url(r'^order_payment/([0-9]+)/$', payment_views.order_payment),

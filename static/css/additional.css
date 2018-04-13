@@ -72,7 +72,7 @@ ul.ui-autocomplete {
 
 li.ui-menu-item {
     color: rgb(34, 34, 34) ;
-    cursor: default ;
+    cursor: pointer;
     display: list-item ;
     font-family: Verdana, Arial, sans-serif ;
     font-size: 12px ;
