@@ -77,7 +77,7 @@ const SignIn = () => (
                 </form>
 
                 <div className="box_btn clearfix">
-                    <a href="/sign_up" className="light_orange">Зарегистрироваться</a>
+                    <Link to={`/pick_role`} className="hight_orange">Зарегистрироваться</Link>
                 </div>
             </div>
         </div>
@@ -234,13 +234,7 @@ class PickRole extends React.Component {
                                 </a>
                             </div>
                         </div>
-                        <Router>
-                            <Switch>
-                                <Link to={`/sign_up`} className="btn hight_orange">Далее</Link>
-                                <Route path='/sign_up' component={SignUp}/>
-                            </Switch>
-                        </Router>
-                        {/*<a className="btn hight_orange" href="/sign_up">Далее</a>*/}
+                            <Link to={`/sign_up`} className="btn hight_orange">Далее</Link>
                     </div>
                 </div>
             </div>
@@ -256,12 +250,11 @@ class Main extends React.Component {
         return <main>
             <Router>
                 <Switch>
-                    <Route exact path='/' component={PickRole}/>
-                    <Route path='/sign_in' component={SignIn}/>
+                    <Route exact path='/react_index' component={SignIn}/>
+                    <Route path='/pick_role' component={PickRole}/>
                     <Route path='/sign_up' component={SignUp}/>
                 </Switch>
             </Router>
-            <PickRole/>
         </main>
     }
 }
