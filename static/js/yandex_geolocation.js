@@ -5,7 +5,8 @@ $(document).ready(function(){
         function get_name_by_kind(object, name, related_kind) {
             $.each(object, function(key, value){
                 if (value.kind === name) {
-                    $('.autocomplete_' + related_kind).val(value.name);
+                    overlord.find('.autocomplete_' + related_kind).val(value.name);
+                    //$('.autocomplete_' + related_kind).val(value.name);
                 }
             });
         }
