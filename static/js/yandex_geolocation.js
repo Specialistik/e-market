@@ -4,11 +4,8 @@ $(document).ready(function(){
     function populate_address(overlord, geoObject) {
         function get_name_by_kind(object, name, related_kind) {
             $.each(object, function(key, value){
-                //console.log(value, value.kind, value.name);
                 if (value.kind === name) {
-                    console.log(value.name, value.kind, name);
                     $('.autocomplete_' + related_kind).val(value.name);
-                    //return value.name;
                 }
             });
         }
