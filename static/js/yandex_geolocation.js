@@ -1,17 +1,29 @@
 $(document).ready(function(){
+
+
     function populate_address(overlord, geoObject) {
+        function get_name_by_kind(object, name, related_kind) {
+            $.each(object, function(key, value){
+                //console.log(value, value.kind, value.name);
+                if (value.kind === name) {
+                    console.log(value.name, value.kind, name);
+                    $('.autocomplete_' + related_kind).val(value.name);
+                    //return value.name;
+                }
+            });
+        }
         var address = geoObject.item.full_value.metaDataProperty.GeocoderMetaData.Address;
         var longlat = geoObject.item.longlat;
         var arr_longlat = longlat.split(' ');
         var lng = arr_longlat[0];
         var lat = arr_longlat[1];
 
-        //console.log(longlat);
         overlord.find('.autocomplete_index').val(address.postal_code);
-        overlord.find('.autocomplete_region').val(address.Components[2].name);
-        overlord.find('.autocomplete_city').val(address.Components[4].name);
-        overlord.find('.autocomplete_street').val(address.Components[5].name);
-        overlord.find('.autocomplete_house').val(address.Components[6].name);
+        get_name_by_kind(address.Components.slice(), 'house', 'house');
+        get_name_by_kind(address.Components.slice(), 'street', 'street');
+        get_name_by_kind(address.Components.slice(), 'locality', 'city');
+        get_name_by_kind(address.Components.slice(), 'province', 'region');
+
         overlord.find('.autocomplete_lng').val(lng);
         overlord.find('.autocomplete_lat').val(lat);
     }
