@@ -7,6 +7,11 @@ import {
   Switch,
 } from 'react-router-dom';
 
+import {
+    SignInForm, 
+    SignUpForm 
+} from './auth/forms.jsx';
+
 const Header = () => (
     <header id="header" className="header_wrapp clearfix">
         <div className="header_inner claerfix">
@@ -52,29 +57,7 @@ const SignIn = () => (
             </div>
 
             <div className="content_verification">
-                <form action="/sign_in" method="POST" className="wrapp_form_signin validate" noValidate>
-                    <div className="wrapp_verification_col">
-                        <div className="verification_box_col">
-                            <label htmlFor="" className="label1">E-mail</label>
-                            <div className="error_form_container">
-                                <input name="email" type="email" required/>
-                            </div>
-                        </div>
-
-                        <div className="verification_box_col">
-                            <label htmlFor="" className="label1">Пароль</label>
-                            <div className="error_form_container">
-                                <input name="password" type="password" required/>
-                            </div>
-                            {/*
-                            <p className="tooltip_txt1">
-                                {{error}}
-                            </p>
-                            */}
-                        </div>
-                    </div>
-                    <button className="btn hight_orange full_width">Войти</button>
-                </form>
+                <SignInForm/>
 
                 <div className="box_btn clearfix">
                     <Link to={`/pick_role`} className="hight_orange">Зарегистрироваться</Link>
@@ -92,72 +75,7 @@ const SignUp = () => (
             </div>
 
             <div className="content_verification">
-                <form action="/api/sign_up/" method="POST" className="wrapp_form_signup validate" id="signup_form" noValidate>
-                    <div className="wrapp_verification_col">
-                        <div className="verification_box_col">
-                            <label htmlFor="" className="label1">Наименование компании</label>
-                            <div className="error_form_container">
-                                <input name="company_name" type="text" required />
-                            </div>
-                        </div>
-
-                        <div className="verification_box_col">
-                            <label htmlFor="" className="label1">ИНН</label>
-                            <div className="error_form_container">
-                                <input name="inn" type="text" required placeholder="------------"
-                                       data-mask="999999999999" minLength="10" className="number_type_clear" />
-                            </div>
-                        </div>
-
-                        <div className="verification_box_col">
-                            <label htmlFor="" className="label1">Пароль</label>
-                            <div className="error_form_container">
-                                <input name="password" type="password" />
-                            </div>
-                        </div>
-
-                        <div className="verification_box_col">
-                            <label htmlFor="" className="label1">E-mail</label>
-                            <div className="error_form_container">
-                                <input name="email" type="email" />
-                            </div>
-                        </div>
-
-                        <div className="verification_box_col">
-                            <label htmlFor="" className="label1">Телефон</label>
-                            <div className="verification_row clearfix">
-                                <div className="verification_col code_country">
-                                    <div className="error_form_container">
-                                        <input type="tel" required value="+7" disabled />
-                                    </div>
-                                </div>
-
-                                <div className="verification_col phone_box">
-                                    <div className="error_form_container">
-                                        <input name="phone" type="tel" placeholder="( - - - )  - - -  - -  - -"
-                                               data-mask="(999) 999 99 99" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="verification_box_col">
-                            <div className="wrapp_privacy_policy">
-                                <input type="checkbox" id="privacy_policy" />
-                                    <label htmlFor="privacy_policy"></label>
-
-                                    <label htmlFor="privacy_policy" className="privacy_policy_txt">
-                                        Нажимая на кнопку «Отправить», я даю согласие на обработку персональных
-                                        данных
-                                        и соглашаюсь с <a href="/static/docs/confidential.pdf" target="_blank"
-                                                          className="hight_orange">политикой
-                                        конфиденциальности</a>
-                                    </label>
-                            </div>
-                        </div>
-                    </div>
-                    <button className="btn hight_orange full_width">Зарегистрироваться</button>
-                </form>
+            <SignUpForm />
             </div>
         </div>
     </div>
