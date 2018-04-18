@@ -1,5 +1,8 @@
 import React from 'react';
 import {render} from 'react-dom';
+import { Route, Redirect } from 'react-router';
+import login from './api.jsx';
+
 
 export class SignInForm extends React.Component {
     constructor(props) {
@@ -12,12 +15,16 @@ export class SignInForm extends React.Component {
     }
   
     handleEmailChange(event) {
-      //this.setState({value: event.target.value});
+      this.setState({value: event.target.value});
     }
   
     handlePasswordChange(event) {
-      //alert('A name was submitted: ' + this.state.value);
-      //event.preventDefault();
+        this.setState({value: event.target.value});
+    }
+
+    handleSubmit(event) {
+        login(this.state.email, this.state.password);
+        return <Redirect to="/categories"/>
     }
 
     render() {
@@ -49,7 +56,6 @@ export class SignUpForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = { email: '', password: '', privacy_check: false};
-
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePrivacyChange = this.handlePrivacyChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -64,12 +70,11 @@ export class SignUpForm extends React.Component {
     }
   
     handleSubmit(event) {
-      
       event.preventDefault();
     }
 
     render() {
-        <form action="/api/sign_up/" method="POST" className="wrapp_form_signup validate" id="signup_form" noValidate onSubmit={this.handleSubmit}>
+        return <form action="/api/sign_up/" method="POST" className="wrapp_form_signup validate" id="signup_form" noValidate onSubmit={this.handleSubmit}>
             <div className="wrapp_verification_col">
                 <div className="verification_box_col">
                     <label htmlFor="" className="label1">Наименование компании</label>
@@ -120,7 +125,7 @@ export class SignUpForm extends React.Component {
 
                 <div className="verification_box_col">
                     <div className="wrapp_privacy_policy">
-                        <input type="checkbox" id="privacy_policy" value={this.state.privacy_check} onChange={this.handlePrivacyChange}/>
+                        <input type="checkbox" id="privacy_policy" value={this.state.privacy_check} onChange={this.handlePrivacyChange} />
                             <label htmlFor="privacy_policy"></label>
 
                             <label htmlFor="privacy_policy" className="privacy_policy_txt">

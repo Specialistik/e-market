@@ -2,8 +2,7 @@
 import axios from 'axios';
 import _ from 'lodash';
 import store from '../store';
-import { setToken } from '../actions'
-import { URL, SIGN_IN, SIGN_UP } from '../config/Api';
+import { setToken } from '../actions';
 
 export function InvalidCredentialsException(message) {
     this.message = message;
@@ -13,7 +12,7 @@ export function InvalidCredentialsException(message) {
 export function login(username, password) {
   return axios
     //.post(URL + LOGIN, {
-    .post('/api' + SIGN_IN, {
+    .post('/api/sign_in', {
       username,
       password
     })

@@ -48,38 +48,47 @@ class ProducerCheckEntity extends React.Component {
     }
 }
 
-const SignIn = () => (
-    <div id="content" className="content_bg verification_content"
-         style={contentStyle}>
-        <div className="wrapp_verification">
-            <div className="top_verification">
-                <h3 className="title_verification">Вход в систему</h3>
-            </div>
+class SignIn extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render () {
+        return <div id="content" className="content_bg verification_content" style={contentStyle}>
+            <div className="wrapp_verification">
+                <div className="top_verification">
+                    <h3 className="title_verification">Вход в систему</h3>
+                </div>
 
-            <div className="content_verification">
-                <SignInForm/>
+                <div className="content_verification">
+                    <SignInForm/>
 
-                <div className="box_btn clearfix">
-                    <Link to={`/pick_role`} className="hight_orange">Зарегистрироваться</Link>
+                    <div className="box_btn clearfix">
+                        <Link to={`/pick_role`} className="hight_orange">Зарегистрироваться</Link>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-);
+    }
+};
 
-const SignUp = () => (
-    <div id="content" className="content_bg verification_content" style={contentStyle}>
-        <div className="wrapp_verification">
-            <div className="top_verification">
-                <h3 className="title_verification">Регистрация</h3>
-            </div>
+class SignUp extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        return <div id="content" className="content_bg verification_content" style={contentStyle}>
+            <div className="wrapp_verification">
+                <div className="top_verification">
+                    <h3 className="title_verification">Регистрация</h3>
+                </div>
 
-            <div className="content_verification">
-            <SignUpForm />
+                <div className="content_verification">
+                    <SignUpForm />
+                </div>
             </div>
         </div>
-    </div>
-);
+    }
+};
 
 class PickRole extends React.Component {
     constructor(props) {
