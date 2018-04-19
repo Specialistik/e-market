@@ -1,5 +1,5 @@
 // file: src/actions/index.js
-import * as actionType from './types';
+import * as actionType from './types.jsx';
 
 export const setToken = (data) => {
   return {

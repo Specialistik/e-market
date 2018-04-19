@@ -1,46 +1,47 @@
 import React from 'react';
 import {render} from 'react-dom';
 import { Route, Redirect } from 'react-router';
-import login from './api.jsx';
+import { login, register } from './api.jsx';
 
 
 export class SignInForm extends React.Component {
     constructor(props) {
-      super(props);
-      this.state = {email: '', password: ''};
-  
-      this.handleEmailChange = this.handleEmailChange.bind(this);
-      this.handlePasswordChange = this.handlePasswordChange.bind(this);
-      this.handleSubmit = this.handleSubmit.bind(this);
+        super(props);
+        this.state = {email: '', password: ''};
+    
+        this.handleEmailChange = this.handleEmailChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
   
     handleEmailChange(event) {
-      this.setState({value: event.target.value});
+        this.setState({email: event.target.value});
     }
   
     handlePasswordChange(event) {
-        this.setState({value: event.target.value});
+        this.setState({password: event.target.value});
     }
 
     handleSubmit(event) {
+        event.preventDefault();
         login(this.state.email, this.state.password);
-        return <Redirect to="/categories"/>
+        return <Redirect to='/categories/'/>
     }
 
     render() {
-        return <form action="/sign_in" method="POST" className="wrapp_form_signin validate" noValidate onSubmit={this.handleSubmit}>
+        return <form action="/api/sign_in/" method="POST" className="wrapp_form_signin validate" noValidate onSubmit={this.handleSubmit}>
             <div className="wrapp_verification_col">
                 <div className="verification_box_col">
                     <label htmlFor="" className="label1">E-mail</label>
                     <div className="error_form_container">
-                        <input name="email" type="email" required value={this.state.email} onChange={this.handleEmailChange}/>
+                        <input name="email" type="email" required value={this.props.email} onChange={this.handleEmailChange}/>
                     </div>
                 </div>
 
                 <div className="verification_box_col">
                     <label htmlFor="" className="label1">Пароль</label>
                     <div className="error_form_container">
-                        <input name="password" type="password" required value={this.state.password} onChange={this.handlePasswordChange}/>
+                        <input name="password" type="password" required value={this.props.password} onChange={this.handlePasswordChange}/>
                     </div>
                     <p className="tooltip_txt1">
                     </p>
@@ -70,7 +71,8 @@ export class SignUpForm extends React.Component {
     }
   
     handleSubmit(event) {
-      event.preventDefault();
+        event.preventDefault();
+        return register(this.state.company_name, this.state.inn, this.state.password, this.state.email, this.state.phone);
     }
 
     render() {
@@ -87,21 +89,21 @@ export class SignUpForm extends React.Component {
                     <label htmlFor="" className="label1">ИНН</label>
                     <div className="error_form_container">
                         <input name="inn" type="text" required placeholder="------------"
-                                data-mask="999999999999" minLength="10" className="number_type_clear" value={this.state.inn}/>
+                                data-mask="999999999999" minLength="10" className="number_type_clear" value={this.props.inn}/>
                     </div>
                 </div>
 
                 <div className="verification_box_col">
                     <label htmlFor="" className="label1">Пароль</label>
                     <div className="error_form_container">
-                        <input name="password" type="password" value={this.state.password}/>
+                        <input name="password" type="password" value={this.props.password}/>
                     </div>
                 </div>
 
                 <div className="verification_box_col">
                     <label htmlFor="" className="label1">E-mail</label>
                     <div className="error_form_container">
-                        <input name="email" type="email" value={this.state.email}/>
+                        <input name="email" type="email" value={this.props.email}/>
                     </div>
                 </div>
 
@@ -117,7 +119,7 @@ export class SignUpForm extends React.Component {
                         <div className="verification_col phone_box">
                             <div className="error_form_container">
                                 <input name="phone" type="tel" placeholder="( - - - )  - - -  - -  - -"
-                                        data-mask="(999) 999 99 99" value={this.state.tel}/>
+                                        data-mask="(999) 999 99 99" value={this.props.tel}/>
                             </div>
                         </div>
                     </div>

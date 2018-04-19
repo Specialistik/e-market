@@ -1,16 +1,22 @@
 import React from 'react';
 import {render} from 'react-dom';
+
 import {
   BrowserRouter as Router,
   Link,
   Route,
   Switch,
+  Redirect
 } from 'react-router-dom';
 
 import {
     SignInForm, 
     SignUpForm 
 } from './auth/forms.jsx';
+
+import Categories from './core/views.jsx';
+import store from './store.jsx'
+//import loggedIn from './auth/api.jsx';
 
 const Header = () => (
     <header id="header" className="header_wrapp clearfix">
@@ -53,6 +59,11 @@ class SignIn extends React.Component {
         super(props);
     }
     render () {
+        {/*}
+        if (store.getState().token) {
+            return <Redirect to='/categories/' />
+        }
+        */}
         return <div id="content" className="content_bg verification_content" style={contentStyle}>
             <div className="wrapp_verification">
                 <div className="top_verification">
@@ -69,7 +80,7 @@ class SignIn extends React.Component {
             </div>
         </div>
     }
-};
+}
 
 class SignUp extends React.Component {
     constructor(props) {
@@ -88,7 +99,7 @@ class SignUp extends React.Component {
             </div>
         </div>
     }
-};
+}
 
 class PickRole extends React.Component {
     constructor(props) {
@@ -101,10 +112,8 @@ class PickRole extends React.Component {
     }
 
     pickedUp() {
-        if (this.state.producer || this.state.customer) {
-            return true
-        }
-        return false
+        return this.state.producer || this.state.customer;
+
     }
     
     goToSignUp() {
@@ -177,9 +186,10 @@ class Main extends React.Component {
         return <main>
             <Router>
                 <Switch>
-                    <Route exact path='/react_index' component={SignIn}/>
+                    <Route exact path='/react_index' component={SignIn} />
                     <Route path='/pick_role' component={PickRole}/>
                     <Route path='/sign_up' component={SignUp}/>
+                    <Route path='/categories/' component={Categories}/>
                 </Switch>
             </Router>
         </main>

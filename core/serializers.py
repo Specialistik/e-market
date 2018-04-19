@@ -3,6 +3,7 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 
 from core.models import User, UserProfile, Address
+from catalogs.models import Category
 
 
 class SignupSerializer(serializers.Serializer):
@@ -80,3 +81,20 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = ('pk', 'phone', 'inn', 'ogrn', 'kpp', 'physical_address', 'juridical_address')
         read_only_fields = ('pk',)
         related_fields = ['physical_address']
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    """
+    def create(self, validated_data):
+        return Category.objects.create(**validated_data)
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get('name', instance.name)
+        instance.pid = validated_data.get('pid', instance.pid)
+        instance.image = validated_data.get('image', instance.image)
+        instance.save()
+        return instance
+    """
+    class Meta:
+        model = Category
+        fields = ('id', 'name', 'pid', 'image')

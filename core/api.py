@@ -2,12 +2,19 @@
 from django.conf import settings
 from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
+from django.http import JsonResponse
 
+from rest_framework import permissions
+from rest_framework import mixins
+from rest_framework import generics
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .serializers import SignupSerializer
+
+from .serializers import SignupSerializer, CategorySerializer
 from .models import User, UserProfile
+from catalogs.models import Category
 
 
 @api_view(['POST'])
@@ -42,7 +49,40 @@ def sign_up(request):
             email_message += u"Роль: торговая точка\n"
 
         if request.get_host() != '127.0.0.1:8000':
-            send_mail(u'Регистрация нового пользователя на сайте the-sklad.ru', email_message, settings.EMAIL_HOST_USER, ['ceo@the-sklad.ru', ])
+            send_mail(u'Регистрация нового пользователя на сайте the-sklad.ru', email_message,
+                      settings.EMAIL_HOST_USER, ['ceo@the-sklad.ru', ])
         return Response(serialized_user.data, status=status.HTTP_201_CREATED)
     else:
         return Response(serialized_user.errors, status=status.HTTP_400_BAD_REQUEST)
+
+"""
+class CategoryList(mixins.ListModelMixin, generics.GenericAPIView):
+    queryset = Category.objects.filter(pid__isnull=True)
+    serializer_class = CategorySerializer
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+
+    def get(self, request, *args, **kwargs):
+"""
+
+
+def categories(request):
+    return JsonResponse({
+        'categories': [{
+            'id': cat.id,
+            'name': cat.name,
+            'image': cat.get_image_url()
+        } for cat in Category.objects.filter(pid__isnull=True)]
+    })
+    #return JsonResponse({'categories': (for cat in Category.objects.filter(pid__isnull=True))})
+
+
+def subcategories(request, pk):
+    return JsonResponse({
+        'categories': [{
+            'id': cat.id,
+            'name': cat.name,
+            'image': cat.get_image_url()} for cat in Category.objects.filter(pid__id=pk)
+        ],
+        'current_cat': Category.objects.get(pk=pk).name,
+    })
+

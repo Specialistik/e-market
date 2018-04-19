@@ -7,10 +7,9 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 from rest_framework.authtoken import views as auth_views
-from core import api as core_api
-
 from rest_framework import routers
 
+from core import api as core_api
 
 import core.views as core_views
 import catalogs.views as catalog_views
@@ -21,15 +20,9 @@ import payments.views as payment_views
 import manager.views as manager_views
 import system_supervisor.views as supervisor_views
 
-#import core.api as core_api
 
-#schema_view = get_swagger_view(title='The sklad API')
-
-
-#router = routers.DefaultRouter(trailing_slash=False)
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'category', catalog_views.CategoryViewSet)
-#router.register(r'profile', core_api.ProfileViewSet)
 
 
 #profile_router = NestedDefaultRouter(router, r'profile', lookup='profile')
@@ -40,12 +33,15 @@ urlpatterns = [
     # React views
     url(r'^react_index', core_views.react_index),
 
-    # Rest framework API views,
+    # REST framework API views,
     url(r'^api/sign_up/$', core_api.sign_up),
     url(r'^api/sign_in/$', auth_views.obtain_auth_token),
-    #url(r'^api/()$', core_api.api_endpoint),
+    url(r'^api/categories/$', core_api.categories),
+    url(r'^api/subcategories/([0-9]+)/$', core_api.subcategories),
 
     #url(r'^api-token-auth/$', drf_views.obtain_auth_token, name='auth'),
+
+    #-----------------------------------------------------------
     # Old school views, not to break the app in the process
     url(r'^admin/', admin.site.urls),
 
@@ -97,7 +93,6 @@ urlpatterns = [
     url(r'^trade_point/([0-9]+)/$', customer_views.trade_point_edit),
     url(r'^trade_point/([0-9]+)/del/$', customer_views.trade_point_del),
 
-    #url(r'^basket$', customer_views.basket),
     url(r'^basket$', customer_views.basket),
     url(r'^basket/trade_points$', customer_views.basket_trade_points),
 
