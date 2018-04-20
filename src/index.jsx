@@ -23,25 +23,32 @@ const Header = () => (
     </header>
 );
 
+class Index extends React.Component {
+    constructor(props) {
+        super(props);
+        console.log(userStore.getState(), 'hexagon');
+        this.state = userStore.getState();
+    }
+    render() {
+        if ((this.state !== null) && (this.state.token !== undefined)) {
+            return <Categories/>
+        } else {
+            return <SignIn/>
+        }
+    }
+}
+
 class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = userStore.getState();
     }
-    componentDidMount() {
-        /*
-        this.subscribe = userStore.subscribe(() =>
-            this.setState(userStore.getState())
-        );
-        */
-        this.state = userStore.getState();
-        console.log(this.state, 'look here');
-    }
+
     render () {
         return <main>
             <Router>
                 <Switch>
-                    <Route exact path='/react_index' component={SignIn} />
+                    <Route exact path='/react_index' component={Index} />
                     <Route path='/pick_role' component={PickRole}/>
                     <Route path='/sign_up' component={SignUp}/>
                     <Route path='/categories/' component={Categories}/>
