@@ -4,13 +4,12 @@ from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from django.http import JsonResponse
 
-from rest_framework import permissions
-from rest_framework import mixins
-from rest_framework import generics
-from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework import status, parsers, renderers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
+from rest_framework.authtoken.views import ObtainAuthToken, Token
+from rest_framework.authtoken.serializers import AuthTokenSerializer
 
 from .serializers import SignupSerializer, CategorySerializer
 from .models import User, UserProfile
@@ -55,14 +54,26 @@ def sign_up(request):
     else:
         return Response(serialized_user.errors, status=status.HTTP_400_BAD_REQUEST)
 
-"""
-class CategoryList(mixins.ListModelMixin, generics.GenericAPIView):
-    queryset = Category.objects.filter(pid__isnull=True)
-    serializer_class = CategorySerializer
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
 
-    def get(self, request, *args, **kwargs):
-"""
+class SignIn(APIView):
+    throttle_classes = ()
+    permission_classes = ()
+    parser_classes = (parsers.FormParser, parsers.MultiPartParser, parsers.JSONParser,)
+    renderer_classes = (renderers.JSONRenderer,)
+    serializer_class = AuthTokenSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.serializer_class(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.validated_data['user']
+        token, created = Token.objects.get_or_create(user=user)
+        user = authenticate(username=request.data['username'], password=request.data['password'])
+        if user is not None:
+            login(request, user)
+        store = {'token': token.key}
+        if hasattr(request.user, 'profile'):
+            store['role'] = request.user.profile.role
+        return Response(store)
 
 
 def categories(request):
@@ -73,7 +84,6 @@ def categories(request):
             'image': cat.get_image_url()
         } for cat in Category.objects.filter(pid__isnull=True)]
     })
-    #return JsonResponse({'categories': (for cat in Category.objects.filter(pid__isnull=True))})
 
 
 def subcategories(request, pk):
@@ -86,3 +96,5 @@ def subcategories(request, pk):
         'current_cat': Category.objects.get(pk=pk).name,
     })
 
+
+sign_in = SignIn.as_view()

@@ -4,6 +4,11 @@ var path = require('path');
 var BUILD_DIR = path.resolve(__dirname, 'static/js/public');
 var APP_DIR = path.resolve(__dirname, 'src');
 
+var devFlagPlugin = new webpack.DefinePlugin({
+  __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false'))
+});
+
+
 var config = {
   entry: APP_DIR + '/index.jsx',
   output: {
@@ -17,8 +22,9 @@ var config = {
         include : APP_DIR,
         loader : 'babel-loader'
       }
-    ]
-  }
+    ],
+  },
 };
+
 
 module.exports = config;

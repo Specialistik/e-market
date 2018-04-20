@@ -2,7 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import { Route, Redirect } from 'react-router';
 import { login, register } from './api.jsx';
-
+import { Categories } from './views.jsx';
 
 export class SignInForm extends React.Component {
     constructor(props) {
@@ -25,7 +25,7 @@ export class SignInForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         login(this.state.email, this.state.password);
-        return <Redirect to='/categories/'/>
+        this.render(<Categories/>)
     }
 
     render() {

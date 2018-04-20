@@ -5,7 +5,7 @@ import {render} from 'react-dom';
 class BackToCats extends React.Component {
     constructor(props) {
         super(props);
-        state = {category: props.category}
+        this.setState({category: props.category});
     }
 
     render() {
@@ -32,29 +32,28 @@ class CategoryTitle extends React.Component {
     }
 }
 
-class Categories extends React.Component {
+export class Categories extends React.Component {
     constructor(props) {
         super(props);
-        state = {
+        this.setState = {
             categories: [],
             pid: props.pid || null
-        }
+        };
+        this.loadCategories = this.loadCategories.bind(this);
+        this.loadSubCategories = this.loadSubCategories.bind(this);
     }
 
     async loadCategories() {
-        let json_response = await fetch("/api/categories/").then(response =>response.json()),
-        
-        this.setState({
-            categories: ajson_response.categories
-        })
+        let data = await (await fetch("/api/categories/")).json(); //then(response => this.setState({categories: response.json().categories}));
+        this.setState(data);
+        //return data
     }
 
     async loadSubCategories() {
-        let json_response = await fetch("/api/subcategories/" + this.state.pid + '/').then(response =>response.json()),
-        this.setState({
-            categories: json_response.categories,
-            current_cat: json_response.current_cat
-        })
+        await fetch("/api/subcategories/" + this.state.pid + '/').then(response => this.setState({
+            categories: response.json().categories,
+            current_cat: response.json().current_cat
+        }));
     }
  
     componentDidMount() {
@@ -67,8 +66,6 @@ class Categories extends React.Component {
 
     render() {
         return <div id="content" className="wrapp_content">
-            
-
             <form action="/products/search/" method="get" className="wrapp_filter">
                 <div className="wrapp_search">
                     <input type="text" name="search_string" />
@@ -91,7 +88,7 @@ class Categories extends React.Component {
                     {this.state.categories.map((category, index) => (
                         <figure className="col_products category_products" data-mh="col-products">
                             <div className="products_img" data-mh="products-img">
-                                <a href={'/category/' + category.id + '/'}>
+                                <a href={'/subcategories/' + category.id + '/'}>
                                     <img src="{ category.image }" alt="{ category.name }"/>
                                 </a>
                             </div>
@@ -106,7 +103,7 @@ class Categories extends React.Component {
                         <ul className="products_list">
                             {this.state.categories.map((category, index) => (
                                 <li>
-                                    <a href={"/category/" + category.id + "/"}>
+                                    <a href={"/subcategories/" + category.id + "/"}>
                                         <span><img src={category.image}/></span>
                                         { category.name }
                                     </a>
@@ -121,10 +118,10 @@ class Categories extends React.Component {
 }
 
 
-class Subcategories extends React.Component {
+export class Subcategories extends React.Component {
     constructor(props) {
         super(props);
-        state = {
+        this.state = {
             categories: [],
             pid: props.pid
         }

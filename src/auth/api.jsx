@@ -2,9 +2,9 @@
 import React from 'react';
 import axios from 'axios';
 import _ from 'lodash';
-import store from '../store.jsx';
-import { setToken } from '../actions/index.jsx'
-import { Route, Redirect } from 'react-router';
+import userStore from '../store';
+import constants from '../constants';
+import { Categories} from '../core/views.jsx';
 
 export function InvalidCredentialsException(message) {
     this.message = message;
@@ -18,8 +18,7 @@ export function login(username, password) {
       password
     })
     .then(function (response) {
-      store.dispatch(setToken(response.data.token));
-      return <Redirect to="/categories/"/>;
+      userStore.dispatch({type:constants.SET_TOKEN, token: response.data.token, role: response.data.role});
     })
     .catch(function (error) {
       // raise different exception if due to invalid credentials
@@ -28,11 +27,6 @@ export function login(username, password) {
       }
       throw error;
     });
-}
-
-export function loggedIn() {
-    //console.log(store.getState().token);
-    return store.default.getState().token == null;
 }
 
 export function register(company_name, inn, password, email, phone) {
@@ -46,7 +40,7 @@ export function register(company_name, inn, password, email, phone) {
     })
     .then(function (response) {
         login(email, password);
-    //store.dispatch(setToken(response.data.token));
+        
     })
     .catch(function (error) {
     // raise different exception if due to invalid credentials

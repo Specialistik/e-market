@@ -35,7 +35,7 @@ urlpatterns = [
 
     # REST framework API views,
     url(r'^api/sign_up/$', core_api.sign_up),
-    url(r'^api/sign_in/$', auth_views.obtain_auth_token),
+    url(r'^api/sign_in/$', core_api.sign_in),
     url(r'^api/categories/$', core_api.categories),
     url(r'^api/subcategories/([0-9]+)/$', core_api.subcategories),
 
