@@ -2,6 +2,8 @@
 import React from 'react';
 import {render} from 'react-dom';
 
+import { Link } from 'react-router-dom';
+
 class BackToCats extends React.Component {
     constructor(props) {
         super(props);
@@ -14,7 +16,7 @@ class BackToCats extends React.Component {
         return <div class="box_title_button">
             <h3 class="title_line"><span>{ this.category.name }</span></h3>
 
-            <a href="/categories" class="btn light_orange icon_right large_width">
+            <a href={<Link to='categories'/>} class="btn light_orange icon_right large_width">
             <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
                 Назад к категориям
             </a>
@@ -54,8 +56,8 @@ export class Categories extends React.Component {
         let data = await (await fetch("/api/subcategories/" + pid + '/')).json(); 
         //await fetch("/api/subcategories/" + pid + '/').then(response => this.setState({
         this.setState({
-            categories: response.json().categories,
-            current_cat: response.json().current_cat
+            categories: data.categories,
+            current_cat: data.current_cat
         });
     }
  
@@ -91,11 +93,12 @@ export class Categories extends React.Component {
                     {this.state.categories.map((category, index) => (
                         <figure className="col_products category_products" data-mh="col-products">
                             <div className="products_img" data-mh="products-img">
-                                <a href={'/subcategories/' + category.id + '/'}>
-                                    <img src="{ category.image }" alt="{ category.name }"/>
-                                </a>
+                                <Link to={'/subcategories/' + category.id}>
+                                    <img src={ category.image } alt={ category.name }/>
+                                    { category.name }
+                                </Link>
                             </div>
-s
+
                             <figcaption>
                                 <h3 className="light_grey products_title"> {category.name}</h3>
                             </figcaption>
@@ -106,10 +109,10 @@ s
                         <ul className="products_list">
                             {this.state.categories.map((category, index) => (
                                 <li>
-                                    <a href={"/subcategories/" + category.id + "/"}>
-                                        <span><img src={category.image}/></span>
+                                    <Link to={'/subcategories/' + category.id}> 
+                                        <span><img src={ category.image } alt={ category.name }/></span>
                                         { category.name }
-                                    </a>
+                                    </Link>
                                 </li>
                               ))}
                         </ul>
@@ -123,13 +126,26 @@ s
 
 export class Subcategories extends React.Component {
     constructor(props) {
+        console.log('subcat constructor', props);
         super(props);
         this.state = {
             categories: [],
-            pid: props.pid
+            pid: this.props.match.params.pid
         }
-    }
 
+    }
+/*
+    componentDidMount() {
+      const { match: { params } } = this.props;
+
+      axios.get(`/api/users/${params.userId}`)
+        .then(({ data: user }) => {
+          console.log('user', user);
+
+          this.setState({ user });
+        });
+    }
+*/
     render() {
         return <Categories pid={this.state.pid} />
     }
