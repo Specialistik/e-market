@@ -9,7 +9,7 @@ import {
   } from 'react-router-dom';
 
 import { SignIn, SignUp, PickRole } from './auth/views.jsx';
-import { Categories, Subcategories } from './core/views.jsx';
+import { Categories, Subcategories, Products } from './core/views.jsx';
 
 const Header = () => (
     <header id="header" className="header_wrapp clearfix">
@@ -61,8 +61,9 @@ class Main extends React.Component {
                     <Route exact path='/react_index' component={Index} />
                     <Route path='/pick_role' component={PickRole}/>
                     <Route path='/sign_up' component={SignUp}/>
-                    <Route path='/categories/' component={Categories}/>
-                    <Route path='/subcategories/:pid' component={Subcategories}/>
+                    <Route exact path='/categories/' component={Categories}/>
+                    <Route path='/categories/:pid' component={Subcategories}/>
+                    <Route path='/products/:cat_id' component={Products}/>
                 </Switch>
             </Router>
         </main>

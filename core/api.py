@@ -14,6 +14,7 @@ from rest_framework.authtoken.serializers import AuthTokenSerializer
 from .serializers import SignupSerializer, CategorySerializer
 from .models import User, UserProfile
 from catalogs.models import Category
+from customer.models import ProductCard, TradePoint
 
 
 @api_view(['POST'])
@@ -76,6 +77,11 @@ class SignIn(APIView):
         return Response(store)
 
 
+def sign_out(request):
+    logout(request)
+    return JsonResponse({'role': None, 'token': None})
+
+
 def categories(request):
     return JsonResponse({
         'categories': [{
@@ -97,9 +103,30 @@ def subcategories(request, pk):
     })
 
 
-def sign_out(request):
-    logout(request)
-    return JsonResponse({'role': None, 'token': None})
+def products(request, cat_id):
+    current_category = Category.objects.get(pk=cat_id)
+    if hasattr(request.user, 'profile'):
+        if request.user.profile.role == 'customer':
+            for product in ProductCard.objects.filter(category=current_category):
+                product.seen.add(request.user.id)
+                product.save()
+
+    return JsonResponse({
+        'category': {
+            'pid': current_category.pid_id,
+            'name': current_category.name,
+        },
+        'products': [{
+            'id': product.id,
+            'name': product.name,
+            'minimum_amount': product.minimum_amount,
+            'description': product.description,
+            'image': product.get_image_url(),
+            'producer_price': product.producer_price,
+            'product_weight': product.weight,
+        } for product in ProductCard.objects.filter(category_id=cat_id)]
+    })
+    # 'trade_points': TradePoint.objects.filter(customer_id=request.user.id)
 
 
 sign_in = SignIn.as_view()

@@ -4,7 +4,7 @@ const initialState = {
     role: null
 }
 const userReducer = (state, action) => {
-    console.log(state, action); //Temporarily logging all actions
+    console.log('reducer action log', state, action); //Temporarily logging all actions
     switch (action.type) {
         case constants.CREATE_ACCOUNT:
             return initialState;

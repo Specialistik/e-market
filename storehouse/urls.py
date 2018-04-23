@@ -37,7 +37,8 @@ urlpatterns = [
     url(r'^api/sign_up/$', core_api.sign_up),
     url(r'^api/sign_in/$', core_api.sign_in),
     url(r'^api/categories/$', core_api.categories),
-    url(r'^api/subcategories/([0-9]+)/$', core_api.subcategories),
+    url(r'^api/categories/([0-9]+)/$', core_api.subcategories),
+    url(r'^api/products/([0-9]+)/$', core_api.products),
 
     #url(r'^api-token-auth/$', drf_views.obtain_auth_token, name='auth'),
 
