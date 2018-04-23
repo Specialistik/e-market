@@ -38,10 +38,13 @@ export class SignIn extends React.Component {
     }
 
     render () {
-        console.log(this);
-        if (this.state !== null) {
+        console.log('render sign in', this.state)
+        //console.log(this);
+        /*
+        if (this.state.token !== null) {
             return <Categories />
         }
+        */
         return <div id="content" className="content_bg verification_content" style={contentStyle}>
             <div className="wrapp_verification">
                 <div className="top_verification">

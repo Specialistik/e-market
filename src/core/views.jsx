@@ -5,7 +5,9 @@ import {render} from 'react-dom';
 class BackToCats extends React.Component {
     constructor(props) {
         super(props);
-        this.setState({category: props.category});
+        this.state = {
+            category: props.category
+        };
     }
 
     render() {
@@ -35,7 +37,7 @@ class CategoryTitle extends React.Component {
 export class Categories extends React.Component {
     constructor(props) {
         super(props);
-        this.setState = {
+        this.state = {
             categories: [],
             pid: props.pid || null
         };
@@ -44,23 +46,24 @@ export class Categories extends React.Component {
     }
 
     async loadCategories() {
-        let data = await (await fetch("/api/categories/")).json(); //then(response => this.setState({categories: response.json().categories}));
+        let data = await (await fetch("/api/categories/")).json(); 
         this.setState(data);
-        //return data
     }
 
-    async loadSubCategories() {
-        await fetch("/api/subcategories/" + this.state.pid + '/').then(response => this.setState({
+    async loadSubCategories(pid) {
+        let data = await (await fetch("/api/subcategories/" + pid + '/')).json(); 
+        //await fetch("/api/subcategories/" + pid + '/').then(response => this.setState({
+        this.setState({
             categories: response.json().categories,
             current_cat: response.json().current_cat
-        }));
+        });
     }
  
     componentDidMount() {
         if (this.state.pid === null) {
             this.loadCategories();
         } else {
-            this.loadSubCategories();
+            this.loadSubCategories(this.state.pid);
         }
     }
 
@@ -92,7 +95,7 @@ export class Categories extends React.Component {
                                     <img src="{ category.image }" alt="{ category.name }"/>
                                 </a>
                             </div>
-
+s
                             <figcaption>
                                 <h3 className="light_grey products_title"> {category.name}</h3>
                             </figcaption>

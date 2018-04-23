@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.conf import settings
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
 from django.http import JsonResponse
 
@@ -95,6 +95,11 @@ def subcategories(request, pk):
         ],
         'current_cat': Category.objects.get(pk=pk).name,
     })
+
+
+def sign_out(request):
+    logout(request)
+    return JsonResponse({'role': None, 'token': None})
 
 
 sign_in = SignIn.as_view()

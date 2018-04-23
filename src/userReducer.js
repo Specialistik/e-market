@@ -11,7 +11,8 @@ const userReducer = (state, action) => {
         case constants.SET_TOKEN:
             return {token: action.token, role: action.role};
         default:
-            return state;
+            // this might fuck up everything! return state -- initially
+            return initialState;
     }
 }
 

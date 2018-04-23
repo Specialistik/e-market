@@ -9,7 +9,7 @@ import {
   } from 'react-router-dom';
 
 import { SignIn, SignUp, PickRole } from './auth/views.jsx';
-import { Categories } from './core/views.jsx';
+import { Categories, Subcategories } from './core/views.jsx';
 
 const Header = () => (
     <header id="header" className="header_wrapp clearfix">
@@ -26,11 +26,21 @@ const Header = () => (
 class Index extends React.Component {
     constructor(props) {
         super(props);
-        console.log(userStore.getState(), 'hexagon');
         this.state = userStore.getState();
     }
+
+    componentDidMount() {
+        this.unsubscribe = userStore.subscribe(() =>
+        this.setState({token: userStore.getState().token, role : userStore.getState().role})
+    )}
+
+    componentWillUnmount() {
+        this.unsubscribe();
+    }
+
     render() {
-        if ((this.state !== null) && (this.state.token !== undefined)) {
+        console.log(this.state);
+        if (this.state.token !== null) {
             return <Categories/>
         } else {
             return <SignIn/>
@@ -52,6 +62,7 @@ class Main extends React.Component {
                     <Route path='/pick_role' component={PickRole}/>
                     <Route path='/sign_up' component={SignUp}/>
                     <Route path='/categories/' component={Categories}/>
+                    <Route path='/subcategories/:pid' component={Subcategories}/>
                 </Switch>
             </Router>
         </main>
