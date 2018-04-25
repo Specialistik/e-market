@@ -13,19 +13,17 @@ const hiddenStyle = {
 class BackToCats extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            category: props.category
-        };
+        this.state = { cat_name: props.cat_name || null};
     }
 
     render() {
         return <div class="box_title_button">
-            <h3 class="title_line"><span>{ this.category.name }</span></h3>
+            <h3 class="title_line"><span>{ this.state.cat_name }</span></h3>
 
-            <a href={<Link to='categories'/>} class="btn light_orange icon_right large_width">
-            <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+            <Link to='categories' class="btn light_orange icon_right large_width">
+                <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
                 Назад к категориям
-            </a>
+            </Link>
         </div>
     }
 }
@@ -47,36 +45,46 @@ export class Categories extends React.Component {
         super(props);
         this.state = {
             categories: [],
-            pid: props.pid || null
+            pid: (props.match)?props.match.params.pid:null,
+            cat_name: '',
         };
-        this.setState(userStore.getState());
-        this.loadCategories = this.loadCategories.bind(this);
-        this.loadSubCategories = this.loadSubCategories.bind(this);
+        this.fetchCats = this.fetchCats.bind(this);
+    }
+   
+    fetchCats(url) {
+        //todo: implement scroll, hasErrored
+        this.setState({isLoading: true});
+        fetch(url)
+            .then((response) => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                this.setState({ isLoading: false });
+                return response;
+            }).then((response) => response.json())
+            .then((cat_array, current_cat) => this.setState({ 
+                categories: cat_array.categories, 
+                cat_name: current_cat || null}))
+            .catch(() => this.setState({ hasErrored: true }))
     }
 
-    async loadCategories() {
-        let data = await (await fetch("/api/categories/")).json(); 
-        this.setState(data);
-    }
-
-    async loadSubCategories(pid) {
-        let data = await (await fetch("/api/categories/" + pid + '/')).json(); 
-        this.setState({
-            categories: data.categories,
-            current_cat: data.current_cat
-        });
-    }
- 
     componentDidMount() {
         if (this.state.pid === null) {
-            this.loadCategories();
+            this.fetchCats("/api/categories/");
         } else {
-            this.loadSubCategories(this.state.pid);
+            this.fetchCats("/api/categories/" + this.state.pid + '/');
         }
     }
 
     render() {
         return <div id="content" className="wrapp_content">
+
+            {/* TODO: fix that after I calm down
+            { if (this.state.pid) ? 
+                 <BackToCats cat_name={this.state.cat_name} />
+            }
+            */}
+
             <form action="/products/search/" method="get" className="wrapp_filter">
                 <div className="wrapp_search">
                     <input type="text" name="search_string" />
@@ -99,14 +107,14 @@ export class Categories extends React.Component {
                     {this.state.categories.map((category, index) => (
                         <figure className="col_products category_products" data-mh="col-products">
                             <div className="products_img" data-mh="products-img">
-                                <Link to={(this.state.pid===null?'/categories/':'/products/') + category.id}>
-                                    <img src={ category.image } alt={ category.name }/>
+                                <Link to={(this.state.pid===null?'/categories/':'/products/') + category.id + '/'}>
+                                    <img src={ category.image } />
                                     { category.name }
                                 </Link>
                             </div>
 
                             <figcaption>
-                                <h3 className="light_grey products_title"> {category.name}</h3>
+                                <h3 className="light_grey products_title"> { category.name }</h3>
                             </figcaption>
                         </figure>
                     ))}
@@ -115,8 +123,8 @@ export class Categories extends React.Component {
                         <ul className="products_list">
                             {this.state.categories.map((category, index) => (
                                 <li>
-                                    <Link to={(this.state.pid===null?'/categories/':'/products/') + category.id}>
-                                        <span><img src={ category.image } alt={ category.name }/></span>
+                                    <Link to={(this.state.pid===null?'/categories/':'/products/') + category.id + '/'}>
+                                        <span><img src={ category.image } /></span>
                                         { category.name }
                                     </Link>
                                 </li>
@@ -149,15 +157,16 @@ export class Products extends React.Component {
         super(props);
         this.state = {
             products: [],
-            cat_id: this.props.match.params.cat_id,
+            cat_id: this.props.match.params.cat_id || null,
             isCustomerOrManager: (userStore.getState().role === 'customer' || userStore.getState().role === 'manager'),
+            
             category : {
                 id: null,
                 name: ''
             }, 
+
             products: []
         }
-        //this.loadProducts = this.loadProducts.bind(this);
     }
 
     componentDidMount() {
@@ -170,7 +179,7 @@ export class Products extends React.Component {
     render() {
         return <div id="content" className="wrapp_content">
             <div class="box_title_button">
-                <h3 class="title_line"><span>{ this.state.category.name }</span></h3>
+                {/*<h3 class="title_line"><span>{ this.state.category.name }</span></h3>*/}
 
                 <Link to={"/categories/" + this.state.category.pid} className="btn light_orange icon_right large_width">
                     <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
@@ -209,20 +218,18 @@ export class Products extends React.Component {
                         <div style={hiddenStyle} class="product_description">{ product.description }</div>
                         <div class="products_img" data-mh="products-img">
                             <a href="#product1" class="modal_desc_product btn_popup">
-                                <img class="img_url" src={ product.get_image_url } alt={ product.name }/>
+                                <img class="img_url" src={ product.image } alt={ product.name }/>
                             </a>
                         </div>
 
                         <figcaption>
                             <h3 class="light_grey products_title">
                                 <span class="product_name">{ product.name }</span>
-                                {/*
-                                {% if product.weight %}<span class="products_subtitle">{{ product.weight }} кг</span>{% endif %}
-                                */}
+                                <span class="products_subtitle">{ product.weight } кг</span>
                             </h3>
 
                             {this.state.isCustomerOrManager ?<div className="wrapp_btn center">
-                                <span class="products_price">{ product.producer_price }р</span>
+                                <span class="products_price">{ product.price }р</span>
                                 <a href="javascript:;" class="btn btn_basket light_orange add_to_cart">В корзину</a>
                             </div>:''}
 

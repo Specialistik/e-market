@@ -82,13 +82,14 @@ def sign_out(request):
     return JsonResponse({'role': None, 'token': None})
 
 
-def categories(request):
+def categories(request, pk=None):
+    cats = Category.objects.filter(pid__isnull=True) if pk is None else Category.objects.filter(pk=pk)
     return JsonResponse({
         'categories': [{
             'id': cat.id,
             'name': cat.name,
             'image': cat.get_image_url()
-        } for cat in Category.objects.filter(pid__isnull=True)]
+        } for cat in cats]
     })
 
 
@@ -122,8 +123,8 @@ def products(request, cat_id):
             'minimum_amount': product.minimum_amount,
             'description': product.description,
             'image': product.get_image_url(),
-            'producer_price': product.producer_price,
-            'product_weight': product.weight,
+            'price': product.producer_price,
+            'weight': product.weight,
         } for product in ProductCard.objects.filter(category_id=cat_id)]
     })
     # 'trade_points': TradePoint.objects.filter(customer_id=request.user.id)

@@ -62,8 +62,8 @@ class Main extends React.Component {
                     <Route path='/pick_role' component={PickRole}/>
                     <Route path='/sign_up' component={SignUp}/>
                     <Route exact path='/categories/' component={Categories}/>
-                    <Route path='/categories/:pid' component={Subcategories}/>
-                    <Route path='/products/:cat_id' component={Products}/>
+                    <Route path='/categories/:pid/' component={Categories}/>
+                    <Route path='/products/:cat_id/' component={Products}/>
                 </Switch>
             </Router>
         </main>

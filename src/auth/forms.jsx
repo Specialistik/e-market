@@ -1,7 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 import { Route, Redirect } from 'react-router';
-import { login, register } from './api.jsx';
+import { login, register } from './api';
 import { Categories } from './views.jsx';
 
 export class SignInForm extends React.Component {
