@@ -76,7 +76,6 @@ export class Categories extends React.Component {
     }
 
     render() {
-        console.log('before rendering cats', this.state);
         return <div id="content" className="wrapp_content">
             { this.state.pid ? <BackToCats cat_name={this.state.cat_name} /> :''}
 
@@ -100,7 +99,7 @@ export class Categories extends React.Component {
                     {% endif %}
                         */}
                     {this.state.categories.map((category, index) => (
-                        <figure className="col_products category_products" data-mh="col-products">
+                        <figure className="col_products category_products" data-mh="col-products" key={index}>
                             <div className="products_img" data-mh="products-img">
                                 <Link to={(this.state.pid===null?'/categories/':'/products/') + category.id + '/'}>
                                     <img src={ category.image } />
@@ -117,7 +116,7 @@ export class Categories extends React.Component {
                     <div className="wrapp_products_list">
                         <ul className="products_list">
                             {this.state.categories.map((category, index) => (
-                                <li>
+                                <li key={index}>
                                     <Link to={(this.state.pid===null?'/categories/':'/products/') + category.id + '/'}>
                                         <span><img src={ category.image } /></span>
                                         { category.name }
@@ -138,7 +137,7 @@ export class Products extends React.Component {
         this.state = {
             products: [],
             cat_id: (props.match) ? props.match.params.cat_id: null,
-            isCustomerOrManager: (store.getState().role === 'customer' || store.getState().role === 'manager'),
+            isCustomerOrManager: (props.store.getState().role === 'customer' || props.store.getState().role === 'manager'),
             category : {
                 pid: null,
                 name: ''
@@ -165,7 +164,6 @@ export class Products extends React.Component {
     }
 
     render() {
-        console.log('before rendering products', this.state);
         return <div id="content" className="wrapp_content">
             <div class="box_title_button">
                 <h3 class="title_line"><span>{ this.state.category.name }</span></h3>
@@ -200,7 +198,7 @@ export class Products extends React.Component {
 
             <div class="row_products clearfix">
                 {this.state.products.map((product) => (
-                    <figure class="col_products" data-mh="col-products">
+                    <figure class="col_products" data-mh="col-products" key={index}>
                         <div style={hiddenStyle} class="product_minimum_amount">{ product.minimum_amount }</div>
                         <div style={hiddenStyle} class="product_id">{ product.id }</div>
                         <div style={hiddenStyle} class="product_description">{ product.description }</div>

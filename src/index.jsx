@@ -30,14 +30,17 @@ const Header = () => (
 class Index extends React.Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            props
+        }
+/*
         this.state = {
             role: null,
             token: null
         }
-
+*/
     }
-
+/*
     componentDidMount() {
         // Doesn't seem like a proper subscription
         this.unsubscribe = store.subscribe(() =>
@@ -47,7 +50,7 @@ class Index extends React.Component {
     componentWillUnmount() {
         this.unsubscribe();
     }
-
+*/
     render() {
         if (this.state.token !== null) {
             return <Categories/>
