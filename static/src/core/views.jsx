@@ -1,7 +1,10 @@
 
 import React from 'react';
-import { render } from 'react-dom';
+import {render} from 'react-dom';
+import axios from 'axios';
+
 import { Link } from 'react-router-dom';
+import store from '../store';
 
 const hiddenStyle = {
     display: 'none',
@@ -76,7 +79,7 @@ export class Categories extends React.Component {
     }
 
     render() {
-        console.log('before rendering cats', this.state);
+        console.log(this.state);
         return <div id="content" className="wrapp_content">
             { this.state.pid ? <BackToCats cat_name={this.state.cat_name} /> :''}
 
@@ -146,7 +149,7 @@ export class Products extends React.Component {
         }
     }
 
-    fetchProducts() {
+    fetchProducts(url) {
         fetch("/api/products/" + this.state.cat_id + '/')
             .then((response) => {
                 if (!response.ok) {
@@ -165,7 +168,7 @@ export class Products extends React.Component {
     }
 
     render() {
-        console.log('before rendering products', this.state);
+        console.log(this.state);
         return <div id="content" className="wrapp_content">
             <div class="box_title_button">
                 <h3 class="title_line"><span>{ this.state.category.name }</span></h3>
@@ -175,6 +178,7 @@ export class Products extends React.Component {
                         Назад к подкатегориям
                 </Link>
             </div>
+            
 
             <form action="/products/search/" method="get" class="wrapp_filter">
                 <label class="label1 big">Сортировка:</label>

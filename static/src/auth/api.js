@@ -3,6 +3,9 @@ import React from 'react';
 import axios from 'axios';
 import _ from 'lodash';
 
+import store from '../store';
+//import constants from './actions';
+
 export function InvalidCredentialsException(message) {
     this.message = message;
     this.name = 'InvalidCredentialsException';

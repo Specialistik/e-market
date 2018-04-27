@@ -1,16 +1,18 @@
-export const SELECT_CATEGORIES = 'SELECT_CATEGORIES'
-export const SELECT_PRODUCTS = 'SELECT_PRODUCTS'
+export const constants =  {
+    SELECT_CATEGORIES: 'SELECT_CATEGORIES',
+    SELECT_PRODUCTS: 'SELECT PRODUCTS',
+};
 
 export function selectCategories(pid) {
     return {
-        type: SELECT_CATEGORIES,
-        categories
-    }
+        type: constants.SELECT_CATEGORIES,
+        categories: Array
+    };
 }
 
 export function selectProducts(pid) {
     return {
         type: SELECT_PRODUCTS,
-        products, and, shit
-    }
+        products: Array, category: Array
+    };
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import {render} from 'react-dom';
 import { Link, Redirect } from 'react-router-dom';
 
 import { SignInForm, SignUpForm } from './forms.jsx';
@@ -9,28 +9,33 @@ const contentStyle = {
 };
 
 class CustomerCheckEntity extends React.Component {
+/*
     constructor(props) {
         super(props);
     }
+*/
     render() {
         return <i className={"fa " + (this.props.customer ? 'fa-check': "")} aria-hidden="true"/>
     }
 }
 
 class ProducerCheckEntity extends React.Component {
+/*
     constructor(props) {
         super(props);
     }
-
+*/
     render() {
         return <i className={"fa " + (this.props.producer ? 'fa-check': "")} aria-hidden="true"/>
     }
 }
 
 export class SignIn extends React.Component {
+    /*
     constructor(props) {
         super(props);
     }
+    */
 
     render () {
         return <div id="content" className="content_bg verification_content" style={contentStyle}>
@@ -52,9 +57,11 @@ export class SignIn extends React.Component {
 }
 
 export class SignUp extends React.Component {
+    /*
     constructor(props) {
         super(props);
     }
+    */
     render() {
         return <div id="content" className="content_bg verification_content" style={contentStyle}>
             <div className="wrapp_verification">

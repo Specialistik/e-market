@@ -15,8 +15,10 @@
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "redux-actions": "^2.3.0",
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.9.1",
+    "redux-thunk": "^2.2.0",
     "webpack": "^4.3.0"
   },
   "devDependencies": {
@@ -27,11 +29,9 @@
     "webpack-cli": "^2.0.13"
   },
   "scripts": {
-    "start": "npm run serve | npm run dev",
-    "serve": "./node_modules/.bin/http-server -p 8080",
-    "dev": "webpack --progress --watch",
-    "build": "webpack --progress --production --optimize-minimize",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "watch": "webpack --watch",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
+import render from 'react-dom';
+import Provider from 'react-redux';
 import {
     BrowserRouter as Router,
     Route,
@@ -14,6 +14,7 @@ import configureStore from './store';
 
 //initialState can be kinda inserted into configureStore
 const store = configureStore();
+//import store from './store'
 
 const Header = () => (
     <header id="header" className="header_wrapp clearfix">
@@ -30,12 +31,6 @@ const Header = () => (
 class Index extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            role: null,
-            token: null
-        }
-
     }
 
     componentDidMount() {
@@ -75,12 +70,22 @@ class Main extends React.Component {
                 </Switch>
             </Router>
         </main>
+
     }
 }
 
+// Header may be transported to an App!
+/*
+const App = () => (
+    <Provider>
+        <Header />
+        <Main />
+    </Provider>
+);
+*/
 render(
     <Provider store={store}>
-        {/*<Header />*/}
+        <Header />
         <Main />
     </Provider>,
     document.getElementById('app')

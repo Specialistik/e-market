@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
+import {render} from 'react-dom';
 import { Route, Redirect } from 'react-router';
 import { login, register } from './api';
 import { Categories } from './views.jsx';
@@ -25,7 +25,7 @@ export class SignInForm extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         login(this.state.email, this.state.password);
-        this.render('<Categories/>')
+        this.render(<Categories/>)
     }
 
     render() {
