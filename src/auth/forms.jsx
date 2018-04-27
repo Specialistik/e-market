@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Route, Redirect } from 'react-router';
-import { login, register } from './api';
+//import { login, register } from './api';
 import { Categories } from './views.jsx';
 
 export class SignInForm extends React.Component {
@@ -24,10 +24,39 @@ export class SignInForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        fetch('/api/sign_in/', {
+            username: this.state.email,
+            password: this.state.password
+        }).then((response) => {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            return response;
+        }).then((response) => response.json())
+        // @todo: And then subscribed little bitch has to rerender cats
+        .then((signed_user) => this.setState({ token: signed_user.token, role: signed_user.role })
+        .catch(() => this.setState({ hasErrored: true })))
+    }
+    /*
         login(this.state.email, this.state.password);
         this.render('<Categories/>')
     }
-
+    */
+/*
+    fetchProducts() {
+        fetch("/api/products/" + this.state.cat_id + '/')
+            .then((response) => {
+                if (!response.ok) {
+                    throw Error(response.statusText);
+                }
+                return response;
+            }).then((response) => response.json())
+        .then((products_entity) => this.setState({ 
+            category: products_entity.category, 
+            products: products_entity.products
+        }).catch(() => this.setState({ hasErrored: true })))
+    }
+*/
     render() {
         return <form action="/api/sign_in/" method="POST" className="wrapp_form_signin validate" noValidate onSubmit={this.handleSubmit}>
             <div className="wrapp_verification_col">
@@ -72,7 +101,22 @@ export class SignUpForm extends React.Component {
   
     handleSubmit(event) {
         event.preventDefault();
-        return register(this.state.company_name, this.state.inn, this.state.password, this.state.email, this.state.phone);
+
+        fetch('/api/sign_up/', {
+            email: this.state.email,
+            password: this.state.password,
+            company_name: this.state.company_name,
+            inn: this.state.inn,
+            phone: this.state.phone
+        }).then((response) => {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            return response;
+        }).then((response) => response.json())
+        // @todo: And then cheap, subscribed slut has to rerender cats
+        .then((signed_user) => this.setState({ token: signed_user.token, role: signed_user.role })
+        .catch(() => this.setState({ hasErrored: true })))
     }
 
     render() {

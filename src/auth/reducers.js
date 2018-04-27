@@ -5,9 +5,7 @@ const initialState = {
     role: null,
 }
 
-// That's raw and decomposed, 
 export const userReducer = (state = initialState, action) => {
-    console.log('user reducer being interpreted', state, action, action.type);
     switch (action.type) {
         case constants.CREATE_ACCOUNT:
             return Object.assign({}, state, {
@@ -28,5 +26,3 @@ export const userReducer = (state = initialState, action) => {
             return state;
     }
 }
-
-//export default userReducer;

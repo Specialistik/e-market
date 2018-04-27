@@ -224,7 +224,20 @@ export class Products extends React.Component {
                 ))}
             </div> 
         </div>
-
     </div>
+    }
+}
+
+// Kinda skeleton for a navigation component as if it wasn't obvious
+export class Navigation extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            props
+        }
+    }
+
+    render() {
+        return null;
     }
 }

@@ -33,24 +33,8 @@ class Index extends React.Component {
         this.state = {
             props
         }
-/*
-        this.state = {
-            role: null,
-            token: null
-        }
-*/
     }
-/*
-    componentDidMount() {
-        // Doesn't seem like a proper subscription
-        this.unsubscribe = store.subscribe(() =>
-        this.setState({token: store.getState().token, role : store.getState().role})
-    )}
 
-    componentWillUnmount() {
-        this.unsubscribe();
-    }
-*/
     render() {
         if (this.state.token !== null) {
             return <Categories/>
@@ -83,8 +67,10 @@ class Main extends React.Component {
 
 render(
     <Provider store={store}>
-        {/*<Header />*/}
-        <Main />
+        <div>
+            <Header />,
+            <Main />
+        </div>
     </Provider>,
     document.getElementById('app')
 );
