@@ -3,6 +3,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Link } from 'react-router-dom';
 
+import ROLES from '../auth/actions';
+
 const hiddenStyle = {
     display: 'none',
 };
@@ -16,11 +18,11 @@ class BackToCats extends React.Component {
     }
 
     render() {
-        return <div class="box_title_button">
-            <h3 class="title_line"><span>{ this.state.cat_name }</span></h3>
+        return <div className="box_title_button">
+            <h3 className="title_line"><span>{ this.state.cat_name }</span></h3>
 
-            <Link to='/categories/' class="btn light_orange icon_right large_width">
-                <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+            <Link to='/categories/' className="btn light_orange icon_right large_width">
+                <i className="fa fa-long-arrow-left" aria-hidden="true"></i>
                 Назад к категориям
             </Link>
         </div>
@@ -28,10 +30,6 @@ class BackToCats extends React.Component {
 }
 
 class CategoryTitle extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return <div className="box_title_button">
             <h3 className="title_line"><span>Категория товара</span></h3>
@@ -165,19 +163,19 @@ export class Products extends React.Component {
 
     render() {
         return <div id="content" className="wrapp_content">
-            <div class="box_title_button">
-                <h3 class="title_line"><span>{ this.state.category.name }</span></h3>
+            <div className="box_title_button">
+                <h3 className="title_line"><span>{ this.state.category.name }</span></h3>
 
                 <Link to={"/categories/" + this.state.category.pid + '/'} className="btn light_orange icon_right large_width">
-                    <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                    <i className="fa fa-long-arrow-left" aria-hidden="true"></i>
                         Назад к подкатегориям
                 </Link>
             </div>
 
-            <form action="/products/search/" method="get" class="wrapp_filter">
-                <label class="label1 big">Сортировка:</label>
+            <form action="/products/search/" method="get" className="wrapp_filter">
+                <label className="label1 big">Сортировка:</label>
 
-                <div class="wrapp_castom_select sorting">
+                <div className="wrapp_castom_select sorting">
                     <select data-placeholder="По умолчанию" id="product_sort" name="sorting">
                         <option value="1">По умолчанию</option>
                         <option value="2">По категории</option>
@@ -186,38 +184,38 @@ export class Products extends React.Component {
                     </select>
                 </div>
 
-                <div class="wrapp_search">
+                <div className="wrapp_search">
                     <input type="text" name="search_string"/>
-                    <button class="search_btn">
-                        <i class="fa fa-search" aria-hidden="true"></i>
+                    <button className="search_btn">
+                        <i className="fa fa-search" aria-hidden="true"></i>
                     </button>
                 </div>
             </form>
 
-        <div class="wrapp_products"> 
+        <div className="wrapp_products"> 
 
-            <div class="row_products clearfix">
+            <div className="row_products clearfix">
                 {this.state.products.map((product) => (
-                    <figure class="col_products" data-mh="col-products" key={index}>
-                        <div style={hiddenStyle} class="product_minimum_amount">{ product.minimum_amount }</div>
-                        <div style={hiddenStyle} class="product_id">{ product.id }</div>
-                        <div style={hiddenStyle} class="product_description">{ product.description }</div>
-                        <div class="products_img" data-mh="products-img">
-                            <a href="#product1" class="modal_desc_product btn_popup">
-                                <img class="img_url" src={ product.image } alt={ product.name }/>
+                    <figure className="col_products" data-mh="col-products" key={index}>
+                        <div style={hiddenStyle} className="product_minimum_amount">{ product.minimum_amount }</div>
+                        <div style={hiddenStyle} className="product_id">{ product.id }</div>
+                        <div style={hiddenStyle} className="product_description">{ product.description }</div>
+                        <div className="products_img" data-mh="products-img">
+                            <a href="#product1" className="modal_desc_product btn_popup">
+                                <img className="img_url" src={ product.image } alt={ product.name }/>
                             </a>
                         </div>
 
                         <figcaption>
-                            <h3 class="light_grey products_title">
-                                <span class="product_name">{ product.name }</span>
-                                <span class="products_subtitle">{ product.weight } кг</span>
+                            <h3 className="light_grey products_title">
+                                <span className="product_name">{ product.name }</span>
+                                <span className="products_subtitle">{ product.weight } кг</span>
                             </h3>
 
                             {this.state.isCustomerOrManager 
                                 ? <div className="wrapp_btn center">
-                                    <span class="products_price">{ product.price }р</span>
-                                    <a href="javascript:;" class="btn btn_basket light_orange add_to_cart">В корзину</a>
+                                    <span className="products_price">{ product.price }р</span>
+                                    <a href="javascript:;" className="btn btn_basket light_orange add_to_cart">В корзину</a>
                                 </div>:''}
                         </figcaption>
                     </figure>
@@ -238,6 +236,18 @@ export class Navigation extends React.Component {
     }
 
     render() {
-        return null;
+        if (this.state.role === ROLES.SUPERVISOR) {
+            return <div />
+        } else {
+            return <div> 
+                <button className="navigation_btn">
+                    <i className="fa fa-bars" aria-hidden="true"></i>
+                </button> 
+
+                <nav id="nav" className="navigation">
+                </nav>
+            </div>
+        }
+        
     }
 }

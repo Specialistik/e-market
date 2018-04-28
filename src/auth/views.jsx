@@ -9,19 +9,12 @@ const contentStyle = {
 };
 
 class CustomerCheckEntity extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return <i className={"fa " + (this.props.customer ? 'fa-check': "")} aria-hidden="true"/>
     }
 }
 
 class ProducerCheckEntity extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return <i className={"fa " + (this.props.producer ? 'fa-check': "")} aria-hidden="true"/>
     }
@@ -52,9 +45,6 @@ export class SignIn extends React.Component {
 }
 
 export class SignUp extends React.Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         return <div id="content" className="content_bg verification_content" style={contentStyle}>
             <div className="wrapp_verification">
@@ -144,5 +134,27 @@ export class PickRole extends React.Component {
                 </div>
             </div>
         </div>
+    }
+}
+
+
+// This somehow logically intersects with reducers, so let it just be here
+class AuthorizationContainer extends React.Component {
+    componentDidMount() {
+        this.unsubscribe = bankStore.subscribe(() =>
+            this.setState({balance: bankStore.getState().balance})
+        );
+    }
+
+    componentWillUnmount() {
+        this.unsubscribe();
+    }
+
+    render() {
+        return ''; //<SignIn
+            //onSignIn={ (token, role) => }
+            // Токен с ролью у нас и так на верху есть 
+            //token={this.state.token}
+            //role={this.}
     }
 }
