@@ -135,7 +135,7 @@ export class Products extends React.Component {
         this.state = {
             products: [],
             cat_id: (props.match) ? props.match.params.cat_id: null,
-            isCustomerOrManager: (props.store.getState().role === 'customer' || props.store.getState().role === 'manager'),
+            isCustomerOrManager: (props.hasOwnProperty('role') && props.role in ('customer', 'manager')),
             category : {
                 pid: null,
                 name: ''
@@ -150,11 +150,13 @@ export class Products extends React.Component {
                     throw Error(response.statusText);
                 }
                 return response;
-            }).then((response) => response.json())
-        .then((products_entity) => this.setState({ 
-            category: products_entity.category, 
-            products: products_entity.products
-        }).catch(() => this.setState({ hasErrored: true })))
+                }).then((response) => response.json())
+                    .then((products_entity) => this.setState({ 
+                        category: products_entity.category, 
+                        products: products_entity.products
+                    }).catch((e) => this.setState({ hasErrored: true, error: e })))
+                .catch((e) => this.setState({ hasErrored: true, error: e }))
+            .catch((e) => this.setState({ hasErrored: true, error: e }))
     }
 
     componentDidMount() {
@@ -195,7 +197,7 @@ export class Products extends React.Component {
         <div className="wrapp_products"> 
 
             <div className="row_products clearfix">
-                {this.state.products.map((product) => (
+                {this.state.products.map((product, index) => (
                     <figure className="col_products" data-mh="col-products" key={index}>
                         <div style={hiddenStyle} className="product_minimum_amount">{ product.minimum_amount }</div>
                         <div style={hiddenStyle} className="product_id">{ product.id }</div>

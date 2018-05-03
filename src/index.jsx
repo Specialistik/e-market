@@ -83,27 +83,6 @@ class Index extends React.Component {
     }
 }
 
-class Main extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render () {
-        return <main>
-            <Router>
-                <Switch>
-                    <Route exact path='/react_index' component={Index} />
-                    <Route path='/pick_role' component={PickRole}/>
-                    <Route path='/sign_up' component={SignUp}/>
-                    <Route exact path='/categories/' component={Categories}/>
-                    <Route path='/categories/:pid/' component={Categories}/>
-                    <Route path='/products/:cat_id/' component={Products}/>
-                </Switch>
-            </Router>
-        </main>
-    }
-}
-
 render(
     <Provider store={store}>
         <Router>
