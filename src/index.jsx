@@ -106,10 +106,11 @@ class Main extends React.Component {
 
 render(
     <Provider store={store}>
-        <div>
-            <Router>
+        <Router>
+            <div>
+                <Header />
                 <Switch>
-                    <Header />
+                    {/*<Header />*/}
                     <Route exact path='/react_index' component={Index} />
                     <Route path='/pick_role' component={PickRole}/>
                     <Route path='/sign_up' component={SignUp}/>
@@ -117,8 +118,8 @@ render(
                     <Route path='/categories/:pid/' component={Categories}/>
                     <Route path='/products/:cat_id/' component={Products}/>
                 </Switch>
-            </Router>
-        </div>
+            </div>
+        </Router>
     </Provider>,
     document.getElementById('app')
 );
