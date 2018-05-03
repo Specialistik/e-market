@@ -77,22 +77,28 @@ class SignIn(APIView):
         return Response(store)
 
 
-def sign_out(request):
+def logout(request):
     logout(request)
     return JsonResponse({'role': None, 'token': None})
 
 
 def categories(request, pk=None):
-    cats = Category.objects.filter(pid__isnull=True) if pk is None else Category.objects.filter(pk=pk)
-    return JsonResponse({
-        'categories': [{
+    cats = []
+    for cat in Category.objects.filter(pid__isnull=True, disabled=False) if pk is None else Category.objects.filter(pid=pk, disabled=False):
+        final_unseen = 0
+        for sub_cat in Category.objects.filter(pid=cat.id):
+            final_unseen += sub_cat.productcard_set.count() - sub_cat.productcard_set.filter(
+                seen__id=request.user.id).count()
+
+        cats.append({
             'id': cat.id,
             'name': cat.name,
-            'image': cat.get_image_url()
-        } for cat in cats]
-    })
+            'image': cat.get_image_url(),
+            'unseen': final_unseen
+        })
+    return JsonResponse({'categories': cats})
 
-
+"""
 def subcategories(request, pk):
     return JsonResponse({
         'categories': [{
@@ -102,7 +108,7 @@ def subcategories(request, pk):
         ],
         'current_cat': Category.objects.get(pk=pk).name,
     })
-
+"""
 
 def products(request, cat_id):
     current_category = Category.objects.get(pk=cat_id)

@@ -24,6 +24,7 @@ export function createAccount(email, password, inn, phone, role, company_name) {
     return {
         type: constants.CREATE_ACCOUNT,
         token: string,
+        role: string
     };
 }
 
@@ -34,12 +35,15 @@ export function createAccount(email, password, inn, phone, role, company_name) {
 export function setToken(username, password) {
     return {
         type: constants.SET_TOKEN,
-        token: string
+        token: string,
+        role: string
     };
 }
 
 export function logOut() {
     return {
-        type: constants.LOG_OUT
+        type: constants.LOG_OUT,
+        role: null,
+        token: null
     };
 }

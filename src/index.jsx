@@ -13,7 +13,6 @@ import { Categories, Products } from './core/views.jsx';
 import ROLES from './auth/actions';
 import configureStore from './store';
 
-//initialState can be kinda inserted into configureStore
 const store = configureStore();
 
 class Header extends React.Component {
@@ -89,12 +88,13 @@ render(
             <div>
                 <Header />
                 <Switch>
-                    {/*<Header />*/}
                     <Route exact path='/react_index' component={Index} />
                     <Route path='/pick_role' component={PickRole}/>
                     <Route path='/sign_up' component={SignUp}/>
+                    <Route path='/logout' component={Categories}/>
+
                     <Route exact path='/categories/' component={Categories}/>
-                    <Route path='/categories/:pid/' component={Categories}/>
+                    <Route exact path='/categories/:pid/' component={Categories}/>
                     <Route path='/products/:cat_id/' component={Products}/>
                 </Switch>
             </div>

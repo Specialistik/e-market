@@ -8,7 +8,7 @@ import ROLES from '../auth/actions';
 const hiddenStyle = {
     display: 'none',
 };
-
+/*
 class BackToCats extends React.Component {
     constructor(props) {
         super(props);
@@ -28,7 +28,7 @@ class BackToCats extends React.Component {
         </div>
     }
 }
-
+*/
 class CategoryTitle extends React.Component {
     render() {
         return <div className="box_title_button">
@@ -43,7 +43,7 @@ export class Categories extends React.Component {
         this.state = {
             categories: [],
             pid: (props.match) ? props.match.params.pid : null,
-            cat_name: '',
+            cat_name: ''
         };
         this.fetchCats = this.fetchCats.bind(this);
     }
@@ -56,13 +56,16 @@ export class Categories extends React.Component {
                 }
                 this.setState({ isLoading: false });
                 return response;
-            }).then((response) => response.json())
-            .then((cat_entity) => this.setState({ 
-                    categories: cat_entity.categories,
-                    //pid: (props.match) ? props.match.params.pid : null,
-                    cat_name: (cat_entity.current_cat) ? (cat_entity.current_cat) : '',
-                })
-            ).catch(() => this.setState({ hasErrored: true }))
+            })
+                .then((response) => response.json())
+                    .then((cat_entity) => this.setState({ 
+                            categories: cat_entity.categories,
+                            //pid: (props.match) ? props.match.params.pid : null,
+                            cat_name: cat_entity.hasOwnProperty('current_cat') ? (cat_entity.current_cat) : '',
+                        })
+                    ).catch((e) => this.setState({ hasErrored: true, error: e }))
+                .catch((e) => this.setState({ hasErrored: true, error: e }))
+            .catch((e) => this.setState({ hasErrored: true, error: e }))
     }
 
     componentDidMount() {
@@ -75,8 +78,17 @@ export class Categories extends React.Component {
 
     render() {
         return <div id="content" className="wrapp_content">
-            { this.state.pid ? <BackToCats cat_name={this.state.cat_name} /> :''}
+            { (this.state.pid !== null) ? 
+                <div className="box_title_button">
+                    <h3 className="title_line"><span>{ this.state.cat_name }</span></h3>
 
+                    <Link to='/categories/' pid={null} className="btn light_orange icon_right large_width">
+                        <i className="fa fa-long-arrow-left" aria-hidden="true"></i>
+                        Назад к категориям
+                    </Link>
+                </div> :''
+            }
+            
             <form action="/products/search/" method="get" className="wrapp_filter">
                 <div className="wrapp_search">
                     <input type="text" name="search_string" />
@@ -89,13 +101,6 @@ export class Categories extends React.Component {
             <div className="wrapp_products">
 
                 <div className="row_products clearfix">
-                    {/* 
-                    {% if user.profile.role == 'customer' %}
-                        <div className="products_count">
-                            {{ category.unseen }}
-                        </div>
-                    {% endif %}
-                        */}
                     {this.state.categories.map((category, index) => (
                         <figure className="col_products category_products" data-mh="col-products" key={index}>
                             <div className="products_img" data-mh="products-img">
@@ -103,6 +108,11 @@ export class Categories extends React.Component {
                                     <img src={ category.image } />
                                     { category.name }
                                 </Link>
+                                { this.state.role == 'customer'? 
+                                    <div className="products_count">
+                                        { category.unseen }
+                                    </div>:''
+                                }
                             </div>
 
                             <figcaption>
