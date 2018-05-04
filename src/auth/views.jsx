@@ -8,6 +8,8 @@ const contentStyle = {
     backgroundImage: 'url(' + 'static/images/bg-image/bg-type1.png' + ')',
 };
 
+import { store } from '../index.jsx' 
+
 class CustomerCheckEntity extends React.Component {
     render() {
         return <i className={"fa " + (this.props.customer ? 'fa-check': "")} aria-hidden="true"/>
@@ -140,16 +142,24 @@ export class PickRole extends React.Component {
 
 // This somehow logically intersects with reducers, so let it just be here
 class AuthorizationContainer extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { props }
+    }
+        /*
     componentDidMount() {
-        this.unsubscribe = bankStore.subscribe(() =>
-            this.setState({balance: bankStore.getState().balance})
-        );
+
+        if (this.state.role in ('customer', 'manager'))
+            this.unsubscribe = bankStore.subscribe(() =>
+                this.setState({basket_price: bankStore.getState().basket_price})
+            );
+         
     }
 
     componentWillUnmount() {
         this.unsubscribe();
     }
-
+   */
     render() {
         return ''; //<SignIn
             //onSignIn={ (token, role) => }

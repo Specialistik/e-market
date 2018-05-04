@@ -8,27 +8,7 @@ import ROLES from '../auth/actions';
 const hiddenStyle = {
     display: 'none',
 };
-/*
-class BackToCats extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            cat_name: props.cat_name
-        };
-    }
 
-    render() {
-        return <div className="box_title_button">
-            <h3 className="title_line"><span>{ this.state.cat_name }</span></h3>
-
-            <Link to='/categories/' className="btn light_orange icon_right large_width">
-                <i className="fa fa-long-arrow-left" aria-hidden="true"></i>
-                Назад к категориям
-            </Link>
-        </div>
-    }
-}
-*/
 class CategoryTitle extends React.Component {
     render() {
         return <div className="box_title_button">
@@ -42,7 +22,7 @@ export class Categories extends React.Component {
         super(props);
         this.state = {
             categories: [],
-            pid: (props.match) ? props.match.params.pid : null,
+            pid: (props.match && props.match.params.pid !== null) ? props.match.params.pid : null,
             cat_name: ''
         };
         this.fetchCats = this.fetchCats.bind(this);
@@ -60,7 +40,6 @@ export class Categories extends React.Component {
                 .then((response) => response.json())
                     .then((cat_entity) => this.setState({ 
                             categories: cat_entity.categories,
-                            //pid: (props.match) ? props.match.params.pid : null,
                             cat_name: cat_entity.hasOwnProperty('current_cat') ? (cat_entity.current_cat) : '',
                         })
                     ).catch((e) => this.setState({ hasErrored: true, error: e }))
@@ -78,11 +57,11 @@ export class Categories extends React.Component {
 
     render() {
         return <div id="content" className="wrapp_content">
-            { (this.state.pid !== null) ? 
+            { this.state.pid ? 
                 <div className="box_title_button">
                     <h3 className="title_line"><span>{ this.state.cat_name }</span></h3>
 
-                    <Link to='/categories/' pid={null} className="btn light_orange icon_right large_width">
+                    <Link to='/categories/' pid={this.state.pid?null:this.state.pid} className="btn light_orange icon_right large_width">
                         <i className="fa fa-long-arrow-left" aria-hidden="true"></i>
                         Назад к категориям
                     </Link>
@@ -228,7 +207,8 @@ export class Products extends React.Component {
                                 ? <div className="wrapp_btn center">
                                     <span className="products_price">{ product.price }р</span>
                                     <a href="javascript:;" className="btn btn_basket light_orange add_to_cart">В корзину</a>
-                                </div>:''}
+                                </div>:''
+                            }
                         </figcaption>
                     </figure>
                 ))}

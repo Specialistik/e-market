@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
+import { Provider, bindActionCreators } from 'react-redux';
 import {
     BrowserRouter as Router,
     Route,
@@ -10,28 +10,30 @@ import {
 
 import { SignIn, SignUp, PickRole } from './auth/views.jsx';
 import { Categories, Products } from './core/views.jsx';
-import ROLES from './auth/actions';
-import configureStore from './store';
+import { Profile } from './profile/views.jsx';
 
-const store = configureStore();
+import * as AuthActionCreators from './auth/actions'
+
+import configureStore from './store';
+export let store = configureStore();
 
 class Header extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            props
-        }
+        this.state = { props }
     }
 
     render() {
         return <header id="header" className="header_wrapp clearfix">
             <div className="header_inner claerfix">
                 <div className="logo">
-                    <a href="/">
+                    <Link to="/">
                         <img src="/static/images/small-logo.png" alt=""/>
-                    </a>
+                    </Link>
                 </div>
-                {this.state.role !== null && this.state.role in ['customer', 'manager'] ?
+
+                <div className="header_right_box">
+                    {this.state.role !== null && this.state.role in ['customer', 'manager'] ?
                     <div className="basket_wrapp">
                         <a href="/basket" className="basket_box">
                             <i className="fa fa-shopping-basket" aria-hidden="true"></i>
@@ -43,7 +45,7 @@ class Header extends React.Component {
                         </div>
                     </div> :''}
 
-                {this.state.role !== null && this.state.role === 'manager' ?
+                    {this.state.role !== null && this.state.role === 'manager' ?
                     <div className="basket_wrapp">
                         <a href="/basket" className="basket_box">
                             <i className="fa fa-shopping-basket" aria-hidden="true"></i>
@@ -56,28 +58,84 @@ class Header extends React.Component {
 
                     </div> :''}
 
-                <Link to='/logout' className="out_btn">
-                    Выйти
-                    <i className="fa fa-angle-down" aria-hidden="true"></i>
-                </Link>
+                    <Link to='/profile/' href="/profile/" className="wrapp_company_logo clearfix">
+                        <span className="company_logo">
+                            <img src="/static/images/icons/user-icon.png" alt=""/>
+                        </span>
+
+                        <span className="company_name">
+                            Моя компания
+                        </span>
+                    </Link>
+
+                    <Link to='/logout' className="out_btn">
+                        Выйти
+                        <i className="fa fa-angle-down" aria-hidden="true"></i>
+                    </Link>
+                </div>
             </div>
         </header>
     }
 };
 
-class Index extends React.Component {
+class Navigation extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            props
-        }
+        this.state = { props }
     }
 
     render() {
-        if (this.state.token !== null) {
+        console.log('props', this.props, 'state', this.state);
+        return 
+        {this.state.role !== 'supervisor' ?
+            <div>
+                <button class="navigation_btn">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </button> 
+                <nav id="nav" class="navigation">
+                    <div class="user_navigation">
+                        {this.state.role in ('customer', 'manager') ?
+                            <div class="basket_wrapp">
+                                <a href="/basket" class="basket_box">
+                                    <i class="fa fa-shopping-basket" aria-hidden="true"></i>
+                                    <span class="basket_item">14</span>
+                                </a>
+        
+                                <div class="basket_box_count">
+                                    <span class="basket_count">88</span> руб
+                                </div>
+        
+                            </div>
+                        :''
+                    
+                        }
+                    </div>
+                </nav>
+            </div>
+        :''
+        }
+    }
+}
+
+class Index extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { props };
+        const {dispatch} = props;
+    }
+
+    //componentDidMount() {
+
+    //}
+
+    render() {
+        //let { todos, dispatch } = this.props;
+        //let boundActionCreators = bindActionCreators(AuthActionCreators, dispatch);
+        if (this.state.hasOwnProperty('token')) {
             return <Categories/>
         } else {
             return <SignIn/>
+     
         }
     }
 }
@@ -91,7 +149,7 @@ render(
                     <Route exact path='/react_index' component={Index} />
                     <Route path='/pick_role' component={PickRole}/>
                     <Route path='/sign_up' component={SignUp}/>
-                    <Route path='/logout' component={Categories}/>
+                    <Route path='/logout' component={SignIn}/>
 
                     <Route exact path='/categories/' component={Categories}/>
                     <Route exact path='/categories/:pid/' component={Categories}/>

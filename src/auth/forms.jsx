@@ -1,8 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Route, Redirect } from 'react-router';
-//import { login, register } from './api';
+
 import { Categories } from './views.jsx';
+import { createAccount, setToken, logOut } from './actions'
+import { store } from '../index.jsx'
 
 export class SignInForm extends React.Component {
     constructor(props) {
@@ -12,6 +14,7 @@ export class SignInForm extends React.Component {
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.signUser = this.signUser.bind(this);
     }
   
     handleEmailChange(event) {
@@ -22,41 +25,39 @@ export class SignInForm extends React.Component {
         this.setState({password: event.target.value});
     }
 
-    handleSubmit(event) {
-        event.preventDefault();
+    signUser(username, password) {
         fetch('/api/sign_in/', {
-            username: this.state.email,
-            password: this.state.password
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify({
+                username: this.state.email,
+                password: this.state.password,
+            }),
+            method: 'POST'
         }).then((response) => {
             if (!response.ok) {
                 throw Error(response.statusText);
             }
             return response;
-        }).then((response) => response.json())
-        // @todo: And then subscribed little bitch has to rerender cats
-        .then((signed_user) => this.setState({ token: signed_user.token, role: signed_user.role })
-        .catch(() => this.setState({ hasErrored: true })))
-    }
-    /*
-        login(this.state.email, this.state.password);
-        this.render('<Categories/>')
-    }
-    */
-/*
-    fetchProducts() {
-        fetch("/api/products/" + this.state.cat_id + '/')
-            .then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
-                return response;
             }).then((response) => response.json())
-        .then((products_entity) => this.setState({ 
-            category: products_entity.category, 
-            products: products_entity.products
-        }).catch(() => this.setState({ hasErrored: true })))
+                .then((data) => {
+                    console.log('returned data', data);
+                    // this is where magic should happen
+                    store.dispatch(setToken({ token: data.token, role: data.role }));
+                    //this.setState({ token: signed_user.token, role: signed_user.role })
+                })
+                .catch((e) => this.setState({ error: e }))
+            .catch((e) => this.setState({ error: e }))
+        .catch((e) => this.setState({ hasErrored: true }))
     }
-*/
+
+    handleSubmit(event) {
+        event.preventDefault();
+        this.signUser(this.state.username, this.state.password);
+    }
+
     render() {
         return <form action="/api/sign_in/" method="POST" className="wrapp_form_signin validate" noValidate onSubmit={this.handleSubmit}>
             <div className="wrapp_verification_col">
@@ -113,10 +114,19 @@ export class SignUpForm extends React.Component {
                 throw Error(response.statusText);
             }
             return response;
-        }).then((response) => response.json())
-        // @todo: And then cheap, subscribed slut has to rerender cats
-        .then((signed_user) => this.setState({ token: signed_user.token, role: signed_user.role })
-        .catch(() => this.setState({ hasErrored: true })))
+            }).then((response) => response.json())
+                .then((data) => {
+                    //console.log('props on sign in, ', this.props);
+                    store.dispatch(setToken({token: data.token, role: data.role}));
+                    //store
+                    //.dispatch(fetchPosts('reactjs'))
+                    //.then(() => console.log(store.getState()))
+                    //store.dispatch(
+                    //this.setState({ token: data.token, role: data.role })
+                })
+                .catch((e) => this.setState({ error: e }))
+            .catch((e) => this.setState({ error: e }))
+        .catch((e) => this.setState({ error: e }))
     }
 
     render() {

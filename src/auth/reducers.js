@@ -6,6 +6,7 @@ const initialState = {
 }
 
 export const userReducer = (state = initialState, action) => {
+    console.log(state, action);
     switch (action.type) {
         case constants.CREATE_ACCOUNT:
             return Object.assign({}, state, {

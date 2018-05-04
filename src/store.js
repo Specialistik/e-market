@@ -9,10 +9,9 @@ const rootReducer = combineReducers({
     coreReducer
 });
 
-export default function configureStore(initialState) {
+export default function configureStore() {
     return createStore(
         rootReducer,
-        initialState,
         applyMiddleware(thunk)
     )
 }

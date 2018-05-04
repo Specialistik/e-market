@@ -29,10 +29,10 @@ export function createAccount(email, password, inn, phone, role, company_name) {
 }
 
 /**
- * @param {string} username
- * @param {string} password
+ * @param {string} role
+ * @param {string} token
  */
-export function setToken(username, password) {
+export function setToken(role, token) {
     return {
         type: constants.SET_TOKEN,
         token: string,

@@ -10,6 +10,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.authtoken.views import ObtainAuthToken, Token
 from rest_framework.authtoken.serializers import AuthTokenSerializer
+from rest_framework.permissions import AllowAny
 
 from .serializers import SignupSerializer, CategorySerializer
 from .models import User, UserProfile
@@ -58,7 +59,7 @@ def sign_up(request):
 
 class SignIn(APIView):
     throttle_classes = ()
-    permission_classes = ()
+    permission_classes = (AllowAny,)
     parser_classes = (parsers.FormParser, parsers.MultiPartParser, parsers.JSONParser,)
     renderer_classes = (renderers.JSONRenderer,)
     serializer_class = AuthTokenSerializer
@@ -83,32 +84,23 @@ def logout(request):
 
 
 def categories(request, pk=None):
-    cats = []
+    final_data = {'categories': []}
     for cat in Category.objects.filter(pid__isnull=True, disabled=False) if pk is None else Category.objects.filter(pid=pk, disabled=False):
         final_unseen = 0
         for sub_cat in Category.objects.filter(pid=cat.id):
             final_unseen += sub_cat.productcard_set.count() - sub_cat.productcard_set.filter(
                 seen__id=request.user.id).count()
 
-        cats.append({
+        final_data['categories'].append({
             'id': cat.id,
             'name': cat.name,
             'image': cat.get_image_url(),
             'unseen': final_unseen
         })
-    return JsonResponse({'categories': cats})
+        if pk:
+            final_data['current_cat'] = Category.objects.get(pk=pk).name
+    return JsonResponse(final_data)
 
-"""
-def subcategories(request, pk):
-    return JsonResponse({
-        'categories': [{
-            'id': cat.id,
-            'name': cat.name,
-            'image': cat.get_image_url()} for cat in Category.objects.filter(pid__id=pk)
-        ],
-        'current_cat': Category.objects.get(pk=pk).name,
-    })
-"""
 
 def products(request, cat_id):
     current_category = Category.objects.get(pk=cat_id)
