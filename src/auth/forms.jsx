@@ -44,6 +44,7 @@ export class SignInForm extends React.Component {
             }).then((response) => response.json())
                 .then((data) => {
                     console.log('returned data', data);
+                    console.log('store is ', store);
                     // this is where magic should happen
                     store.dispatch(setToken({ token: data.token, role: data.role }));
                     //this.setState({ token: signed_user.token, role: signed_user.role })
@@ -117,6 +118,7 @@ export class SignUpForm extends React.Component {
             }).then((response) => response.json())
                 .then((data) => {
                     //console.log('props on sign in, ', this.props);
+                    console.log(store);
                     store.dispatch(setToken({token: data.token, role: data.role}));
                     //store
                     //.dispatch(fetchPosts('reactjs'))

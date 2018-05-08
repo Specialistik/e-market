@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider, bindActionCreators } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Provider, connect } from 'react-redux';
 import {
     BrowserRouter as Router,
     Route,
@@ -120,17 +121,34 @@ class Navigation extends React.Component {
 class Index extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { props };
-        const {dispatch} = props;
+        this.state = { props }
+        /*
+        this.state = { 
+            role: state.role,
+            token: state.token
+        };
+        */
+        //const {dispatch} = props;
     }
 
-    //componentDidMount() {
+    componentDidMount() {
+        this.unsubscribe = store.subscribe(() => {
+            console.log('the state ', this.state);
+            console.log('props are ', props);
+            this.setState({
+                role: this.state.role,
+                token: this.state.token
+            },);
+        });
+    }
 
-    //}
+    componentWillUnmount() {
+        this.unsubscribe();
+    }
 
     render() {
-        //let { todos, dispatch } = this.props;
-        //let boundActionCreators = bindActionCreators(AuthActionCreators, dispatch);
+        let { dispatch } = this.props;
+        let boundActionCreators = bindActionCreators(AuthActionCreators, dispatch);
         if (this.state.hasOwnProperty('token')) {
             return <Categories/>
         } else {
@@ -160,3 +178,15 @@ render(
     </Provider>,
     document.getElementById('app')
 );
+
+function mapStateToProps(state) {
+    return {
+        role: state.role,
+        token: state.token,
+    }
+}
+/*
+export default connect(mapStateToProps, {
+    AuthActionCreators
+})(Index);
+*/
