@@ -34,7 +34,7 @@ class Header extends React.Component {
                 </div>
 
                 <div className="header_right_box">
-                    {this.state.role !== null && this.state.role in ['customer', 'manager'] ?
+                    {this.props.role !== null && this.props.role in ['customer', 'manager'] ?
                     <div className="basket_wrapp">
                         <a href="/basket" className="basket_box">
                             <i className="fa fa-shopping-basket" aria-hidden="true"></i>
@@ -118,23 +118,10 @@ class Navigation extends React.Component {
     }
 }
 
-class Index extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { props }
-        /*
-        this.state = { 
-            role: state.role,
-            token: state.token
-        };
-        */
-        //const {dispatch} = props;
-    }
-
+class IndexContainer extends React.Component {
     componentDidMount() {
+        console.log('index container was mounted');
         this.unsubscribe = store.subscribe(() => {
-            console.log('the state ', this.state);
-            console.log('props are ', props);
             this.setState({
                 role: this.state.role,
                 token: this.state.token
@@ -147,16 +134,33 @@ class Index extends React.Component {
     }
 
     render() {
-        let { dispatch } = this.props;
-        let boundActionCreators = bindActionCreators(AuthActionCreators, dispatch);
-        if (this.state.hasOwnProperty('token')) {
-            return <Categories/>
+
+        const { todos, dispatch } = this.props;
+        console.log('index rerendered, here are the props', this.props);
+        if (store.getState().hasOwnProperty('token')) {
+            return <Categories token={store.getState().token} role={store.getState().role} />
         } else {
-            return <SignIn/>
+            return <SignIn token={store.getState().token} role={store.getState().role} />
      
         }
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        role: state.role,
+        token: state.token,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return { actions: bindActionCreators(AuthActionCreators, dispatch) }
+}
+
+let IndexCont = connect(
+    mapStateToProps, 
+    mapDispatchToProps
+)(IndexContainer);
 
 render(
     <Provider store={store}>
@@ -164,7 +168,7 @@ render(
             <div>
                 <Header />
                 <Switch>
-                    <Route exact path='/react_index' component={Index} />
+                    <Route exact path='/react_index' component={IndexCont} />
                     <Route path='/pick_role' component={PickRole}/>
                     <Route path='/sign_up' component={SignUp}/>
                     <Route path='/logout' component={SignIn}/>
@@ -179,14 +183,4 @@ render(
     document.getElementById('app')
 );
 
-function mapStateToProps(state) {
-    return {
-        role: state.role,
-        token: state.token,
-    }
-}
-/*
-export default connect(mapStateToProps, {
-    AuthActionCreators
-})(Index);
-*/
+

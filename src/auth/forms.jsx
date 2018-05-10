@@ -1,22 +1,28 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Route, Redirect } from 'react-router';
+import { Provider, connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import { Categories } from './views.jsx';
+
+// One could point it out that they duplicate each other temporarily, the reason is obvious
 import { createAccount, setToken, logOut } from './actions'
-import { store } from '../index.jsx'
+import * as AuthActionCreators from './actions'
+import store from '../index.jsx'
 
 export class SignInForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {email: '', password: ''};
+        console.log('sign in form props', props);
+        this.state = {email: '', password: '', props};
     
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.signUser = this.signUser.bind(this);
     }
-  
+
     handleEmailChange(event) {
         this.setState({email: event.target.value});
     }
@@ -43,11 +49,21 @@ export class SignInForm extends React.Component {
             return response;
             }).then((response) => response.json())
                 .then((data) => {
-                    console.log('returned data', data);
-                    console.log('store is ', store);
-                    // this is where magic should happen
-                    store.dispatch(setToken({ token: data.token, role: data.role }));
-                    //this.setState({ token: signed_user.token, role: signed_user.role })
+                    console.log('response data is ', data);
+                    console.log('this.props are ', this.props);
+                    this.props.dispatch(setToken({ token: data.token, role: data.role }));
+                    //store.dispatch({type: 'SET_TOKEN', payload: {token: data.token, role: data.role}})
+
+                    //const { dispatch, posts } = this.props;
+                    //console.log(store);
+                    //store.dispatch(setToken({ token: data.token, role: data.role }));
+                    //dispatch()
+                    //AuthActionCreators.setToken({ token: data.token, role: data.role });
+
+                    //store.dispatch(AuthActionCreators.setToken({ token: data.token, role: data.role }));
+
+                    // store.dispatch(setToken({ token: data.token, role: data.role }));
+                    // For some reason the code under the dispatch method is dead
                 })
                 .catch((e) => this.setState({ error: e }))
             .catch((e) => this.setState({ error: e }))
@@ -117,14 +133,8 @@ export class SignUpForm extends React.Component {
             return response;
             }).then((response) => response.json())
                 .then((data) => {
-                    //console.log('props on sign in, ', this.props);
-                    console.log(store);
                     store.dispatch(setToken({token: data.token, role: data.role}));
-                    //store
-                    //.dispatch(fetchPosts('reactjs'))
-                    //.then(() => console.log(store.getState()))
-                    //store.dispatch(
-                    //this.setState({ token: data.token, role: data.role })
+                    console.log('the store is now', this.props.store);
                 })
                 .catch((e) => this.setState({ error: e }))
             .catch((e) => this.setState({ error: e }))
@@ -201,3 +211,18 @@ export class SignUpForm extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        role: state.role,
+        token: state.token,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return { actions: bindActionCreators(AuthActionCreators, dispatch) }
+}
+
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps
+)(SignInForm);
