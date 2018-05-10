@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     #'oauth2_provider',
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_framework_swagger',
     'sorl.thumbnail',
     'catalogs',
     'core',

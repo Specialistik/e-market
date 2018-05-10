@@ -1,34 +1,28 @@
 import * as AuthActionCreators from './actions'
-//import {  } from './actions'
-//import { constants, createAccount, setToken, logOut } from './actions';
 
 const initialState = {
     token: null,
     role: null,
 }
 
-export const userReducer = (state = initialState, action) => {
-    console.log('userReducer state is ', state);
-    console.log('userReducer action is ', action);
+export default function userReducer(state = initialState, action) {
+    console.log(state, action);
     switch (action.type) {
-        case AuthActionCreators.createAccount:
-            console.log('create account reducer trigered');
+        case AuthActionCreators.constants.CREATE_ACCOUNT:
             return Object.assign({}, state, {
                 token: state.token,
                 role: state.role
-            })
-        case AuthActionCreators.SET_TOKEN:
-            console.log('set token reducer trigered');
+            });
+        case AuthActionCreators.constants.SET_TOKEN:
             return Object.assign({}, state, {
                 token: state.token,
                 role: state.role
-            })
-        case AuthActionCreators.LOG_OUT:
-            console.log('log out reducer trigered');
+            });
+        case AuthActionCreators.constants.LOG_OUT:
             return Object.assign({}, state, {
                 token: null,
                 role: null
-            })
+            });
         default:
             return state;
     }

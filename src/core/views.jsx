@@ -158,7 +158,7 @@ export class Products extends React.Component {
                 <h3 className="title_line"><span>{ this.state.category.name }</span></h3>
 
                 <Link to={"/categories/" + this.state.category.pid + '/'} className="btn light_orange icon_right large_width">
-                    <i className="fa fa-long-arrow-left" aria-hidden="true"></i>
+                    <i className="fa fa-long-arrow-left" aria-hidden="true"/>
                         Назад к подкатегориям
                 </Link>
             </div>
@@ -178,7 +178,7 @@ export class Products extends React.Component {
                 <div className="wrapp_search">
                     <input type="text" name="search_string"/>
                     <button className="search_btn">
-                        <i className="fa fa-search" aria-hidden="true"></i>
+                        <i className="fa fa-search" aria-hidden="true"/>
                     </button>
                 </div>
             </form>
@@ -215,31 +215,5 @@ export class Products extends React.Component {
             </div> 
         </div>
     </div>
-    }
-}
-
-// Kinda skeleton for a navigation component as if it wasn't obvious
-export class Navigation extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            props
-        }
-    }
-
-    render() {
-        if (this.state.role === ROLES.SUPERVISOR) {
-            return <div />
-        } else {
-            return <div> 
-                <button className="navigation_btn">
-                    <i className="fa fa-bars" aria-hidden="true"></i>
-                </button> 
-
-                <nav id="nav" className="navigation">
-                </nav>
-            </div>
-        }
-        
     }
 }

@@ -4,14 +4,6 @@ export const constants =  {
     LOG_OUT: 'LOG OUT',
 };
 
-// They don't get exported as expected for some reason
-export const ROLES = {
-    CUSTOMER: 'customer',
-    PRODUCER: 'producer',
-    MANAGER: 'manager',
-    SUPERVISOR: 'supervisor',
-}
-
 /**
  * @param {string} email 
  * @param {string} password

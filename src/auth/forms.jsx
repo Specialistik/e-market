@@ -1,7 +1,5 @@
 import React from 'react';
-import { render } from 'react-dom';
-import { Route, Redirect } from 'react-router';
-import { Provider, connect } from 'react-redux';
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { Categories } from './views.jsx';
@@ -49,21 +47,7 @@ export class SignInForm extends React.Component {
             return response;
             }).then((response) => response.json())
                 .then((data) => {
-                    console.log('response data is ', data);
-                    console.log('this.props are ', this.props);
-                    this.props.dispatch(setToken({ token: data.token, role: data.role }));
-                    //store.dispatch({type: 'SET_TOKEN', payload: {token: data.token, role: data.role}})
-
-                    //const { dispatch, posts } = this.props;
-                    //console.log(store);
-                    //store.dispatch(setToken({ token: data.token, role: data.role }));
-                    //dispatch()
-                    //AuthActionCreators.setToken({ token: data.token, role: data.role });
-
-                    //store.dispatch(AuthActionCreators.setToken({ token: data.token, role: data.role }));
-
-                    // store.dispatch(setToken({ token: data.token, role: data.role }));
-                    // For some reason the code under the dispatch method is dead
+                    store.dispatch(setToken(data.token, data.role ))
                 })
                 .catch((e) => this.setState({ error: e }))
             .catch((e) => this.setState({ error: e }))
@@ -121,7 +105,7 @@ export class SignUpForm extends React.Component {
         event.preventDefault();
 
         fetch('/api/sign_up/', {
-            email: this.state.email,
+            email: this.props.email,
             password: this.state.password,
             company_name: this.state.company_name,
             inn: this.state.inn,
@@ -133,8 +117,7 @@ export class SignUpForm extends React.Component {
             return response;
             }).then((response) => response.json())
                 .then((data) => {
-                    store.dispatch(setToken({token: data.token, role: data.role}));
-                    console.log('the store is now', this.props.store);
+                    store.dispatch(createAccount(data.token, data.role));
                 })
                 .catch((e) => this.setState({ error: e }))
             .catch((e) => this.setState({ error: e }))

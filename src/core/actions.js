@@ -12,7 +12,7 @@ export function selectCategories(pid) {
 
 export function selectProducts(pid) {
     return {
-        type: SELECT_PRODUCTS,
+        type: constants.SELECT_PRODUCTS,
         products: Array, category: Array
     };
 }

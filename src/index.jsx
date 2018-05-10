@@ -16,7 +16,7 @@ import { Profile } from './profile/views.jsx';
 import * as AuthActionCreators from './auth/actions'
 
 import configureStore from './store';
-export let store = configureStore();
+export const store = configureStore();
 
 class Header extends React.Component {
     constructor(props) {
@@ -46,7 +46,7 @@ class Header extends React.Component {
                         </div>
                     </div> :''}
 
-                    {this.state.role !== null && this.state.role === 'manager' ?
+                    {this.props.role !== null && this.props.role === 'manager' ?
                     <div className="basket_wrapp">
                         <a href="/basket" className="basket_box">
                             <i className="fa fa-shopping-basket" aria-hidden="true"></i>
@@ -86,24 +86,22 @@ class Navigation extends React.Component {
     }
 
     render() {
-        console.log('props', this.props, 'state', this.state);
-        return 
-        {this.state.role !== 'supervisor' ?
+        return this.props.role !== 'supervisor' ?
             <div>
-                <button class="navigation_btn">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
+                <button className="navigation_btn">
+                    <i className="fa fa-bars" aria-hidden="true"></i>
                 </button> 
-                <nav id="nav" class="navigation">
-                    <div class="user_navigation">
+                <nav id="nav" className="navigation">
+                    <div className="user_navigation">
                         {this.state.role in ('customer', 'manager') ?
-                            <div class="basket_wrapp">
-                                <a href="/basket" class="basket_box">
-                                    <i class="fa fa-shopping-basket" aria-hidden="true"></i>
-                                    <span class="basket_item">14</span>
+                            <div className="basket_wrapp">
+                                <a href="/basket" className="basket_box">
+                                    <i className="fa fa-shopping-basket" aria-hidden="true"></i>
+                                    <span className="basket_item">14</span>
                                 </a>
         
-                                <div class="basket_box_count">
-                                    <span class="basket_count">88</span> руб
+                                <div className="basket_box_count">
+                                    <span className="basket_count">88</span> руб
                                 </div>
         
                             </div>
@@ -114,7 +112,6 @@ class Navigation extends React.Component {
                 </nav>
             </div>
         :''
-        }
     }
 }
 

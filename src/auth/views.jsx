@@ -141,7 +141,7 @@ export class PickRole extends React.Component {
 
 
 // This somehow logically intersects with reducers, so let it just be here
-class AuthorizationContainer extends React.Component {
+export class AuthorizationContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = { props }
