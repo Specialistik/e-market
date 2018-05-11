@@ -5,14 +5,13 @@ import { bindActionCreators } from 'redux';
 import { Categories } from './views.jsx';
 
 // One could point it out that they duplicate each other temporarily, the reason is obvious
-import { createAccount, setToken, logOut } from './actions'
 import * as AuthActionCreators from './actions'
-import store from '../index.jsx'
+//import store from '../index'
 
 export class SignInForm extends React.Component {
     constructor(props) {
+        console.log('sign in form props are ', props);
         super(props);
-        console.log('sign in form props', props);
         this.state = {email: '', password: '', props};
     
         this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -47,7 +46,9 @@ export class SignInForm extends React.Component {
             return response;
             }).then((response) => response.json())
                 .then((data) => {
-                    store.dispatch(setToken(data.token, data.role ))
+                    console.log('sign in this is ', this);
+                    this.props.actions.setToken(data.token, data.role);
+                    //store.dispatch(setToken(data.token, data.role ));
                 })
                 .catch((e) => this.setState({ error: e }))
             .catch((e) => this.setState({ error: e }))
@@ -87,6 +88,7 @@ export class SignInForm extends React.Component {
 export class SignUpForm extends React.Component {
     constructor(props) {
         super(props);
+        console.log('sign up form props are ', props);
         this.state = { email: '', password: '', privacy_check: false};
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePrivacyChange = this.handlePrivacyChange.bind(this);
@@ -105,11 +107,17 @@ export class SignUpForm extends React.Component {
         event.preventDefault();
 
         fetch('/api/sign_up/', {
-            email: this.props.email,
-            password: this.state.password,
-            company_name: this.state.company_name,
-            inn: this.state.inn,
-            phone: this.state.phone
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify({
+                email: this.props.email,
+                password: this.state.password,
+                company_name: this.state.company_name,
+                inn: this.state.inn,
+                phone: this.state.phone
+            }),
         }).then((response) => {
             if (!response.ok) {
                 throw Error(response.statusText);
@@ -117,7 +125,9 @@ export class SignUpForm extends React.Component {
             return response;
             }).then((response) => response.json())
                 .then((data) => {
-                    store.dispatch(createAccount(data.token, data.role));
+                    console.log('sign up this is ', this);
+                    //this.actions
+                    this.props.actions.createAccount(data.token, data.role);
                 })
                 .catch((e) => this.setState({ error: e }))
             .catch((e) => this.setState({ error: e }))
@@ -205,7 +215,12 @@ const mapDispatchToProps = dispatch => {
     return { actions: bindActionCreators(AuthActionCreators, dispatch) }
 }
 
-export default connect(
+export const SignInFormContainer = connect(
     mapStateToProps, 
     mapDispatchToProps
 )(SignInForm);
+
+export const SignUpFormContainer = connect(
+    mapStateToProps, 
+    mapDispatchToProps
+)(SignUpForm);

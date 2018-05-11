@@ -12,23 +12,28 @@ export const constants =  {
  * @param {string} role
  * @param {string} company_name  
  */
-export function createAccount(email, password, inn, phone, role, company_name) {
+
+
+ 
+//export function createAccount(email, password, inn, phone, role, company_name) {
+export function createAccount(token, role) {
     return {
         type: constants.CREATE_ACCOUNT,
-        token: string,
-        role: string
+        token,
+        role
     };
 }
 
+
 /**
- * @param {string} role
  * @param {string} token
+ * @param {string} role
  */
-export function setToken(role, token) {
+export function setToken(token, role) {
     return {
         type: constants.SET_TOKEN,
-        token: string,
-        role: string
+        token,
+        role
     };
 }
 

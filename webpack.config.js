@@ -11,7 +11,7 @@ var devFlagPlugin = new webpack.DefinePlugin({
 
 var config = {
   entry: {
-      app: './src/index.jsx'
+      app: './src/index.js'
     },
   output: {
     path: BUILD_DIR,

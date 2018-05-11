@@ -1,14 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Link, Redirect } from 'react-router-dom';
-
-import { SignInForm, SignUpForm } from './forms.jsx';
+import { SignInFormContainer, SignUpFormContainer } from './forms.jsx';
 
 const contentStyle = {
     backgroundImage: 'url(' + 'static/images/bg-image/bg-type1.png' + ')',
 };
-
-import { store } from '../index.jsx' 
 
 class CustomerCheckEntity extends React.Component {
     render() {
@@ -23,10 +20,6 @@ class ProducerCheckEntity extends React.Component {
 }
 
 export class SignIn extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     render () {
         return <div id="content" className="content_bg verification_content" style={contentStyle}>
             <div className="wrapp_verification">
@@ -35,7 +28,7 @@ export class SignIn extends React.Component {
                 </div>
 
                 <div className="content_verification">
-                    <SignInForm/>
+                    <SignInFormContainer />
 
                     <div className="box_btn clearfix">
                         <Link to={`/pick_role`} className="hight_orange">Зарегистрироваться</Link>
@@ -55,7 +48,7 @@ export class SignUp extends React.Component {
                 </div>
 
                 <div className="content_verification">
-                    <SignUpForm />
+                    <SignUpFormContainer />
                 </div>
             </div>
         </div>
@@ -74,7 +67,6 @@ export class PickRole extends React.Component {
 
     pickedUp() {
         return this.state.producer || this.state.customer;
-
     }
     
     goToSignUp() {
@@ -136,35 +128,5 @@ export class PickRole extends React.Component {
                 </div>
             </div>
         </div>
-    }
-}
-
-
-// This somehow logically intersects with reducers, so let it just be here
-export class AuthorizationContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { props }
-    }
-        /*
-    componentDidMount() {
-
-        if (this.state.role in ('customer', 'manager'))
-            this.unsubscribe = bankStore.subscribe(() =>
-                this.setState({basket_price: bankStore.getState().basket_price})
-            );
-         
-    }
-
-    componentWillUnmount() {
-        this.unsubscribe();
-    }
-   */
-    render() {
-        return ''; //<SignIn
-            //onSignIn={ (token, role) => }
-            // Токен с ролью у нас и так на верху есть 
-            //token={this.state.token}
-            //role={this.}
     }
 }

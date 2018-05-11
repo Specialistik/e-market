@@ -1,13 +1,100 @@
 
 import React from 'react';
-import { render } from 'react-dom';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import ROLES from '../auth/actions';
+//import { store } from '../index';
+import * as CoreActionCreators from './actions';
 
 const hiddenStyle = {
     display: 'none',
 };
+
+export class Header extends React.Component {
+    render() {
+        return <header id="header" className="header_wrapp clearfix">
+            <div className="header_inner claerfix">
+                <div className="logo">
+                    <Link to="/">
+                        <img src="/static/images/small-logo.png" alt=""/>
+                    </Link>
+                </div>
+
+                <div className="header_right_box">
+                    {this.props.role !== null && this.props.role in ['customer', 'manager'] ?
+                    <div className="basket_wrapp">
+                        <a href="/basket" className="basket_box">
+                            <i className="fa fa-shopping-basket" aria-hidden="true"></i>
+                            <span className="basket_item">14</span>
+                        </a>
+
+                        <div className="basket_box_count">
+                            <span className="basket_count" id="basket">88</span> руб
+                        </div>
+                    </div> :''}
+
+                    {this.props.role !== null && this.props.role === 'manager' ?
+                    <div className="basket_wrapp">
+                        <a href="/basket" className="basket_box">
+                            <i className="fa fa-shopping-basket" aria-hidden="true"></i>
+                            <span className="basket_item">14</span>
+                        </a>
+
+                        <div className="basket_box_count">
+                            <span className="basket_count">88</span> руб
+                        </div>
+
+                    </div> :''}
+
+                    <Link to='/profile/' href="/profile/" className="wrapp_company_logo clearfix">
+                        <span className="company_logo">
+                            <img src="/static/images/icons/user-icon.png" alt=""/>
+                        </span>
+
+                        <span className="company_name">
+                            Моя компания
+                        </span>
+                    </Link>
+
+                    <Link to='/logout' className="out_btn">
+                        Выйти
+                        <i className="fa fa-angle-down" aria-hidden="true"></i>
+                    </Link>
+                </div>
+            </div>
+        </header>
+    }
+};
+
+export class Navigation extends React.Component {
+    render() {
+        return this.props.role !== 'supervisor' ?
+            <div>
+                <button className="navigation_btn">
+                    <i className="fa fa-bars" aria-hidden="true"></i>
+                </button> 
+                <nav id="nav" className="navigation">
+                    <div className="user_navigation">
+                        {this.props.role in ('customer', 'manager') ?
+                            <div className="basket_wrapp">
+                                <a href="/basket" className="basket_box">
+                                    <i className="fa fa-shopping-basket" aria-hidden="true"></i>
+                                    <span className="basket_item">14</span>
+                                </a>
+        
+                                <div className="basket_box_count">
+                                    <span className="basket_count">88</span> руб
+                                </div>
+        
+                            </div>
+                        :''}
+                    </div>
+                </nav>
+            </div>
+        :''
+    }
+}
 
 class CategoryTitle extends React.Component {
     render() {
@@ -22,7 +109,6 @@ export class Categories extends React.Component {
         super(props);
         this.state = {
             categories: [],
-            pid: (props.match && props.match.params.pid !== null) ? props.match.params.pid : null,
             cat_name: ''
         };
         this.fetchCats = this.fetchCats.bind(this);
@@ -44,24 +130,20 @@ export class Categories extends React.Component {
                         })
                     ).catch((e) => this.setState({ hasErrored: true, error: e }))
                 .catch((e) => this.setState({ hasErrored: true, error: e }))
-            .catch((e) => this.setState({ hasErrored: true, error: e }))
+        .catch((e) => this.setState({ hasErrored: true, error: e }))
     }
 
     componentDidMount() {
-        if (this.state.pid === null) {
-            this.fetchCats("/api/categories/");
-        } else {
-            this.fetchCats("/api/categories/" + this.state.pid + '/');
-        }
+        this.fetchCats("/api/categories/" + (this.props.hasOwnProperty('match') ? this.props.match.params.pid + '/' : ''));
     }
 
     render() {
         return <div id="content" className="wrapp_content">
-            { this.state.pid ? 
+            { this.props.hasOwnProperty('match') ? 
                 <div className="box_title_button">
                     <h3 className="title_line"><span>{ this.state.cat_name }</span></h3>
 
-                    <Link to='/categories/' pid={this.state.pid?null:this.state.pid} className="btn light_orange icon_right large_width">
+                    <Link to={ '/categories/' + this.props.match.params.pid + '/' } className="btn light_orange icon_right large_width">
                         <i className="fa fa-long-arrow-left" aria-hidden="true"></i>
                         Назад к категориям
                     </Link>
@@ -78,16 +160,15 @@ export class Categories extends React.Component {
             </form>
 
             <div className="wrapp_products">
-
                 <div className="row_products clearfix">
                     {this.state.categories.map((category, index) => (
-                        <figure className="col_products category_products" data-mh="col-products" key={index}>
+                        <figure className="col_products category_products" data-mh="col-products" key={ index }>
                             <div className="products_img" data-mh="products-img">
-                                <Link to={(this.state.pid===null?'/categories/':'/products/') + category.id + '/'}>
+                                <Link to={ (!this.props.hasOwnProperty('match')?'/categories/':'/products/') + category.id + '/'}>
                                     <img src={ category.image } />
                                     { category.name }
                                 </Link>
-                                { this.state.role == 'customer'? 
+                                { this.props.role === 'customer'? 
                                     <div className="products_count">
                                         { category.unseen }
                                     </div>:''
@@ -102,9 +183,9 @@ export class Categories extends React.Component {
 
                     <div className="wrapp_products_list">
                         <ul className="products_list">
-                            {this.state.categories.map((category, index) => (
+                            { this.state.categories.map((category, index) => (
                                 <li key={index}>
-                                    <Link to={(this.state.pid===null?'/categories/':'/products/') + category.id + '/'}>
+                                    <Link to={ (this.props.hasOwnProperty('match') ? '/categories/' : '/products/') + category.id + '/'}>
                                         <span><img src={ category.image } /></span>
                                         { category.name }
                                     </Link>
@@ -123,8 +204,6 @@ export class Products extends React.Component {
         super(props);
         this.state = {
             products: [],
-            cat_id: (props.match) ? props.match.params.cat_id: null,
-            isCustomerOrManager: (props.hasOwnProperty('role') && props.role in ('customer', 'manager')),
             category : {
                 pid: null,
                 name: ''
@@ -133,7 +212,7 @@ export class Products extends React.Component {
     }
 
     fetchProducts() {
-        fetch("/api/products/" + this.state.cat_id + '/')
+        fetch("/api/products/" + this.props.match.params.cat_id + '/')
             .then((response) => {
                 if (!response.ok) {
                     throw Error(response.statusText);
@@ -141,9 +220,9 @@ export class Products extends React.Component {
                 return response;
                 }).then((response) => response.json())
                     .then((products_entity) => this.setState({ 
-                        category: products_entity.category, 
-                        products: products_entity.products
-                    }).catch((e) => this.setState({ hasErrored: true, error: e })))
+                            category: products_entity.category, 
+                            products: products_entity.products
+                        }).catch((e) => this.setState({ hasErrored: true, error: e })))
                 .catch((e) => this.setState({ hasErrored: true, error: e }))
             .catch((e) => this.setState({ hasErrored: true, error: e }))
     }
@@ -153,11 +232,12 @@ export class Products extends React.Component {
     }
 
     render() {
+        console.log('rendering of products, state and props are', this.state, this.props);
         return <div id="content" className="wrapp_content">
             <div className="box_title_button">
                 <h3 className="title_line"><span>{ this.state.category.name }</span></h3>
 
-                <Link to={"/categories/" + this.state.category.pid + '/'} className="btn light_orange icon_right large_width">
+                <Link to={"/categories/" + this.props.match.params.cat_id + '/'} className="btn light_orange icon_right large_width">
                     <i className="fa fa-long-arrow-left" aria-hidden="true"/>
                         Назад к подкатегориям
                 </Link>
@@ -188,9 +268,9 @@ export class Products extends React.Component {
             <div className="row_products clearfix">
                 {this.state.products.map((product, index) => (
                     <figure className="col_products" data-mh="col-products" key={index}>
-                        <div style={hiddenStyle} className="product_minimum_amount">{ product.minimum_amount }</div>
-                        <div style={hiddenStyle} className="product_id">{ product.id }</div>
-                        <div style={hiddenStyle} className="product_description">{ product.description }</div>
+                        <div style={ hiddenStyle } className="product_minimum_amount">{ product.minimum_amount }</div>
+                        <div style={ hiddenStyle } className="product_id">{ product.id }</div>
+                        <div style={ hiddenStyle } className="product_description">{ product.description }</div>
                         <div className="products_img" data-mh="products-img">
                             <a href="#product1" className="modal_desc_product btn_popup">
                                 <img className="img_url" src={ product.image } alt={ product.name }/>
@@ -203,8 +283,8 @@ export class Products extends React.Component {
                                 <span className="products_subtitle">{ product.weight } кг</span>
                             </h3>
 
-                            {this.state.isCustomerOrManager 
-                                ? <div className="wrapp_btn center">
+                            { this.props.role && this.props.role in ('customer', 'manager') ? 
+                                <div className="wrapp_btn center">
                                     <span className="products_price">{ product.price }р</span>
                                     <a href="javascript:;" className="btn btn_basket light_orange add_to_cart">В корзину</a>
                                 </div>:''
@@ -217,3 +297,19 @@ export class Products extends React.Component {
     </div>
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        role: state.role,
+        token: state.token
+    }
+}
+/*
+const mapDispatchToProps = dispatch => {
+    return { actions: bindActionCreators(CoreActionCreators, dispatch) }
+}
+*/
+
+const CategoryContainer = connect(
+    mapStateToProps
+)(Categories, Products);
