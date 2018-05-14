@@ -41,8 +41,7 @@ export class SignInForm extends React.Component {
             return response;
             }).then((response) => response.json())
                 .then((data) => {
-                    let { dispatch } = this.props;
-                    dispatch(this.props.actions.setToken(data.token, data.role));
+                    this.props.dispatch(this.props.actions.setToken(data.token, data.role));
                 })
                 .catch((e) => this.setState({ error: e }))
             .catch((e) => this.setState({ error: e }))
@@ -83,18 +82,45 @@ export class SignUpForm extends React.Component {
     constructor(props) {
         super(props);
         console.log('sign up form props are ', props);
-        this.state = { email: '', password: '', privacy_check: false};
+        this.state = { 
+            email: '', 
+            password: '', 
+            company_name: '',
+            inn: '',
+            phone: '',
+            privacy_check: false
+        };
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePrivacyChange = this.handlePrivacyChange.bind(this);
+        this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handlePhoneChange = this.handlePhoneChange.bind(this);
+        this.handleInnChange = this.handleInnChange.bind(this);
+        this.handleCompanyNameChange = this.handleCompanyNameChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleInnChange(event) {
+        this.setState({inn: event.target.value});
+    }
+
+    handlePhoneChange(event) {
+        this.setState({phone: event.target.value});
+    }
+
+    handleCompanyNameChange(event) {
+        this.setState({company_name: event.target.value});
+    }
+
+    handlePasswordChange(event) {
+        this.setState({password: event.target.value});
     }
   
     handleEmailChange(event) {
-        event.preventDefault();
-    }
+        this.setState({email: event.target.value});
+    } 
 
     handlePrivacyChange(event) {
-        event.preventDefault();
+        this.setState({privacy_check: event.target.value});
     }
   
     handleSubmit(event) {
@@ -106,7 +132,7 @@ export class SignUpForm extends React.Component {
                 'Content-Type': 'application/json'
               },
             body: JSON.stringify({
-                email: this.props.email,
+                email: this.state.email,
                 password: this.state.password,
                 company_name: this.state.company_name,
                 inn: this.state.inn,
@@ -119,8 +145,7 @@ export class SignUpForm extends React.Component {
             return response;
             }).then((response) => response.json())
                 .then((data) => {
-                    let { dispatch } = this.props;
-                    dispatch(this.props.actions.createAccount(data.token, data.role));
+                    this.props.dispatch(this.props.actions.createAccount(data.token, data.role));
                 })
                 .catch((e) => this.setState({ error: e }))
             .catch((e) => this.setState({ error: e }))
@@ -198,9 +223,10 @@ export class SignUpForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log('map state to props ', state);
     return {
-        role: state.role,
-        token: state.token,
+        role: state.userReducer['role'],
+        token: state.userReducer['token'],
     }
 }
 

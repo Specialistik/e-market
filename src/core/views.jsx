@@ -221,7 +221,7 @@ export class Products extends React.Component {
                     .then((products_entity) => this.setState({ 
                             category: products_entity.category, 
                             products: products_entity.products
-                        }).catch((e) => this.setState({ hasErrored: true, error: e })))
+                        })).catch((e) => this.setState({ hasErrored: true, error: e }))
                 .catch((e) => this.setState({ hasErrored: true, error: e }))
             .catch((e) => this.setState({ hasErrored: true, error: e }))
     }

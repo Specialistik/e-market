@@ -9,6 +9,7 @@ import {
     Link,
   } from 'react-router-dom';
 
+import * as AuthActionCreators from './auth/actions';
 import { SignIn, SignUp, PickRole } from './auth/views.jsx';
 import { Header, Categories, Products } from './core/views.jsx';
 import { Profile } from './profile/views.jsx';
@@ -23,10 +24,28 @@ const IndexContainer = props => {
 */
 
 class IndexContainer extends React.Component {
+    /*
+    constructor(props) {
+        super(props);
+        this.state = {
+            store
+            //role: store.getState().role,
+            //token: store.getState().token
+        }
+    }
+
+    componentDidMount() {
+
+    }
+*/
     render() {
         console.log('index props are ', this.props);
+        //this.state = store.getState();
+        console.log('index state is ', this.state);
+        console.log('store state is ', store.getState());
+
         //if (this.props.hasOwnProperty('token')) {
-        if (this.props.hasOwnProperty('token') && this.props.token) {
+        if (this.props.token) {
             return <Categories />
         } else {
             return <SignIn />
@@ -34,11 +53,16 @@ class IndexContainer extends React.Component {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return { actions: bindActionCreators(AuthActionCreators, dispatch) }
+}
+
 
 const mapStateToProps = (state) => {
+    console.log('index map state to props ', state);
     return {
-        role: state.role,
-        token: state.token,
+        role: state.userReducer['role'],
+        token: state.userReducer['token']
     }
 }
 

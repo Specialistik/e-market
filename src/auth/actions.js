@@ -19,8 +19,8 @@ export const constants =  {
 export function createAccount(token, role) {
     return {
         type: constants.CREATE_ACCOUNT,
-        token,
-        role
+        token: token,
+        role: role
     };
 }
 
@@ -32,8 +32,8 @@ export function createAccount(token, role) {
 export function setToken(token, role) {
     return {
         type: constants.SET_TOKEN,
-        token,
-        role
+        token: token,
+        role: role
     };
 }
 
