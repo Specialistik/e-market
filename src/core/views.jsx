@@ -1,10 +1,9 @@
 
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-//import { store } from '../index';
 import * as CoreActionCreators from './actions';
 
 const hiddenStyle = {
@@ -310,6 +309,7 @@ const mapDispatchToProps = dispatch => {
 }
 */
 
-const CategoryContainer = connect(
-    mapStateToProps
+export default connect(
+    mapStateToProps,
+    null
 )(Categories, Products);

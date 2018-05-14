@@ -2,15 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { Categories } from './views.jsx';
-
-// One could point it out that they duplicate each other temporarily, the reason is obvious
 import * as AuthActionCreators from './actions'
-//import store from '../index'
 
 export class SignInForm extends React.Component {
     constructor(props) {
-        console.log('sign in form props are ', props);
         super(props);
         this.state = {email: '', password: '', props};
     
@@ -46,9 +41,8 @@ export class SignInForm extends React.Component {
             return response;
             }).then((response) => response.json())
                 .then((data) => {
-                    console.log('sign in this is ', this);
-                    this.props.actions.setToken(data.token, data.role);
-                    //store.dispatch(setToken(data.token, data.role ));
+                    let { dispatch } = this.props;
+                    dispatch(this.props.actions.setToken(data.token, data.role));
                 })
                 .catch((e) => this.setState({ error: e }))
             .catch((e) => this.setState({ error: e }))
@@ -125,9 +119,8 @@ export class SignUpForm extends React.Component {
             return response;
             }).then((response) => response.json())
                 .then((data) => {
-                    console.log('sign up this is ', this);
-                    //this.actions
-                    this.props.actions.createAccount(data.token, data.role);
+                    let { dispatch } = this.props;
+                    dispatch(this.props.actions.createAccount(data.token, data.role));
                 })
                 .catch((e) => this.setState({ error: e }))
             .catch((e) => this.setState({ error: e }))
@@ -204,14 +197,14 @@ export class SignUpForm extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         role: state.role,
         token: state.token,
     }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return { actions: bindActionCreators(AuthActionCreators, dispatch) }
 }
 
@@ -219,6 +212,7 @@ export const SignInFormContainer = connect(
     mapStateToProps, 
     mapDispatchToProps
 )(SignInForm);
+
 
 export const SignUpFormContainer = connect(
     mapStateToProps, 
