@@ -105,6 +105,7 @@ class CategoryTitle extends React.Component {
 
 export class Categories extends React.Component {
     constructor(props) {
+        console.log('categories constructor fired');
         super(props);
         this.state = {
             pid: (this.props.hasOwnProperty('match') && this.props.match.params.hasOwnProperty('pid') ? this.props.match.params.pid : null),
@@ -138,7 +139,13 @@ export class Categories extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-        this.fetchCats("/api/categories/" + (nextProps.hasOwnProperty('pid') ? nextProps.pid + '/' : ''));
+        if (nextProps.match.params.hasOwnProperty('pid')) {
+            this.setState({pid: nextProps.match.params.pid})
+            this.fetchCats("/api/categories/" + nextProps.match.params.pid + '/');
+        } else {
+            this.setState({pid: null});
+            this.fetchCats("/api/categories/");
+        }
      }
 
     render() {
