@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -107,6 +107,7 @@ export class Categories extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            pid: (this.props.hasOwnProperty('match') && this.props.match.params.hasOwnProperty('pid') ? this.props.match.params.pid : null),
             categories: [],
             cat_name: ''
         };
@@ -133,16 +134,20 @@ export class Categories extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchCats("/api/categories/" + (this.props.hasOwnProperty('match') ? this.props.match.params.pid + '/' : ''));
+        this.fetchCats("/api/categories/" + (this.state.pid ? this.state.pid + '/' : ''));
     }
+
+    componentWillReceiveProps(nextProps){
+        this.fetchCats("/api/categories/" + (nextProps.hasOwnProperty('pid') ? nextProps.pid + '/' : ''));
+     }
 
     render() {
         return <div id="content" className="wrapp_content">
-            { this.props.hasOwnProperty('match') ? 
+            { this.state.pid ? 
                 <div className="box_title_button">
                     <h3 className="title_line"><span>{ this.state.cat_name }</span></h3>
 
-                    <Link to={ '/categories/' + this.props.match.params.pid + '/' } className="btn light_orange icon_right large_width">
+                    <Link to={ '/categories/' } className="btn light_orange icon_right large_width">
                         <i className="fa fa-long-arrow-left" aria-hidden="true"></i>
                         Назад к категориям
                     </Link>
@@ -163,7 +168,7 @@ export class Categories extends React.Component {
                     {this.state.categories.map((category, index) => (
                         <figure className="col_products category_products" data-mh="col-products" key={ index }>
                             <div className="products_img" data-mh="products-img">
-                                <Link to={ (!this.props.hasOwnProperty('match')?'/categories/':'/products/') + category.id + '/'}>
+                                <Link to={ (!this.state.pid?'/categories/':'/products/') + category.id + '/'}>
                                     <img src={ category.image } />
                                     { category.name }
                                 </Link>
@@ -184,7 +189,7 @@ export class Categories extends React.Component {
                         <ul className="products_list">
                             { this.state.categories.map((category, index) => (
                                 <li key={index}>
-                                    <Link to={ (this.props.hasOwnProperty('match') ? '/categories/' : '/products/') + category.id + '/'}>
+                                    <Link to={ (this.state.pid ? '/categories/' : '/products/') + category.id + '/'}>
                                         <span><img src={ category.image } /></span>
                                         { category.name }
                                     </Link>
@@ -231,12 +236,11 @@ export class Products extends React.Component {
     }
 
     render() {
-        console.log('rendering of products, state and props are', this.state, this.props);
         return <div id="content" className="wrapp_content">
             <div className="box_title_button">
                 <h3 className="title_line"><span>{ this.state.category.name }</span></h3>
 
-                <Link to={"/categories/" + this.props.match.params.cat_id + '/'} className="btn light_orange icon_right large_width">
+                <Link to={"/categories/" + this.state.category.pid + '/'} className="btn light_orange icon_right large_width">
                     <i className="fa fa-long-arrow-left" aria-hidden="true"/>
                         Назад к подкатегориям
                 </Link>
@@ -303,13 +307,14 @@ const mapStateToProps = state => {
         token: state.token
     }
 }
-/*
-const mapDispatchToProps = dispatch => {
-    return { actions: bindActionCreators(CoreActionCreators, dispatch) }
-}
-*/
 
-export default connect(
-    mapStateToProps,
+export const CategoryContainer = connect(
+    mapStateToProps, 
     null
-)(Categories, Products);
+)(Categories);
+
+
+export const ProductsContainer = connect(
+    mapStateToProps, 
+    null
+)(Products);

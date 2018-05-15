@@ -11,33 +11,14 @@ import {
 
 import * as AuthActionCreators from './auth/actions';
 import { SignIn, SignUp, PickRole } from './auth/views.jsx';
-import { Header, Categories, Products } from './core/views.jsx';
+import { Header, Categories, Products, CategoryContainer, ProductsContainer } from './core/views.jsx';
 import { Profile } from './profile/views.jsx';
 
 import configureStore from './store';
 export const store = configureStore();
 
-/*
-const IndexContainer = props => {
-    return props.hasOwnProperty('token') && props.token ? render(<Categories />) : render(<SignIn />)
-}
-*/
 
 class IndexContainer extends React.Component {
-    /*
-    constructor(props) {
-        super(props);
-        this.state = {
-            store
-            //role: store.getState().role,
-            //token: store.getState().token
-        }
-    }
-
-    componentDidMount() {
-
-    }
-*/
     render() {
         console.log('index props are ', this.props);
         //this.state = store.getState();
@@ -82,9 +63,9 @@ render(
                     <Route path='/sign_up' component={SignUp}/>
                     <Route path='/logout' component={SignIn}/>
 
-                    <Route exact path='/categories/' component={Categories}/>
-                    <Route exact path='/categories/:pid/' component={Categories}/>
-                    <Route path='/products/:cat_id/' component={Products}/>
+                    <Route exact path='/categories/' component={CategoryContainer}/>
+                    <Route exact path='/categories/:pid/' component={CategoryContainer}/>
+                    <Route path='/products/:cat_id/' component={ProductsContainer}/>
                 </Switch>
             </div>
         </Router>
