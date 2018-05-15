@@ -98,19 +98,19 @@ export class SignUpForm extends React.Component {
         this.handlePhoneChange = this.handlePhoneChange.bind(this);
         this.handleInnChange = this.handleInnChange.bind(this);
         this.handleCompanyNameChange = this.handleCompanyNameChange.bind(this);
-        
+        this.signupUser = this.signupUser.bind(this);
     }
 
     handleInnChange(event) {
         if (event.target.value.length <= 12) {
-            if (event.target.value === parseInt(event.target.value)) {
-                this.setState({inn: parseInt(event.target.value)});
-            }
+            this.setState({inn: parseInt(event.target.value) || ''});
         }
     }
 
     handlePhoneChange(event) {
-        this.setState({phone: parseInt(event.target.value)});
+        if (event.target.value.length <= 10) {
+            this.setState({phone: parseInt(event.target.value || '')});
+        }
     }
 
     handleCompanyNameChange(event) {
@@ -129,24 +129,18 @@ export class SignUpForm extends React.Component {
         this.setState({privacy_check: event.target.value});
     }
 
-    componentDidMount() {
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-  
-    handleSubmit(event) {
-        event.preventDefault();
-
+    signupUser(company_name, inn, password, email, phone) {
         fetch('/api/sign_up/', {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
               },
             body: JSON.stringify({
-                email: this.state.email,
-                password: this.state.password,
-                company_name: this.state.company_name,
-                inn: this.state.inn,
-                phone: this.state.phone
+                email: email,
+                password: password,
+                company_name: company_name,
+                inn: inn,
+                phone: phone
             }),
         }).then((response) => {
             if (!response.ok) {
@@ -162,8 +156,17 @@ export class SignUpForm extends React.Component {
         .catch((e) => this.setState({ error: e }))
     }
 
+    handleSubmit(event) {
+        event.preventDefault();
+        this.signupUser(this.state.company_name, this.state.inn, this.state.password, this.state.email, this.state.phone);
+    }
+
+    componentDidMount() {
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
     render() {
-        return <form action="/api/sign_up/" method="POST" className="wrapp_form_signup validate" id="signup_form" noValidate onSubmit={this.handleSubmit}>
+        return <form action="/api/sign_up/" method="POST" className="wrapp_form_signup validate" noValidate onSubmit={this.handleSubmit}>
             <div className="wrapp_verification_col">
                 <div className="verification_box_col">
                     <label htmlFor="" className="label1">Наименование компании</label>
