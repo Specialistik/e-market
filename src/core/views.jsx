@@ -105,7 +105,6 @@ class CategoryTitle extends React.Component {
 
 export class Categories extends React.Component {
     constructor(props) {
-        console.log('categories constructor fired');
         super(props);
         this.state = {
             pid: (this.props.hasOwnProperty('match') && this.props.match.params.hasOwnProperty('pid') ? this.props.match.params.pid : null),
@@ -175,7 +174,7 @@ export class Categories extends React.Component {
                     {this.state.categories.map((category, index) => (
                         <figure className="col_products category_products" data-mh="col-products" key={ index }>
                             <div className="products_img" data-mh="products-img">
-                                <Link to={ (!this.state.pid?'/categories/':'/products/') + category.id + '/'}>
+                                <Link to={ (!this.state.pid ? '/categories/' : '/products/') + category.id + '/'}>
                                     <img src={ category.image } />
                                     { category.name }
                                 </Link>

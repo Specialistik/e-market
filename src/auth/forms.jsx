@@ -11,8 +11,7 @@ export class SignInForm extends React.Component {
     
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
-        
-        //this.signUser = this.signUser.bind(this);
+        this.signUser = this.signUser.bind(this);
     }
 
     handleEmailChange(event) {
@@ -103,11 +102,15 @@ export class SignUpForm extends React.Component {
     }
 
     handleInnChange(event) {
-        this.setState({inn: event.target.value});
+        if (event.target.value.length <= 12) {
+            if (event.target.value === parseInt(event.target.value)) {
+                this.setState({inn: parseInt(event.target.value)});
+            }
+        }
     }
 
     handlePhoneChange(event) {
-        this.setState({phone: event.target.value});
+        this.setState({phone: parseInt(event.target.value)});
     }
 
     handleCompanyNameChange(event) {
@@ -180,14 +183,14 @@ export class SignUpForm extends React.Component {
                 <div className="verification_box_col">
                     <label htmlFor="" className="label1">Пароль</label>
                     <div className="error_form_container">
-                        <input name="password" type="password" value={this.state.password}/>
+                        <input name="password" type="password" value={this.state.password} required onChange={this.handlePasswordChange} />
                     </div>
                 </div>
 
                 <div className="verification_box_col">
                     <label htmlFor="" className="label1">E-mail</label>
                     <div className="error_form_container">
-                        <input name="email" type="email" value={this.state.email} onChange={this.handleEmailChange}/>
+                        <input name="email" type="email" value={this.state.email} required onChange={this.handleEmailChange} />
                     </div>
                 </div>
 
@@ -196,13 +199,13 @@ export class SignUpForm extends React.Component {
                     <div className="verification_row clearfix">
                         <div className="verification_col code_country">
                             <div className="error_form_container">
-                                <input type="tel" required value="+7" value={this.state.company_name} onChange={this.handlePhoneChange}/>
+                                <input type="tel" required value="+7" disabled />
                             </div>
                         </div>
 
                         <div className="verification_col phone_box">
                             <div className="error_form_container">
-                                <input name="phone" type="tel" placeholder="( - - - )  - - -  - -  - -"
+                                <input name="phone" type="tel" placeholder="( - - - )  - - -  - -  - -" required value={this.state.phone} onChange={this.handlePhoneChange}
                                         data-mask="(999) 999 99 99" />
                             </div>
                         </div>
@@ -211,7 +214,7 @@ export class SignUpForm extends React.Component {
 
                 <div className="verification_box_col">
                     <div className="wrapp_privacy_policy">
-                        <input type="checkbox" id="privacy_policy" value={this.state.privacy_check} onChange={this.handlePrivacyChange} />
+                        <input type="checkbox" id="privacy_policy" value={this.state.privacy_check} onChange={this.handlePrivacyChange} required/>
                             <label htmlFor="privacy_policy"></label>
 
                             <label htmlFor="privacy_policy" className="privacy_policy_txt">
