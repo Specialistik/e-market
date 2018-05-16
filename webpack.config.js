@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var tsconfig = require('./tsconfig.json')
 
 var BUILD_DIR = path.resolve(__dirname, 'static/js/public');
 var APP_DIR = path.resolve(__dirname, 'src');
@@ -22,14 +23,11 @@ var config = {
   },
   devtool: 'inline-source-map',
   module : {
-    loaders: [
-      {
-        test: /\.(tsx?)|(js)|(jsx)?$/, 
+    rules: [{
+        test: /\.(tsx?)|(js)|(jsx)$/, 
         loaders: ['babel-loader', 'ts-loader'], 
-        exclude: /node_modules/,
         include: APP_DIR
-      }
-    ],
+    }],
   },
 };
 
