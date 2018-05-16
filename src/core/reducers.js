@@ -1,4 +1,4 @@
-import * as coreActions from './actions';
+import { constants } from './actions';
 
 const initialState = {
     categories: [],
@@ -7,9 +7,9 @@ const initialState = {
 
 export default function coreReducer(state = initialState, action) {
     switch (action.type) {
-        case coreActions.constants.SELECT_CATEGORIES:
+        case constants.SELECT_CATEGORIES:
             return Object.assign({}, state, { categories: state.categories });
-        case coreActions.constants.SELECT_PRODUCTS:
+        case constants.SELECT_PRODUCTS:
             return Object.assign({}, state, {
                 products: state.products,
                 category: state.category

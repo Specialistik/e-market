@@ -12,14 +12,17 @@
     "babel-preset-react": "^6.24.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-popup": "^0.9.2",
     "react-redux": "^5.0.7",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "react-validation": "^3.0.7",
     "react-websocket": "^2.0.0",
     "redux-actions": "^2.3.0",
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.9.1",
     "redux-thunk": "^2.2.0",
+    "typescript": "^2.8.3",
     "webpack": "^4.3.0"
   },
   "devDependencies": {

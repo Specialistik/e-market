@@ -3,7 +3,9 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import Popup from "react-popup";
 
+import ModalProduct from './popups.jsx';
 import * as CoreActionCreators from './actions';
 
 const hiddenStyle = {
@@ -213,13 +215,25 @@ export class Products extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            open: false,
             products: [],
             category : {
                 pid: null,
                 name: ''
             },
         }
+        this.popupModalProduct = this.popupModalProduct.bind(this);
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
+
+    openModal() {
+        this.setState({ open: true });
+    };
+
+    closeModal() {
+        this.setState({ open: false });
+    };
 
     fetchProducts() {
         fetch("/api/products/" + this.props.match.params.cat_id + '/')
@@ -236,13 +250,16 @@ export class Products extends React.Component {
                 .catch((e) => this.setState({ hasErrored: true, error: e }))
             .catch((e) => this.setState({ hasErrored: true, error: e }))
     }
-
+/*
+    popupModalProduct() {
+        return this.render(<ModalProduct />);
+    }
+*/
     componentDidMount() {
         this.fetchProducts();
     }
 
     render() {
-        console.log(this.props);
         return <div id="content" className="wrapp_content">
             <div className="box_title_button">
                 <h3 className="title_line"><span>{ this.state.category.name }</span></h3>
@@ -282,9 +299,14 @@ export class Products extends React.Component {
                         <div style={ hiddenStyle } className="product_id">{ product.id }</div>
                         <div style={ hiddenStyle } className="product_description">{ product.description }</div>
                         <div className="products_img" data-mh="products-img">
-                            <a href="#product1" className="modal_desc_product btn_popup">
-                                <img className="img_url" src={ product.image } alt={ product.name }/>
-                            </a>
+                        {/*
+                        <Popup trigger={<a href="#product1" className="modal_desc_product btn_popup">} position="right center">
+                            <ModalProduct { ...props } />
+                        </Popup>
+                        */}                            
+                        <Link to="#product1" className="modal_desc_product btn_popup" onClick={this.popupModalProduct}>
+                            <img className="img_url" src={ product.image } alt={ product.name }/>
+                        </Link>
                         </div>
 
                         <figcaption>
@@ -304,6 +326,13 @@ export class Products extends React.Component {
                 ))}
             </div> 
         </div>
+        <Popup
+          open={this.state.open}
+          closeOnDocumentClick
+          onClose={this.closeModal}
+        >
+            <ModalProduct {...this.props.children}/>
+        </Popup>
     </div>
     }
 }

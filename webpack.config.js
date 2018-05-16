@@ -17,13 +17,17 @@ var config = {
     path: BUILD_DIR,
     filename: 'bundle.js'
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
+  },
   devtool: 'inline-source-map',
   module : {
-    rules : [
+    loaders: [
       {
-        test : /\.jsx?/,
-        include : APP_DIR,
-        loader : 'babel-loader'
+        test: /\.(tsx?)|(js)|(jsx)?$/, 
+        loaders: ['babel-loader', 'ts-loader'], 
+        exclude: /node_modules/,
+        include: APP_DIR
       }
     ],
   },
