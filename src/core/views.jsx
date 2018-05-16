@@ -242,6 +242,7 @@ export class Products extends React.Component {
     }
 
     render() {
+        console.log(this.props);
         return <div id="content" className="wrapp_content">
             <div className="box_title_button">
                 <h3 className="title_line"><span>{ this.state.category.name }</span></h3>
@@ -292,7 +293,7 @@ export class Products extends React.Component {
                                 <span className="products_subtitle">{ product.weight } кг</span>
                             </h3>
 
-                            { this.props.role && this.props.role in ('customer', 'manager') ? 
+                            { this.props.role && this.props.role in ['customer', 'manager'] ? 
                                 <div className="wrapp_btn center">
                                     <span className="products_price">{ product.price }р</span>
                                     <a href="javascript:;" className="btn btn_basket light_orange add_to_cart">В корзину</a>
@@ -309,8 +310,8 @@ export class Products extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        role: state.role,
-        token: state.token
+        role: state.userReducer['role'],
+        token: state.userReducer['token'],
     }
 }
 
