@@ -20,12 +20,6 @@ export const store = configureStore();
 
 class IndexContainer extends React.Component {
     render() {
-        console.log('index props are ', this.props);
-        //this.state = store.getState();
-        console.log('index state is ', this.state);
-        console.log('store state is ', store.getState());
-
-        //if (this.props.hasOwnProperty('token')) {
         if (this.props.token) {
             return <Categories />
         } else {
@@ -40,7 +34,6 @@ const mapDispatchToProps = (dispatch) => {
 
 
 const mapStateToProps = (state) => {
-    console.log('index map state to props ', state);
     return {
         role: state.userReducer['role'],
         token: state.userReducer['token']

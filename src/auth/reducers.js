@@ -13,7 +13,6 @@ export default function userReducer(state = initialState, action) {
                 role: action['role']
             });
         case AuthActionCreators.constants.SET_TOKEN:
-            console.log('set token reducer triggered, action: ', action, 'state: ', action['token']);
             return Object.assign({}, state, {
                 token: action['token'],
                 role: action['role']
