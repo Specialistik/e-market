@@ -11,7 +11,7 @@ import {
 
 import * as AuthActionCreators from './auth/actions';
 import { SignIn, SignUp, PickRole } from './auth/views.jsx';
-import { Header, Categories, Products, CategoryContainer, ProductsContainer } from './core/views.jsx';
+import { Header, CategoryContainer, ProductsContainer } from './core/views.jsx';
 import { Profile } from './profile/views.jsx';
 
 import configureStore from './store';
@@ -21,7 +21,7 @@ export const store = configureStore();
 class IndexContainer extends React.Component {
     render() {
         if (this.props.token) {
-            return <Categories />
+            return <CategoryContainer />
         } else {
             return <SignIn />
         }

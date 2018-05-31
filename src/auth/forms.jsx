@@ -7,6 +7,7 @@ import * as AuthActionCreators from './actions'
 export class SignInForm extends React.Component {
     constructor(props) {
         super(props);
+        this.error = null;
         this.state = {email: '', password: ''};
     
         this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -46,9 +47,9 @@ export class SignInForm extends React.Component {
                 .then((data) => {
                     this.props.dispatch(this.props.actions.setToken(data.token, data.role));
                 })
-                .catch((e) => this.setState({ error: e }))
-            .catch((e) => this.setState({ error: e }))
-        .catch((e) => this.setState({ hasErrored: true }))
+                .catch((e) => console.log(e))
+            .catch((e) => console.log(e))
+        .catch((e) => console.log(e))
     }
 
     handleSubmit(event) {
@@ -236,7 +237,6 @@ export class SignUpForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log('map state to props ', state);
     return {
         role: state.userReducer['role'],
         token: state.userReducer['token'],

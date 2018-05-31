@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { SignInFormContainer, SignUpFormContainer } from './forms.jsx';
 
 const contentStyle = {

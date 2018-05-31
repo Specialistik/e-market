@@ -140,6 +140,7 @@ export class Categories extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
+        console.log('before deciding what link to render', nextProps);
         if (nextProps.match.params.hasOwnProperty('pid')) {
             this.setState({pid: nextProps.match.params.pid})
             this.fetchCats("/api/categories/" + nextProps.match.params.pid + '/');
@@ -197,7 +198,7 @@ export class Categories extends React.Component {
                         <ul className="products_list">
                             { this.state.categories.map((category, index) => (
                                 <li key={index}>
-                                    <Link to={ (this.state.pid ? '/categories/' : '/products/') + category.id + '/'}>
+                                    <Link to={ (!this.state.pid ? '/categories/' : '/products/') + category.id + '/'}>
                                         <span><img src={ category.image } /></span>
                                         { category.name }
                                     </Link>
@@ -222,7 +223,6 @@ export class Products extends React.Component {
                 name: ''
             },
         }
-        this.popupModalProduct = this.popupModalProduct.bind(this);
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
