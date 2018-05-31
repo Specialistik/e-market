@@ -17,15 +17,16 @@ var config = {
     path: BUILD_DIR,
     filename: 'bundle.js'
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.json']
+  },
   devtool: 'inline-source-map',
   module : {
-    rules : [
-      {
-        test : /\.jsx?/,
-        include : APP_DIR,
-        loader : 'babel-loader'
-      }
-    ],
+    rules: [{
+        test: /\.(js)|(jsx)$/,
+        loaders: ['babel-loader'],
+        include: APP_DIR
+    }],
   },
 };
 
