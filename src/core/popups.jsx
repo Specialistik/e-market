@@ -6,11 +6,8 @@ export class ModalProduct extends React.Component {
         this.state = {
             open: false
         };
+        this.closeModal = this.closeModal.bind(this);
     }
-
-    openModal() {
-        this.setState({ open: true });
-    };
 
     closeModal() {
         this.setState({ open: false });

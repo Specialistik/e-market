@@ -140,7 +140,6 @@ export class Categories extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-        console.log('before deciding what link to render', nextProps);
         if (nextProps.match.params.hasOwnProperty('pid')) {
             this.setState({pid: nextProps.match.params.pid})
             this.fetchCats("/api/categories/" + nextProps.match.params.pid + '/');
@@ -228,6 +227,9 @@ export class Products extends React.Component {
     }
 
     openModal() {
+        console.log('open modal function triggered');
+        //e.stopPropagation();
+        //render(<ModalProduct/>)
         this.setState({ open: true });
     };
 
@@ -300,7 +302,7 @@ export class Products extends React.Component {
                             <ModalProduct { ...props } />
                         </Popup>
                         */}
-                        <Link to="#product1" className="modal_desc_product btn_popup" onClick={this.popupModalProduct}>
+                        <Link to="#product1" className="modal_desc_product btn_popup" onClick={this.openModal}>
                             <img className="img_url" src={ product.image } alt={ product.name }/>
                         </Link>
                         </div>
