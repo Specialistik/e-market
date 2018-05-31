@@ -1,6 +1,5 @@
 var webpack = require('webpack');
 var path = require('path');
-var tsconfig = require('./tsconfig.json')
 
 var BUILD_DIR = path.resolve(__dirname, 'static/js/public');
 var APP_DIR = path.resolve(__dirname, 'src');
@@ -19,13 +18,13 @@ var config = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json']
+    extensions: ['.js', '.jsx', '.json']
   },
   devtool: 'inline-source-map',
   module : {
     rules: [{
-        test: /\.(tsx?)|(js)|(jsx)$/, 
-        loaders: ['babel-loader', 'ts-loader'], 
+        test: /\.(js)|(jsx)$/,
+        loaders: ['babel-loader'],
         include: APP_DIR
     }],
   },
