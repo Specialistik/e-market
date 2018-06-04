@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import { SignInFormContainer } from './forms.jsx';
+import SignInFormContainer from './sign-in-form.jsx';
 
 const contentStyle = {
     backgroundImage: 'url(' + 'static/images/bg-image/bg-type1.png' + ')',

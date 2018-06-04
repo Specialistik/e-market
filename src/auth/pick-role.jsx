@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 import SignUp from './sign-up.jsx';
 
 const contentStyle = {
@@ -93,3 +95,8 @@ export default class PickRole extends React.Component {
         </div>
     }
 }
+
+PickRole.propTypes = {
+    customer: PropTypes.bool,
+    producer: PropTypes.bool
+};
