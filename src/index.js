@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { bindActionCreators } from 'redux';
 import { Provider, connect } from 'react-redux';
 import {
     BrowserRouter as Router,
@@ -8,10 +7,14 @@ import {
     Switch,
   } from 'react-router-dom';
 
-import * as AuthActionCreators from './auth/actions';
-import { SignIn, SignUp, PickRole } from './auth/views.jsx';
-import { Header, CategoryContainer, ProductsContainer } from './core/views.jsx';
-import { Profile } from './profile/views.jsx';
+import PickRole from './auth/pick-role.jsx';
+import SignIn from './auth/sign-in.jsx';
+import SignUp from './auth/sign-up.jsx';
+
+import { CategoryContainer } from "./core/categories.jsx";
+import { ProductsContainer } from "./core/products.jsx";
+import Header from "./core/header.jsx"
+
 
 import configureStore from './store';
 export const store = configureStore();
@@ -27,17 +30,13 @@ class IndexContainer extends React.Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return { actions: bindActionCreators(AuthActionCreators, dispatch) }
-}
-
 
 const mapStateToProps = (state) => {
     return {
         role: state.userReducer['role'],
         token: state.userReducer['token']
     }
-}
+};
 
 const IndexCont = connect(
     mapStateToProps, 

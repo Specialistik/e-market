@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import { Link } from 'react-router-dom';
-import { SignInFormContainer, SignUpFormContainer } from './forms.jsx';
+import SignUp from './sign-up.jsx';
 
 const contentStyle = {
     backgroundImage: 'url(' + 'static/images/bg-image/bg-type1.png' + ')',
@@ -18,43 +18,7 @@ class ProducerCheckEntity extends React.Component {
     }
 }
 
-export class SignIn extends React.Component {
-    render () {
-        return <div id="content" className="content_bg verification_content" style={contentStyle}>
-            <div className="wrapp_verification">
-                <div className="top_verification">
-                    <h3 className="title_verification">Вход в систему</h3>
-                </div>
-
-                <div className="content_verification">
-                    <SignInFormContainer />
-
-                    <div className="box_btn clearfix">
-                        <Link to={`/pick_role`} className="hight_orange">Зарегистрироваться</Link>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-}
-
-export class SignUp extends React.Component {
-    render() {
-        return <div id="content" className="content_bg verification_content" style={contentStyle}>
-            <div className="wrapp_verification">
-                <div className="top_verification">
-                    <h3 className="title_verification">Регистрация</h3>
-                </div>
-
-                <div className="content_verification">
-                    <SignUpFormContainer />
-                </div>
-            </div>
-        </div>
-    }
-}
-
-export class PickRole extends React.Component {
+export default class PickRole extends React.Component {
     constructor(props) {
         super(props);
         this.state = { producer: true, customer: false };
@@ -67,7 +31,7 @@ export class PickRole extends React.Component {
     pickedUp() {
         return this.state.producer || this.state.customer;
     }
-    
+
     goToSignUp() {
         if (this.pickedUp()) {
             this.render(<SignUp/>)

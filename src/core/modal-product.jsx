@@ -46,7 +46,7 @@ export default class ModalProduct extends React.Component {
                                     </label>
 
                                     <input id="amount" name="amount" type="number" required value="" min="100" step="100" data-mask="99999" className="number_type_btn"/>
-                                    <div className="clearfix"></div>
+                                    <div className="clearfix"> </div>
                                     <button className="btn btn_basket light_orange">В корзину</button>
                                 </div>
                             </div>
