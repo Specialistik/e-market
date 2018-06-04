@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import SignInFormContainer from './sign-in-form.jsx';
+import SignInForm from './sign-in-form.jsx';
 
 const contentStyle = {
     backgroundImage: 'url(' + 'static/images/bg-image/bg-type1.png' + ')',
@@ -15,7 +15,7 @@ export default class SignIn extends React.Component {
                 </div>
 
                 <div className="content_verification">
-                    <SignInFormContainer />
+                    <SignInForm />
 
                     <div className="box_btn clearfix">
                         <Link to={`/pick_role`} className="hight_orange">Зарегистрироваться</Link>

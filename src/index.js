@@ -10,9 +10,10 @@ import {
 import PickRole from './auth/pick-role.jsx';
 import SignIn from './auth/sign-in.jsx';
 import SignUp from './auth/sign-up.jsx';
+import Logout from './auth/logout.jsx';
 
-import { CategoryContainer } from "./core/categories.jsx";
-import { ProductsContainer } from "./core/products.jsx";
+import Categories from "./core/categories.jsx";
+import Products from "./core/products.jsx";
 import Header from "./core/header.jsx"
 
 
@@ -23,7 +24,7 @@ export const store = configureStore();
 class IndexContainer extends React.Component {
     render() {
         if (this.props.token) {
-            return <CategoryContainer />
+            return <Categories />
         } else {
             return <SignIn />
         }
@@ -53,10 +54,11 @@ render(
                     <Route path='/pick_role' component={PickRole}/>
                     <Route path='/sign_up' component={SignUp}/>
                     <Route path='/sign_in' component={SignIn}/>
+                    <Route path='/log_out' component={Logout}/>
 
-                    <Route exact path='/categories/' component={CategoryContainer}/>
-                    <Route exact path='/categories/:pid/' component={CategoryContainer}/>
-                    <Route path='/products/:cat_id/' component={ProductsContainer}/>
+                    <Route exact path='/categories/' component={Categories}/>
+                    <Route exact path='/categories/:pid/' component={Categories}/>
+                    <Route path='/products/:cat_id/' component={Products}/>
                 </Switch>
             </div>
         </Router>

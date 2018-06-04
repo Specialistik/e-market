@@ -1,5 +1,5 @@
 import React from "react";
-import SignUpFormContainer from './sign-up-form.jsx';
+import SignUpForm from './sign-up-form.jsx';
 
 const contentStyle = {
     backgroundImage: 'url(' + 'static/images/bg-image/bg-type1.png' + ')',
@@ -14,7 +14,7 @@ export default class SignUp extends React.Component {
                 </div>
 
                 <div className="content_verification">
-                    <SignUpFormContainer />
+                    <SignUpForm />
                 </div>
             </div>
         </div>

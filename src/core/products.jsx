@@ -131,7 +131,7 @@ const mapStateToProps = state => {
     }
 };
 
-export const ProductsContainer = connect(
+export default connect(
     mapStateToProps,
     null
 )(Products);

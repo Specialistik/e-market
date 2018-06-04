@@ -3,7 +3,7 @@ import { constants } from './actions';
 const initialState = {
     token: null,
     role: null,
-}
+};
 
 export default function userReducer(state = initialState, action) {
     switch (action.type) {

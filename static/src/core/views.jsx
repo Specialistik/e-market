@@ -42,7 +42,7 @@ class CategoryTitle extends React.Component {
     }
 }
 
-export class Categories extends React.Component {
+class Categories extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

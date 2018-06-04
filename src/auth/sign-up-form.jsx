@@ -172,7 +172,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-const SignUpFormContainer = connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(SignUpForm);
@@ -185,5 +185,3 @@ SignUpForm.propTypes = {
     password: PropTypes.string,
     privacy_check: PropTypes.bool
 };
-
-export default SignUpFormContainer;

@@ -94,7 +94,7 @@ const mapDispatchToProps = (dispatch) => {
     return { actions: bindActionCreators(AuthActionCreators, dispatch) }
 };
 
-const SignInFormContainer = connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
 )(SignInForm);
@@ -103,5 +103,3 @@ SignInForm.propTypes = {
     email: PropTypes.string,
     password: PropTypes.string
 };
-
-export default SignInFormContainer;

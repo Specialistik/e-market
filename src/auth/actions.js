@@ -14,8 +14,6 @@ export const constants =  {
  */
 
 
- 
-//export function createAccount(email, password, inn, phone, role, company_name) {
 export function createAccount(token, role) {
     return {
         type: constants.CREATE_ACCOUNT,
@@ -39,8 +37,6 @@ export function setToken(token, role) {
 
 export function logOut() {
     return {
-        type: constants.LOG_OUT,
-        role: null,
-        token: null
+        type: constants.LOG_OUT
     };
 }

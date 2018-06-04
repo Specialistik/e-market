@@ -115,7 +115,7 @@ const mapStateToProps = state => {
     }
 };
 
-export const CategoryContainer = connect(
+export default connect(
     mapStateToProps,
     null
 )(Categories);
