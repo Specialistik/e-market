@@ -3,7 +3,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Popup from "react-popup";
+import Popup from "reactjs-popup";
 
 import ModalProduct from './popups.jsx';
 import * as CoreActionCreators from './actions';
@@ -217,7 +217,11 @@ export class Products extends React.Component {
         this.state = {
             open: false,
             products: [],
-            category : {
+            product_description: {
+                price: 0,
+                image: ''
+            },
+            category: {
                 pid: null,
                 name: ''
             },
@@ -226,15 +230,14 @@ export class Products extends React.Component {
         this.closeModal = this.closeModal.bind(this);
     }
 
-    openModal() {
-        console.log('open modal function triggered');
-        //e.stopPropagation();
-        //render(<ModalProduct/>)
-        this.setState({ open: true });
+    openModal(product) {
+        console.log('open modal product value is ', product);
+        this.setState({ open: true, product_description: product });
     };
 
-    closeModal() {
-        this.setState({ open: false });
+    closeModal(event, product) {
+        event.preventDefault();
+        this.setState({ open: false, product_description: null });
     };
 
     fetchProducts() {
@@ -288,50 +291,40 @@ export class Products extends React.Component {
                 </div>
             </form>
 
-        <div className="wrapp_products"> 
+            <div className="wrapp_products">
 
-            <div className="row_products clearfix">
-                {this.state.products.map((product, index) => (
-                    <figure className="col_products" data-mh="col-products" key={index}>
-                        <div style={ hiddenStyle } className="product_minimum_amount">{ product.minimum_amount }</div>
-                        <div style={ hiddenStyle } className="product_id">{ product.id }</div>
-                        <div style={ hiddenStyle } className="product_description">{ product.description }</div>
-                        <div className="products_img" data-mh="products-img">
-                        {/*
-                        <Popup trigger={<a href="#product1" className="modal_desc_product btn_popup">} position="right center">
-                            <ModalProduct { ...props } />
-                        </Popup>
-                        */}
-                        <Link to="#product1" className="modal_desc_product btn_popup" onClick={this.openModal}>
-                            <img className="img_url" src={ product.image } alt={ product.name }/>
-                        </Link>
-                        </div>
+                <div className="row_products clearfix">
+                    {this.state.products.map((product, index) => (
+                        <figure className="col_products" data-mh="col-products" key={index}>
+                            <div style={ hiddenStyle } className="product_minimum_amount">{ product.minimum_amount }</div>
+                            <div style={ hiddenStyle } className="product_id">{ product.id }</div>
+                            <div style={ hiddenStyle } className="product_description">{ product.description }</div>
+                            <div className="products_img" data-mh="products-img">
+                                <Link to="javascript;" className="modal_desc_product btn_popup" onClick={() => this.openModal(product)}>
+                                    <img className="img_url" src={ product.image } alt="{ product.name }"/>
+                                </Link>
+                            </div>
 
-                        <figcaption>
-                            <h3 className="light_grey products_title">
-                                <span className="product_name">{ product.name }</span>
-                                <span className="products_subtitle">{ product.weight } кг</span>
-                            </h3>
+                            <figcaption>
+                                <h3 className="slight_grey products_title">
+                                    <span className="product_name">{ product.name }</span>
+                                    <span className="products_subtitle">{ product.weight } кг</span>
+                                </h3>
 
-                            { this.props.role && this.props.role in ['customer', 'manager'] ? 
-                                <div className="wrapp_btn center">
-                                    <span className="products_price">{ product.price }р</span>
-                                    <a href="javascript:;" className="btn btn_basket light_orange add_to_cart">В корзину</a>
-                                </div>:''
-                            }
-                        </figcaption>
-                    </figure>
-                ))}
-            </div> 
+                                { this.props.role && this.props.role in ['customer', 'manager'] ?
+                                    <div className="wrapp_btn center">
+                                        <span className="products_price">{ product.price }р</span>
+                                        <a href="javascript:;" className="btn btn_basket light_orange add_to_cart">В корзину</a>
+                                    </div>:''
+                                }
+                            </figcaption>
+                        </figure>
+                    ))}
+                </div>
+            </div>
+
+            <ModalProduct product={this.state.product_description} open={this.state.open} />
         </div>
-        <Popup
-          open={this.state.open}
-          closeOnDocumentClick
-          onClose={this.closeModal}
-        >
-            <ModalProduct {...this.props.children}/>
-        </Popup>
-    </div>
     }
 }
 

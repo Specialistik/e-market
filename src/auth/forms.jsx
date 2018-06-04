@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import * as AuthActionCreators from './actions'
 
-export class SignInForm extends React.Component {
+class SignInForm extends React.Component {
     constructor(props) {
         super(props);
         this.error = null;
@@ -45,7 +45,8 @@ export class SignInForm extends React.Component {
             return response;
             }).then((response) => response.json())
                 .then((data) => {
-                    this.props.dispatch(this.props.actions.setToken(data.token, data.role));
+                    this.props.actions.setToken(data.token, data.role);
+                    //this.props.dispatch(this.props.actions.setToken(data.token, data.role));
                 })
                 .catch((e) => console.log(e))
             .catch((e) => console.log(e))
@@ -82,7 +83,7 @@ export class SignInForm extends React.Component {
 }
 
 
-export class SignUpForm extends React.Component {
+class SignUpForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 

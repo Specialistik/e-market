@@ -6,7 +6,6 @@ import {
     BrowserRouter as Router,
     Route,
     Switch,
-    Link,
   } from 'react-router-dom';
 
 import * as AuthActionCreators from './auth/actions';
@@ -54,7 +53,7 @@ render(
                     <Route exact path='/react_index' component={IndexCont} />
                     <Route path='/pick_role' component={PickRole}/>
                     <Route path='/sign_up' component={SignUp}/>
-                    <Route path='/logout' component={SignIn}/>
+                    <Route path='/sign_in' component={SignIn}/>
 
                     <Route exact path='/categories/' component={CategoryContainer}/>
                     <Route exact path='/categories/:pid/' component={CategoryContainer}/>
