@@ -44,26 +44,28 @@ const IndexCont = connect(
     null
 )(IndexContainer);
 
-render(
-    <Provider store={store}>
-        <Router>
-            <div>
-                <Header />
-                <Switch>
-                    <Route exact path='/react_index' component={IndexCont} />
-                    <Route path='/pick_role' component={PickRole}/>
-                    <Route path='/sign_up' component={SignUp}/>
-                    <Route path='/sign_in' component={SignIn}/>
-                    <Route path='/log_out' component={Logout}/>
+class TheSklad extends React.Component {
+    render() {
+        <Provider store={store}>
+            <Router>
+                <div>
+                    <Header />
+                    <Switch>
+                        <Route exact path='/react_index' component={IndexCont} />
+                        <Route path='/pick_role' component={PickRole}/>
+                        <Route path='/sign_up' component={SignUp}/>
+                        <Route path='/sign_in' component={SignIn}/>
+                        <Route path='/log_out' component={Logout}/>
 
-                    <Route exact path='/categories/' component={Categories}/>
-                    <Route exact path='/categories/:pid/' component={Categories}/>
-                    <Route path='/products/:cat_id/' component={Products}/>
-                </Switch>
-            </div>
-        </Router>
-    </Provider>,
-    document.getElementById('app')
-);
+                        <Route exact path='/categories/' component={Categories}/>
+                        <Route exact path='/categories/:pid/' component={Categories}/>
+                        <Route path='/products/:cat_id/' component={Products}/>
+                    </Switch>
+                </div>
+            </Router>
+        </Provider>//,
+        //document.getElementById('app')
+    }
+}
 
 
