@@ -1,5 +1,5 @@
 import React from "react";
-import SignUpForm from './sign-up-form.jsx';
+import SignUpForm from './sign-up-form';
 
 const contentStyle = {
     backgroundImage: 'url(' + 'static/images/bg-image/bg-type1.png' + ')',

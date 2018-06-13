@@ -1,22 +1,10 @@
-import React from 'react';
-import { AppRegistry, View, StyleSheet } from 'react-native';
-import { Provider, connect } from 'react-redux';
+import React, { AppRegistry, View, StyleSheet } from 'react-native';
+import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import {
-    NativeRouter as Router,
-    Route,
-    Switch
-} from 'react-router-native';
-/*
-import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-  } from 'react-router-dom';
-*/
 
 import PickRole from './src/android/pick-role';
-import NativeHeader from './src/android/header';
+//import SignIn from './src/android/sign-in';
+//import Categories from './src/android/categories';
 
 import configureStore from './src/store';
 export const store = configureStore();
@@ -49,7 +37,7 @@ class TheSkladMobile extends React.Component {
         return <Provider store={store}>
             <Router>
                 <View>
-                    <NativeHeader />
+                    <Header />
                     <Switch>
                         <Route exact path='/react_index' component={IndexCont} />
                         <Route path='/pick_role' component={PickRole}/>
@@ -69,4 +57,4 @@ class TheSkladMobile extends React.Component {
     }
 }
 
-AppRegistry.registerComponent('the_sklad', () => TheSkladMobile);
+AppRegistry.registerComponent('theSkladMobile', () => TheSkladMobile);

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
-import * as AuthActionCreators from './actions/auth'
+import * as AuthActionCreators from '../actions/auth'
 
 class SignInForm extends React.Component {
     constructor(props) {
