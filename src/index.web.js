@@ -24,9 +24,9 @@ export const store = configureStore();
 class IndexContainer extends React.Component {
     render() {
         if (this.props.token) {
-            return <Categories />
+            return <Categories />;
         } else {
-            return <SignIn />
+            return <SignIn />;
         }
     }
 }

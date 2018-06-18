@@ -3,20 +3,14 @@ import { AppRegistry, View, StyleSheet } from 'react-native';
 import { Provider, connect } from 'react-redux';
 import { createStore } from 'redux';
 import {
-    NativeRouter as Router,
+    NativeRouter,
     Route,
     Switch
 } from 'react-router-native';
-/*
-import {
-    BrowserRouter as Router,
-    Route,
-    Switch,
-  } from 'react-router-dom';
-*/
 
 import PickRole from './src/android/pick-role';
-import NativeHeader from './src/android/header';
+import SignIn from './src/android/sign-in';
+//import Categories from './src/android/'
 
 import configureStore from './src/store';
 export const store = configureStore();
@@ -24,7 +18,7 @@ export const store = configureStore();
 class IndexContainer extends React.Component {
     render() {
         if (this.props.token) {
-            return <Categories />
+            return <SignIn /> //<Categories />
         } else {
             return <SignIn />
         }
@@ -47,25 +41,17 @@ const IndexCont = connect(
 class TheSkladMobile extends React.Component {
     render() {
         return <Provider store={store}>
-            <Router>
+            <NativeRouter initialEntries={['/pick_role']}>
                 <View>
-                    <NativeHeader />
+                    <PickRole />
                     <Switch>
-                        <Route exact path='/react_index' component={IndexCont} />
+                        <Route exact path='/index' component={IndexCont} />
                         <Route path='/pick_role' component={PickRole}/>
-                        {/*
-                        <Route path='/sign_up' component={SignUp}/>
-                        <Route path='/sign_in' component={SignIn}/>
-                        <Route path='/log_out' component={Logout}/>
-
-                        <Route exact path='/categories/' component={Categories}/>
-                        <Route exact path='/categories/:pid/' component={Categories}/>
-                        <Route path='/products/:cat_id/' component={Products}/>
-                        */}
                     </Switch>
                 </View>
-            </Router>
+            </NativeRouter>
         </Provider>
+
     }
 }
 

@@ -18,15 +18,21 @@ var config = {
     filename: 'bundle.js'
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json']
+    extensions: ['.js', '.jsx', '.json', '.css']
   },
   devtool: 'inline-source-map',
   module : {
-    rules: [{
+    rules: [
+      {
         test: /\.(js)|(jsx)$/,
         loaders: ['babel-loader'],
         include: APP_DIR
-    }],
+      },
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
+      }
+    ],
   },
 };
 

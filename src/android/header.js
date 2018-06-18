@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 class NativeHeader extends React.Component {
     render() {
-        return <View  id="header" className="header_wrapp clearfix">
+        return <View>
         <Header leftComponent={{ icon: 'menu', color: '#fff' }} />
             <View className="header_inner claerfix">
                 <View className="logo">
