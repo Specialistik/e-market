@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-native';
 import PropTypes from 'prop-types';
-import {StyleSheet} from 'react-native';
+import { StyleSheet, Button } from 'react-native';
 import HTMLView from 'react-native-htmlview';
 
 import SignUp from './sign-up';
@@ -55,6 +55,7 @@ export default class PickRole extends React.Component {
     
 
     render () {
+        const { navigate } = this.props.navigation;
         return <div id="content" className="content_bg" style={contentStyle}>
         <div className="entered_wrapp">
 
@@ -92,7 +93,11 @@ export default class PickRole extends React.Component {
                             </a>
                         </div>
                     </div>
-                        <Link to={`/sign_up`} className="btn hight_orange">Далее</Link>
+                    {/*<Link to={`/pick_role`} className="hight_orange">Зарегистрироваться</Link>*/}
+                    <Button
+                        title="Далее"
+                        onPress={() => navigate('PickRole')}
+                    />
                 </div>
             </div>
         </div>
