@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import { StyleSheet, View, TextInput, Text } from 'react-native';
 
 import * as AuthActionCreators from '../actions/auth'
 
@@ -61,23 +62,23 @@ class SignInForm extends React.Component {
 
     render() {
         return <form action="/api/sign_in/" method="POST" className="wrapp_form_signin validate" noValidate onSubmit={this.handleSubmit}>
-            <div className="wrapp_verification_col">
-                <div className="verification_box_col">
+            <View className="wrapp_verification_col">
+                <View className="verification_box_col">
                     <label htmlFor="" className="label1">E-mail</label>
-                    <div className="error_form_container">
-                        <input name="email" type="email" required value={this.props.email} onChange={this.handleEmailChange}/>
-                    </div>
-                </div>
+                    <View className="error_form_container">
+                        <TextInput name="email" type="email" required value={this.props.email} onChange={this.handleEmailChange}/>
+                    </View>
+                </View>
 
-                <div className="verification_box_col">
+                <View className="verification_box_col">
                     <label htmlFor="" className="label1">Пароль</label>
-                    <div className="error_form_container">
-                        <input name="password" type="password" required value={this.props.password} onChange={this.handlePasswordChange}/>
-                    </div>
-                    <p className="tooltip_txt1">
-                    </p>
-                </div>
-            </div>
+                    <View className="error_form_container">
+                        <TextInput name="password" type="password" required value={this.props.password} onChange={this.handlePasswordChange}/>
+                    </View>
+                    <Text className="tooltip_txt1">
+                    </Text>
+                </View>
+            </View>
             <button className="btn hight_orange full_width">Войти</button>
         </form>
     }

@@ -2,12 +2,10 @@ import React from 'react';
 import { AppRegistry } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import { Provider, connect } from 'react-redux';
-import { createStore } from 'redux';
 
 import PickRole from './src/android/pick-role';
 import SignIn from './src/android/sign-in';
 import SignUp from './src/android/sign-up';
-import Categories from './src/android/categories';
 import IndexContainer from './src/android/index';
 
 import configureStore from './src/store';
@@ -28,12 +26,12 @@ const AppWithNavigationState = (props) => (
             state: props.nav
         }}
     />
-)
+);
 
 const mapStateToProps = state => ({
     nav: state.nav,
 });
-export default connect(mapStateToProps)(AppWithNavigationState)
+connect(mapStateToProps)(AppWithNavigationState);
 
 class TheSkladApp extends React.Component {  
     render() {
@@ -46,4 +44,3 @@ class TheSkladApp extends React.Component {
   }
 
 AppRegistry.registerComponent('the_sklad', () => TheSkladApp);
-//export default TheSkladApp;

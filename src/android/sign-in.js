@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from 'react-router-native';
+import { View, Text } from 'react-native';
+import { styles } from './styles';
 import SignInForm from './sign-in-form';
 
 const contentStyle = {
@@ -7,21 +8,29 @@ const contentStyle = {
 };
 
 export default class SignIn extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    
     render () {
-        return <div id="content" className="content_bg verification_content" style={contentStyle}>
-            <div className="wrapp_verification">
-                <div className="top_verification">
-                    <h3 className="title_verification">Вход в систему</h3>
-                </div>
+        return <View /*style={styles.content}*/ >
+            <View /* style={styles.wrapp_verification}*/ >
+                <View /* style={styles.top_verification} */>
+                    <Text h3 /*className="title_verification" */>Вход в систему</Text>
+                </View>
 
-                <div className="content_verification">
+                <View /* className="content_verification" */ >
                     <SignInForm />
 
-                    <div className="box_btn clearfix">
-                        <Link to={`/pick_role`} className="hight_orange">Зарегистрироваться</Link>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    <View /* className="box_btn clearfix" */>
+                        <Button
+                            title="Зарегистрироваться"
+                            onPress={() => this.props.nav.navigate('PickRole')}
+                        />
+                        /*<Link to={`/pick_role`} className="hight_orange">Зарегистрироваться</Link>*/
+                    </View>
+                </View>
+            </View>
+        </View>
     }
 }

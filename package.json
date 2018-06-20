@@ -28,6 +28,7 @@
     "react": "^16.3.1",
     "react-dom": "^16.4.1",
     "react-native": "^0.55.4",
+    "react-native-elements": "^0.19.1",
     "react-native-htmlview": "^0.12.1",
     "react-native-hyperlink": "0.0.14",
     "react-native-navigation": "^1.1.471",
