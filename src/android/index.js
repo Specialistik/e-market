@@ -7,9 +7,9 @@ import Categories from './categories'
 class IndexContainer extends React.Component {
     render() {
         if (this.props.token) {
-            this.props.navigation.push('Categories')
+            return this.props.navigation.push('Categories')
         } else {
-            this.props.navigation.push('SignIn')
+            return this.props.navigation.push('SignIn')
         }
     }
 }

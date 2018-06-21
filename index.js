@@ -21,26 +21,27 @@ const AppNavigator = StackNavigator({
 
 const AppWithNavigationState = (props) => (
     <AppNavigator
+    /*
         navigation={{
             dispatch: props.dispatch,
             state: props.nav
         }}
+        */
     />
 );
+
+class TheSkladApp extends React.Component {  
+    render() {
+      return (
+        <Provider store={store}>
+            <AppWithNavigationState />
+        </Provider>
+    )}
+}
 
 const mapStateToProps = state => ({
     nav: state.nav,
 });
 connect(mapStateToProps)(AppWithNavigationState);
-
-class TheSkladApp extends React.Component {  
-    render() {
-      return (
-        <Provider store={this.store}>
-          <AppWithNavigationState />
-        </Provider>
-      );
-    }
-  }
 
 AppRegistry.registerComponent('the_sklad', () => TheSkladApp);

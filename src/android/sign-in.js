@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import { styles } from './styles';
 import SignInForm from './sign-in-form';
 
@@ -27,7 +27,7 @@ export default class SignIn extends React.Component {
                             title="Зарегистрироваться"
                             onPress={() => this.props.nav.navigate('PickRole')}
                         />
-                        /*<Link to={`/pick_role`} className="hight_orange">Зарегистрироваться</Link>*/
+                        {/*<Link to={`/pick_role`} className="hight_orange">Зарегистрироваться</Link>*/}
                     </View>
                 </View>
             </View>
