@@ -1,42 +1,42 @@
 import React from 'react';
-import { AppRegistry } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { AppRegistry, View } from 'react-native';
+import { StackNavigator, createStackNavigator } from 'react-navigation';
 import { Provider, connect } from 'react-redux';
+import Styles from './src/android/styles';
 
 import PickRole from './src/android/pick-role';
 import SignIn from './src/android/sign-in';
 import SignUp from './src/android/sign-up';
-import IndexContainer from './src/android/index';
+//import IndexContainer from './src/android/index';
 
 import configureStore from './src/store';
 export const store = configureStore();
 
-const AppNavigator = StackNavigator({
-    Index: { screen: IndexContainer },
+const AppNavigator = createStackNavigator({
     PickRole: { screen: PickRole },
     SignUp: { screen: SignUp },
     SignIn: { screen: SignIn },
-});
+}, { initialRouteName: 'SignIn'});
 
 
-const AppWithNavigationState = (props) => (
+const AppWithNavigationState = (dispatch, nav) => (
     <AppNavigator
-    /*
-        navigation={{
-            dispatch: props.dispatch,
-            state: props.nav
-        }}
-        */
+        state={nav}
+        dispatch={dispatch}
     />
 );
 
-class TheSkladApp extends React.Component {  
+class TheSkladApp extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
-      return (
-        <Provider store={store}>
-            <AppWithNavigationState />
+        return <Provider store={store}>
+            <View style={Styles}>
+                <AppWithNavigationState />
+            </View>
         </Provider>
-    )}
+    }
 }
 
 const mapStateToProps = state => ({

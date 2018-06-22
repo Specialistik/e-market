@@ -1,16 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { View } from 'react-native';
+
 import SignIn from './sign-in';
 import Categories from './categories'
 
 class IndexContainer extends React.Component {
-    render() {
-        if (this.props.token) {
-            return this.props.navigation.push('Categories')
-        } else {
-            return this.props.navigation.push('SignIn')
+    constructor(props) {
+        super(props);
+        this.state = {
+            token: props.hasOwnProperty('token') ? props.token : null
         }
+    }
+
+    render() {
+        if (this.state.token)
+            return <View><Categories/></View>
+        return <View><SignIn/></View>
     }
 }
 

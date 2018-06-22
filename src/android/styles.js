@@ -1,12 +1,10 @@
-import {
-    StyleSheet
-} from 'react-native';
+import { StyleSheet } from 'react-native';
+//import RNC from 'react-native-css';
 
-export default StyleSheet.create({
+const Styles = StyleSheet.create({
     "textarea": {
         "width": "100%",
         "height": "41px",
-        
         "padding": "3px"
     },
     "button": {
@@ -111,21 +109,21 @@ export default StyleSheet.create({
 
         "color": "#3c3c3b",
         "margin": "0",
-        "marginBottom": "17px"
+        
     },
     "h5": {
         "fontWeight": "300",
 
         "color": "#3c3c3b",
         "margin": "0",
-        "marginBottom": "17px"
+        
     },
     "h6": {
         "fontWeight": "300",
 
         "color": "#3c3c3b",
         "margin": "0",
-        "marginBottom": "17px"
+        
     },
     "strong": {
         "fontWeight": "400"
@@ -136,7 +134,7 @@ export default StyleSheet.create({
 
     },
     "clear_offset": {
-        "marginBottom": "0"
+        
     },
     "box_title_button": {
         "display": "flex",
@@ -149,13 +147,13 @@ export default StyleSheet.create({
         
         "alignContent": "stretch",
         "flexWrap": "nowrap",
-        "marginBottom": "17px"
+        
     },
     "box_title_button__btn": {
         "marginLeft": "14px"
     },
     "box_title_button__title_line": {
-        "marginBottom": "0"
+        
     },
     "title_line": {
         "color": "#9e9e9e",
@@ -178,9 +176,6 @@ export default StyleSheet.create({
     "middle_title": {
         "maxWidth": "350px",
         "margin": "0 auto"
-    },
-    "p_not__last_child": {
-        "marginBottom": "20px"
     },
     "mark": {
         "padding": "0 2px",
@@ -291,9 +286,6 @@ export default StyleSheet.create({
     "wrapp_btn_add_plus": {
         "textAlign": "center"
     },
-    "wrapp_btn_add_plus_not__last_child": {
-        "marginBottom": "32px"
-    },
     "btn_add_plus": {
         "minWidth": "initial",
         "color": "#ffa800",
@@ -333,9 +325,6 @@ export default StyleSheet.create({
         "position": "absolute",
         "right": "8px",
         "top": "50%"
-    },
-    "wrapp_btn_not__last_child": {
-        "marginBottom": "20px"
     },
     "wrapp_btn": {
         "display": "flex",
@@ -496,20 +485,11 @@ export default StyleSheet.create({
     "attention_txt_left": {
         "minHeight": "45px",
         "display": "flex",
-        
         "alignItems": "center",
         "padding": "0px 15px 0px 60px"
     },
-    "wrapp_attention_txt_not__last_child": {
-        "marginBottom": "20px"
-    },
-    "attention_offset1_not__last_child": {
-        "marginBottom": "44px"
-    },
     "title_icon": {
         "position": "relative",
-
-
     },
     "title_icon____fa": {
         "width": "45px",
@@ -584,9 +564,6 @@ export default StyleSheet.create({
 
         "fontWeight": "300"
     },
-    "radio_box_rectangel_not__last_child": {
-        "marginBottom": "15px"
-    },
     "radio_box_rectangel_input_type__radio": {
         "display": "none",
         "width": "auto",
@@ -653,15 +630,9 @@ export default StyleSheet.create({
     "wrapp_form_box_bg_transparent": {
         
     },
-    "wrapp_form_box_not__last_child": {
-        "marginBottom": "37px"
-    },
     "box_form_row": {
         "marginLeft": "-25px",
         "marginRight": "-25px"
-    },
-    "form_box_offset_not__last_child": {
-        "marginBottom": "9px"
     },
     "box_form_half_right": {
         /*"float": "right"*/
@@ -726,7 +697,7 @@ export default StyleSheet.create({
     "jq_selectbox_error_before": {
         "position": "absolute",
         "bottom": "100%",
-        "marginBottom": "7px",
+        
         "left": "0",
         
         
@@ -744,7 +715,7 @@ export default StyleSheet.create({
         "overflow": "hidden"
     },
     "jq_number_number_type_btn_not__last_child": {
-        "marginBottom": "17px"
+        
     },
     "jq_number_number_type_btn_input_number_type_btn_not__type__checkbox____not__type__radio": {
         "color": "#505050",
@@ -789,9 +760,6 @@ export default StyleSheet.create({
     "input_number_type_clear": {
         "width": "100%"
     },
-    "textarea_not__last_child": {
-        "marginBottom": "12px"
-    },
     "textarea_big": {
         "height": "90px",
         "padding": "15px 19px"
@@ -799,51 +767,30 @@ export default StyleSheet.create({
     "box_count_textarea": {
         "paddingRight": "13px",
         "textAlign": "right",
-
-
         "color": "#646463"
-    },
-    "wrapp_textarea_textarea_not__last_child": {
-        "marginBottom": "3px"
     },
     "tooltip_desc": {
         "width": "15px",
         "height": "15px",
-        
-
-        
-        
         "position": "relative",
         "color": "#fff",
         "textAlign": "center",
-
         "fontWeight": "400",
-
-
-
     },
     "tooltip_desc_data_tooltip_txt__before": {
         "position": "absolute",
         "bottom": "100%",
-        "marginBottom": "5px",
-        
-        
-
         "color": "#fff",
-
         "fontWeight": "300",
         "textAlign": "center",
         "width": "170px",
         "padding": "5px 9px",
     },
     "tooltip_desc_data_tooltip_txt__after": {
-
-
         "width": "0",
         "height": "0",
         "position": "absolute",
         "bottom": "100%",
-        "marginBottom": "1px",
         "left": "50%",
     },
     "tooltip_desc_data_tooltip_pos__right___before": {
@@ -883,12 +830,6 @@ export default StyleSheet.create({
     "gmap": {
         "width": "100% !important",
         "height": "600px !important"
-    },
-    "wrapp_tabs_not__last_child": {
-        "marginBottom": "20px"
-    },
-    "tabs_list_not__last_child": {
-        "marginBottom": "20px"
     },
     "tabs_list": {
         "display": "flex",
@@ -940,28 +881,20 @@ export default StyleSheet.create({
     },
     "popup_price": {
         "color": "#505050",
-
         "fontWeight": "400"
     },
-    "popup_price_not__last_child": {
-        "marginBottom": "16px"
-    },
     "popup_title": {
-        "color": "#505050",
-        "marginBottom": "55px"
+        "color": "#505050",        
     },
     "modal_popup_product_label": {
         "display": "flex",
-        
-
-
         "alignItems": "center"
     },
     "modal_popup_product_label____tooltip_desc": {
         "marginLeft": "7px"
     },
     "modal_popup_product__wrapp_castom_select": {
-        "marginBottom": "12px"
+        
     },
     "wrapp_product_preview": {
         "display": "flex"
@@ -979,9 +912,6 @@ export default StyleSheet.create({
     "payment_popup": {
         "width": "445px"
     },
-    "payment_popup__wrapp_privacy_policy_not__last_child": {
-        "marginBottom": "30px"
-    },
     "remove_popup": {
         "width": "538px"
     },
@@ -993,27 +923,14 @@ export default StyleSheet.create({
         "padding": "50px 20px",
         "textAlign": "center"
     },
-    "wrapp_preloder": {
-        "marginBottom": "18px"
-    },
-    "wrapp_preloadfile_txt": {
-        "textAlign": "center",
-        "marginBottom": "27px"
-    },
     "preloadfile_txt_item": {
         "color": "#969696",
 
 
     },
-    "preloadfile_txt_item_not__last_child": {
-        "marginBottom": "3px"
-    },
     "table_order": {
         "textAlign": "left",
         "width": "100%",
-    },
-    "table_order_not__last_child": {
-        "marginBottom": "29px"
     },
     "table_order_thead_th_first_child": {
         "paddingLeft": "43px"
@@ -1085,7 +1002,7 @@ export default StyleSheet.create({
         "display": "none"
     },
     "table_order__box_form_products_item_not__last_child": {
-        "marginBottom": "0"
+        
     },
     "table_order__box_form_products_item__setting_list_li___label": {
 
@@ -1097,15 +1014,9 @@ export default StyleSheet.create({
         "position": "absolute",
         "bottom": "100%",
         "left": "0",
-        
-        
-
-        
         "color": "#fff",
-
         "fontWeight": "300",
         "padding": "3px 9px",
-        "marginBottom": "6px",
         "minWidth": "194px",
         "textAlign": "center"
     },
@@ -1120,9 +1031,6 @@ export default StyleSheet.create({
     },
     "osb_multisearch": {
         "position": "relative",
-    },
-    "osb_multisearch_not__last_child": {
-        "marginBottom": "20px"
     },
     "multisearch_clear": {
         "position": "absolute",
@@ -1146,13 +1054,9 @@ export default StyleSheet.create({
         "position": "relative"
     },
     "list_group": {
-        "padding": "5px 7px",
-        
-        
+        "padding": "5px 7px",    
     },
-    "list_group____picker_item_not__last_child": {
-        "marginBottom": "5px"
-    },
+
     "header": {},
     "header_wrapp": {
         "padding": "40px 35px 21px 39px",
@@ -1162,17 +1066,10 @@ export default StyleSheet.create({
     },
     "header_inner": {
         "display": "flex",
-        
-
-        "justifyContent": "space-between",
-
-
         "alignItems": "center"
     },
     "header_right_box": {
         "display": "flex",
-
-
         "alignItems": "center"
     },
     "header_enter": {
@@ -1301,9 +1198,6 @@ export default StyleSheet.create({
     "sub_navigation_menu": {
         "padding": "30px 0"
     },
-    "sub_navigation_menu___li_not__last_child": {
-        "marginBottom": "10px"
-    },
     "sub_navigation_menu___li": {
 
         "padding": "1px 0 1px 30px"
@@ -1344,7 +1238,6 @@ export default StyleSheet.create({
     },
     "navigation_mobi_menu___li___a____fa": {
         "display": "flex",
-        "marginBottom": "5px",
     },
     "content_bg": {
         "minHeight": "100%"
@@ -1356,9 +1249,6 @@ export default StyleSheet.create({
     },
     "entered_top": {
         "padding": "110px 15px 72px",
-    },
-    "entered_top__big_logo": {
-        "marginBottom": "70px"
     },
     "subtitle_entered": {
         "maxWidth": "480px",
@@ -1373,9 +1263,6 @@ export default StyleSheet.create({
     "entered_bottom_inner": {
         "margin": "0 auto",
         "maxWidth": "834px"
-    },
-    "entered_bottom_box_parrent": {
-        "marginBottom": "100px"
     },
     "entered_bottom_box_first_child": {
         /*"float": "left"*/
@@ -1397,15 +1284,12 @@ export default StyleSheet.create({
         "padding": "40px 10px 25px",
         "textAlign": "center",
     },
-    "title_verification": {
-        "marginBottom": "0"
-    },
     "content_verification": {
         "padding": "40px 57px"
     },
     "label1": {
         "color": "#969696",
-        "marginBottom": "7px",
+        
     },
     "label1_big": {
 
@@ -1431,9 +1315,6 @@ export default StyleSheet.create({
         "fontWeight": "300",
 
     },
-    "sublabel_not__last_child": {
-        "marginBottom": "14px"
-    },
     "check_label": {
         "color": "#505050",
 
@@ -1443,37 +1324,18 @@ export default StyleSheet.create({
         "position": "relative"
     },
     "check_label_before": {
-
         "position": "absolute",
         "top": "0",
         "left": "0",
-
         "width": "14px",
         "height": "14px",
     },
     "tooltip_txt1": {
         "color": "#d9d9d9",
-
-    },
-    "verification_box_col_not__last_child": {
-        "marginBottom": "30px"
-    },
-    "wrapp_verification_col": {
-        "marginBottom": "37px"
     },
     "wrapp_verification__btn_hight_orange": {
         "width": "100%",
         "minWidth": "initial"
-    },
-    "wrapp_form_signin_not__last_child": {
-        "marginBottom": "35px"
-    },
-    "wrapp_verification__box_btn___a": {
-
-
-    },
-    "wrapp_verification__box_btn___a_last_child": {
-        /*"float": "right"*/
     },
     "verification_row": {
         "marginLeft": "-6px",
@@ -1488,9 +1350,6 @@ export default StyleSheet.create({
         "width": "50%",
         "padding": "0 6px"
     },
-    "wrapp_form_signup__verification_box_col_not__last_child": {
-        "marginBottom": "20px"
-    },
     "wrapp_form_signup__verification_col_code_country": {
         "width": "48px"
     },
@@ -1500,21 +1359,6 @@ export default StyleSheet.create({
     },
     "wrapp_form_signup__verification_col_phone_box": {
         "width": "calc(100% - 48px)"
-    },
-    "wrapp_form_recovery__verification_box_col_not__last_child": {
-        "marginBottom": "20px"
-    },
-    "wrapp_form_recovery__wrapp_verification_col": {
-        "marginBottom": "27px"
-    },
-    "wrapp_form_recovery_send_mail__wrapp_verification_col": {
-        "marginBottom": "44px"
-    },
-    "wrapp_form_recovery_mail__verification_box_col_not__last_child": {
-        "marginBottom": "25px"
-    },
-    "wrapp_form_recovery_mail__wrapp_verification_col": {
-        "marginBottom": "34px"
     },
     "title_edit": {
         "paddingLeft": "42px",
@@ -1533,7 +1377,6 @@ export default StyleSheet.create({
     },
     "subtitle_edit": {
         "color": "#9e9e9e",
-        "marginBottom": "22px"
     },
     "settings_wrapp": {
         
@@ -1547,13 +1390,8 @@ export default StyleSheet.create({
         "color": "#4f4f4e",
         "height": "20px"
     },
-    "setting_list_li_not__last_child": {
-        "marginBottom": "14px"
-    },
     "setting_list_li___label": {
         "color": "#a5a5a5",
-
-
     },
     "profile_settings_box__setting_list_li____jq_number_number_type_clear": {
         /*"float": "right",*/
@@ -1669,7 +1507,7 @@ export default StyleSheet.create({
     },
     "wrapp_settings_select__jq_selectbox__dropdown_ul___li": {
         "padding": "2px 5px",
-        "marginBottom": "0"
+        
     },
     "wrapp_settings_select__jq_selectbox__dropdown_ul___li_hover": {
         "color": "#ff6900"
@@ -1746,11 +1584,7 @@ export default StyleSheet.create({
     },
     "wrapp_filter": {
         "display": "flex",
-        
-
-
         "alignItems": "center",
-        "marginBottom": "40px"
     },
     "wrapp_filter__wrapp_search_not__last_child": {
         "marginRight": "9px"
@@ -1826,12 +1660,6 @@ export default StyleSheet.create({
         "left": "50%",
         "color": "#fff"
     },
-    "wrapp_company_form__box_form_row_not__last_child": {
-        "marginBottom": "26px"
-    },
-    "wrapp_company_form_not__last_child": {
-        "marginBottom": "40px"
-    },
     "wrapp_subtitle_edit": {
         "display": "flex",
     },
@@ -1843,9 +1671,6 @@ export default StyleSheet.create({
     },
     "wrapp_products": {
         "padding": "6px"
-    },
-    "wrapp_products_not__last_child": {
-        "marginBottom": "40px"
     },
     "count_products_after": {
         "position": "absolute",
@@ -1860,9 +1685,6 @@ export default StyleSheet.create({
     "box_form_products_item": {
         "position": "relative",
         "display": "flex"
-    },
-    "box_form_products_item_not__last_child": {
-        "marginBottom": "28px"
     },
     "box_form_products_item_img": {
         "position": "relative",
@@ -1910,7 +1732,7 @@ export default StyleSheet.create({
 
         "fontWeight": "300",
         "color": "#b6b6b6",
-        "marginBottom": "7px"
+        
     },
     "form_products_col": {
         "padding": "31px 34px 31px 47px",
@@ -1922,9 +1744,6 @@ export default StyleSheet.create({
     "form_products_settings": {
         "display": "flex",
         "justifyContent": "flex-start"
-    },
-    "form_products_settings_not__last_child": {
-        "marginBottom": "14px"
     },
     "form_products_settings_col_fix": {
         "width": "260px",
@@ -1940,21 +1759,15 @@ export default StyleSheet.create({
         "color": "#4f4f4e",
         
     },
-    "row_products": {
-        "marginLeft": "-10px",
-        "marginRight": "-10px"
-    },
     "col_products": {
         "textAlign": "center",
         /* "float": "left",*/
         "width": "25%",
         "paddingLeft": "10px",
         "paddingRight": "10px",
-        "marginBottom": "30px"
     },
     "products_img": {
         "overflow": "hidden",
-        "marginBottom": "15px",
         "height": "180px",
         "width": "100%",
         "textAlign": "center",
@@ -1980,12 +1793,6 @@ export default StyleSheet.create({
         "maxWidth": "100%",
         "maxHeight": "100%"
     },
-    "products_title": {
-        "marginBottom": "0"
-    },
-    "products_title_not__last_child": {
-        "marginBottom": "13px"
-    },
     "products_subtitle": {
         "display": "flex",
         "color": "#969696",
@@ -1996,9 +1803,6 @@ export default StyleSheet.create({
     "products_price": {
         "color": "#505050",
         "fontWeight": "300"
-    },
-    "products_price_not__last_child": {
-        "marginRight": "12px"
     },
     "products_count": {
         "minWidth": "37px",
@@ -2015,7 +1819,6 @@ export default StyleSheet.create({
     },
     "wrapp_products_list": {
         "display": "none",
-        "marginBottom": "20px"
     },
     "products_list___li": {
         "position": "relative",
@@ -2041,4 +1844,4 @@ export default StyleSheet.create({
     "products_list___li___a_img": {
         "maxWidth": "100px"
     }
-})
+});
