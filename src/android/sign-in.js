@@ -16,7 +16,7 @@ export default class SignIn extends React.Component {
                 </View>
 
                 <View>
-                    <SignInForm />
+                    <SignInForm/>
 
                     <View>
                         <Button

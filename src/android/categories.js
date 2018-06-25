@@ -19,15 +19,14 @@ export default class Categories extends React.Component {
     render() {
         return <CategoryContainer>
             <View>
-                { this.props.pid ?
+                {this.props.pid?
                     <View>
                         <Text>{ this.props.cat_name }</Text>
     
                         <Link to={ '/categories/' }>
-                            <View/>
-                            Назад к категориям
+                            <Text>Назад к категориям</Text>
                         </Link>
-                    </View> :''
+                    </View> :<Text>' '</Text>
                 }
                 <View>
                     <View>
@@ -35,17 +34,17 @@ export default class Categories extends React.Component {
                             <View>
                                 <View>
                                     <Link to={ (!this.props.pid ? '/categories/' : '/products/') + category.id + '/'}>
-                                        <Image source={ category.image } />
-                                        { category.name }
+                                        <Image source={ category.image }/>
+                                        <Text>{ category.name }</Text>
                                     </Link>
                                     { this.props.role === 'customer'?
                                         <View>
-                                            { category.unseen }
-                                        </View>:''
+                                            <Text>{ category.unseen }</Text>
+                                        </View>:<Text>' '</Text>
                                     }
                                 </View>
 
-                                <Text> { category.name }</Text>
+                                <Text>{ category.name }</Text>
                             </View>
                         ))}
     
@@ -53,11 +52,10 @@ export default class Categories extends React.Component {
                             <ListView 
                                 dataSource={this.state.categories}
                                 renderRow={(rowData) => (
-                                <Text>
                                     <Link to={ (!this.props.pid ? '/categories/' : '/products/') + rowData.id + '/'}>
-                                        <Image source={ rowData.image } />
+                                        <Image source={ rowData.image }/>
                                     </Link>
-                                </Text>)}
+                                )}
                             />
                         </View>
                     </View>

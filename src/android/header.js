@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, View, Header } from 'react-native';
+import { Image, View, Text } from 'react-native';
 import { Link } from 'react-router-native';
 import { connect } from 'react-redux';
 
@@ -7,8 +7,8 @@ class NativeHeader extends React.Component {
     render() {
         return <View>
         <Header leftComponent={{ icon: 'menu', color: '#fff' }} />
-            <View className="header_inner claerfix">
-                <View className="logo">
+            <View>
+                <View>
                     <Link to="/">
                         <Image
                             source="/static/images/small-logo.png"
@@ -17,10 +17,11 @@ class NativeHeader extends React.Component {
                     </Link>
                 </View>
 
-                { this.props.token ?
+                {this.props.token ?
                     <View className="header_right_box">
-                        { this.props.role !== null && this.props.role in ['customer', 'manager'] ?
+                        {this.props.role !== null && this.props.role in ['customer', 'manager'] ?
                             <View className="basket_wrapp">
+                                {/*
                                 <a href="/basket" className="basket_box">
                                     <i className="fa fa-shopping-basket" aria-hidden="true" />
                                     <span className="basket_item">14</span>
@@ -29,11 +30,13 @@ class NativeHeader extends React.Component {
                                 <View className="basket_box_count">
                                     <span className="basket_count" id="basket">88</span> руб
                                 </View>
-                            </View> :''
+                                */}
+                            </View>:<Text>' '</Text>
                         }
 
                         { this.props.role !== null && this.props.role === 'manager' ?
                             <View className="basket_wrapp">
+                            {/*
                                 <a href="/basket" className="basket_box">
                                     <i className="fa fa-shopping-basket" aria-hidden="true" />
                                     <span className="basket_item">14</span>
@@ -42,25 +45,21 @@ class NativeHeader extends React.Component {
                                 <View className="basket_box_count">
                                     <span className="basket_count">88</span> руб
                                 </View>
-                            </View> :''
+                            */}
+                            </View>:<Text>' '</Text>
                         }
 
                         
-                        <Link to='/profile/' href="/profile/" className="wrapp_company_logo clearfix">
-                            <span className="company_logo">
-                                <img src="/static/images/icons/user-icon.png" alt=""/>
-                            </span>
-
-                            <span className="company_name">
-                                Моя компания
-                            </span>
+                        <Link to='/profile/'>
+                            <Image source="/static/images/icons/user-icon.png"/>
+                            <Text>Моя компания</Text>
                         </Link>
 
                         <Link to='/logout' className="out_btn">
-                            Выйти
-                            <i className="fa fa-angle-down" aria-hidden="true" />
+                            <Text>Выйти</Text>
+                            {/*<i className="fa fa-angle-down" aria-hidden="true" />*/}
                         </Link>
-                    </View>:''
+                    </View>:<Text>' '</Text>
                 }
             </View>
         </View>

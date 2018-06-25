@@ -16,7 +16,7 @@ export default class SignUp extends React.Component {
                 </View>
 
                 <View>
-                    <SignUpForm />
+                    <SignUpForm/>
                 </View>
             </View>
         </View>
