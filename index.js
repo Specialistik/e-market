@@ -1,8 +1,8 @@
 import React from 'react';
 import { AppRegistry, View } from 'react-native';
-import { StackNavigator, createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import { Provider, connect } from 'react-redux';
-import Styles from './src/android/styles';
+//import Styles from './src/android/styles';
 
 import PickRole from './src/android/pick-role';
 import SignIn from './src/android/sign-in';
@@ -31,9 +31,10 @@ class TheSkladApp extends React.Component {
         super(props);
     }
     render() {
+        ////style={Styles}
         return <Provider store={store}>
-            <View style={Styles}>
-                <AppWithNavigationState />
+            <View>
+                <AppWithNavigationState/>
             </View>
         </Provider>
     }

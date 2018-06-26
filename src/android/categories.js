@@ -1,20 +1,15 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-import { View, Text, TextInput, Button, ListView } from 'react-native';
+import { View, Text, ListView, Image } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import CategoryContainer from '../containers/categories';
+import * as AuthActionCreators from "../actions/auth";
 
-export default class Categories extends React.Component {
+class Categories extends React.Component {
     constructor(props) {
         super(props);
-        /*
-        this.state = {
-            pid: (this.props.hasOwnProperty('match') && this.props.match.params.hasOwnProperty('pid') ? this.props.match.params.pid : null),
-            categories: [],
-            cat_name: ''
-        };
-        this.fetchCats = this.fetchCats.bind(this);
-        */
     }
     render() {
         return <CategoryContainer>
@@ -50,7 +45,7 @@ export default class Categories extends React.Component {
     
                         <View>
                             <ListView 
-                                dataSource={this.state.categories}
+                                dataSource={this.props.categories}
                                 renderRow={(rowData) => (
                                     <Link to={ (!this.props.pid ? '/categories/' : '/products/') + rowData.id + '/'}>
                                         <Image source={ rowData.image }/>
@@ -64,3 +59,24 @@ export default class Categories extends React.Component {
         </CategoryContainer>
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        role: state.userReducer['role'],
+        token: state.userReducer['token'],
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return { actions: bindActionCreators(AuthActionCreators, dispatch) }
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Categories);
+
+Categories.propTypes = {
+    pid: PropTypes.number,
+    cat_name: PropTypes.string
+};
