@@ -1,60 +1,54 @@
-import React, { AppRegistry, View, StyleSheet } from 'react-native';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import React from 'react';
+import { AppRegistry, View } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
+import { Provider, connect } from 'react-redux';
+//import Styles from './src/android/styles';
 
 import PickRole from './src/android/pick-role';
-//import SignIn from './src/android/sign-in';
-//import Categories from './src/android/categories';
+import SignIn from './src/android/sign-in';
+import SignUp from './src/android/sign-up';
+//import IndexContainer from './src/android/index';
 
 import configureStore from './src/store';
 export const store = configureStore();
+const AppNavigator = createStackNavigator({
+    PickRole: PickRole,
+    SignUp: SignUp,
+    SignIn: SignIn,
+}, { initialRouteName: 'SignIn'});
 
-class IndexContainer extends React.Component {
-    render() {
-        if (this.props.token) {
-            return <Categories />
-        } else {
-            return <SignIn />
-        }
+/*
+const AppNavigator = createStackNavigator({
+    PickRole: { screen: PickRole },
+    SignUp: { screen: SignUp },
+    SignIn: { screen: SignIn },
+}, { initialRouteName: 'SignIn'});
+*/
+
+const AppWithNavigationState = (dispatch, nav) => (
+    <AppNavigator
+        state={nav}
+        dispatch={dispatch}
+    />
+);
+
+class TheSkladApp extends React.Component {
+    constructor(props) {
+        super(props);
     }
-}
-
-const mapStateToProps = (state) => {
-    return {
-        role: state.userReducer['role'],
-        token: state.userReducer['token']
-    }
-};
-
-const IndexCont = connect(
-    mapStateToProps,
-    null
-)(IndexContainer);
-
-
-class TheSkladMobile extends React.Component {
     render() {
+        ////style={Styles}
         return <Provider store={store}>
-            <Router>
-                <View>
-                    <Header />
-                    <Switch>
-                        <Route exact path='/react_index' component={IndexCont} />
-                        <Route path='/pick_role' component={PickRole}/>
-                        {/*
-                        <Route path='/sign_up' component={SignUp}/>
-                        <Route path='/sign_in' component={SignIn}/>
-                        <Route path='/log_out' component={Logout}/>
-
-                        <Route exact path='/categories/' component={Categories}/>
-                        <Route exact path='/categories/:pid/' component={Categories}/>
-                        <Route path='/products/:cat_id/' component={Products}/>
-                        */}
-                    </Switch>
-                </View>
-            </Router>
+            <View>
+                <AppWithNavigationState/>
+            </View>
         </Provider>
     }
 }
 
-AppRegistry.registerComponent('theSkladMobile', () => TheSkladMobile);
+const mapStateToProps = state => ({
+    nav: state.nav,
+});
+connect(mapStateToProps)(AppWithNavigationState);
+
+AppRegistry.registerComponent('the_sklad', () => TheSkladApp);

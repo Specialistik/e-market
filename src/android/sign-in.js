@@ -10,21 +10,13 @@ export default class SignIn extends React.Component {
     
     render () {
         return <View>
+            <Text>Вход в систему</Text>
+            <SignInForm/>
             <View>
-                <View>
-                    <Text>Вход в систему</Text>
-                </View>
-
-                <View>
-                    <SignInForm/>
-
-                    <View>
-                        <Button
-                            title="Зарегистрироваться"
-                            onPress={() => this.props.navigation.navigate('PickRole')}
-                        />
-                    </View>
-                </View>
+                <Button
+                    title="Зарегистрироваться"
+                    onPress={() => this.props.navigation.navigate('PickRole')}
+                />
             </View>
         </View>
     }

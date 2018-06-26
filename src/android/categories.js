@@ -17,11 +17,10 @@ class Categories extends React.Component {
                 {this.props.pid?
                     <View>
                         <Text>{ this.props.cat_name }</Text>
-    
                         <Link to={ '/categories/' }>
                             <Text>Назад к категориям</Text>
                         </Link>
-                    </View> :<Text>' '</Text>
+                    </View>:<View/>
                 }
                 <View>
                     <View>

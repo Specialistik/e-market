@@ -3,7 +3,7 @@
   "displayName": "the_sklad",
   "expo": {
     "packagerOpts": {
-      "sourceExts": ["js", "jsx", "css"],
+      "sourceExts": ["js", "jsx"],
       "transformer": "node_modules/react-native-css-transformer/index.js"
     }
   }

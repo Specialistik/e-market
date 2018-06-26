@@ -16,25 +16,14 @@ class SignInForm extends React.Component {
 
     render() {
         return <SignInFormContainer>
-            <View>
                 <View>
-                    <View>
-                        <View>
-                            <TextInput value={this.props.email} onChangeText={this.props.handleEmailChange}/>
-                        </View>
-                    </View>
-
-                    <View>
-                        <View>
-                            <TextInput value={this.props.password} onChangeText={this.props.handlePasswordChange}/>
-                        </View>
-                    </View>
+                    <TextInput value={this.props.email} onChangeText={this.props.handleEmailChange}/>
+                    <TextInput value={this.props.password} onChangeText={this.props.handlePasswordChange}/>
                 </View>
                 <Button
                     onPress={() => this.props.signUser()}
                     title="Войти"
                 />
-            </View>
         </SignInFormContainer>
     }
 }
