@@ -1,26 +1,21 @@
-import React from 'react';
-import { AppRegistry, View } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
-import { Provider, connect } from 'react-redux';
-import {
-    reduxifyNavigator,
-    createReactNavigationReduxMiddleware,
-    createNavigationReducer,
-} from 'react-navigation-redux-helpers';
-//import Styles from './src/android/styles';
+import React from "react";
+import { AppRegistry, View } from "react-native";
+import { createStackNavigator } from "react-navigation";
+import { Provider, connect } from "react-redux";
+//import Styles from "./src/android/styles";
 
-//import PickRole from './src/android/pick-role';
-import SignIn from './src/android/sign-in';
-//import SignUp from './src/android/sign-up';
-//import IndexContainer from './src/android/index';
+//import PickRole from "./src/android/pick-role";
+import SignIn from "./src/android/sign-in";
+//import SignUp from "./src/android/sign-up";
+//import IndexContainer from "./src/android/index";
 
-import configureStore from './src/store';
+import configureStore from "./src/store";
 
 const AppNavigator = createStackNavigator({
     //PickRole: PickRole,
     //SignUp: SignUp,
     SignIn: SignIn,
-}, { initialRouteName: 'SignIn'});
+}, { initialRouteName: "SignIn"});
 const store = configureStore(AppNavigator);
 
 class TheSkladApp extends React.Component {
@@ -30,14 +25,14 @@ class TheSkladApp extends React.Component {
     render() {
         return <Provider store={store}>
             <AppNavigator />
-        </Provider>
+        </Provider>;
     }
 }
 
 const mapStateToProps = (state) => ({
-        state: state.nav,
-    });
+    state: state.nav,
+});
 
 connect(mapStateToProps)(TheSkladApp);
 
-AppRegistry.registerComponent('the_sklad', () => TheSkladApp);
+AppRegistry.registerComponent("the_sklad", () => TheSkladApp);

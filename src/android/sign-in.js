@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, Button } from 'react-native';
+import PropTypes from "prop-types";
+import { View, Text, Button } from "react-native";
 
-import SignInForm from './sign-in-form';
+import SignInForm from "./sign-in-form";
 
 export default class SignIn extends React.Component {
     constructor(props) {
@@ -15,9 +16,13 @@ export default class SignIn extends React.Component {
             <View>
                 <Button
                     title="Зарегистрироваться"
-                    onPress={() => this.props.navigation.navigate('PickRole')}
+                    onPress={this.props.nav.navigate("PickRole")}
                 />
             </View>
-        </View>
+        </View>;
     }
 }
+
+SignIn.propTypes = {
+    nav: PropTypes.object
+};
