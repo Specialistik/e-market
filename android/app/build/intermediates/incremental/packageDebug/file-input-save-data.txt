@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Jun 09 12:37:07 MSK 2018
+#Thu Jun 28 14:21:33 MSK 2018
 210.set=ANDROID_RESOURCE
 282.file=/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/res/resources-debug.ap_/res/anim/abc_fade_out.xml
 14.set=ANDROID_RESOURCE
@@ -527,7 +527,7 @@
 186.file=/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/res/resources-debug.ap_/res/drawable-xhdpi-v4/abc_list_pressed_holo_dark.9.png
 161.file=/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/1f/main/lib/armeabi-v7a/libreactnativejni.so
 192.base=/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/transforms/mergeJniLibs/debug/folders/2000/1f/main
-290.file=/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/res/resources-debug.ap_/res/anim/catalyst_fade_out.xml
+290.file=/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/res/resources-debug.ap_/res/color/abc_primary_text_material_dark.xml
 231.set=ANDROID_RESOURCE
 172.set=ANDROID_RESOURCE
 35.set=ANDROID_RESOURCE
@@ -615,7 +615,7 @@ count=330
 162.file=/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/res/resources-debug.ap_/res/drawable-xxhdpi-v4/abc_textfield_activated_mtrl_alpha.9.png
 193.base=/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/res/resources-debug.ap_
 300.set=ANDROID_RESOURCE
-291.file=/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/res/resources-debug.ap_/res/color/abc_primary_text_material_dark.xml
+291.file=/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/res/resources-debug.ap_/res/anim/catalyst_fade_out.xml
 241.set=ANDROID_RESOURCE
 182.set=ANDROID_RESOURCE
 45.set=ANDROID_RESOURCE

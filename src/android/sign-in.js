@@ -16,7 +16,7 @@ export default class SignIn extends React.Component {
             <View>
                 <Button
                     title="Зарегистрироваться"
-                    onPress={this.props.nav.navigate("PickRole")}
+                    onPress={this.props.navigation.navigate("PickRole")}
                 />
             </View>
         </View>;
@@ -24,5 +24,5 @@ export default class SignIn extends React.Component {
 }
 
 SignIn.propTypes = {
-    nav: PropTypes.object
+    navigation: PropTypes.object
 };

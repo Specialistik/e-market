@@ -1,10 +1,4 @@
 {
   "name": "the_sklad",
-  "displayName": "the_sklad",
-  "expo": {
-    "packagerOpts": {
-      "sourceExts": ["js", "jsx"],
-      "transformer": "node_modules/react-native-css-transformer/index.js"
-    }
-  }
+  "displayName": "the_sklad"
 }

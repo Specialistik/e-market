@@ -3,15 +3,6 @@
 
     <item
         is-multidex="false"
-        jar="/Users/imc/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/okio-1.13.0_f07224b5b48c8a1a09cf19d7487d46966f7c71ba.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -45,15 +36,6 @@
         revision="23.0.1"
         sha1="e31331bdf6b5952badadbfc171f04b95c55d3b16">
         <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.55.4_33851e796a10794de18b6107bacf5186511e3ac7.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_8ef157a7621416de13f94f30e146fe3914d27f6a.jar" />
     </item>
     <item
         is-multidex="false"
@@ -93,30 +75,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/imc/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.6.0/3f9b16b774f2c36cfd86dd2053d0b3059531dacc/okhttp-urlconnection-3.6.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_5756c0bd7f004ff7cdac8ce7ddc3f04fbe899a17.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/imc/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.6.0/69edde9fc4b01c9fd51d25b83428837478c27254/okhttp-3.6.0.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
         <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/okhttp-3.6.0_14707db3861a7a0af7373709d2bbc55f99a7c0a4.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_c0576570bd9841edb53ee7e44d90e80e0f3df8de.jar" />
     </item>
     <item
         is-multidex="false"
@@ -147,15 +111,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="/Users/imc/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1_20ac13be67839e88ce615af48d5f1f475daaf248.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -171,6 +126,51 @@
         revision="23.0.1"
         sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
         <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_495218f752a32ee36f835c0178341169a429f02d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/imc/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/okio-1.13.0_f07224b5b48c8a1a09cf19d7487d46966f7c71ba.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_8ef157a7621416de13f94f30e146fe3914d27f6a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/imc/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.6.0/3f9b16b774f2c36cfd86dd2053d0b3059531dacc/okhttp-urlconnection-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_5756c0bd7f004ff7cdac8ce7ddc3f04fbe899a17.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_c0576570bd9841edb53ee7e44d90e80e0f3df8de.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/imc/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1_20ac13be67839e88ce615af48d5f1f475daaf248.jar" />
     </item>
     <item
         is-multidex="false"
