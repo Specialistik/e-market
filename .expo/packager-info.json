@@ -1,10 +1,14 @@
 {
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
-  "sourceExts": ["js", "jsx", "css"],
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 52043,
+  "expoServerNgrokUrl": "https://zc-gy7.specialistik.the-sklad.exp.direct",
+  "packagerNgrokUrl": "https://packager.zc-gy7.specialistik.the-sklad.exp.direct",
+  "ngrokPid": 52062,
+  "sourceExts": [
+    "js",
+    "jsx",
+    "css"
+  ],
   "transformer": "node_modules/react-native-css-transformer/index.js"
 }
