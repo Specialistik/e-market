@@ -80,7 +80,6 @@ class SignUpForm extends React.Component {
 
                     <div className="verification_box_col">
                         <div className="wrapp_privacy_policy">
-                            <input type="checkbox" id="privacy_policy" value={this.props.privacy_check} onChange={this.handlePrivacyChange} required/>
                                 <label htmlFor="privacy_policy"/>
 
                                 <label htmlFor="privacy_policy" className="privacy_policy_txt">
