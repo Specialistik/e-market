@@ -1,2 +1,2 @@
 rootProject.name = 'the_sklad'
-include ':app'
+include ':ReactAndroid', ':RNTester:android:app'
