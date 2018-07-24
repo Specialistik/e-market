@@ -1,3 +1,2 @@
-include ':the_sklad'
-
-
+include ':app'
+//include ':the_sklad'

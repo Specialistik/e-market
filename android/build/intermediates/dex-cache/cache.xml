@@ -3,21 +3,21 @@
 
     <item
         is-multidex="false"
-        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
+        jar="/Users/imc/PycharmProjects/ru.the-sklad.app/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_190b7107983da8b2125d46944c027da5a6cc8b2e.jar" />
+        <dex dex="/Users/imc/PycharmProjects/ru.the-sklad.app/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_190b7107983da8b2125d46944c027da5a6cc8b2e.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
+        jar="/Users/imc/PycharmProjects/ru.the-sklad.app/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="23.0.1"
         sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_fc716d9b1c83cb4053c544332865f4adac0104af.jar" />
+        <dex dex="/Users/imc/PycharmProjects/ru.the-sklad.app/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_fc716d9b1c83cb4053c544332865f4adac0104af.jar" />
     </item>
     <item
         is-multidex="false"
