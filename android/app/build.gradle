@@ -1,5 +1,4 @@
 apply plugin: "com.android.application"
-//apply plugin: "ru.the-sklad.app"
 
 import com.android.build.OutputFile
 
@@ -72,6 +71,7 @@ import com.android.build.OutputFile
  *   extraPackagerArgs: []
  * ]
  */
+
 project.ext.react = [
     entryFile: "index.js"
 ]
@@ -94,47 +94,32 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "ru.the-sklad.app"
-        minSdkVersion 15
-        targetSdkVersion 27
+        applicationId "com.the_sklad"
+        minSdkVersion 16
+        targetSdkVersion 22
         versionCode 1
-        versionName "1.0"
-        /*
+        versionName "1.01"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
-        */
     }
-
-    signingConfigs {
-        release {
-            if (project.hasProperty('MYAPP_RELEASE_STORE_FILE')) {
-                storeFile file(MYAPP_RELEASE_STORE_FILE)
-                storePassword MYAPP_RELEASE_STORE_PASSWORD
-                keyAlias MYAPP_RELEASE_KEY_ALIAS
-                keyPassword MYAPP_RELEASE_KEY_PASSWORD
-            }
-        }
-    }
-
     splits {
         abi {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
-            universalApk true  // If true, also generate a universal APK
+            universalApk false  // If true, also generate a universal APK
             include "armeabi-v7a", "x86"
         }
     }
     buildTypes {
-        debug{
-
-        }
         release {
-            signingConfig signingConfigs.release
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     // applicationVariants are e.g. debug, release
@@ -153,11 +138,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    //compile fileTree(dir: "libs", include: ["*.jar"])
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:recyclerview-v7:23.1.1'
-    compile 'com.github.asne.facebook:facebook:3.17.2'
+    compile fileTree(dir: "libs", include: ["*.jar"])
+    compile "com.android.support:appcompat-v7:23.0.1"
+    compile "com.facebook.react:react-native:+"  // From node_modules
 }
 
 // Run this once to be able to run the application with BUCK
