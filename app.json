@@ -1,9 +1,4 @@
 {
-  "expo": {
-    "name": "the_sklad",
-    "sdkVersion": "28.0.0",
-    "slug": "the_sklad",
-    "ios": { "bundleIdentifier": "ru.the-sklad.app" },
-    "android": { "package": "ru.the-sklad.app" }
-  }
+  "name": "the_sklad",
+  "displayName": "the_sklad"
 }

@@ -1,4 +1,4 @@
-package ru.the-sklad.app;
+package com.the_sklad;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "ru.the-sklad.app";
+        return "the_sklad";
     }
 }

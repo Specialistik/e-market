@@ -1,4 +1,4 @@
-package ru.the-sklad.appd;
+package com.the_sklad;
 
 import android.app.Application;
 

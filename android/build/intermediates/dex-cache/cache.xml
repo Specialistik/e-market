@@ -3,192 +3,273 @@
 
     <item
         is-multidex="false"
-        jar="/Users/imc/PycharmProjects/ru.the-sklad.app/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
+        jar="/private/var/root/.android/build-cache/ab48af34dca8cc33c89cc50ffb0949ff0f5f904c/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
-        <dex dex="/Users/imc/PycharmProjects/ru.the-sklad.app/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_190b7107983da8b2125d46944c027da5a6cc8b2e.jar" />
+        revision="27.0.3"
+        sha1="dc6c0959ecc7b21932675183573b2bcecf2687b9">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_f2d1b5a034216ef093ee53ed1f8c4c904b54957c.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/imc/PycharmProjects/ru.the-sklad.app/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
+        jar="/private/var/root/.android/build-cache/0e105d32907ba2796b77ce22e3278ece28702fd9/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
-        <dex dex="/Users/imc/PycharmProjects/ru.the-sklad.app/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_fc716d9b1c83cb4053c544332865f4adac0104af.jar" />
+        revision="27.0.3"
+        sha1="9803a14716e9f462afb5742811f3456c39f3be3a">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_d673928797c62f6917cc4842c413acb538d19013.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.3.0/jars/classes.jar"
+        jar="/private/var/root/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.14.0/102d7be47241d781ef95f1581d414b0943053130/okio-1.14.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.3.0_bd5382eaca69dce2b050d2845713844c72d9c3ef.jar" />
+        revision="27.0.3"
+        sha1="102d7be47241d781ef95f1581d414b0943053130">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/okio-1.14.0_dc7649cb4a50566ea036818891fca04e9b59ee4b.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/jars/classes.jar"
+        jar="/private/var/root/.android/build-cache/3bd90195080d85dc001f6f093f8e8e25b93041eb/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="e31331bdf6b5952badadbfc171f04b95c55d3b16">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.55.4_33851e796a10794de18b6107bacf5186511e3ac7.jar" />
+        revision="27.0.3"
+        sha1="40392f30a601db5675cdf18192aab013d6fee6ec">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_7f91b6728599cf1da0c1bedd38f4b525b9ae979e.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/imc/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jar="/private/var/root/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.0.0/a2d487452376193fc8c103dd2b9bd5f2b1b44563/common-1.0.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="6975da39a7040257bd51d21a231b76c915872d38">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/javax.inject-1_6474734a9dccb9f5cb994b0c9a8aec8cdb873b64.jar" />
+        revision="27.0.3"
+        sha1="a2d487452376193fc8c103dd2b9bd5f2b1b44563">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/common-1.0.0_3e4d7f7cb7b601aa02b2ed3ceee6fc00ab5d98d1.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/jars/libs/infer-annotations-4.0.jar"
+        jar="/private/var/root/.android/build-cache/ce3b93e53b78fffd766f129d057988f9a915c235/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/infer-annotations-4.0_79bbc347b51d560cad762e4171c6e09488af4636.jar" />
+        revision="27.0.3"
+        sha1="1c9837ec75b2273699379c2ba0ae63d669b4f08c">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_2a0d0632b2108e711b835413b35a0592f105582e.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
+        jar="/private/var/root/.android/build-cache/6e07cebc1f0a22f4f31f7722cc521719768738b4/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/com.facebook.soloader-soloader-0.1.0_cd83544dd73c3c7050d28ba21a9a22184386cbbb.jar" />
+        revision="27.0.3"
+        sha1="2442771a5590dd4eb4bce00c2e9dca9e22e4c963">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_00c3888dd7f30556f993027996ee65c48371c9c7.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/libs/internal_impl-23.0.1.jar"
+        jar="/private/var/root/.android/build-cache/e737748ab0c3d72ec47e58e362a53b49b5dc2f51/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/internal_impl-23.0.1_7e916e72a14db88bb0298e1bac3f9c35b01665e6.jar" />
+        revision="27.0.3"
+        sha1="f97cf85b0fe70d37a705111dafa6b1b418ea1650">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_56d5c490bbd5636808e0a302487aeae9b700b481.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/imc/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.6.0/69edde9fc4b01c9fd51d25b83428837478c27254/okhttp-3.6.0.jar"
+        jar="/private/var/root/.android/build-cache/33907e428a0ebb2679c89f70934dcc9337cace1c/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/okhttp-3.6.0_14707db3861a7a0af7373709d2bbc55f99a7c0a4.jar" />
+        revision="27.0.3"
+        sha1="233f60a165ae622c8b36731502ebbda0f65e1930">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_37bb26ddd1df04a5447eaf808d9ffe7926c54a99.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/imc/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
+        jar="/private/var/root/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.10.0/7ef0f1d95bf4c0b3ba30bbae25e0e562b05cf75e/okhttp-3.10.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
+        revision="27.0.3"
+        sha1="7ef0f1d95bf4c0b3ba30bbae25e0e562b05cf75e">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/okhttp-3.10.0_3960db572e97b41c5aafc66cb607c53a22d75f19.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.android/build-cache/d96db8f5aa53936714a2fedbae25cedfb3421289/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="da59c80e4a1c8df62d2b4188ef3efddab8afa236">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_2fa54dbba2d25bb93709eb63a4ba24f227da5975.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.android/build-cache/f47eff52927f707334d62b468c61aae5582fa1e5/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="f80a752d1333efd4fb9b87da63e73909acb151af">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_a5b3803ea32fcea69a0583dd5ba3cc2f6d9c71a3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
         sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0_61ca01003b4fcc8668682aebf6ac59fd15b7791b.jar" />
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0_e3e1dfcdf1091ad62101747e52cf18170b899a78.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/1.3.0/jars/classes.jar"
+        jar="/private/var/root/.android/build-cache/e1026c4765f372b88c3d52fc225edbdf2e63d384/output/jars/libs/infer-annotations-4.0.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-1.3.0_758bd21357298d115b0e4801bf0ce56d274bed4a.jar" />
+        revision="27.0.3"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/infer-annotations-4.0_fd112676a16006c719a35f389b04d2462d856b5e.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.0.1/jars/classes.jar"
+        jar="/private/var/root/.android/build-cache/6067a04f2af7b49873ced03f9ca0933742f10b99/output/jars/classes.jar"
         jumboMode="false"
         optimize="true"
-        revision="23.0.1"
-        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.0.1_73dbe44abab39f8d8e783c02c840492c78fb3815.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.0.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.0.1_91a72799232a205015d5ec7ac60465034b585b61.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/imc/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_495218f752a32ee36f835c0178341169a429f02d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/imc/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/okio-1.13.0_f07224b5b48c8a1a09cf19d7487d46966f7c71ba.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_8ef157a7621416de13f94f30e146fe3914d27f6a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/imc/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.6.0/3f9b16b774f2c36cfd86dd2053d0b3059531dacc/okhttp-urlconnection-3.6.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_5756c0bd7f004ff7cdac8ce7ddc3f04fbe899a17.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_c0576570bd9841edb53ee7e44d90e80e0f3df8de.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/imc/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.0.1/support-annotations-23.0.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/support-annotations-23.0.1_20ac13be67839e88ce615af48d5f1f475daaf248.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/imc/.gradle/caches/modules-2/files-2.1/com.facebook.fbui.textlayoutbuilder/staticlayout-proxy/1.0/f162442a19fff13995fbd51ba414d9ee05579080/staticlayout-proxy-1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
-        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_ee02e6384d21ae2407bfd144778bdb36326c90d1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/exploded-aar/com.facebook.fbui.textlayoutbuilder/textlayoutbuilder/1.0.0/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.1"
+        revision="27.0.3"
         sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
-        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_432fe8bb1870282ef27d96b4174b1bab48cb1683.jar" />
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_e17b741ce6714858ef34047b00f11af8b603def0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.android/build-cache/7bd206e46a77daf21334a3b83b40ca1afe5f861d/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="508f50705b4fde51a16259f29c854201a3044516">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_a4fe65644e6bd6b34c72c1ac243f8d93e94abf9d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.android/build-cache/e2a21908be57e0d68ef9b17817174b9ab822d907/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_14c25ff4869b0375fd7938ca8263e4dcd8217a6d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.android/build-cache/3c5c81115704d8d15f7b52bdd86751ab172151bc/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="6f4138a4e065826cb044d49faea4cfd7191773d1">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_b7a1c661163481682911638d62c7c89cd6b23564.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/26.1.0/814258103cf26a15fcc26ecce35f5b7d24b73f8/support-annotations-26.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="0814258103cf26a15fcc26ecce35f5b7d24b73f8">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/support-annotations-26.1.0_7f9d714354c8d2d719c1241ab39afd436a995439.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.gradle/caches/modules-2/files-2.1/com.facebook.fbui.textlayoutbuilder/staticlayout-proxy/1.0/f162442a19fff13995fbd51ba414d9ee05579080/staticlayout-proxy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_e5305602d6c8fb5e05aa32e56f00120ab39f6a7b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_7aad2f4df60dc69e0c016e9feac2f46f7f9dfef7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.android/build-cache/35ea05cabd73c9888464d3fd97c708ab6a5be4ad/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="b62fdc4cfef174c1e456014195c83fa7de7dc041">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_9fb697ff581f3512143281ef8e4a6519b35f9836.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.android/build-cache/0cecf19a7ea1e1874101de66c002447f33f269ef/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="f428e2fbc9ed0b297e3a3f420e51e6982f66822d">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_87f1090fdecd9a8a5551ea2c40f213889e6d2785.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/javax.inject-1_b64d0aaebd612e64d8c19002cd6f1c00e9fa086c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.0.0/e414a4cb28434e25c4f6aa71426eb20cf4874ae9/common-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="e414a4cb28434e25c4f6aa71426eb20cf4874ae9">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/common-1.0.0_68f434858033e7a8f6ec836ce21a659fddcbf920.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.10.0/ec614c05825ddd2267677a99f585d3913474b125/okhttp-urlconnection-3.10.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="ec614c05825ddd2267677a99f585d3913474b125">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.10.0_e5b9afa4498922949a85d7cdc0d24a3a172e98e5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.android/build-cache/e8a989fa0fbb6bc9863b57dea6120dbbb26aff63/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="87382214d92be4e3c931cb6aa7aa4e827bc179b7">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_7b63327eb820c517b99ca4efbfd6547dc142a3c9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.android/build-cache/333d2f4f5aa72b2f25bddf5f986d1db3eff5af1f/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="7efef32744ca4a436492d5cf28c08698cc2af256">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_34facde9c52cb15db73afd36201eeb3a76013892.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.android/build-cache/e1026c4765f372b88c3d52fc225edbdf2e63d384/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="e7a850c25a7efbd533c496ab482c980fdafac58d">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_8cd1a2913b53bb4bb4126f89aca65e45c25bc78c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/private/var/root/.android/build-cache/0d8db174427a244fe00c5305c2ef3208fb3d384f/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="ae15c560bc6685007440d8a70686f8348bafd791">
+        <dex dex="/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/pre-dexed/debug/classes_1d612f669ecb99ec098f35dd95e4ea72bd059da2.jar" />
     </item>
 
 </items>
