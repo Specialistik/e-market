@@ -4,24 +4,6 @@ import { Button, View, Image, Text } from 'react-native';
 
 import PickRoleContainer from '../containers/pick-role'
 
-
-// <CustomerCheckEntity producer={this.state.producer} customer={this.state.customer} onClick={this.props.customerClicked}/>
-//                                    <ProducerCheckEntity producer={this.state.producer} customer={this.state.customer}/>
-//style={"fa " + (this.props.customer ? 'fa-check': "")}
-/*
-class CustomerCheckEntity extends React.Component {
-    render() {
-        return <Text>''</Text>;
-    }
-}
-
-// style={"fa " + (this.props.producer ? 'fa-check': "")}
-class ProducerCheckEntity extends React.Component {
-    render() {
-        return <Text>''</Text>;
-    }
-}
-*/
 export default class PickRole extends React.Component {
     constructor(props) {
         super(props);
