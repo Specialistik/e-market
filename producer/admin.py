@@ -6,5 +6,11 @@ from django.contrib import admin
 # Register your models here.
 from models import ProductCard, ProducerDepot
 
-admin.site.register(ProductCard)
-admin.site.register(ProducerDepot)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'category', 'name', 'barcode', 'producer_price')
+
+class ProducerDepotAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'producer', 'name', 'address')
+
+admin.site.register(ProductCard, ProductAdmin)
+admin.site.register(ProducerDepot, ProducerDepotAdmin)
