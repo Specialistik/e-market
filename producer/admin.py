@@ -7,4 +7,4 @@ from django.contrib import admin
 from models import ProductCard, ProducerDepot
 
 admin.site.register(ProductCard)
-admin.site.register(ProductDepot)
+admin.site.register(ProducerDepot)
