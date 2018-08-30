@@ -35,8 +35,8 @@ urlpatterns = [
     url(r'^react_index', core_views.react_index),
 
     # REST framework API views,
-    url(r'^api/sign_up$', core_api.sign_up),
-    url(r'^api/sign_in$', core_api.sign_in),
+    url(r'^api/sign_up', core_api.sign_up),
+    url(r'^api/sign_in', core_api.sign_in),
     url(r'^api/logout', core_api.logout),
     url(r'^api/register$', core_api.register),                                                              #вопрос
     url(r'^api/index$', core_api.index),                                                                    #вопрос
