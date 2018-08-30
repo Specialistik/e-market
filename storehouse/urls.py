@@ -25,11 +25,6 @@ import system_supervisor.views as supervisor_views
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'category', catalog_views.CategoryViewSet)
 
-
-#profile_router = NestedDefaultRouter(router, r'profile', lookup='profile')
-#profile_router.register(r'physical_address', core_api.PhysicalAddressViewSet)
-#profile_router.register(r'juridical_address', core_api.JuridicalAddressViewSet)
-
 urlpatterns = [
     # React views
     url(r'^react_index', core_views.react_index),
@@ -71,18 +66,14 @@ urlpatterns = [
     url(r'api/my_products/', core_api.my_products),
     url(r'^api/my_previous_deals$', core_api.my_previous_deals),
 
-
-
     # Customer
     url(r'^api/categories/$', core_api.categories),
     url(r'^api/categories/([0-9]+)/$', core_api.subcategories),
     url(r'^api/trade_point/add/$', core_api.trade_point_add),
     url(r'^api/trade_point/([0-9]+)/$', core_api.trade_point_edit),
     url(r'^api/trade_point/([0-9]+)/del/$', core_api.trade_point_del),
-
     url(r'^api/basket$', core_api.basket),
     url(r'^api/basket/trade_points$', core_api.basket_trade_points),
-
     url(r'^api/order_unit/add/$', core_api.order_unit_add),
     url(r'^api/order_unit/edit/([0-9]+)/$', core_api.order_unit_edit),
     url(r'^api/order_unit/del/([0-9]+)/$', core_api.order_unit_del),
@@ -102,7 +93,6 @@ urlpatterns = [
     url(r'^api/bank_payment/([0-9]+)/$', core_api.bank_payment),
     url(r'^api/payment_type/([0-9]+)/$', core_api.payment_type),
     url(r'^api/payment_type_pick$', core_api.payment_type_pick),
-
     url(r'^api/payment_notification', core_api.payment_notification),
     url(r'^api/success_redirect', core_api.success_redirect),
     url(r'^api/failure_redirect', core_api.failure_redirect),                                #                 вопрос!!!
@@ -112,8 +102,7 @@ urlpatterns = [
     #-----------------------------------------------------------
     # Old school views, not to break the app in the process
     url(r'^admin/', admin.site.urls),
-
-    url(r'^$', core_views.index),
+    url(r'^$', core_views.react_index),
     url(r'^sign_in', core_views.sign_in),
     url(r'^logout', core_views.logout),
     url(r'^register', core_views.register),
@@ -150,8 +139,6 @@ urlpatterns = [
     url(r'^my_products/', producer_views.my_products),
     url(r'^my_previous_deals$', producer_views.my_previous_deals),
 
-
-
     # Customer views
     url(r'^categories/$', customer_views.categories),
     url(r'^category/([0-9]+)/$', customer_views.subcategories),
@@ -167,7 +154,6 @@ urlpatterns = [
     url(r'^order_unit/edit/([0-9]+)/$', customer_views.order_unit_edit),
     url(r'^order_unit/del/([0-9]+)/$', customer_views.order_unit_del),
     url(r'^perform_order$', customer_views.perform_order),
-
 
     # Order views
     url(r'^current_orders$', orders_views.current_orders),
@@ -187,8 +173,4 @@ urlpatterns = [
     url(r'^payment_notification', payment_views.payment_notification),
     url(r'^success_redirect', payment_views.success_redirect),
     url(r'^failure_redirect', payment_views.failure_redirect),
-
-    # generated documents
-    #url(r'^documents/', payment_views.generated_document),
-
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + staticfiles_urlpatterns()
