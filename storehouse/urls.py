@@ -35,22 +35,22 @@ urlpatterns = [
     url(r'^react_index', core_views.react_index),
 
     # REST framework API views,
-    url(r'^api/sign_up/$', core_api.sign_up),
-    url(r'^api/sign_in/$', core_api.sign_in),
+    url(r'^api/sign_up$', core_api.sign_up),
+    url(r'^api/sign_in$', core_api.sign_in),
     url(r'^api/logout', core_api.logout),
-    url(r'^api/register/$', core_api.register),                                                              #вопрос
-    url(r'^api/index/$', core_api.index),                                                                    #вопрос
-    url(r'^api/profile/$', core_api.profile),
-    url(r'^api/profile/skip_creation/$', core_api.profile_skip_creation),
-    url(r'^api/profile/fiz_and_jur_address/$', core_api.profile_fiz_and_jur_address),
-    url(r'^api/profile/juridical_address/$', core_api.profile_juridical_address),
-    url(r'^api/profile/physical_address/$', core_api.profile_physical_address),
-    url(r'^api/profile/company_info/$', core_api.profile_company_info),
-    url(r'^api/profile/signer_info/$', core_api.profile_signer_info),
-    url(r'^api/profile/identity_document/$', core_api.profile_identity_document),
-    url(r'^api/profile/signer_info_and_identity/$', core_api.profile_signer_info_and_identity),
-    url(r'^api/profile/account/add/$', core_api.profile_account_add),
-    url(r'^api/profile/account/([0-9]+)/$', core_api.profile_account_edit),
+    url(r'^api/register$', core_api.register),                                                              #вопрос
+    url(r'^api/index$', core_api.index),                                                                    #вопрос
+    url(r'^api/profile$', core_api.profile),
+    url(r'^api/profile/skip_creation$', core_api.profile_skip_creation),
+    url(r'^api/profile/fiz_and_jur_address$', core_api.profile_fiz_and_jur_address),
+    url(r'^api/profile/juridical_address$', core_api.profile_juridical_address),
+    url(r'^api/profile/physical_address$', core_api.profile_physical_address),
+    url(r'^api/profile/company_info$', core_api.profile_company_info),
+    url(r'^api/profile/signer_info$', core_api.profile_signer_info),
+    url(r'^api/profile/identity_document$', core_api.profile_identity_document),
+    url(r'^api/profile/signer_info_and_identity$', core_api.profile_signer_info_and_identity),
+    url(r'^api/profile/account/add$', core_api.profile_account_add),
+    url(r'^api/profile/account/([0-9]+)$', core_api.profile_account_edit),
 
     #manager
     url(r'^api/my_personal_data/$', core_api.my_personal_data),
