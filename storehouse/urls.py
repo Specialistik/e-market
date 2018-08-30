@@ -102,7 +102,7 @@ urlpatterns = [
     #-----------------------------------------------------------
     # Old school views, not to break the app in the process
     url(r'^admin/', admin.site.urls),
-    url(r'^$', core_views.react_index),
+    url(r'^$', core_views.index),
     url(r'^sign_in', core_views.sign_in),
     url(r'^logout', core_views.logout),
     url(r'^register', core_views.register),
