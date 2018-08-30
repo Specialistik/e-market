@@ -24,9 +24,7 @@ SECRET_KEY = '@9#xuxho&p&vh@o&!$u#mwvq&bd0kzwzs3jwt_*8+&vg9b-%yq'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['127.0.0.1', '95.183.10.45', 'app.the-sklad.ru', 'www.app.the-sklad.ru']
-#ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-
+ALLOWED_HOSTS = ['127.0.0.1', '46.254.18.77', 'e-market.online']
 
 # Application definition
 
@@ -40,8 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.postgres',
     'django.contrib.gis',
-    #'sslserver',
-    #'oauth2_provider',
     'rest_framework',
     'rest_framework.authtoken',
     'sorl.thumbnail',
@@ -190,16 +186,6 @@ MAP_WIDGETS = {
     ),
     "GOOGLE_MAP_API_KEY": "AIzaSyBo4M1eTyWA-HOp51b88dUln62wdg8pg9M"
 }
-#GOOGLE_MAPS_V3_APIKEY = 'AIzaSyBo4M1eTyWA-HOp51b88dUln62wdg8pg9M'
-
-# https thingies
-#SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-##SECURE_SSL_REDIRECT = True
-##SESSION_COOKIE_SECURE = True
-#CSRF_COOKIE_SECURE = True
-
-#APPEND_SLASH = False
-#FIXTURE_DIRS = os.path.join(BASE_DIR, "fixtures")
 
 try:
     from local_settings import *
