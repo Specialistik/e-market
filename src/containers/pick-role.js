@@ -1,8 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { Component } from "react";
 import { View } from "react-native";
+import PropTypes from "prop-types";
 //import SignUp from './sign-up.jsx';
-export default class PickRoleContainer extends React.Component {
+export default class PickRoleContainer extends Component {
     constructor(props) {
         super(props);
         this.state = { producer: true, customer: false };

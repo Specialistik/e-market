@@ -1,11 +1,11 @@
-import React from 'react';
-import SignInFormContainer from '../containers/sign-in-form'
+import React from "react";
+import SignInFormContainer from "../containers/sign-in-form";
 
 export default class SignInForm extends React.Component {
     constructor(props) {
         super(props);
         this.error = null;
-        this.state = {email: '', password: ''};
+        this.state = {email: "", password: ""};
 
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
