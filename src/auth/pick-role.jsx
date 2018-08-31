@@ -1,22 +1,22 @@
 import React from "react";
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-import PickRoleContainer from '../containers/pick-role';
+import PickRoleContainer from "../containers/pick-role";
 
 const contentStyle = {
-    backgroundImage: 'url(' + 'static/images/bg-image/bg-type1.png' + ')',
+    backgroundImage: "url(" + "static/images/bg-image/bg-type1.png" + ")",
 };
 
 class CustomerCheckEntity extends React.Component {
     render() {
-        return <i className={"fa " + (this.props.customer ? 'fa-check': "")} aria-hidden="true"/>
+        return <i className={"fa " + (this.props.customer ? "fa-check": "")} aria-hidden="true"/>;
     }
 }
 
 class ProducerCheckEntity extends React.Component {
     render() {
-        return <i className={"fa " + (this.props.producer ? 'fa-check': "")} aria-hidden="true"/>
+        return <i className={"fa " + (this.props.producer ? "fa-check": "")} aria-hidden="true"/>;
     }
 }
 
@@ -69,12 +69,12 @@ export default class PickRole extends React.Component {
                                     </a>
                                 </div>
                             </div>
-                                <Link to={`/sign_up`} className="btn hight_orange">Далее</Link>
+                            <Link to={"/sign_up"} className="btn hight_orange">Далее</Link>
                         </div>
                     </div>
                 </div>
             </div>
-        </PickRoleContainer>
+        </PickRoleContainer>;
     }
 }
 

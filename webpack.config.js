@@ -25,7 +25,7 @@ var config = {
     rules: [
       {
         test: /\.(js)|(jsx)$/,
-        loaders: ['babel-loader'],
+        loaders: ['babel!eslint-loader'],
         include: APP_DIR
       },
       {

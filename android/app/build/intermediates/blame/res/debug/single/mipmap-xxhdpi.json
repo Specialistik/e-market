@@ -1,6 +1,10 @@
 [
     {
-        "merged": "/Users/imc/PycharmProjects/the_sklad/android/app/build/intermediates/res/merged/debug/mipmap-xxhdpi/ic_launcher.png",
-        "source": "/Users/imc/PycharmProjects/the_sklad/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+        "merged": "C:\\webprojects\\e-market\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\ic_launcher.png",
+        "source": "C:\\webprojects\\e-market\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\imc\\PycharmProjects\\the_sklad\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxhdpi\\ic_launcher.png",
+        "source": "C:\\Users\\imc\\PycharmProjects\\the_sklad\\android\\app\\src\\main\\res\\mipmap-xxhdpi\\ic_launcher.png"
     }
 ]

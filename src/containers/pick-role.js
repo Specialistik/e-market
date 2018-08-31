@@ -1,9 +1,7 @@
 import React from "react";
-import PropTypes from 'prop-types';
-import { View } from 'react-native';
-
+import PropTypes from "prop-types";
+import { View } from "react-native";
 //import SignUp from './sign-up.jsx';
-
 export default class PickRoleContainer extends React.Component {
     constructor(props) {
         super(props);
@@ -13,11 +11,9 @@ export default class PickRoleContainer extends React.Component {
         this.producerClicked = this.producerClicked.bind(this);
         this.customerClicked = this.customerClicked.bind(this);
     }
-
     pickedUp() {
         return this.state.producer || this.state.customer;
     }
-
     goToSignUp() {
         if (this.pickedUp()) {
             //this.props.navigate

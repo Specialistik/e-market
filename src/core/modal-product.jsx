@@ -1,5 +1,4 @@
 import React from 'react';
-import Popup from 'reactjs-popup';
 
 export default class ModalProduct extends React.Component {
     constructor(props) {
