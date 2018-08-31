@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import { AppRegistry, Linking } from "react-native";
 //import { createStackNavigator } from "react-navigation";
 //import { Provider, connect } from "react-redux";
@@ -37,7 +37,7 @@ const mapStateToProps = (state) => ({
 connect(mapStateToProps)(TheSkladApp);
 */
 
-class TheSkladApp extends React.Component{
+class TheSkladApp extends Component{
     constructor(props) {
         super(props);
     }
