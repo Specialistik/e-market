@@ -1,7 +1,7 @@
 export const constants =  {
-    CREATE_ACCOUNT: 'CREATE ACCOUNT',
-    SET_TOKEN: 'SET TOKEN',
-    LOG_OUT: 'LOG OUT',
+    CREATE_ACCOUNT: "CREATE ACCOUNT",
+    SET_TOKEN: "SET TOKEN",
+    LOG_OUT: "LOG OUT",
 };
 
 /**
