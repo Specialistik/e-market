@@ -1,10 +1,10 @@
 import React from "react";
-import PropTypes from 'prop-types';
-import { View, TextInput, Button } from 'react-native';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import PropTypes from "prop-types";
+import { View, TextInput, Button } from "react-native";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-import SignUpFormContainer from '../containers/sign-up-form';
+import SignUpFormContainer from "../containers/sign-up-form";
 import * as AuthActionCreators from "../actions/auth";
 
 class SignUpForm extends React.Component {
@@ -65,20 +65,20 @@ class SignUpForm extends React.Component {
                 onPress={() => this.props.signupUser()}
                 title="Зарегистрироваться">
             </Button>
-        </SignUpFormContainer>
+        </SignUpFormContainer>;
     }
 }
 
 
 const mapStateToProps = (state) => {
     return {
-        role: state.userReducer['role'],
-        token: state.userReducer['token'],
-    }
+        role: state.userReducer["role"],
+        token: state.userReducer["token"],
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return { actions: bindActionCreators(AuthActionCreators, dispatch)}
+    return { actions: bindActionCreators(AuthActionCreators, dispatch)};
 };
 
 export default connect(
@@ -88,5 +88,16 @@ export default connect(
 
 SignUpForm.propTypes = {
     email: PropTypes.string,
-    password: PropTypes.string
+    password: PropTypes.string,
+    phone: PropTypes.string,
+    company_name: PropTypes.string,
+    inn: PropTypes.string,
+    privacy_check: PropTypes.bool,
+    signupUser: PropTypes.func,
+    handleCompanyNameChange: PropTypes.func,
+    handleEmailChange: PropTypes.func,
+    handlePasswordChange: PropTypes.func,
+    handleInnChange: PropTypes.func,
+    handlePhoneChange: PropTypes.func,
+    handlePrivacyChange: PropTypes.func
 };

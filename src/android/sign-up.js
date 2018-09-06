@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text } from 'react-native';
+import { View, Text } from "react-native";
 
-import SignUpForm from './sign-up-form';
+import SignUpForm from "./sign-up-form";
 
 export default class SignUp extends React.Component {
     constructor(props) {
@@ -19,6 +19,6 @@ export default class SignUp extends React.Component {
                     <SignUpForm/>
                 </View>
             </View>
-        </View>
+        </View>;
     }
 }

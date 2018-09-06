@@ -1,12 +1,12 @@
 import React from "react";
-import { Image, View, Text } from 'react-native';
-import { Link } from 'react-router-native';
-import { connect } from 'react-redux';
+import { Image, View, Text } from "react-native";
+import { Link } from "react-router-native";
+import { connect } from "react-redux";
 
 class NativeHeader extends React.Component {
     render() {
         return <View>
-        <Header leftComponent={{ icon: 'menu', color: '#fff' }} />
+        <Header leftComponent={{ icon: "menu", color: "#fff" }} />
             <View>
                 <View>
                     <Link to="/">
@@ -19,7 +19,7 @@ class NativeHeader extends React.Component {
 
                 {this.props.token ?
                     <View className="header_right_box">
-                        {this.props.role !== null && this.props.role in ['customer', 'manager'] ?
+                        {this.props.role !== null && this.props.role in ["customer", "manager"] ?
                             <View className="basket_wrapp">
                                 {/*
                                 <a href="/basket" className="basket_box">
@@ -34,7 +34,7 @@ class NativeHeader extends React.Component {
                             </View>:<Text>' '</Text>
                         }
 
-                        { this.props.role !== null && this.props.role === 'manager' ?
+                        { this.props.role !== null && this.props.role === "manager" ?
                             <View className="basket_wrapp">
                             {/*
                                 <a href="/basket" className="basket_box">
@@ -68,8 +68,8 @@ class NativeHeader extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        role: state.userReducer['role'],
-        token: state.userReducer['token'],
+        role: state.userReducer["role"],
+        token: state.userReducer["token"],
     }
 };
 

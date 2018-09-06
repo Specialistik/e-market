@@ -1,27 +1,9 @@
 import React from "react";
-import PropTypes from 'prop-types';
-import { Button, View, Image, Text } from 'react-native';
+import PropTypes from "prop-types";
+import { Button, View, Image, Text } from "react-native";
 
-import PickRoleContainer from '../containers/pick-role'
+import PickRoleContainer from "../containers/pick-role";
 
-
-// <CustomerCheckEntity producer={this.state.producer} customer={this.state.customer} onClick={this.props.customerClicked}/>
-//                                    <ProducerCheckEntity producer={this.state.producer} customer={this.state.customer}/>
-//style={"fa " + (this.props.customer ? 'fa-check': "")}
-/*
-class CustomerCheckEntity extends React.Component {
-    render() {
-        return <Text>''</Text>;
-    }
-}
-
-// style={"fa " + (this.props.producer ? 'fa-check': "")}
-class ProducerCheckEntity extends React.Component {
-    render() {
-        return <Text>''</Text>;
-    }
-}
-*/
 export default class PickRole extends React.Component {
     constructor(props) {
         super(props);
@@ -55,24 +37,27 @@ export default class PickRole extends React.Component {
                                 <View>
                                     <Text>Для тех, кто закупает продукты питания</Text>
                                     <Button
-                                        onPress={() => this.customerClicked}
+                                        onPress={() => this.props.customerClicked}
                                         title="Я - ТОРГОВАЯ ТОЧКА"
                                     />
                                 </View>
                             </View>
                             <Button
                                 title="Далее"
-                                onPress={() => this.props.navigator.navigate('PickRole')}
+                                onPress={() => this.props.navigator.navigate("PickRole")}
                             />
                         </View>
                     </View>
                 </View>
             </View>
-        </PickRoleContainer>
+        </PickRoleContainer>;
     }
 }
 
 PickRole.propTypes = {
     customer: PropTypes.bool,
-    producer: PropTypes.bool
+    producer: PropTypes.bool,
+    customerClicked: PropTypes.bool, 
+    producerClicked: PropTypes.bool,
+    navigator: PropTypes.navigator
 };

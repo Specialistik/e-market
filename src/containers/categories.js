@@ -36,7 +36,7 @@ class CategoryContainer extends React.Component {
         this.fetchCats("/api/categories/" + (this.state.pid ? this.state.pid + "/" : ""));
     }
 
-    componentWillReceiveProps(nextProps){
+    UNSAFE_componentWillReceiveProps(nextProps){
         if (nextProps.match.params.hasOwnProperty("pid")) {
             this.setState({pid: nextProps.match.params.pid});
             this.fetchCats("/api/categories/" + nextProps.match.params.pid + "/");
