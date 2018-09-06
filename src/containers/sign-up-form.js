@@ -1,8 +1,8 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { View } from 'react-native';
+import { View } from "react-native";
 
 import * as AuthActionCreators from "../actions/auth";
 
@@ -10,11 +10,11 @@ class SignUpFormContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: '',
-            password: '',
-            company_name: '',
-            inn: '',
-            phone: '',
+            email: "",
+            password: "",
+            company_name: "",
+            inn: "",
+            phone: "",
             privacy_check: false
         };
         this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -28,13 +28,13 @@ class SignUpFormContainer extends React.Component {
 
     handleInnChange(event) {
         if (event.target.value.length <= 12) {
-            this.setState({inn: parseInt(event.target.value) || ''});
+            this.setState({inn: parseInt(event.target.value) || ""});
         }
     }
 
     handlePhoneChange(event) {
         if (event.target.value.length <= 10) {
-            this.setState({phone: parseInt(event.target.value || '')});
+            this.setState({phone: parseInt(event.target.value || "")});
         }
     }
 
@@ -55,11 +55,11 @@ class SignUpFormContainer extends React.Component {
     }
 
     signupUser(company_name, inn, password, email, phone) {
-        fetch('/api/sign_up/', {
+        fetch("/api/sign_up/", {
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify({
                 email: email,
                 password: password,
@@ -72,14 +72,13 @@ class SignUpFormContainer extends React.Component {
                 throw Error(response.statusText);
             }
             return response;
-            }).then((response) => response.json())
-                .then((data) => {
-                    this.props.actions.createAccount(data.token, data.role);
-                    //this.props.dispatch(this.props.actions.createAccount(data.token, data.role));
-                })
-                .catch((e) => this.setState({ error: e }))
+        }).then((response) => response.json())
+            .then((data) => {
+                this.props.actions.createAccount(data.token, data.role);
+            })
             .catch((e) => this.setState({ error: e }))
-        .catch((e) => this.setState({ error: e }))
+            .catch((e) => this.setState({ error: e }))
+            .catch((e) => this.setState({ error: e }));
     }
 
     handleSubmit(event) {
@@ -92,19 +91,19 @@ class SignUpFormContainer extends React.Component {
     }
 
     render() {
-        return <View> {this.props.children} </View>
+        return <View> {this.props.children} </View>;
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-        role: state.userReducer['role'],
-        token: state.userReducer['token'],
-    }
+        role: state.userReducer["role"],
+        token: state.userReducer["token"],
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return { actions: bindActionCreators(AuthActionCreators, dispatch) }
+    return { actions: bindActionCreators(AuthActionCreators, dispatch) };
 };
 
 
@@ -119,5 +118,7 @@ SignUpFormContainer.propTypes = {
     email: PropTypes.string,
     phone: PropTypes.string,
     password: PropTypes.string,
-    privacy_check: PropTypes.bool
+    privacy_check: PropTypes.bool,
+    children: PropTypes.array,
+    actions: PropTypes.arrayOf(string)
 };

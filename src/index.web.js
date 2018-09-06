@@ -1,23 +1,23 @@
-import React from 'react';
-import { render } from 'react-dom';
-import { Provider, connect } from 'react-redux';
+import React from "react";
+import { render } from "react-dom";
+import { Provider, connect } from "react-redux";
 import {
     BrowserRouter as Router,
     Route,
     Switch,
-  } from 'react-router-dom';
+} from "react-router-dom";
 
-import PickRole from './auth/pick-role.jsx';
-import SignIn from './auth/sign-in.jsx';
-import SignUp from './auth/sign-up.jsx';
-import Logout from './auth/logout.jsx';
+import PickRole from "./auth/pick-role.jsx";
+import SignIn from "./auth/sign-in.jsx";
+import SignUp from "./auth/sign-up.jsx";
+import Logout from "./auth/logout.jsx";
 
 import Categories from "./core/categories.jsx";
 import Products from "./core/products.jsx";
-import Header from "./core/header.jsx"
+import Header from "./core/header.jsx";
 
 
-import configureStore from './store';
+import configureStore from "./store";
 export const store = configureStore();
 
 
@@ -33,9 +33,9 @@ class IndexContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        role: state.userReducer['role'],
-        token: state.userReducer['token']
-    }
+        role: state.userReducer["role"],
+        token: state.userReducer["token"]
+    };
 };
 
 const IndexCont = connect(
@@ -62,7 +62,9 @@ render(
             </div>
         </Router>
     </Provider>,
-    document.getElementById('app')
-)
+    document.getElementById("app")
+);
 
-
+IndexContainer.propTypes = {
+    token: PropTypes.string
+};

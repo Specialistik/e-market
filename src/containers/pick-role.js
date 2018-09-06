@@ -33,11 +33,12 @@ export default class PickRoleContainer extends Component {
     }
 
     render () {
-        return <View> { this.props.children } </View>
+        return <View> { this.props.children } </View>;
     }
 }
 
 PickRoleContainer.propTypes = {
     customer: PropTypes.bool,
-    producer: PropTypes.bool
+    producer: PropTypes.bool,
+    children: PropTypes.array
 };

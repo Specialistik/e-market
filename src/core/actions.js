@@ -1,6 +1,6 @@
 export const constants =  {
-    SELECT_CATEGORIES: 'SELECT_CATEGORIES',
-    SELECT_PRODUCTS: 'SELECT PRODUCTS',
+    SELECT_CATEGORIES: "SELECT_CATEGORIES",
+    SELECT_PRODUCTS: "SELECT PRODUCTS",
 };
 
 export function selectCategories(pid) {
