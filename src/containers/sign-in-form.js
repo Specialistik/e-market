@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { View } from "react-native";
+import { WebView } from "react-native";
 
 import * as AuthActionCreators from "../actions/auth";
 
@@ -59,7 +59,7 @@ class SignInFormContainer extends React.Component {
     }
 
     render() {
-        return <View> {this.props.children} </View>;
+        return <WebView> {this.props.children} </WebView>;
     }
 }
 

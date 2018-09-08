@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { View } from "react-native";
+import React from "react";
+import { WebView } from "react-native";
 import PropTypes from "prop-types";
 //import SignUp from './sign-up.jsx';
-export default class PickRoleContainer extends Component {
+export default class PickRoleContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = { producer: true, customer: false };
@@ -33,7 +33,7 @@ export default class PickRoleContainer extends Component {
     }
 
     render () {
-        return <View> { this.props.children } </View>;
+        return <WebView> { this.props.children } </WebView>;
     }
 }
 

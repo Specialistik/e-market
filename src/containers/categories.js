@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { View } from "react-native";
+import { WebView } from "react-native";
 
 class CategoryContainer extends React.Component {
     constructor(props) {
@@ -47,7 +47,7 @@ class CategoryContainer extends React.Component {
     }
 
     render() {
-        return <View> {this.props.children} </View>;
+        return <WebView> {this.props.children} </WebView>;
     }
 }
 
