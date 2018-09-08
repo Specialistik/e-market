@@ -3,6 +3,7 @@
   "version": "0.9.1",
   "private": true,
   "scripts": {
+    "test": "jest",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "watch": "webpack --watch",
     "dev": "webpack --mode development",
@@ -25,15 +26,28 @@
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
     "babel-eslint": "^9.0.0",
+    "babel-jest": "^23.4.2",
     "babel-preset-env": "^1.7.0",
+    "babel-preset-jest": "^23.2.0",
     "babel-preset-react-native": "^5.0.2",
     "babel-runtime": "^6.26.0",
+    "enzyme": "^3.6.0",
     "eslint": "^5.4.0",
     "eslint-loader": "^2.1.0",
     "eslint-plugin-react": "^7.11.1",
+    "jest": "^23.5.0",
+    "jshint": "^2.9.6",
     "react-hot-loader": "^4.3.5",
     "react-native-cli": "^2.0.1",
+    "react-test-renderer": "^16.5.0",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ]
   }
 }
