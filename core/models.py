@@ -3,7 +3,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.gis.db.models import PointField
 
 from catalogs.models import AbstractList
 from customer.models import TradePoint
@@ -90,7 +89,7 @@ class Address(models.Model):
     structure = models.CharField(max_length=20, null=True, blank=True, verbose_name=u'Строение')
     flat = models.CharField(max_length=20, blank=True, default='', verbose_name=u'Квартира/Офис')
     full_address = models.CharField(max_length=256, null=True, blank=True, verbose_name=u'Полный адрес')
-    location = PointField(null=True, default=None, verbose_name=u'Широта\долгота')
+    #location = PointField(null=True, default=None, verbose_name=u'Широта\долгота')
 
     def __repr__(self):
         return self.full_address

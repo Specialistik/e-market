@@ -3,4 +3,3 @@ djangorestframework==3.6.3
 openpyxl==2.5.3
 python-docx==0.8.6
 sorl-thumbnail==12.4.1
-GDAL==2.3.1

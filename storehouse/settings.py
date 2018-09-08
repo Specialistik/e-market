@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
-    'django.contrib.gis',
     'rest_framework',
     'rest_framework.authtoken',
     'sorl.thumbnail',
@@ -49,7 +48,6 @@ INSTALLED_APPS = [
     'payments',
     'manager',
     'system_supervisor',
-    'mapwidgets',
 ]
 
 MIDDLEWARE = [
@@ -92,12 +90,8 @@ WSGI_APPLICATION = 'storehouse.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'the_sklad',
-        'USER': 'admin',
-        'PASSWORD': '1f53601c',
-        'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, "db.db")
     }
 }
 
@@ -177,15 +171,6 @@ EMAIL_HOST_PASSWORD = 'SupTheSklad'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-
-# might be redundant as long as we have that in admin
-MAP_WIDGETS = {
-    "GooglePointFieldWidget": (
-        ("zoom", 15),
-        ("mapCenterLocation", [55.8654762, 37.0608073]),
-    ),
-    "GOOGLE_MAP_API_KEY": "AIzaSyBo4M1eTyWA-HOp51b88dUln62wdg8pg9M"
-}
 
 try:
     from local_settings import *

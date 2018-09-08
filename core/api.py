@@ -10,7 +10,7 @@ import json
 
 from docx import Document
 
-from django.contrib.gis.geos import Point
+#from django.contrib.gis.geos import Point
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
