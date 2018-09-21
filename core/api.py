@@ -10,7 +10,7 @@ import json
 
 from docx import Document
 
-from django.contrib.gis.geos import Point
+#from django.contrib.gis.geos import Point
 from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
@@ -574,7 +574,7 @@ def depot_add(request):
                 block=request.POST['block'],
                 structure=request.POST['structure'],
                 flat=request.POST['flat'],
-                location=Point(float(request.POST['lng']), float(request.POST['lat'])),
+                #location=Point(float(request.POST['lng']), float(request.POST['lat'])),
             )
 
             ProducerDepot.objects.create(
@@ -867,7 +867,7 @@ def trade_point_add(request):
                 block=request.POST['block'],
                 structure=request.POST['structure'],
                 flat=request.POST['flat'],
-                location=Point(float(request.POST['lng']), float(request.POST['lat'])),
+                #location=Point(float(request.POST['lng']), float(request.POST['lat'])),
             )
 
             TradePoint.objects.create(

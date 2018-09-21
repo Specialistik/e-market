@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
-    'django.contrib.gis',
+    #'django.contrib.gis',
     'rest_framework',
     'rest_framework.authtoken',
     'sorl.thumbnail',
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'payments',
     'manager',
     'system_supervisor',
-    'mapwidgets',
+    #'mapwidgets',
 ]
 
 MIDDLEWARE = [
@@ -92,18 +92,14 @@ WSGI_APPLICATION = 'storehouse.wsgi.application'
 
 DATABASES = {
     'default': {
-        #'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'the_sklad',
-        'USER': 'admin',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'e-market',
+        'USER': 'postgres',
         'PASSWORD': '1f53601c',
         'HOST': 'localhost'
     }
 }
-
-
-# Password validation
-# https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -120,10 +116,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.11/topics/i18n/
-
 LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'Europe/Moscow'
@@ -131,14 +123,9 @@ DATE_INPUT_FORMATS = ('%d.%m.%Y',)
 DATE_FORMAT = "d.m.Y"
 
 USE_I18N = False
-
 USE_L10N = True
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
 #STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
@@ -179,6 +166,7 @@ EMAIL_USE_TLS = True
 
 
 # might be redundant as long as we have that in admin
+
 MAP_WIDGETS = {
     "GooglePointFieldWidget": (
         ("zoom", 15),
